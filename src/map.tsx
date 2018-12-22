@@ -1,11 +1,16 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from './util';
 import {Layers} from './layers/layers';
 import {layer} from './layers/index';
 
 import './ol.css';
 import './map.css';
+
+export interface MapContext {
+  mapComp: Map;
+  map: ol.Map;
+}
 
 /**
  * Implementation of ol.map https://openlayers.org/en/latest/apidoc/ol.Map.html
@@ -148,7 +153,7 @@ export class Map extends React.Component<any, any> {
 }
 
 // Ref. https://facebook.github.io/react/docs/context.html#how-to-use-context
-Map['childContextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};
+// Map['childContextTypes'] = {
+//   mapComp: React.PropTypes.instanceOf(Map),
+//   map: React.PropTypes.instanceOf(ol.Map)
+// };

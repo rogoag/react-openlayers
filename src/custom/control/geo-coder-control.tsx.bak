@@ -1,21 +1,21 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
-import {GeoCoder} from 'geo-coder';
+import ol from 'ol'
+import {GeoCode} from 'geo-coder';
 
 import './geo-coder.css';
 
 let element: HTMLElement = document.createElement('div');
 
 export class GeoCoderControl extends ol.control.Control {
-  geoCoder: GeoCoder;
+  geoCoder: GeoCode;
   eventListeners: any = {};
   expanded: boolean = false;
   buttonEl: HTMLButtonElement;
   autocompleteEl:  HTMLDivElement;
 
-  constructor(options = {}) {
+  constructor(provider:string = null, options:any = {}) {
     super({element: element});
-    this.geoCoder = new GeoCoder(options);
+    this.geoCoder = new GeoCode(provider, options);
     element.innerHTML=''; //it may contain the previous element
     element.className = 'ol-control geo-coder';
     element.appendChild(this.buttonEl = this.getButtonHTML());

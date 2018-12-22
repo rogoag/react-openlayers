@@ -1,15 +1,19 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from "../util";
 import {Map} from '../map';
 
-export class Extent extends React.Component<any, any> {
+export type ExtentProps = olFix.olx.interaction.ExtentOptions;
+
+
+export class Extent extends React.Component<ExtentProps, any> {
 
   interaction: any;
 
-  options: any = {
+  options: ExtentProps = {
     extent: undefined,
     boxStyle: undefined,
+    pixelTolerance: undefined,
     pointerStyle: undefined,
     wrapX: undefined
   };
@@ -21,12 +25,10 @@ export class Extent extends React.Component<any, any> {
     'propertychange': undefined
   };
 
-  constructor(props) { super(props); }
-
   render() { return null; }
 
   componentDidMount () {
-    let options = Util.getOptions(Object['assign'](this.options, this.props));
+    let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('options', options);
     this.interaction = new ol.interaction['Extent'](options);
     this.context.mapComp.interactions.push(this.interaction)
@@ -40,7 +42,7 @@ export class Extent extends React.Component<any, any> {
   componentWillReceiveProps (nextProps) {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object['assign'](this.options, nextProps));
+      let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new ol.interaction['Extent'](options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
@@ -56,8 +58,3 @@ export class Extent extends React.Component<any, any> {
   }
 
 }
-
-Extent['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 
 export {Select} from './select';
 export {Draw} from './draw';
@@ -21,10 +21,6 @@ export {Snap} from './snap';
 export {Translate} from './translate';
 
 export class Interactions extends React.Component<any, any> {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div>

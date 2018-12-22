@@ -1,12 +1,26 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 
 import {Util} from '../util';
+import { AttributionProps } from './attribution';
+import { RotateProps } from './rotate';
+import { ZoomProps } from './zoom';
+
+export interface ControlsOptions {
+  attribution?: boolean
+  attributionOptions?: AttributionProps
+  rotate?: boolean
+  rotateOptions?: RotateProps
+  zoom?: boolean
+  zoomOptions?: ZoomProps
+}
+
+export type ControlsProps = ControlsOptions;
 
 // I wish I can name it as 'layers', not 'Layers'
-export class Controls extends React.Component<any, any> {
+export class Controls extends React.Component<ControlsProps, any> {
 
-  options: any = {
+  options: ControlsOptions = {
     attribution  : undefined,
     attributionOptions: undefined,
     rotate: undefined,
@@ -17,7 +31,7 @@ export class Controls extends React.Component<any, any> {
 
   constructor(props) {
     super(props);
-    this.options = Util.getOptions(Object['assign'](this.options, this.props));
+    this.options = Util.getOptions(Object.assign(this.options, this.props));
   }
 
   render() {
@@ -28,7 +42,3 @@ export class Controls extends React.Component<any, any> {
 
   componentWillUnmount () {}
 }
-
-Controls['contextTypes'] = {
-  map: React.PropTypes.instanceOf(ol.Map)
-};

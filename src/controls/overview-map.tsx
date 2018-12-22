@@ -1,13 +1,15 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from '../util';
 import {Map} from '../map';
 
-export class OverviewMap extends React.Component<any, any> {
+export type OverviewMapProps = ol.olx.control.OverviewMapOptions;
+
+export class OverviewMap extends React.Component<OverviewMapProps, any> {
 
   control: ol.control.OverviewMap;
 
-  options: any = {
+  options: OverviewMapProps = {
     collapsed: undefined,
     collapseLabel: undefined,
     collapsible  : undefined,
@@ -24,12 +26,10 @@ export class OverviewMap extends React.Component<any, any> {
     'propertychange': undefined
   };
 
-  constructor(props) { super(props); }
-
   render() { return null; }
 
   componentDidMount () {
-    let options = Util.getOptions(Object['assign'](this.options, this.props));
+    let options = Util.getOptions(Object.assign(this.options, this.props));
     this.control = new ol.control.OverviewMap(options);
     this.context.mapComp.controls.push(this.control)
 
@@ -40,8 +40,3 @@ export class OverviewMap extends React.Component<any, any> {
   }
 
 }
-
-OverviewMap['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

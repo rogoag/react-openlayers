@@ -1,13 +1,16 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from "../util";
 import {Map} from '../map';
 
-export class KeyboardPan extends React.Component<any, any> {
+export type KeyboardPanProps = ol.olx.interaction.KeyboardPanOptions;
+
+
+export class KeyboardPan extends React.Component<KeyboardPanProps, any> {
 
   interaction: ol.interaction.KeyboardPan;
 
-  options: any = {
+  options: KeyboardPanProps = {
     condition: undefined,
     duration: undefined,
     pixelDelta: undefined
@@ -19,12 +22,10 @@ export class KeyboardPan extends React.Component<any, any> {
     'propertychange': undefined
   };
 
-  constructor(props) { super(props); }
-
   render() { return null; }
 
   componentDidMount () {
-    let options = Util.getOptions(Object['assign'](this.options, this.props));
+    let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('options', options);
     this.interaction = new ol.interaction.KeyboardPan(options);
     this.context.mapComp.interactions.push(this.interaction)
@@ -38,7 +39,7 @@ export class KeyboardPan extends React.Component<any, any> {
   componentWillReceiveProps (nextProps) {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object['assign'](this.options, nextProps));
+      let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new ol.interaction.KeyboardPan(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
@@ -54,8 +55,3 @@ export class KeyboardPan extends React.Component<any, any> {
   }
 
 }
-
-KeyboardPan['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

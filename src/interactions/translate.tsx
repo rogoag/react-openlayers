@@ -1,13 +1,16 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from "../util";
 import {Map} from '../map';
 
-export class Translate extends React.Component<any, any> {
+export type TranslateProps = ol.olx.interaction.TranslateOptions;
+
+
+export class Translate extends React.Component<TranslateProps, any> {
 
   interaction: ol.interaction.Translate;
 
-  options: any = {
+  options: TranslateProps = {
     features: undefined,
     layers: undefined,
     hitTolerance: undefined
@@ -22,12 +25,10 @@ export class Translate extends React.Component<any, any> {
     'translating': undefined
   };
 
-  constructor(props) { super(props); }
-
   render() { return null; }
 
   componentDidMount () {
-    let options = Util.getOptions(Object['assign'](this.options, this.props));
+    let options = Util.getOptions(Object.assign(this.options, this.props));
     this.interaction = new ol.interaction.Translate(options);
     this.context.mapComp.interactions.push(this.interaction)
     
@@ -40,7 +41,7 @@ export class Translate extends React.Component<any, any> {
   componentWillReceiveProps (nextProps) {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object['assign'](this.options, nextProps));
+      let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new ol.interaction.Translate(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
@@ -56,8 +57,3 @@ export class Translate extends React.Component<any, any> {
   }
 
 }
-
-Translate['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

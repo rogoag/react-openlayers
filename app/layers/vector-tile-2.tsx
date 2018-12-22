@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as ol from 'openlayers';
-import {applyStyle} from 'ol-mapbox-style'; // in case we use olms
-import * as mb2olstyle from 'mapbox-to-ol-style';
+import ol from 'ol';
+import {applyStyle, styleFunction as mb2olstyle} from 'ol-mapbox-style'; // in case we use olms
 console.log('mb2olstyle', mb2olstyle, mb2olstyle.mb2olstyle)
 
 import {
@@ -19,7 +18,7 @@ var source = new ol.source.VectorTile({
     'OpenStreetMap contributors</a>',
   format: new ol.format.MVT(),
   tileGrid: ol.tilegrid.createXYZ({maxZoom: 22}),
-  tilePixelRatio: 16,
+  // tilePixelRatio: 16,
   url: 'https://free-0.tilehosting.com/data/v3/{z}/{x}/{y}.pbf?key=tXiQqN3lIgskyDErJCeY'
   ///url: 'https://{a-d}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/{z}/{x}/{y}.vector.pbf?access_token=' + key
 });

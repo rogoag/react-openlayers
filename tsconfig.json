@@ -33,15 +33,12 @@
   ],
   "files": [
     "src/index.tsx",
-    "node_modules/@types/openlayers/index.d.ts"
+    "src/global.d.ts",
+    "node_modules/@types/openlayers/index.d.ts",
   ],
   "exclude": [
     "node_modules"
   ],
   "compileOnSave": false,
-  "buildOnSave": false,
-  "angularCompilerOptions": {
-    "strictMetadataEmit": true,
-    "skipTemplateCodegen": true
-  }
+  "buildOnSave": false
 }

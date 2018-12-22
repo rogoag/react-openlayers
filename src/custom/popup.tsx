@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 
 import './popup.css';
 

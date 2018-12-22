@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as ol from 'openlayers';
-import {Router, Route, hashHistory, IndexRoute} from 'react-router';
+import ol from 'ol';
+import {Route, HashRouter} from 'react-router-dom';
+
 import {App} from './app';
 
 import {
@@ -60,15 +61,15 @@ import {
   EarthquakeClusters,
   MarkerStyle,
   GoogleStreetViewPanorama,
-  GeoCoder
+  // GeoCoder
 } from './custom';
 
 ReactDOM.render((
-  <Router history={hashHistory}>
+  <HashRouter>
     <Route path="/" component={App}>
-      <IndexRoute component={EarthquakeClusters} />
+      <Route component={EarthquakeClusters} />
       <Route path="controls" component={Controls}>
-        <IndexRoute component={Attribution} />
+        <Route component={Attribution} />
         <Route path="attribution" component={Attribution} />
         <Route path="full-screen" component={FullScreen} />
         <Route path="mouse-position" component={MousePosition} />
@@ -80,7 +81,7 @@ ReactDOM.render((
         <Route path="zoom" component={Zoom} />
       </Route>
       <Route path="layers" component={Layers}>
-        <IndexRoute component={Tile} />
+        <Route component={Tile} />
         <Route path="tile" component={Tile} />
         <Route path="vector" component={Vector} />
         <Route path="heatmap" component={Heatmap} />
@@ -90,7 +91,7 @@ ReactDOM.render((
         <Route path="osm-vector-tiles" component={OSMVectorTiles} />
       </Route>
       <Route path="interactions" component={Interactions}>
-        <IndexRoute component={Select} />
+        <Route component={Select} />
         <Route path="select" component={Select} />
         <Route path="draw" component={Draw} />
         <Route path="modify" component={Modify} />
@@ -111,16 +112,16 @@ ReactDOM.render((
         <Route path="translate" component={Translate} />
       </Route>
       <Route path="overlays" component={Overlays}>
-        <IndexRoute component={AppOverlay} />
+        <Route component={AppOverlay} />
         <Route path="overlay" component={AppOverlay} />
       </Route>
       <Route path="custom" component={Custom}>
-        <IndexRoute component={EarthquakeClusters} />
+        <Route component={EarthquakeClusters} />
         <Route path="earthquake-clusters" component={EarthquakeClusters} />
         <Route path="marker-style" component={MarkerStyle} />
         <Route path="google-street-view-panorama" component={GoogleStreetViewPanorama} />
-        <Route path="geo-code" component={GeoCoder} />
+        {/* <Route path="geo-code" component={GeoCoder} /> */}
       </Route>
     </Route>
-  </Router>
+  </HashRouter>
 ), document.getElementById('app'));

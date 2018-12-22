@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as ol from 'openlayers';
+import ol from 'ol';
 import {
   interaction, layer, custom, control, //name spaces
   Interactions, Overlays, Controls,     //group
@@ -8,17 +8,13 @@ import {
 } from "react-openlayers";
 
 export class MousePosition extends React.Component<any,any> {
-  constructor(props) {
-    super(props);
-  }
-
   render(){
     return (
       <div>
         <Map>
           <Layers><layer.Tile/></Layers>
           <Controls>
-            <control.MousePosition />
+            <control.MousePosition projection="EPSG:3857"/>
           </Controls>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/controls/mouse-position.tsx">source</a>
@@ -26,7 +22,7 @@ export class MousePosition extends React.Component<any,any> {
         <Map>
           <Layers><layer.Tile/></Layers>
           <Controls>
-            <control.MousePosition />
+            <control.MousePosition projection="EPSG:3857"/>
           </Controls>
         </Map>
         `}</pre>

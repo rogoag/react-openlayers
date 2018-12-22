@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as ol from 'openlayers';
+import ol from 'ol';
 import {
   interaction, layer, custom, control, //name spaces
   Interactions, Overlays, Controls,     //group
@@ -14,17 +14,13 @@ var marker = new custom.style.MarkerStyle(
 );
 
 export class Vector extends React.Component<any,any> {
-  constructor(props) {
-    super(props);
-  }
-
   render(){
     return (
       <div>
         <Map>
           <Layers>
             <layer.Tile/>
-            <layer.Vector source={source} style={marker.style} zIndex="1"/>
+            <layer.Vector source={source} style={marker.style} zIndex={1}/>
           </Layers>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/vector.tsx">Source Code</a>

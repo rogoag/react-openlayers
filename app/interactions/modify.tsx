@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as ol from 'openlayers';
+import ol from 'ol';
 import {
   interaction, layer, custom, control, //name spaces
   Interactions, Overlays, Controls,     //group
@@ -22,10 +22,6 @@ var style = new ol.style.Style({
 var select = new ol.interaction.Select({style: style});
 
 export class Modify extends React.Component<any, any> {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div>

@@ -1,13 +1,17 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
-import { Util } from "../util";
+import ol from 'ol'
+import { Util, Omit } from "../util";
 import { Map } from '../map';
 
-export class Heatmap extends React.Component<any, any> {
+export interface HeatmapProps extends Omit<ol.olx.layer.HeatmapOptions, 'weight'> {
+  weight?: ol.olx.layer.HeatmapOptions['weight']
+}
+
+export class Heatmap extends React.Component<HeatmapProps, any> {
 
   layer: ol.layer.Heatmap;
 
-  options: any = {
+  options: HeatmapProps = {
     gradient: undefined,
     radius: undefined,
     blur: undefined,
@@ -39,12 +43,11 @@ export class Heatmap extends React.Component<any, any> {
     'render': undefined
   };
 
-  constructor(props) { super(props); }
-
   render() { return null; }
 
   componentDidMount() {
-    let options = Util.getOptions(Object['assign'](this.options, this.props));
+    let options = Util.getOptions(Object.assign(this.options, this.props));
+    if (!options.weight) options.weight = 'weight';
     this.layer = new ol.layer.Heatmap(options);
     if(this.props.zIndex){
       this.layer.setZIndex(this.props.zIndex);
@@ -79,8 +82,3 @@ export class Heatmap extends React.Component<any, any> {
   }
 
 }
-
-Heatmap['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

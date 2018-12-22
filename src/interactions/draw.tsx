@@ -1,13 +1,15 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from "../util";
 import {Map} from '../map';
 
-export class Draw extends React.Component<any, any> {
+export type DrawProps = ol.olx.interaction.DrawOptions;
+
+export class Draw extends React.Component<DrawProps, any> {
 
   interaction: ol.interaction.Draw;
 
-  options: any = {
+  options: DrawProps = {
     clickTolerance: undefined,
     features: undefined,
     source: undefined,
@@ -33,12 +35,10 @@ export class Draw extends React.Component<any, any> {
     'propertychange': undefined
   };
 
-  constructor(props) { super(props); }
-
   render() { return null; }
 
   componentDidMount () {
-    let options = Util.getOptions(Object['assign'](this.options, this.props));
+    let options = Util.getOptions(Object.assign(this.options, this.props));
     this.interaction = new ol.interaction.Draw(options);
     this.context.mapComp.interactions.push(this.interaction);
 
@@ -51,7 +51,7 @@ export class Draw extends React.Component<any, any> {
   componentWillReceiveProps (nextProps) {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object['assign'](this.options, nextProps));
+      let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new ol.interaction.Draw(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
@@ -67,8 +67,3 @@ export class Draw extends React.Component<any, any> {
   }
 
 }
-
-Draw['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

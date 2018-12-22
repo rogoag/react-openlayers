@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as ol from 'openlayers';
+import ol from 'ol';
 import {
   interaction, layer, custom, control, //name spaces
   Interactions, Overlays, Controls,     //group
@@ -17,10 +17,6 @@ let selectedMarkerStyle = Util.cloneObject(marker.style);
 selectedMarkerStyle.getImage().setOpacity(1);
 
 export class Select extends React.Component<any, any> {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div>

@@ -1,13 +1,17 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from "../util";
 import {Map} from '../map';
 
-export class VectorTile extends React.Component<any, any> {
+export interface VectorTileProps extends ol.olx.layer.VectorTileOptions {
+  callback?(layer:ol.layer.Vector):void
+}
+
+export class VectorTile extends React.Component<VectorTileProps, any> {
 
   layer: ol.layer.Vector;
 
-  options: any = {
+  options: VectorTileProps = {
     renderBuffer: undefined,
     renderMode: undefined,
     renderOrder: undefined,
@@ -39,10 +43,6 @@ export class VectorTile extends React.Component<any, any> {
     'propertychange': undefined,
     'render': undefined
   };
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return null;
@@ -90,8 +90,3 @@ export class VectorTile extends React.Component<any, any> {
   }
 
 }
-
-VectorTile['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

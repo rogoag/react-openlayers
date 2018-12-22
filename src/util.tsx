@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+
 function getOptions(props: any): any {
     let options: any = {};
     for(let key in props) {
@@ -58,7 +60,7 @@ function cloneObject(obj){
   return obj;
 }
 
-function findChild(children: any[], childType: string) {
+function findChild(children: React.ReactNode, childType: string) {
   let found: any;
   let childrenArr = React.Children.toArray(children);
   for (let i=0; i<childrenArr.length; i++) {

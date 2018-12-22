@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 
 export {Attribution} from './attribution';
 export {FullScreen} from './full-screen';

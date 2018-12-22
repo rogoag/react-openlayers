@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as ol from 'openlayers';
+import ol from 'ol';
 import {
   interaction, layer, custom, control, //name spaces
   Interactions, Overlays, Controls,     //group
@@ -12,17 +12,13 @@ let tileSource = new ol.source.Stamen({
 });
 
 let heatmapSource = new ol.source.Vector({
-  url: 'https://openlayers.org/en/v4.0.1/examples/data/kml/2012_Earthquakes_Mag5.kml',
+  url: 'http://openlayers.org/en/latest/examples/data/kml/2012_Earthquakes_Mag5.kml',
   format: new ol.format.KML({
     extractStyles: false
   })
 });
 
 export class Heatmap extends React.Component<any,any> {
-  constructor(props) {
-    super(props);
-  }
-
   render(){
     return (
       <div>

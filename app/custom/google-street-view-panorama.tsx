@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as ol from 'openlayers';
+import ol from 'ol';
 import * as GoogleMapsLoader from 'google-maps';
 import {
   interaction, layer, custom, control, //name spaces
@@ -12,10 +12,6 @@ import {
 // GoogleMapsLoader.LANGUAGE = 'fr';
 
 export class GoogleStreetViewPanorama extends React.Component<any,any> {
-  constructor(props) {
-    super(props);
-  }
-
   render(){
     return (
       <div style={{height: '500px'}}>

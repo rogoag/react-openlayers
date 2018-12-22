@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as ol from 'openlayers';
+import ol from 'ol'
 
 export class MarkerStyle {
   src: string = 'https://openlayers.org/en/v4.0.1/examples/data/icon.png';

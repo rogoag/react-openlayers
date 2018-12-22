@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as ol from 'openlayers';
+import ol from 'ol';
 import * as olms from 'ol-mapbox-style'; // in case we use olms
 import * as qwest from 'qwest';          // in case we need to do ajax call
 import {
@@ -25,7 +25,7 @@ var roadColor = {
 var buildingStyle = new ol.style.Style({
   fill: new ol.style.Fill({
     color: '#666',
-    opacity: 0.4
+    // opacity: 0.4
   }),
   stroke: new ol.style.Stroke({
     color: '#444',
@@ -91,10 +91,6 @@ var style3 =  function(f, resolution) {
 
 
 export class OSMVectorTiles extends React.Component<any,any> {
-  constructor(props) {
-    super(props);
-  }
-
   render(){
     return (
       <div>

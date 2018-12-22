@@ -1,13 +1,17 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
-import {Util} from '../util';
+import ol from 'ol'
+import {Util, Omit} from '../util';
 import {Map} from '../map';
 
-export class Tile extends React.Component<any, any> {
+export interface TileProps extends Omit<ol.olx.layer.TileOptions, 'source'> {
+  source?: ol.olx.layer.TileOptions['source']
+}
+
+export class Tile extends React.Component<TileProps, any> {
 
   layer: ol.layer.Tile;
 
-  options: any = {
+  options: TileProps = {
     zIndex: undefined,
     opacity: undefined,
     preload: undefined,
@@ -82,8 +86,3 @@ export class Tile extends React.Component<any, any> {
   }
 
 }
-
-Tile['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

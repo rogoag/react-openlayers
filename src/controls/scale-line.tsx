@@ -1,13 +1,15 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from '../util';
 import {Map} from '../map';
 
-export class ScaleLine extends React.Component<any, any> {
+export type ScaleLineProps = ol.olx.control.ScaleLineOptions;
+
+export class ScaleLine extends React.Component<ScaleLineProps, any> {
 
   control: ol.control.ScaleLine;
 
-  options: any = {
+  options: ScaleLineProps = {
     className: undefined,
     minWidth: undefined,
     render: undefined,
@@ -20,8 +22,6 @@ export class ScaleLine extends React.Component<any, any> {
     'change:units': undefined,
     'propertychange': undefined
   };
-
-  constructor(props) { super(props); }
 
   render() { return null; }
 
@@ -37,8 +37,3 @@ export class ScaleLine extends React.Component<any, any> {
   }
 
 }
-
-ScaleLine['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

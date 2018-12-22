@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as ol from 'openlayers';
+import ol from 'ol';
 import {
   interaction, layer, custom, control, //name spaces
   Interactions, Overlays, Controls,     //group
@@ -11,10 +11,6 @@ import {
 export class AppOverlay extends React.Component<any,any> {
   overlayComp: any;
   popupComp: any;
-
-  constructor(props) {
-    super(props);
-  } 
 
   showPopup = (evt) => {
     this.overlayComp.overlay.setPosition(evt.coordinate);

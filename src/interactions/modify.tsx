@@ -1,13 +1,16 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from "../util";
 import {Map} from '../map';
 
-export class Modify extends React.Component<any, any> {
+export type ModifyProps = ol.olx.interaction.ModifyOptions;
+
+
+export class Modify extends React.Component<ModifyProps, any> {
 
   interaction: ol.interaction.Modify;
 
-  options: any = {
+  options: ModifyProps = {
     condition: undefined,
     deleteCondition: undefined,
     pixelTolerance: undefined,
@@ -24,12 +27,10 @@ export class Modify extends React.Component<any, any> {
     'propertychange': undefined
   };
 
-  constructor(props) { super(props); }
-
   render() { return null; }
 
   componentDidMount () {
-    let options = Util.getOptions(Object['assign'](this.options, this.props));
+    let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('options', options);
     this.interaction = new ol.interaction.Modify(options);
     this.context.mapComp.interactions.push(this.interaction);
@@ -43,7 +44,7 @@ export class Modify extends React.Component<any, any> {
   componentWillReceiveProps (nextProps) {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object['assign'](this.options, nextProps));
+      let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new ol.interaction.Modify(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
@@ -59,8 +60,3 @@ export class Modify extends React.Component<any, any> {
   }
 
 }
-
-Modify['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

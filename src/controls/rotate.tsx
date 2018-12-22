@@ -1,13 +1,15 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from '../util';
 import {Map} from '../map';
 
-export class Rotate extends React.Component<any, any> {
+export type RotateProps = ol.olx.control.RotateOptions;
+
+export class Rotate extends React.Component<RotateProps, any> {
 
   control: ol.control.Rotate;
 
-  options: any = {
+  options: RotateProps = {
     className: undefined,
     label: undefined,
     tipLabel  : undefined,
@@ -23,12 +25,10 @@ export class Rotate extends React.Component<any, any> {
     'propertychange': undefined
   };
 
-  constructor(props) { super(props); }
-
   render() { return null; }
 
   componentDidMount () {
-    let options = Util.getOptions(Object['assign'](this.options, this.props));
+    let options = Util.getOptions(Object.assign(this.options, this.props));
     this.control = new ol.control.Rotate(options);
     this.context.mapComp.controls.push(this.control)
 
@@ -39,8 +39,3 @@ export class Rotate extends React.Component<any, any> {
   }
 
 }
-
-Rotate['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

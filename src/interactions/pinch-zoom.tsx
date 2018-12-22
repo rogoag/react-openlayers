@@ -1,13 +1,15 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from "../util";
 import {Map} from '../map';
 
-export class PinchZoom extends React.Component<any, any> {
+export type PinchZoomProps = ol.olx.interaction.PinchZoomOptions;
+
+export class PinchZoom extends React.Component<PinchZoomProps, any> {
 
   interaction: ol.interaction.PinchZoom;
 
-  options: any = {
+  options: PinchZoomProps = {
     duration: undefined,
     constrainResolution: undefined
   };
@@ -18,12 +20,10 @@ export class PinchZoom extends React.Component<any, any> {
     'propertychange': undefined
   };
 
-  constructor(props) { super(props); }
-
   render() { return null; }
 
   componentDidMount () {
-    let options = Util.getOptions(Object['assign'](this.options, this.props));
+    let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('double-click-zoom options', options);
     this.interaction = new ol.interaction.PinchZoom(options);
     this.context.mapComp.interactions.push(this.interaction)
@@ -37,7 +37,7 @@ export class PinchZoom extends React.Component<any, any> {
   componentWillReceiveProps (nextProps) {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object['assign'](this.options, nextProps));
+      let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new ol.interaction.PinchZoom(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
@@ -53,8 +53,3 @@ export class PinchZoom extends React.Component<any, any> {
   }
 
 }
-
-PinchZoom['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

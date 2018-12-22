@@ -1,13 +1,16 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from "../util";
 import {Map} from '../map';
 
-export class Snap extends React.Component<any, any> {
+export type SnapProps = ol.olx.interaction.SnapOptions;
+
+
+export class Snap extends React.Component<SnapProps, any> {
 
   interaction: ol.interaction.Snap;
 
-  options: any = {
+  options: SnapProps = {
     features: undefined,
     edge: undefined,
     vertex: undefined,
@@ -21,12 +24,10 @@ export class Snap extends React.Component<any, any> {
     'propertychange': undefined
   };
 
-  constructor(props) { super(props); }
-
   render() { return null; }
 
   componentDidMount () {
-    let options = Util.getOptions(Object['assign'](this.options, this.props));
+    let options = Util.getOptions(Object.assign(this.options, this.props));
     this.interaction = new ol.interaction.Snap(options);
     this.context.mapComp.interactions.push(this.interaction)
     
@@ -39,7 +40,7 @@ export class Snap extends React.Component<any, any> {
   componentWillReceiveProps (nextProps) {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object['assign'](this.options, nextProps));
+      let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new ol.interaction.Snap(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
@@ -55,8 +56,3 @@ export class Snap extends React.Component<any, any> {
   }
 
 }
-
-Snap['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

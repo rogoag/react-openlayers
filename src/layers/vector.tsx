@@ -1,13 +1,15 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from "../util";
 import {Map} from '../map';
 
-export class Vector extends React.Component<any, any> {
+export type VectorProps = ol.olx.layer.VectorOptions;
+
+export class Vector extends React.Component<VectorProps, any> {
 
   layer: ol.layer.Vector;
 
-  options: any = {
+  options: VectorProps = {
     renderOrder: undefined,
     extent: undefined,
     minResolution: undefined,
@@ -36,10 +38,6 @@ export class Vector extends React.Component<any, any> {
     'propertychange': undefined,
     'render': undefined
   };
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return null;
@@ -81,8 +79,3 @@ export class Vector extends React.Component<any, any> {
   }
 
 }
-
-Vector['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

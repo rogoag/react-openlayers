@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as ol from 'openlayers';
+import ol from 'ol';
 import {
   interaction, layer, custom, control, //name spaces
   Interactions, Overlays, Controls,     //group
@@ -8,10 +8,6 @@ import {
 } from "react-openlayers";
 
 export class DragBox extends React.Component<any, any> {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div className="todo">

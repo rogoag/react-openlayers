@@ -1,13 +1,15 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from '../util';
 import {Map} from '../map';
 
-export class ZoomSlider extends React.Component<any, any> {
+export type ZoomSliderProps = ol.olx.control.ZoomSliderOptions;
+
+export class ZoomSlider extends React.Component<ZoomSliderProps, any> {
 
   control: ol.control.ZoomSlider;
 
-  options: any = {
+  options: ZoomSliderProps = {
     duration: undefined,
     className: undefined,
     maxResolution: undefined,
@@ -20,12 +22,10 @@ export class ZoomSlider extends React.Component<any, any> {
     'propertychange': undefined
   };
 
-  constructor(props) { super(props); }
-
   render() { return null; }
 
   componentDidMount () {
-    let options = Util.getOptions(Object['assign'](this.options, this.props));
+    let options = Util.getOptions(Object.assign(this.options, this.props));
     this.control = new ol.control.ZoomSlider(options);
     this.context.mapComp.controls.push(this.control)
 
@@ -36,8 +36,3 @@ export class ZoomSlider extends React.Component<any, any> {
   }
 
 }
-
-ZoomSlider['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

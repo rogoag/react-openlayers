@@ -1,13 +1,15 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from "../util";
 import {Map} from '../map';
 
-export class DragRotateAndZoom extends React.Component<any, any> {
+export type DragRotateAndZoomProps = ol.olx.interaction.DragRotateAndZoomOptions;
+
+export class DragRotateAndZoom extends React.Component<DragRotateAndZoomProps, any> {
 
   interaction: ol.interaction.DragRotateAndZoom;
 
-  options: any = {
+  options: DragRotateAndZoomProps = {
     condition: undefined,
     duration: undefined
   };
@@ -18,12 +20,10 @@ export class DragRotateAndZoom extends React.Component<any, any> {
     'propertychange': undefined
   };
 
-  constructor(props) { super(props); }
-
   render() { return null; }
 
   componentDidMount () {
-    let options = Util.getOptions(Object['assign'](this.options, this.props));
+    let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('options', options);
     this.interaction = new ol.interaction.DragRotateAndZoom(options);
     this.context.mapComp.interactions.push(this.interaction)
@@ -37,7 +37,7 @@ export class DragRotateAndZoom extends React.Component<any, any> {
   componentWillReceiveProps (nextProps) {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object['assign'](this.options, nextProps));
+      let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new ol.interaction.DragRotateAndZoom(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
@@ -53,8 +53,3 @@ export class DragRotateAndZoom extends React.Component<any, any> {
   }
 
 }
-
-DragRotateAndZoom['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

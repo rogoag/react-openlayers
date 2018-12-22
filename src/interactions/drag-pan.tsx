@@ -1,13 +1,16 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from "../util";
 import {Map} from '../map';
 
-export class DragPan extends React.Component<any, any> {
+export type DragPanProps = ol.olx.interaction.DragPanOptions;
+
+
+export class DragPan extends React.Component<DragPanProps, any> {
 
   interaction: ol.interaction.DragPan;
 
-  options: any = {
+  options: DragPanProps = {
     condition: undefined,
     kinetic: undefined
   };
@@ -18,12 +21,10 @@ export class DragPan extends React.Component<any, any> {
     'propertychange': undefined
   };
 
-  constructor(props) { super(props); }
-
   render() { return null; }
 
   componentDidMount () {
-    let options = Util.getOptions(Object['assign'](this.options, this.props));
+    let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('options', options);
     this.interaction = new ol.interaction.DragPan(options);
     this.context.mapComp.interactions.push(this.interaction)
@@ -37,7 +38,7 @@ export class DragPan extends React.Component<any, any> {
   componentWillReceiveProps (nextProps) {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object['assign'](this.options, nextProps));
+      let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new ol.interaction.DragPan(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
@@ -53,8 +54,3 @@ export class DragPan extends React.Component<any, any> {
   }
 
 }
-
-DragPan['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};

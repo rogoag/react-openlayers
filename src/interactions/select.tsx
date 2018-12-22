@@ -1,13 +1,18 @@
 import * as React from 'react';
-import * as ol from 'openlayers';
+import ol from 'ol'
 import {Util} from "../util";
 import {Map} from '../map';
+import { olx } from 'openlayers';
 
-export class Select extends React.Component<any, any> {
+export interface SelectProps extends ol.olx.interaction.SelectOptions {
+  instance?: ol.interaction.Select;
+}
+
+export class Select extends React.Component<SelectProps, any> {
 
   interaction: ol.interaction.Select;
 
-  options: any = {
+  options: SelectProps = {
     addCondition: undefined,
     condition: undefined,
     layers: undefined,
@@ -28,15 +33,13 @@ export class Select extends React.Component<any, any> {
     'select': undefined
   };
 
-  constructor(props) { super(props); }
-
   render() { return null; }
 
   componentDidMount () {
     if (this.props.instance) {
       this.interaction = this.props.instance;
     } else {
-      let options = Util.getOptions(Object['assign'](this.options, this.props));
+      let options = Util.getOptions(Object.assign(this.options, this.props));
       this.interaction = new ol.interaction.Select(options);
     }
     this.context.mapComp.interactions.push(this.interaction)
@@ -54,7 +57,7 @@ export class Select extends React.Component<any, any> {
       if (this.props.instance) {
         this.interaction = this.props.instance;
       } else {
-        let options = Util.getOptions(Object['assign'](this.options, nextProps));
+        let options = Util.getOptions(Object.assign(this.options, nextProps));
         this.interaction = new ol.interaction.Select(options);
       }
       this.context.mapComp.map.addInteraction(this.interaction);
@@ -71,8 +74,3 @@ export class Select extends React.Component<any, any> {
   }
 
 }
-
-Select['contextTypes'] = {
-  mapComp: React.PropTypes.instanceOf(Map),
-  map: React.PropTypes.instanceOf(ol.Map)
-};
