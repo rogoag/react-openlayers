@@ -70,7 +70,6 @@ If you like this, you may also like [geo-coder](https://github.com/allenhwkim/ge
   * `npm run` : List all available tasks
   * `npm start`: Run `app` directory for development using `webpack-dev-server` with port 9001
   * `npm run clean`: Remove dist folder
-  * `npm run clean:dist`: Clean up unnecessary dist folder within dist and app directory
   * `npm run build:umd`: Build UMD module `react-openlayers.umd.js`
   * `npm run build:app`: Build `app/build/app.js` for runnable examples
-  * `npm run build`: Build all(build:ngc, build:umc, build:app, and clean:dist)
+  * `npm run build`: Build all(build:umc, build:app)

@@ -1,13 +1,16 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from "../util";
-import {Map} from '../map';
+
+import olDoubleClickZoom from 'ol/interaction/doubleclickzoom';
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type DoubleClickZoomProps = ol.olx.interaction.DoubleClickZoomOptions;
 
 export class DoubleClickZoom extends React.Component<DoubleClickZoomProps, any> {
+  public static contextType = MapContext;
 
-  interaction: ol.interaction.DoubleClickZoom;
+  interaction: olDoubleClickZoom;
 
   options: DoubleClickZoomProps = {
     duration: undefined,
@@ -24,7 +27,7 @@ export class DoubleClickZoom extends React.Component<DoubleClickZoomProps, any> 
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    this.interaction = new ol.interaction.DoubleClickZoom(options);
+    this.interaction = new olDoubleClickZoom(options);
     this.context.mapComp.interactions.push(this.interaction)
 
     let olEvents = Util.getEvents(this.events, this.props);
@@ -37,7 +40,7 @@ export class DoubleClickZoom extends React.Component<DoubleClickZoomProps, any> 
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
       let options = Util.getOptions(Object.assign(this.options, nextProps));
-      this.interaction = new ol.interaction.DoubleClickZoom(options);
+      this.interaction = new olDoubleClickZoom(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);

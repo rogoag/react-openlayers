@@ -1,15 +1,19 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from "../util";
-import {Map} from '../map';
+
+import olVectorTile from 'ol/layer/vectortile';
+import olVector from 'ol/layer/vector';
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export interface VectorTileProps extends ol.olx.layer.VectorTileOptions {
-  callback?(layer:ol.layer.Vector):void
+  callback?(layer:olVector):void
 }
 
 export class VectorTile extends React.Component<VectorTileProps, any> {
+  public static contextType = MapContext;
 
-  layer: ol.layer.Vector;
+  layer: olVector;
 
   options: VectorTileProps = {
     renderBuffer: undefined,
@@ -50,7 +54,7 @@ export class VectorTile extends React.Component<VectorTileProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    this.layer = new ol.layer.VectorTile(options);
+    this.layer = new olVectorTile(options);
     if (this.options.callback) {
       this.options.callback(this.layer);
     }
@@ -69,7 +73,7 @@ export class VectorTile extends React.Component<VectorTileProps, any> {
     if(nextProps !== this.props){
       let options = Util.getOptions(Object.assign(this.options, this.props));
       this.context.mapComp.map.removeLayer(this.layer);
-      this.layer = new ol.layer.VectorTile(options);
+      this.layer = new olVectorTile(options);
       if (this.options.callback) {
         this.options.callback(this.layer);
       }

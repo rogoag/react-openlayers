@@ -1,14 +1,16 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from "../util";
-import {Map} from '../map';
+
+import olMouseWheelZoom from 'ol/interaction/mousewheelzoom';
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type MouseWheelZoomProps = ol.olx.interaction.MouseWheelZoomOptions;
 
-
 export class MouseWheelZoom extends React.Component<MouseWheelZoomProps, any> {
+  public static contextType = MapContext;
 
-  interaction: ol.interaction.MouseWheelZoom;
+  interaction: olMouseWheelZoom;
 
   options: MouseWheelZoomProps = {
     duration: undefined,
@@ -27,7 +29,7 @@ export class MouseWheelZoom extends React.Component<MouseWheelZoomProps, any> {
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('options', options);
-    this.interaction = new ol.interaction.MouseWheelZoom(options);
+    this.interaction = new olMouseWheelZoom(options);
     this.context.mapComp.interactions.push(this.interaction)
     
     let olEvents = Util.getEvents(this.events, this.props);
@@ -40,7 +42,7 @@ export class MouseWheelZoom extends React.Component<MouseWheelZoomProps, any> {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
       let options = Util.getOptions(Object.assign(this.options, nextProps));
-      this.interaction = new ol.interaction.MouseWheelZoom(options);
+      this.interaction = new olMouseWheelZoom(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);

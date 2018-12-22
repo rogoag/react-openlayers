@@ -1,11 +1,11 @@
 /**
- * This config is to build app/app.js to show examples
- * to github users
+ * This config is to build app/app.js to show examples to github users
  */
 var path = require('path');
 const webpack = require('webpack');
 
 const config = {
+  mode: "development",
   entry: './app/index.tsx',
   output: {
     path: `${__dirname}/build/`,
@@ -13,6 +13,9 @@ const config = {
     filename: 'app.js'
   },
   devtool: 'source-map',
+  devServer: {
+    disableHostCheck: true,
+  },
   resolve: {
     extensions: ['.ts', '.webpack.js', '.js', '.tsx', '.json', '.css', '.html'],
     alias: {

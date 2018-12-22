@@ -1,15 +1,18 @@
 import * as React from 'react';
-import ol from 'ol'
-import { Util, Omit } from "../util";
-import { Map } from '../map';
+
+import olHeatmap from 'ol/layer/heatmap';
+
+import { MapContext } from '../map';
+import { Util, Omit } from '../util';
 
 export interface HeatmapProps extends Omit<ol.olx.layer.HeatmapOptions, 'weight'> {
   weight?: ol.olx.layer.HeatmapOptions['weight']
 }
 
 export class Heatmap extends React.Component<HeatmapProps, any> {
+  public static contextType = MapContext;
 
-  layer: ol.layer.Heatmap;
+  layer: olHeatmap;
 
   options: HeatmapProps = {
     gradient: undefined,
@@ -48,7 +51,7 @@ export class Heatmap extends React.Component<HeatmapProps, any> {
   componentDidMount() {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     if (!options.weight) options.weight = 'weight';
-    this.layer = new ol.layer.Heatmap(options);
+    this.layer = new olHeatmap(options);
     if(this.props.zIndex){
       this.layer.setZIndex(this.props.zIndex);
     }
@@ -64,7 +67,7 @@ export class Heatmap extends React.Component<HeatmapProps, any> {
     if (nextProps !== this.props) {
       let options = Util.getOptions(Object.assign(this.options, this.props));
       this.context.mapComp.map.removeLayer(this.layer);
-      this.layer = new ol.layer.Heatmap(options);
+      this.layer = new olHeatmap(options);
       if (this.props.zIndex) {
         this.layer.setZIndex(this.props.zIndex);
       }

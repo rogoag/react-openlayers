@@ -1,13 +1,16 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from "../util";
-import {Map} from '../map';
+
+import olVector from 'ol/layer/vector';
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type VectorProps = ol.olx.layer.VectorOptions;
 
 export class Vector extends React.Component<VectorProps, any> {
+  public static contextType = MapContext;
 
-  layer: ol.layer.Vector;
+  layer: olVector;
 
   options: VectorProps = {
     renderOrder: undefined,
@@ -45,7 +48,7 @@ export class Vector extends React.Component<VectorProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    this.layer = new ol.layer.Vector(options);
+    this.layer = new olVector(options);
     if(this.props.zIndex){
       this.layer.setZIndex(this.props.zIndex);
     }  
@@ -61,7 +64,7 @@ export class Vector extends React.Component<VectorProps, any> {
     if(nextProps !== this.props){
       let options = Util.getOptions(Object.assign(this.options, this.props));
       this.context.mapComp.map.removeLayer(this.layer);
-      this.layer = new ol.layer.Vector(options);
+      this.layer = new olVector(options);
       if(this.props.zIndex){
         this.layer.setZIndex(this.props.zIndex);
       }

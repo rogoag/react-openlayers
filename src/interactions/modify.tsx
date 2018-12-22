@@ -1,14 +1,16 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from "../util";
-import {Map} from '../map';
+
+import olModify from 'ol/interaction/modify';
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type ModifyProps = ol.olx.interaction.ModifyOptions;
 
-
 export class Modify extends React.Component<ModifyProps, any> {
+  public static contextType = MapContext;
 
-  interaction: ol.interaction.Modify;
+  interaction: olModify;
 
   options: ModifyProps = {
     condition: undefined,
@@ -32,7 +34,7 @@ export class Modify extends React.Component<ModifyProps, any> {
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('options', options);
-    this.interaction = new ol.interaction.Modify(options);
+    this.interaction = new olModify(options);
     this.context.mapComp.interactions.push(this.interaction);
     
     let olEvents = Util.getEvents(this.events, this.props);
@@ -45,7 +47,7 @@ export class Modify extends React.Component<ModifyProps, any> {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
       let options = Util.getOptions(Object.assign(this.options, nextProps));
-      this.interaction = new ol.interaction.Modify(options);
+      this.interaction = new olModify(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);

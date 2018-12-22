@@ -1,13 +1,16 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from '../util';
-import {Map} from '../map';
+
+import olZoomSlider from 'ol/control/zoomslider'
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type ZoomSliderProps = ol.olx.control.ZoomSliderOptions;
 
 export class ZoomSlider extends React.Component<ZoomSliderProps, any> {
+  public static contextType = MapContext;
 
-  control: ol.control.ZoomSlider;
+  control: olZoomSlider;
 
   options: ZoomSliderProps = {
     duration: undefined,
@@ -26,7 +29,7 @@ export class ZoomSlider extends React.Component<ZoomSliderProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    this.control = new ol.control.ZoomSlider(options);
+    this.control = new olZoomSlider(options);
     this.context.mapComp.controls.push(this.control)
 
     let olEvents = Util.getEvents(this.events, this.props);

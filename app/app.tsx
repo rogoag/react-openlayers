@@ -1,11 +1,14 @@
 import * as React from 'react';
-import {Link} from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import './app.css';
 
+import { Controls } from './controls';
+import { Layers } from './layers';
+import { Interactions } from './interactions';
+import { Overlays } from './overlays';
+
+import { Custom, EarthquakeClusters } from './custom';
 export class App extends React.Component<any, any> {
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     return (
@@ -19,7 +22,12 @@ export class App extends React.Component<any, any> {
           <li><Link to="/custom">Custom Examples</Link></li>
         </ul>
 
-        {this.props.children}
+        <Route component={EarthquakeClusters} />
+        <Route path="controls" component={Controls}/>
+        <Route path="layers" component={Layers}/>
+        <Route path="interactions" component={Interactions}/>
+        <Route path="overlays" component={Overlays}/>
+        <Route path="custom" component={Custom} />
       </div>
     );
   }

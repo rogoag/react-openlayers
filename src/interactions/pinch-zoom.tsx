@@ -1,13 +1,16 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from "../util";
-import {Map} from '../map';
+
+import olPinchZoom from 'ol/interaction/pinchzoom';
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type PinchZoomProps = ol.olx.interaction.PinchZoomOptions;
 
 export class PinchZoom extends React.Component<PinchZoomProps, any> {
+  public static contextType = MapContext;
 
-  interaction: ol.interaction.PinchZoom;
+  interaction: olPinchZoom;
 
   options: PinchZoomProps = {
     duration: undefined,
@@ -25,7 +28,7 @@ export class PinchZoom extends React.Component<PinchZoomProps, any> {
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('double-click-zoom options', options);
-    this.interaction = new ol.interaction.PinchZoom(options);
+    this.interaction = new olPinchZoom(options);
     this.context.mapComp.interactions.push(this.interaction)
     
     let olEvents = Util.getEvents(this.events, this.props);
@@ -38,7 +41,7 @@ export class PinchZoom extends React.Component<PinchZoomProps, any> {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
       let options = Util.getOptions(Object.assign(this.options, nextProps));
-      this.interaction = new ol.interaction.PinchZoom(options);
+      this.interaction = new olPinchZoom(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);

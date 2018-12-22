@@ -1,14 +1,17 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from "../util";
-import {Map} from '../map';
+
+import olImage from 'ol/layer/image';
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type ImageProps = ol.olx.layer.ImageOptions;
 
 
 export class Image extends React.Component<ImageProps, any> {
+  public static contextType = MapContext;
 
-  layer: ol.layer.Image;
+  layer: olImage;
 
   options: ImageProps = {
     opacity: undefined,
@@ -43,7 +46,7 @@ export class Image extends React.Component<ImageProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    this.layer = new ol.layer.Image(options);
+    this.layer = new olImage(options);
     if(this.props.zIndex){
       this.layer.setZIndex(this.props.zIndex);
     }
@@ -59,7 +62,7 @@ export class Image extends React.Component<ImageProps, any> {
     if(nextProps !== this.props){
       let options = Util.getOptions(Object.assign(this.options, this.props));
       this.context.mapComp.map.removeLayer(this.layer);
-      this.layer = new ol.layer.Image(options);
+      this.layer = new olImage(options);
       if(this.props.zIndex){
         this.layer.setZIndex(this.props.zIndex);
       }

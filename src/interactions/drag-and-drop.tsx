@@ -1,13 +1,16 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from "../util";
-import {Map} from '../map';
+
+import olDragAndDrop from 'ol/interaction/draganddrop';
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type DragAndDropProps = ol.olx.interaction.DragAndDropOptions;
 
 export class DragAndDrop extends React.Component<DragAndDropProps, any> {
+  public static contextType = MapContext;
 
-  interaction: ol.interaction.DragAndDrop;
+  interaction: olDragAndDrop;
 
   options: DragAndDropProps = {
     formatConstructors: undefined,
@@ -27,7 +30,7 @@ export class DragAndDrop extends React.Component<DragAndDropProps, any> {
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('options', options);
-    this.interaction = new ol.interaction.DragAndDrop(options);
+    this.interaction = new olDragAndDrop(options);
     this.context.mapComp.interactions.push(this.interaction)
     
     let olEvents = Util.getEvents(this.events, this.props);
@@ -40,7 +43,7 @@ export class DragAndDrop extends React.Component<DragAndDropProps, any> {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
       let options = Util.getOptions(Object.assign(this.options, nextProps));
-      this.interaction = new ol.interaction.DragAndDrop(options);
+      this.interaction = new olDragAndDrop(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);

@@ -1,13 +1,16 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from "../util";
-import {Map} from '../map';
+
+import olDraw from 'ol/interaction/draw';
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type DrawProps = ol.olx.interaction.DrawOptions;
 
 export class Draw extends React.Component<DrawProps, any> {
+  public static contextType = MapContext;
 
-  interaction: ol.interaction.Draw;
+  interaction: olDraw;
 
   options: DrawProps = {
     clickTolerance: undefined,
@@ -39,7 +42,7 @@ export class Draw extends React.Component<DrawProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    this.interaction = new ol.interaction.Draw(options);
+    this.interaction = new olDraw(options);
     this.context.mapComp.interactions.push(this.interaction);
 
     let olEvents = Util.getEvents(this.events, this.props);
@@ -52,7 +55,7 @@ export class Draw extends React.Component<DrawProps, any> {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
       let options = Util.getOptions(Object.assign(this.options, nextProps));
-      this.interaction = new ol.interaction.Draw(options);
+      this.interaction = new olDraw(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);

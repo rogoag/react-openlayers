@@ -1,13 +1,17 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from '../util';
-import {Map} from '../map';
+
+import olMousePosition from 'ol/control/mouseposition'
+
+import { Util } from '../util';
+import { MapContext } from '../map';
+
 
 export type MousePositionProps = ol.olx.control.MousePositionOptions;
 
 export class MousePosition extends React.Component<MousePositionProps, any> {
+  public static contextType = MapContext;
 
-  control: ol.control.MousePosition;
+  control: olMousePosition;
 
   options: MousePositionProps = {
     className: undefined,
@@ -27,13 +31,13 @@ export class MousePosition extends React.Component<MousePositionProps, any> {
 
   render() { return null; }
 
-  componentDidMount () {
+  componentDidMount() {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    this.control = new ol.control.MousePosition(options);
+    this.control = new olMousePosition(options);
     this.context.mapComp.controls.push(this.control)
 
     let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+    for (let eventName in olEvents) {
       this.control.on(eventName, olEvents[eventName]);
     }
   }

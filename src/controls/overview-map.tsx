@@ -1,18 +1,22 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from '../util';
-import {Map} from '../map';
+
+import olOverviewMap from 'ol/control/overviewmap'
+
+import { Util } from '../util';
+import { MapContext } from '../map';
+
 
 export type OverviewMapProps = ol.olx.control.OverviewMapOptions;
 
 export class OverviewMap extends React.Component<OverviewMapProps, any> {
+  public static contextType = MapContext;
 
-  control: ol.control.OverviewMap;
+  control: olOverviewMap;
 
   options: OverviewMapProps = {
     collapsed: undefined,
     collapseLabel: undefined,
-    collapsible  : undefined,
+    collapsible: undefined,
     label: undefined,
     layers: undefined,
     render: undefined,
@@ -28,13 +32,13 @@ export class OverviewMap extends React.Component<OverviewMapProps, any> {
 
   render() { return null; }
 
-  componentDidMount () {
+  componentDidMount() {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    this.control = new ol.control.OverviewMap(options);
+    this.control = new olOverviewMap(options);
     this.context.mapComp.controls.push(this.control)
 
     let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+    for (let eventName in olEvents) {
       this.control.on(eventName, olEvents[eventName]);
     }
   }

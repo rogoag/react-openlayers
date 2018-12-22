@@ -1,13 +1,16 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from "../util";
-import {Map} from '../map';
+
+import olDragBox from 'ol/interaction/dragbox';
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type DragBoxProps = ol.olx.interaction.DragBoxOptions;
 
 export class DragBox extends React.Component<DragBoxProps, any> {
+  public static contextType = MapContext;
 
-  interaction: ol.interaction.DragBox;
+  interaction: olDragBox;
 
   options: DragBoxProps = {
     className: undefined,
@@ -29,7 +32,7 @@ export class DragBox extends React.Component<DragBoxProps, any> {
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('options', options);
-    this.interaction = new ol.interaction.DragBox(options);
+    this.interaction = new olDragBox(options);
     this.context.mapComp.interactions.push(this.interaction)
     
     let olEvents = Util.getEvents(this.events, this.props);
@@ -42,7 +45,7 @@ export class DragBox extends React.Component<DragBoxProps, any> {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
       let options = Util.getOptions(Object.assign(this.options, nextProps));
-      this.interaction = new ol.interaction.DragBox(options);
+      this.interaction = new olDragBox(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);

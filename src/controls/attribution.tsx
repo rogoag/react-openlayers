@@ -1,13 +1,16 @@
-import ol from 'ol';
 import * as React from 'react';
-import {Map} from '../map';
-import {Util} from '../util';
+
+import olAttribution from 'ol/control/attribution';
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type AttributionProps = ol.olx.control.AttributionOptions;
 
 export class Attribution extends React.Component<AttributionProps> {
+  public static contextType = MapContext;
 
-  public control: ol.control.Attribution;
+  public control: olAttribution;
 
   public options: AttributionProps = {
     className: undefined,
@@ -27,14 +30,14 @@ export class Attribution extends React.Component<AttributionProps> {
 
   public render() { return null; }
 
-  public componentDidMount () {
-    const options = Util.getOptions({...this.options, ...this.props});
-    this.control = new ol.control.Attribution(options);
+  public componentDidMount() {
+    const options = Util.getOptions({ ...this.options, ...this.props });
+    this.control = new olAttribution(options);
     this.context.mapComp.controls.push(this.control);
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
-        this.control.on(eventName, olEvents[eventName]);
+      this.control.on(eventName, olEvents[eventName]);
     });
   }
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import ol from 'ol';
+
 import {
   interaction, layer, custom, control, //name spaces
   Interactions, Overlays, Controls,     //group

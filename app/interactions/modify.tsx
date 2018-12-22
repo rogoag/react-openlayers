@@ -1,25 +1,34 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import ol from 'ol';
+
+import VectorSource from 'ol/source/vector';
+import GeoJSONFormat from 'ol/format/geojson';
+import Style from 'ol/style/style';
+import CircleStyle from 'ol/style/circle';
+import FillStyle from 'ol/style/fill';
+import StrokeStyle from 'ol/style/stroke';
+import TextStyle from 'ol/style/text';
+import SelectInteraction from 'ol/interaction/select';
+
 import {
   interaction, layer, custom, control, //name spaces
   Interactions, Overlays, Controls,     //group
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
-var source = new ol.source.Vector({
+var source = new VectorSource({
   url: 'https://rawgit.com/boundlessgeo/ol3-workshop/master/src/data/layers/7day-M2.5.json',
-  format: new ol.format.GeoJSON()
+  format: new GeoJSONFormat()
 });
-var style = new ol.style.Style({
-  image: new ol.style.Circle({
+var style = new Style({
+  image: new CircleStyle({
     radius: 7,
-    fill: new ol.style.Fill({ color: [0, 153, 255, 1] }),
-    stroke: new ol.style.Stroke({ color: [255, 255, 255, 0.75], width: 1.5 })
+    fill: new FillStyle({ color: [0, 153, 255, 1] }),
+    stroke: new StrokeStyle({ color: [255, 255, 255, 0.75], width: 1.5 })
   }),
   zIndex: 100000
 });
-var select = new ol.interaction.Select({style: style});
+var select = new SelectInteraction({style: style});
 
 export class Modify extends React.Component<any, any> {
   render() {

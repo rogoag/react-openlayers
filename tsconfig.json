@@ -28,13 +28,12 @@
     }
   },
   "types": [
-    "openlayers",
     "googlemaps"
   ],
   "files": [
     "src/index.tsx",
     "src/global.d.ts",
-    "node_modules/@types/openlayers/index.d.ts",
+    "node_modules/@types/ol/index.d.ts",
   ],
   "exclude": [
     "node_modules"

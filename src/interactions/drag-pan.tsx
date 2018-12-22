@@ -1,14 +1,16 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from "../util";
-import {Map} from '../map';
 
-export type DragPanProps = ol.olx.interaction.DragPanOptions;
+import olDragPan from 'ol/interaction/dragpan';
 
+import { MapContext } from '../map';
+import { Util } from '../util';
+
+export type DragPanProps = ol.olx.interaction.DragPanOptions;4
 
 export class DragPan extends React.Component<DragPanProps, any> {
+  public static contextType = MapContext;
 
-  interaction: ol.interaction.DragPan;
+  interaction: olDragPan;
 
   options: DragPanProps = {
     condition: undefined,
@@ -26,7 +28,7 @@ export class DragPan extends React.Component<DragPanProps, any> {
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('options', options);
-    this.interaction = new ol.interaction.DragPan(options);
+    this.interaction = new olDragPan(options);
     this.context.mapComp.interactions.push(this.interaction)
     
     let olEvents = Util.getEvents(this.events, this.props);
@@ -39,7 +41,7 @@ export class DragPan extends React.Component<DragPanProps, any> {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
       let options = Util.getOptions(Object.assign(this.options, nextProps));
-      this.interaction = new ol.interaction.DragPan(options);
+      this.interaction = new olDragPan(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);

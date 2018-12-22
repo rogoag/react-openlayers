@@ -1,5 +1,24 @@
 import * as React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
+
+import {Select} from './select';
+import {Draw} from './draw';
+import {Modify} from './modify';
+import {DoubleClickZoom} from './double-click-zoom';
+import {DragAndDrop} from './drag-and-drop';
+import {DragBox} from './drag-box';
+import {DragPan} from './drag-pan';
+import {DragRotateAndZoom} from './drag-rotate-and-zoom';
+import {DragRotate} from './drag-rotate';
+import {DragZoom} from './drag-zoom';
+import {KeyboardPan} from './keyboard-pan';
+import {KeyboardZoom} from './keyboard-zoom';
+import {MouseWheelZoom} from './mouse-wheel-zoom';
+import {PinchRotate} from './pinch-rotate';
+import {PinchZoom} from './pinch-zoom';
+import {Pointer} from './pointer';
+import {Snap} from './snap';
+import {Translate} from './translate';
 
 export {Select} from './select';
 export {Draw} from './draw';
@@ -47,7 +66,25 @@ export class Interactions extends React.Component<any, any> {
         </ul>
 
         <div className="contents">
-          {this.props.children}
+          <Route component={Select} />
+          <Route path="select" component={Select} />
+          <Route path="draw" component={Draw} />
+          <Route path="modify" component={Modify} />
+          <Route path="double-click-zoom" component={DoubleClickZoom} />
+          <Route path="drag-and-drop" component={DragAndDrop} />
+          <Route path="drag-box" component={DragBox} />
+          <Route path="drag-pan" component={DragPan} />
+          <Route path="drag-rotate-and-zoom" component={DragRotateAndZoom} />
+          <Route path="drag-rotate" component={DragRotate} />
+          <Route path="drag-zoom" component={DragZoom} />
+          <Route path="keyboard-pan" component={KeyboardPan} />
+          <Route path="keyboard-zoom" component={KeyboardZoom} />
+          <Route path="mouse-wheel-zoom" component={MouseWheelZoom} />
+          <Route path="pinch-rotate" component={PinchRotate} />
+          <Route path="pinch-zoom" component={PinchZoom} />
+          <Route path="pointer" component={Pointer} />
+          <Route path="snap" component={Snap} />
+          <Route path="translate" component={Translate} />
         </div>
       </div>
     );

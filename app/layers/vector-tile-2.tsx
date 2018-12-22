@@ -1,8 +1,13 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import ol from 'ol';
-import {applyStyle, styleFunction as mb2olstyle} from 'ol-mapbox-style'; // in case we use olms
-console.log('mb2olstyle', mb2olstyle, mb2olstyle.mb2olstyle)
+
+
+import VectorTileSource from 'ol/source/vectortile';
+import MVTFormat from 'ol/format/mvt';
+import olTilegrid from 'ol/tilegrid';
+
+import {applyStyle, stylefunction as mb2olstyle} from 'ol-mapbox-style'; // in case we use olms
+console.log('mb2olstyle', mb2olstyle)
 
 import {
   interaction, layer, custom, control, //name spaces
@@ -11,13 +16,13 @@ import {
 } from "react-openlayers";
 
 var key = 'pk.eyJ1IjoiYWxsZW5od2tpbSIsImEiOiJjajBlbzkzazYwMWh1Mndya3R2amw0ang1In0.QU0YtPQ0-IgHMLt574HGlw';
-var source = new ol.source.VectorTile({
+var source = new VectorTileSource({
   projection: undefined,
   attributions: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> ' +
     '© <a href="https://www.openstreetmap.org/copyright">' +
     'OpenStreetMap contributors</a>',
-  format: new ol.format.MVT(),
-  tileGrid: ol.tilegrid.createXYZ({maxZoom: 22}),
+  format: new MVTFormat(),
+  tileGrid: olTilegrid.createXYZ({maxZoom: 22}),
   // tilePixelRatio: 16,
   url: 'https://free-0.tilehosting.com/data/v3/{z}/{x}/{y}.pbf?key=tXiQqN3lIgskyDErJCeY'
   ///url: 'https://{a-d}.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6/{z}/{x}/{y}.vector.pbf?access_token=' + key

@@ -1,16 +1,26 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from './util';
-import {Layers} from './layers/layers';
-import {layer} from './layers/index';
+
+import olView from 'ol/view';
+import olMap from 'ol/map';
+import olControl from 'ol/control';
+import olInteraction from 'ol/interaction';
+
+import { Util } from './util';
+import { Layers } from './layers/layers';
+import { layer } from './layers/index';
 
 import './ol.css';
 import './map.css';
 
-export interface MapContext {
+export interface MapContextType {
   mapComp: Map;
-  map: ol.Map;
+  map: olMap;
 }
+
+export const MapContext = React.createContext<MapContextType>({
+  mapComp: undefined,
+  map: undefined
+});
 
 /**
  * Implementation of ol.map https://openlayers.org/en/latest/apidoc/ol.Map.html
@@ -28,7 +38,7 @@ export interface MapContext {
  */
 export class Map extends React.Component<any, any> {
 
-  map: ol.Map;
+  map: olMap;
   mapDiv: any;
 
   layers: any[] = [];
@@ -48,7 +58,7 @@ export class Map extends React.Component<any, any> {
     setCenter: undefined,
     setZoom: undefined,
     setResolution: undefined,
-    view: new ol.View({center: [0, 0], zoom: 3}),
+    view: new olView({ center: [0, 0], zoom: 3 }),
     controls: undefined,
     interactions: undefined,
     layers: undefined,
@@ -81,48 +91,53 @@ export class Map extends React.Component<any, any> {
     super(props);
     console.log('Map constructor');
   }
-
-  componentDidMount() {
+  
+  componentWillMount() {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    !(options.view instanceof ol.View) && (options.view = new ol.View(options.view));
-
+    !(options.view instanceof olView) && (options.view = new olView(options.view));
+    
     let controlsCmp = Util.findChild(this.props.children, 'Controls') || {};
     let interactionsCmp = Util.findChild(this.props.children, 'Interactions') || {};
-
-    options.controls = ol.control.defaults(controlsCmp.props).extend(this.controls);
-    options.interactions = ol.interaction.defaults(interactionsCmp.props).extend(this.interactions);
-
+    
+    options.controls = olControl.defaults(controlsCmp.props).extend(this.controls);
+    options.interactions = olInteraction.defaults(interactionsCmp.props).extend(this.interactions);
+    
     options.layers = this.layers;
     options.overlays = this.overlays;
     console.log('map options', options);
-
-    this.map = new ol.Map(options);
+    
+    this.map = new olMap(options);
     this.map.setTarget(options.target || this.mapDiv);
 
     //regitster events
     let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+    for (let eventName in olEvents) {
       this.map.on(eventName, olEvents[eventName]);
     }
   }
+
   // update the view with new props
   /* Modified by Harinder Randhawa */
   componentWillReceiveProps(nextProps) {
-    if(this.props.view && nextProps.view.center !== this.props.view.center){
+    if (this.props.view && nextProps.view.center !== this.props.view.center) {
       this.map.getView().setCenter(nextProps.view.center);
     }
-    if(this.props.view && nextProps.view.zoom !== this.props.view.zoom){
+    if (this.props.view && nextProps.view.zoom !== this.props.view.zoom) {
       this.map.getView().setZoom(nextProps.view.zoom);
     }
- }
+  }
+
   render() {
     return (
       <div>
-        <div className="openlayers-map" ref={(el)=> this.mapDiv = el}>
-          {this.props.children}
+        <div className="openlayers-map" ref={(el) => this.mapDiv = el}>
+          <MapContext.Provider value={{ map: this.map, mapComp: this }}>
+            {this.props.children}
+          </MapContext.Provider>
         </div>
       </div>
     );
+
   }
 
   /**
@@ -143,13 +158,12 @@ export class Map extends React.Component<any, any> {
   }
 
   // Ref. https://facebook.github.io/react/docs/context.html#how-to-use-context
-  getChildContext(): any {
-    return {
-      mapComp: this,
-      map: this.map
-    }
-  }
-
+  // getChildContext(): any {
+  //   return {
+  //     mapComp: this,
+  //     map: this.map
+  //   }
+  // }
 }
 
 // Ref. https://facebook.github.io/react/docs/context.html#how-to-use-context

@@ -1,12 +1,14 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from "../util";
-import {Map} from '../map';
+
+import olSnap from 'ol/interaction/snap';
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type SnapProps = ol.olx.interaction.SnapOptions;
 
-
 export class Snap extends React.Component<SnapProps, any> {
+  public static contextType = MapContext;
 
   interaction: ol.interaction.Snap;
 
@@ -28,7 +30,7 @@ export class Snap extends React.Component<SnapProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    this.interaction = new ol.interaction.Snap(options);
+    this.interaction = new olSnap(options);
     this.context.mapComp.interactions.push(this.interaction)
     
     let olEvents = Util.getEvents(this.events, this.props);
@@ -41,7 +43,7 @@ export class Snap extends React.Component<SnapProps, any> {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
       let options = Util.getOptions(Object.assign(this.options, nextProps));
-      this.interaction = new ol.interaction.Snap(options);
+      this.interaction = new olSnap(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);

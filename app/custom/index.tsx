@@ -1,5 +1,10 @@
 import * as React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
+
+import {EarthquakeClusters} from './earthquake-clusters';
+import {MarkerStyle} from './marker-style';
+import {GoogleStreetViewPanorama} from './google-street-view-panorama';
+// import {GeoCoder} from './geo-coder';
 
 export {EarthquakeClusters} from './earthquake-clusters';
 export {MarkerStyle} from './marker-style';
@@ -19,7 +24,11 @@ export class Custom extends React.Component<any, any> {
         </ul>
         
         <div className="contents">
-          {this.props.children}
+          <Route component={EarthquakeClusters} />
+          <Route path="earthquake-clusters" component={EarthquakeClusters} />
+          <Route path="marker-style" component={MarkerStyle} />
+          <Route path="google-street-view-panorama" component={GoogleStreetViewPanorama} />
+          {/* <Route path="geo-code" component={GeoCoder} /> */}
         </div>
       </div>
     );

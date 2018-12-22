@@ -1,6 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import ol from 'ol';
+
+import ClusterSource from 'ol/source/cluster';
+import VectorSource from 'ol/source/vector';
+import StamenSource from 'ol/source/stamen';
+import KMLFormat from 'ol/format/kml';
+
 import {
   interaction, layer, custom, control, //name spaces
   Interactions, Overlays, Controls,     //group
@@ -8,17 +13,17 @@ import {
 } from "react-openlayers";
 
 
-var vectorSource= new ol.source.Cluster({
+var vectorSource= new ClusterSource({
   distance: 40,
-  source: new ol.source.Vector({
+  source: new VectorSource({
     url: 'http://openlayers.org/en/latest/examples/data/kml/2012_Earthquakes_Mag5.kml',
-    format: new ol.format.KML({
+    format: new KMLFormat({
       extractStyles: false
     })
   })
 });
 
-var tileSource = new ol.source.Stamen({
+var tileSource = new StamenSource({
   layer: 'toner'
 });
 

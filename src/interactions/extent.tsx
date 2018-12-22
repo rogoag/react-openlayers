@@ -1,14 +1,16 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from "../util";
-import {Map} from '../map';
+
+import olExtent from 'ol/interaction/extent';
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type ExtentProps = olFix.olx.interaction.ExtentOptions;
 
-
 export class Extent extends React.Component<ExtentProps, any> {
+  public static contextType = MapContext;
 
-  interaction: any;
+  interaction: olExtent;
 
   options: ExtentProps = {
     extent: undefined,
@@ -30,7 +32,7 @@ export class Extent extends React.Component<ExtentProps, any> {
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('options', options);
-    this.interaction = new ol.interaction['Extent'](options);
+    this.interaction = new olExtent(options);
     this.context.mapComp.interactions.push(this.interaction)
     
     let olEvents = Util.getEvents(this.events, this.props);
@@ -43,7 +45,7 @@ export class Extent extends React.Component<ExtentProps, any> {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
       let options = Util.getOptions(Object.assign(this.options, nextProps));
-      this.interaction = new ol.interaction['Extent'](options);
+      this.interaction = new olExtent(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);

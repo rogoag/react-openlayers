@@ -1,15 +1,19 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util, Omit} from '../util';
-import {Map} from '../map';
+
+import olTile from 'ol/layer/tile';
+import olOSMSource from 'ol/source/osm';
+
+import { MapContext } from '../map';
+import { Util, Omit } from '../util';
 
 export interface TileProps extends Omit<ol.olx.layer.TileOptions, 'source'> {
   source?: ol.olx.layer.TileOptions['source']
 }
 
 export class Tile extends React.Component<TileProps, any> {
+  public static contextType = MapContext;
 
-  layer: ol.layer.Tile;
+  layer: olTile;
 
   options: TileProps = {
     zIndex: undefined,
@@ -51,8 +55,8 @@ export class Tile extends React.Component<TileProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    options.source = options.source || new ol.source.OSM();
-    this.layer = new ol.layer.Tile(options);
+    options.source = options.source || new olOSMSource();
+    this.layer = new olTile(options);
     if(this.props.zIndex){
       this.layer.setZIndex(this.props.zIndex);
     }
@@ -68,7 +72,7 @@ export class Tile extends React.Component<TileProps, any> {
     if(nextProps !== this.props){
       let options = Util.getOptions(Object.assign(this.options, this.props));
       this.context.mapComp.map.removeLayer(this.layer);
-      this.layer = new ol.layer.Tile(options);
+      this.layer = new olTile(options);
       if(this.props.zIndex){
         this.layer.setZIndex(this.props.zIndex);
       }

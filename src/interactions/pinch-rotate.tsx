@@ -1,13 +1,16 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from "../util";
-import {Map} from '../map';
+
+import olPinchRotate from 'ol/interaction/pinchrotate';
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type PinchRotateProps = ol.olx.interaction.PinchRotateOptions;
 
 export class PinchRotate extends React.Component<PinchRotateProps, any> {
+  public static contextType = MapContext;
 
-  interaction: ol.interaction.PinchRotate;
+  interaction: olPinchRotate;
 
   options: PinchRotateProps = {
     duration: undefined,
@@ -24,7 +27,7 @@ export class PinchRotate extends React.Component<PinchRotateProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    this.interaction = new ol.interaction.PinchRotate(options);
+    this.interaction = new olPinchRotate(options);
     this.context.mapComp.interactions.push(this.interaction)
     
     let olEvents = Util.getEvents(this.events, this.props);
@@ -37,7 +40,7 @@ export class PinchRotate extends React.Component<PinchRotateProps, any> {
     if(nextProps !== this.props){
       this.context.mapComp.map.removeInteraction(this.interaction);
       let options = Util.getOptions(Object.assign(this.options, nextProps));
-      this.interaction = new ol.interaction.PinchRotate(options);
+      this.interaction = new olPinchRotate(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);

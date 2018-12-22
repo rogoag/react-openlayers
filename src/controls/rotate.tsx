@@ -1,13 +1,16 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from '../util';
-import {Map} from '../map';
+
+import olRotate from 'ol/control/rotate'
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type RotateProps = ol.olx.control.RotateOptions;
 
 export class Rotate extends React.Component<RotateProps, any> {
+  public static contextType = MapContext;
 
-  control: ol.control.Rotate;
+  control: olRotate;
 
   options: RotateProps = {
     className: undefined,
@@ -29,7 +32,7 @@ export class Rotate extends React.Component<RotateProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    this.control = new ol.control.Rotate(options);
+    this.control = new olRotate(options);
     this.context.mapComp.controls.push(this.control)
 
     let olEvents = Util.getEvents(this.events, this.props);

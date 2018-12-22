@@ -1,13 +1,16 @@
 import * as React from 'react';
-import ol from 'ol'
-import {Util} from '../util';
-import {Map} from '../map';
+
+import olScaleLine from 'ol/control/scaleline'
+
+import { MapContext } from '../map';
+import { Util } from '../util';
 
 export type ScaleLineProps = ol.olx.control.ScaleLineOptions;
 
 export class ScaleLine extends React.Component<ScaleLineProps, any> {
+  public static contextType = MapContext;
 
-  control: ol.control.ScaleLine;
+  control: olScaleLine;
 
   options: ScaleLineProps = {
     className: undefined,
@@ -27,7 +30,7 @@ export class ScaleLine extends React.Component<ScaleLineProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    this.control = new ol.control.ScaleLine(options);
+    this.control = new olScaleLine(options);
     this.context.mapComp.controls.push(this.control)
 
     let olEvents = Util.getEvents(this.events, this.props);

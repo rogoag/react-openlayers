@@ -1,5 +1,15 @@
 import * as React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
+
+import {Attribution} from './attribution';
+import {FullScreen} from './full-screen';
+import {MousePosition} from './mouse-position';
+import {OverviewMap} from './overview-map';
+import {Rotate} from './rotate';
+import {ScaleLine} from './scale-line';
+import {ZoomSlider} from './zoom-slider';
+import {ZoomToExtent} from './zoom-to-extent';
+import {Zoom} from './zoom';
 
 export {Attribution} from './attribution';
 export {FullScreen} from './full-screen';
@@ -12,10 +22,6 @@ export {ZoomToExtent} from './zoom-to-extent';
 export {Zoom} from './zoom';
 
 export class Controls extends React.Component<any, any> {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div>
@@ -33,7 +39,16 @@ export class Controls extends React.Component<any, any> {
         </ul>
         
         <div className="contents">
-          {this.props.children}
+          <Route component={Attribution} />
+          <Route path="attribution" component={Attribution} />
+          <Route path="full-screen" component={FullScreen} />
+          <Route path="mouse-position" component={MousePosition} />
+          <Route path="overview-map" component={OverviewMap} />
+          <Route path="rotate" component={Rotate} />
+          <Route path="scale-line" component={ScaleLine} />
+          <Route path="zoom-slider" component={ZoomSlider} />
+          <Route path="zoom-to-extent" component={ZoomToExtent} />
+          <Route path="zoom" component={Zoom} />
         </div>
       </div>
     );

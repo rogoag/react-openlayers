@@ -1,12 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import ol from 'ol'
+
+import olOverlay from 'ol/overlay'
+
 import {Util} from './util';
 import {Map} from './Map';
 
 export class Overlay extends React.Component<any, any> {
 
-  overlay: ol.Overlay;
+  overlay: olOverlay;
   el: HTMLElement;
 
   options: any = {
@@ -43,7 +45,7 @@ export class Overlay extends React.Component<any, any> {
     let options = Util.getOptions( Object.assign(this.options, this.props));
     options.element = (ReactDOM.findDOMNode(this) as Element).querySelector('div');
     // console.log('options.element', options.element);
-    this.overlay = new ol.Overlay(options);
+    this.overlay = new olOverlay(options);
     this.context.mapComp.overlays.push(this.overlay);
   }
 }
