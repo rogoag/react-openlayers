@@ -71,7 +71,6 @@ export class DragBox extends React.Component<any, any> {
           </Interactions>
         </Map>
         <p>{this.state.selectedFeatures.length === 0 ? "No selected countries" : this.state.selectedFeatures.getArray().map(f => f.get('name')).join(', ')}</p>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/drag-box.tsx">source</a>
         <Highlighter lang="jsx" code={
 `<Map view={{ center: [0, 0], zoom: 2 }}>
   <Layers>
@@ -89,6 +88,7 @@ export class DragBox extends React.Component<any, any> {
 </Map>
 <p>{this.state.selectedFeatures.length === 0 ? "No selected countries" : this.state.selectedFeatures.getArray().map(f => f.get('name')).join(', ')}</p>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/drag-box.tsx">source</a>
       </div>
     );
   }

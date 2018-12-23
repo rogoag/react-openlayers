@@ -17,11 +17,10 @@ export class DoubleClickZoom extends React.Component<any, any> {
           <Layers>
             <layer.Tile />
           </Layers>
-          <Interactions>
+          <Interactions doubleClickZoom={false}>
             <interaction.DoubleClickZoom />
           </Interactions>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/double-click-zoom.tsx">source</a>
         <Highlighter lang="jsx"  code={
 `<Map>
   <Layers>
@@ -32,6 +31,7 @@ export class DoubleClickZoom extends React.Component<any, any> {
   </Controls>
 </Map>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/double-click-zoom.tsx">source</a>
       </div>
     );
   }

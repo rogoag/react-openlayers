@@ -34,7 +34,6 @@ export class Heatmap extends React.Component<any,any> {
             <layer.Heatmap source={heatmapSource} blur={15} radius={5} />
           </Layers>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/heatmap.tsx">source</a>
         <Highlighter lang="jsx"  code={
 `<Map center={[0,0]} view={{center:[0,0], zoom:1}}>
   <Layers>
@@ -43,6 +42,7 @@ export class Heatmap extends React.Component<any,any> {
   </Layers>
 </Map>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/heatmap.tsx">source</a>
       </div>
     );
   }

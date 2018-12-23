@@ -55,7 +55,6 @@ export class Draw extends React.Component<any, any> {
           <option value="Circle">Circle</option>
         </select>
         <br/>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/draw.tsx">source</a>
         <Highlighter lang="jsx"  code={
 `<Map view={this.state.view}>
   <Layers>
@@ -76,6 +75,7 @@ export class Draw extends React.Component<any, any> {
   <option value="Circle">Circle</option>
 </select> `
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/draw.tsx">source</a>
       </div>
     );
   }

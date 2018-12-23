@@ -36,7 +36,6 @@ export class Select extends React.Component<any, any> {
             <interaction.Select style={selectedMarkerStyle} />
           </Interactions>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/select.tsx">source</a>
         <Highlighter lang="jsx"  code={
 `<Map>
   <Layers>
@@ -48,6 +47,7 @@ export class Select extends React.Component<any, any> {
   </Interactions>
 </Map>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/select.tsx">source</a>
       </div>
     );
   }

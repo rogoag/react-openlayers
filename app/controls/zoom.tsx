@@ -19,7 +19,6 @@ export class Zoom extends React.Component<any,any> {
             <control.Zoom />
           </Controls>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/controls/zoom.tsx">source</a>
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers><layer.Tile/></Layers>
@@ -28,6 +27,7 @@ export class Zoom extends React.Component<any,any> {
   </Controls>
 </Map>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/controls/zoom.tsx">source</a>
       </div>
     );
   }

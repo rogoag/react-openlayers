@@ -44,7 +44,6 @@ export class AppOverlay extends React.Component<any,any> {
             </Overlay>
           </Overlays>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/overlays/app-overlay.tsx">Source Code</a>
         <Highlighter lang="jsx" code={
 `<Map onClick={this.showPopup}>
   <Layers>
@@ -58,6 +57,7 @@ export class AppOverlay extends React.Component<any,any> {
   </Overlays>
 </Map>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/overlays/app-overlay.tsx">Source Code</a>
       </div>
     );
   }

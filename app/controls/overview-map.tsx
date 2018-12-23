@@ -19,7 +19,6 @@ export class OverviewMap extends React.Component<any,any> {
             <control.OverviewMap />
           </Controls>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/controls/overview-map.tsx">source</a>
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers><layer.Tile/></Layers>
@@ -28,6 +27,7 @@ export class OverviewMap extends React.Component<any,any> {
   </Controls>
 </Map>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/controls/overview-map.tsx">source</a>
       </div>
     );
   }

@@ -21,7 +21,6 @@ export class Tile extends React.Component<any,any> {
             <layer.Tile source={new StamenSource({ layer: 'watercolor' })}/>
           </Layers>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/tile.tsx">Source Code</a>
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers>
@@ -29,6 +28,7 @@ export class Tile extends React.Component<any,any> {
   </Layers>
 </Map>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/tile.tsx">Source Code</a>
       </div>
     );
   }

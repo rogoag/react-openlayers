@@ -40,7 +40,6 @@ export class VectorTile extends React.Component<any,any> {
             <layer.VectorTile source={source} style={createMapboxStreetsV6Style()} />
           </Layers>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/vector-tile.tsx">Source Code</a>
         <Highlighter lang="jsx" code={
 `<Map view={{center: [0,0], zoom:2}}>
   <Layers>
@@ -48,6 +47,7 @@ export class VectorTile extends React.Component<any,any> {
   </Layers>
 `
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/vector-tile.tsx">Source Code</a>
       </div>
     );
   }

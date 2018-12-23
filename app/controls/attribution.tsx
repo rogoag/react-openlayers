@@ -17,13 +17,13 @@ export class Attribution extends React.Component<any, any> {
           <Layers><layer.Tile /></Layers>
           <Controls attribution={false} zoom={false}></Controls>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/controls/attribution.tsx">source</a>
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers><layer.Tile/></Layers>
   <Controls attribution={false} zoom={false}></Controls>
 </Map>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/controls/attribution.tsx">source</a>
       </div>
     );
   }

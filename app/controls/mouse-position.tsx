@@ -19,7 +19,6 @@ export class MousePosition extends React.Component<any,any> {
             <control.MousePosition projection="EPSG:3857"/>
           </Controls>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/controls/mouse-position.tsx">source</a>
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers><layer.Tile/></Layers>
@@ -28,6 +27,7 @@ export class MousePosition extends React.Component<any,any> {
   </Controls>
 </Map>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/controls/mouse-position.tsx">source</a>
       </div>
     );
   }

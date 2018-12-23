@@ -140,7 +140,6 @@ export class DragAndDrop extends React.Component<any, any> {
             />
           </Interactions>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/drag-and-drop.tsx">source</a>
         <Highlighter lang="jsx"  code={
 `<Map view={{ center: [0, 0], zoom: 2 }} mapRef={map => this.map = map}>
   <Layers>
@@ -160,6 +159,7 @@ export class DragAndDrop extends React.Component<any, any> {
   </Controls>
 </Map>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/drag-and-drop.tsx">source</a>
       </div>
     );
   }

@@ -41,7 +41,6 @@ export class Image extends React.Component<any,any> {
             <layer.Image source={imageSource} />
           </Layers>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/image.tsx">source</a>
         <Highlighter lang="jsx" code={
 `<Map view={view}>
   <Layers>
@@ -49,6 +48,7 @@ export class Image extends React.Component<any,any> {
   </Layers>
 </Map>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/image.tsx">source</a>
       </div>
     );
   }

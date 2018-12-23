@@ -46,7 +46,6 @@ export class Modify extends React.Component<any, any> {
             <interaction.Modify features={select.getFeatures()} /> 
           </Interactions>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/modify.tsx">source</a>
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers>
@@ -59,6 +58,7 @@ export class Modify extends React.Component<any, any> {
   </Interactions>
 </Map>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/modify.tsx">source</a>
       </div>
     );
   }
