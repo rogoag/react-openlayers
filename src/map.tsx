@@ -86,7 +86,6 @@ export class Map extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    // console.log("Map did mount", this.props)
     let options = Util.getOptions(Object.assign(this.options, this.props));
     !(options.view instanceof olView) && (options.view = new olView(options.view));
 
@@ -98,12 +97,9 @@ export class Map extends React.Component<any, any> {
 
     options.layers = this.layers;
     options.overlays = this.overlays;
-    console.log("Map options", options)
     this.map = new olMap(options);
     this.map.setTarget(options.target || this.mapDiv);
     this.updateFromProps(this.props, /* isMounting = */ true);
-
-    // console.log("Map created", this.map);
 
     if (this.props.mapRef) this.props.mapRef(this.map);
 
@@ -115,25 +111,16 @@ export class Map extends React.Component<any, any> {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log("Map will recieve props", nextProps)
     this.updateFromProps(nextProps, false);
   }
 
   componentDidUpdate() {
-    // console.log("Map did update", this.map, this.mapDiv)
     if (this.map) {
-      // this.map.getLayers().forEach(l => l.load())
-      // this.mapDiv.querySelector('.ol-viewport > canvas').width += 0;
       this.map.setTarget(this.mapDiv);
       this.map.updateSize();
       this.map.renderSync();
     }
   }
-
-  // Prevents misbehavior, maybe there's a cleaner way to achieve that
-  // shouldComponentUpdate() {
-  //   return false;
-  // }
 
   private updateFromProps(props: any, isMounting: boolean) {
     if (isMounting || (props.view && props.view.position && props.view.position.allowUpdate)) {
@@ -175,7 +162,6 @@ export class Map extends React.Component<any, any> {
   }
 
   render() {
-    // console.log("Map render", this.map, this.props)
     return (
       <MapContext.Provider value={this}>
         <div className="openlayers-map" ref={ref => this.mapDiv = ref} tabIndex={0}>

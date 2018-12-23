@@ -34,7 +34,6 @@ export class MouseWheelZoom extends React.Component<MouseWheelZoomProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    console.log('options', options);
     this.interaction = new olMouseWheelZoom(options);
     this.context.interactions.push(this.interaction)
 

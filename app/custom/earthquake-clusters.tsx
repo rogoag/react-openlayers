@@ -54,7 +54,6 @@ export class EarthquakeClusters extends React.Component<any,any> {
               style={cluster.vectorStyleFunction}/>
           </Layers>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/custom/earthquake-clusters.tsx">source</a>
         <Highlighter lang="jsx" code={
 `<Map view={{center: [0,0], zoom:2}}>
   <Interactions>
@@ -70,6 +69,7 @@ export class EarthquakeClusters extends React.Component<any,any> {
   </Layers>
 </Map>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/custom/earthquake-clusters.tsx">source</a>
       </div>
     );
   }

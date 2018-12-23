@@ -32,7 +32,6 @@ export class MarkerStyle extends React.Component<any,any> {
               source={source}/>
           </Layers>
         </Map>
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/custom/marker-style.tsx">source</a>
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers>
@@ -43,6 +42,7 @@ export class MarkerStyle extends React.Component<any,any> {
   </Layers>
 </Map>`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/custom/marker-style.tsx">source</a>
       </div>
     );
   }

@@ -7,7 +7,6 @@ import Style from 'ol/style/style';
 import CircleStyle from 'ol/style/circle';
 import FillStyle from 'ol/style/fill';
 import StrokeStyle from 'ol/style/stroke';
-import TextStyle from 'ol/style/text';
 import SelectInteraction from 'ol/interaction/select';
 
 import {
@@ -30,7 +29,15 @@ var style = new Style({
   }),
   zIndex: 100000
 });
-var select = new SelectInteraction({style: style});
+var selectStyle = new Style({
+  image: new CircleStyle({
+    radius: 7,
+    fill: new FillStyle({ color: [109, 158, 61, 1] }),
+    stroke: new StrokeStyle({ color: [255, 255, 255, 0.75], width: 1.5 })
+  }),
+  zIndex: 100000
+});
+var select = new SelectInteraction({style: selectStyle});
 
 export class Modify extends React.Component<any, any> {
   render() {

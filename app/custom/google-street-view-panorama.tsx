@@ -23,7 +23,6 @@ export class GoogleStreetViewPanorama extends React.Component<any,any> {
           pov={{heading: 90, pitch: 10}}
           zoom={1} 
          />
-        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/custom/google-street-view-panorama.tsx">source</a>
         <Highlighter lang="jsx" code={
 `<custom.GoogleStreetViewPanorama
   position={{lat: 43.6613184, lng: -79.3941086}}
@@ -31,6 +30,7 @@ export class GoogleStreetViewPanorama extends React.Component<any,any> {
   zoom={1} 
 />`
         } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/custom/google-street-view-panorama.tsx">source</a>
       </div>
     );
   }

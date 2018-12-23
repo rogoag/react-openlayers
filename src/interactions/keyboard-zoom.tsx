@@ -34,7 +34,6 @@ export class KeyboardZoom extends React.Component<KeyboardZoomProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    console.log('options', options);
     this.interaction = new olKeyboardZoom(options);
     this.context.interactions.push(this.interaction)
 

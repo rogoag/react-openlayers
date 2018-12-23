@@ -40,7 +40,6 @@ export class Modify extends React.Component<ModifyProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    console.log('options', options);
     this.interaction = new olModify(options);
     this.context.interactions.push(this.interaction);
 

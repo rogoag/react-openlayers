@@ -37,7 +37,6 @@ export class DragBox extends React.Component<DragBoxProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    console.log('options', options);
     this.interaction = new olDragBox(options);
     this.context.interactions.push(this.interaction)
 

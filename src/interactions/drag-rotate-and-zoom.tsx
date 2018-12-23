@@ -33,7 +33,6 @@ export class DragRotateAndZoom extends React.Component<DragRotateAndZoomProps, a
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    console.log('options', options);
     this.interaction = new olDragRotateAndZoom(options);
     this.context.interactions.push(this.interaction)
 

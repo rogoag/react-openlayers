@@ -33,7 +33,6 @@ export class PinchZoom extends React.Component<PinchZoomProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    console.log('double-click-zoom options', options);
     this.interaction = new olPinchZoom(options);
     this.context.interactions.push(this.interaction)
 

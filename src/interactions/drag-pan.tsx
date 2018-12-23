@@ -33,7 +33,6 @@ export class DragPan extends React.Component<DragPanProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    console.log('options', options);
     this.interaction = new olDragPan(options);
     this.context.interactions.push(this.interaction)
 

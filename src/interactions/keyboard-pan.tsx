@@ -35,7 +35,6 @@ export class KeyboardPan extends React.Component<KeyboardPanProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    console.log('options', options);
     this.interaction = new olKeyboardPan(options);
     this.context.interactions.push(this.interaction)
 

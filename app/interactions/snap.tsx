@@ -74,10 +74,9 @@ export class Snap extends React.Component<any, any> {
   render() {
     const { drawType, activeInteraction } = this.state;
 
-    console.log("Snap render", drawType, activeInteraction)
     return (
       <div>
-        <p>The <code>Snap</code> interaction offer snapping capabilities. Try drawing a <code>LineString</code> and some <code>Point</code>s, then select the <code>Modify</code> option and try to move a <code>Point</code> near a <code>LineString</code></p>
+        <p>The <code>Snap</code> interaction offer snapping capabilities. Try drawing a <code>LineString</code> and some <code>Point</code>s, then select the <code>Modify</code> option and try to move a <code>Point</code> near the <code>LineString</code></p>
         <Map view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
             <layer.Tile />

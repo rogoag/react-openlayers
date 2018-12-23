@@ -45,11 +45,6 @@ export class Tile extends React.Component<TileProps, any> {
     'render': undefined
   };
 
-  constructor(props) {
-    super(props);
-    console.log('Tile constructor');
-  }
-
   render() {
     return null;
   }
