@@ -26,11 +26,18 @@ export class PinchZoom extends React.Component<PinchZoomProps, any> {
 
   render() { return null; }
 
+  initInteraction() {
+    if (this.props.interactionRef) this.props.interactionRef(this.interaction);
+    if (this.props.active) this.interaction.setActive(this.props.active);
+  }
+
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('double-click-zoom options', options);
     this.interaction = new olPinchZoom(options);
     this.context.mapComp.interactions.push(this.interaction)
+
+    this.initInteraction();
     
     let olEvents = Util.getEvents(this.events, this.props);
     for(let eventName in olEvents) {
@@ -45,7 +52,7 @@ export class PinchZoom extends React.Component<PinchZoomProps, any> {
       this.interaction = new olPinchZoom(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
-      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
+      this.initInteraction();
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

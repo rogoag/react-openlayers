@@ -26,10 +26,17 @@ export class PinchRotate extends React.Component<PinchRotateProps, any> {
 
   render() { return null; }
 
+  initInteraction() {
+    if (this.props.interactionRef) this.props.interactionRef(this.interaction);
+    if (this.props.active) this.interaction.setActive(this.props.active);
+  }
+
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     this.interaction = new olPinchRotate(options);
     this.context.mapComp.interactions.push(this.interaction)
+
+    this.initInteraction();
     
     let olEvents = Util.getEvents(this.events, this.props);
     for(let eventName in olEvents) {
@@ -44,7 +51,7 @@ export class PinchRotate extends React.Component<PinchRotateProps, any> {
       this.interaction = new olPinchRotate(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
-      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
+      this.initInteraction();
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

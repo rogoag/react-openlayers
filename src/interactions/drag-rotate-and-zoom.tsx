@@ -26,11 +26,18 @@ export class DragRotateAndZoom extends React.Component<DragRotateAndZoomProps, a
 
   render() { return null; }
 
+  initInteraction() {
+    if (this.props.interactionRef) this.props.interactionRef(this.interaction);
+    if (this.props.active) this.interaction.setActive(this.props.active);
+  }
+
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('options', options);
     this.interaction = new olDragRotateAndZoom(options);
     this.context.mapComp.interactions.push(this.interaction)
+
+    this.initInteraction();
     
     let olEvents = Util.getEvents(this.events, this.props);
     for(let eventName in olEvents) {
@@ -45,7 +52,7 @@ export class DragRotateAndZoom extends React.Component<DragRotateAndZoomProps, a
       this.interaction = new olDragRotateAndZoom(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
-      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
+      this.initInteraction();
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

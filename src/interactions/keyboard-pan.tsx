@@ -28,11 +28,18 @@ export class KeyboardPan extends React.Component<KeyboardPanProps, any> {
 
   render() { return null; }
 
+  initInteraction() {
+    if (this.props.interactionRef) this.props.interactionRef(this.interaction);
+    if (this.props.active) this.interaction.setActive(this.props.active);
+  }
+
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     console.log('options', options);
     this.interaction = new olKeyboardPan(options);
     this.context.mapComp.interactions.push(this.interaction)
+
+    this.initInteraction();
     
     let olEvents = Util.getEvents(this.events, this.props);
     for(let eventName in olEvents) {
@@ -47,7 +54,7 @@ export class KeyboardPan extends React.Component<KeyboardPanProps, any> {
       this.interaction = new olKeyboardPan(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
-      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
+      this.initInteraction();
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

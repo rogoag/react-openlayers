@@ -29,10 +29,17 @@ export class Snap extends React.Component<SnapProps, any> {
 
   render() { return null; }
 
+  initInteraction() {
+    if (this.props.interactionRef) this.props.interactionRef(this.interaction);
+    if (this.props.active) this.interaction.setActive(this.props.active);
+  }
+
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     this.interaction = new olSnap(options);
     this.context.mapComp.interactions.push(this.interaction)
+
+    this.initInteraction();
     
     let olEvents = Util.getEvents(this.events, this.props);
     for(let eventName in olEvents) {
@@ -47,7 +54,7 @@ export class Snap extends React.Component<SnapProps, any> {
       this.interaction = new olSnap(options);
       this.context.mapComp.map.addInteraction(this.interaction);
 
-      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
+      this.initInteraction();
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

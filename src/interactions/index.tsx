@@ -22,7 +22,8 @@ import { Translate } from './translate';
 import ol from 'ol';
 
 export interface InteractionType<T extends ol.interaction.Interaction> {
-  interactionRef?(ref:T):void
+  interactionRef?(ref:T):void,
+  active?:boolean
 }
 
 let interaction = {
