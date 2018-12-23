@@ -4,8 +4,9 @@ import olScaleLine from 'ol/control/scaleline'
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { ControlType } from 'controls';
 
-export type ScaleLineProps = ol.olx.control.ScaleLineOptions;
+export interface ScaleLineProps extends ol.olx.control.ScaleLineOptions, ControlType<olScaleLine> {};
 
 export class ScaleLine extends React.Component<ScaleLineProps, any> {
   public static contextType = MapContext;
@@ -32,6 +33,8 @@ export class ScaleLine extends React.Component<ScaleLineProps, any> {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     this.control = new olScaleLine(options);
     this.context.mapComp.controls.push(this.control)
+
+    if (this.props.controlRef) this.props.controlRef(this.control);
 
     let olEvents = Util.getEvents(this.events, this.props);
     for(let eventName in olEvents) {

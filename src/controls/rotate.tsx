@@ -4,8 +4,9 @@ import olRotate from 'ol/control/rotate'
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { ControlType } from 'controls';
 
-export type RotateProps = ol.olx.control.RotateOptions;
+export interface RotateProps extends ol.olx.control.RotateOptions, ControlType<olRotate> {};
 
 export class Rotate extends React.Component<RotateProps, any> {
   public static contextType = MapContext;
@@ -34,6 +35,8 @@ export class Rotate extends React.Component<RotateProps, any> {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     this.control = new olRotate(options);
     this.context.mapComp.controls.push(this.control)
+
+    if (this.props.controlRef) this.props.controlRef(this.control);
 
     let olEvents = Util.getEvents(this.events, this.props);
     for(let eventName in olEvents) {

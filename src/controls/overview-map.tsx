@@ -4,9 +4,9 @@ import olOverviewMap from 'ol/control/overviewmap'
 
 import { Util } from '../util';
 import { MapContext } from '../map';
+import { ControlType } from 'controls';
 
-
-export type OverviewMapProps = ol.olx.control.OverviewMapOptions;
+export interface OverviewMapProps extends ol.olx.control.OverviewMapOptions, ControlType<olOverviewMap> {};
 
 export class OverviewMap extends React.Component<OverviewMapProps, any> {
   public static contextType = MapContext;
@@ -36,6 +36,9 @@ export class OverviewMap extends React.Component<OverviewMapProps, any> {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     this.control = new olOverviewMap(options);
     this.context.mapComp.controls.push(this.control)
+
+    if (this.props.controlRef) this.props.controlRef(this.control);
+
 
     let olEvents = Util.getEvents(this.events, this.props);
     for (let eventName in olEvents) {

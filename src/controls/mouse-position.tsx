@@ -4,9 +4,9 @@ import olMousePosition from 'ol/control/mouseposition'
 
 import { Util } from '../util';
 import { MapContext } from '../map';
+import { ControlType } from 'controls';
 
-
-export type MousePositionProps = ol.olx.control.MousePositionOptions;
+export interface MousePositionProps extends ol.olx.control.MousePositionOptions, ControlType<olMousePosition> {};
 
 export class MousePosition extends React.Component<MousePositionProps, any> {
   public static contextType = MapContext;
@@ -35,6 +35,9 @@ export class MousePosition extends React.Component<MousePositionProps, any> {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     this.control = new olMousePosition(options);
     this.context.mapComp.controls.push(this.control)
+
+    if (this.props.controlRef) this.props.controlRef(this.control);
+
 
     let olEvents = Util.getEvents(this.events, this.props);
     for (let eventName in olEvents) {

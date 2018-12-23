@@ -4,8 +4,9 @@ import olAttribution from 'ol/control/attribution';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { ControlType } from 'controls';
 
-export type AttributionProps = ol.olx.control.AttributionOptions;
+export interface AttributionProps extends ol.olx.control.AttributionOptions, ControlType<olAttribution> {};
 
 export class Attribution extends React.Component<AttributionProps> {
   public static contextType = MapContext;
@@ -34,6 +35,8 @@ export class Attribution extends React.Component<AttributionProps> {
     const options = Util.getOptions({ ...this.options, ...this.props });
     this.control = new olAttribution(options);
     this.context.mapComp.controls.push(this.control);
+
+    if (this.props.controlRef) this.props.controlRef(this.control);
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {

@@ -4,8 +4,9 @@ import olZoom from 'ol/control/zoom'
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { ControlType } from 'controls';
 
-export type ZoomProps = ol.olx.control.ZoomOptions;
+export interface ZoomProps extends ol.olx.control.ZoomOptions, ControlType<olZoom> {};
 
 export class Zoom extends React.Component<ZoomProps, any> {
   public static contextType = MapContext;
@@ -35,6 +36,8 @@ export class Zoom extends React.Component<ZoomProps, any> {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     this.control = new olZoom(options);
     this.context.mapComp.controls.push(this.control)
+
+    if (this.props.controlRef) this.props.controlRef(this.control);
 
     let olEvents = Util.getEvents(this.events, this.props);
     for(let eventName in olEvents) {

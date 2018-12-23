@@ -9,6 +9,10 @@ import { ZoomToExtent } from './zoom-to-extent';
 import { Zoom } from './zoom';
 import { Controls } from './controls';
 
+export interface ControlType<T extends ol.control.Control> {
+  controlRef?(control:T):void
+}
+
 let control = {
   ScaleLine,
   Attribution,
