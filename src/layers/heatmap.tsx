@@ -56,7 +56,7 @@ export class Heatmap extends React.Component<HeatmapProps, any> {
     if(this.props.zIndex){
       this.layer.setZIndex(this.props.zIndex);
     }
-    this.context.mapComp.layers.push(this.layer);
+    this.context.layers.push(this.layer);
 
     let olEvents = Util.getEvents(this.events, this.props);
     for (let eventName in olEvents) {
@@ -65,26 +65,44 @@ export class Heatmap extends React.Component<HeatmapProps, any> {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps !== this.props) {
-      let options = Util.getOptions(Object.assign(this.options, this.props));
-      this.context.mapComp.map.removeLayer(this.layer);
-      this.layer = new olHeatmap(options);
-      if (this.props.zIndex) {
-        this.layer.setZIndex(this.props.zIndex);
-      }
-      this.context.mapComp.map.addLayer(this.layer);
+    let options = Util.getOptions(Object.assign(this.options, this.props));
 
-      if (this.props.layerRef) this.props.layerRef(this.layer);
-
-      let olEvents = Util.getEvents(this.events, this.props);
-      for (let eventName in olEvents) {
-        this.layer.on(eventName, olEvents[eventName]);
+    // Updating options first
+    Object.keys(options).forEach(option => {
+      if (options[option] === nextProps[options]) return;
+      const newVal = nextProps[option];
+      switch (option) {
+        case 'gradient': this.layer.setGradient(newVal); break;
+        case 'radius': this.layer.setRadius(newVal); break;
+        case 'blur': this.layer.setBlur(newVal); break;
+        case 'shadow': this.layer.set('shadow', newVal); break;
+        case 'extent': this.layer.setExtent(newVal); break;
+        case 'minResolution': this.layer.setMinResolution(newVal); break;
+        case 'maxResolution': this.layer.setMaxResolution(newVal); break;
+        case 'opacity': this.layer.setOpacity(newVal); break;
+        case 'source': this.layer.setSource(newVal); break;
+        case 'visible': this.layer.setVisible(newVal); break;
+        case 'zIndex': this.layer.setZIndex(newVal); break;
+        case 'opacity': this.layer.setOpacity(newVal); break;
+        case 'source': this.layer.setSource(newVal); break;
+        case 'visible': this.layer.setVisible(newVal); break;
+        case 'extent': this.layer.setExtent(newVal); break;
+        case 'minResolution': this.layer.setMinResolution(newVal); break;
+        case 'maxResolution': this.layer.setMaxResolution(newVal); break;
       }
+    });
+
+    // Then update events
+    let oldEvents = Util.getEvents(this.events, this.props);
+    let newEvents = Util.getEvents(this.events, nextProps);
+    for(let eventName in this.events) {
+      if (oldEvents[eventName]) this.layer.un(eventName, oldEvents[eventName]);
+      if (newEvents[eventName]) this.layer.on(eventName, newEvents[eventName]);
     }
   }
 
   componentWillUnmount() {
-    this.context.mapComp.map.removeLayer(this.layer);
+    this.context.map.removeLayer(this.layer);
   }
 
 }
