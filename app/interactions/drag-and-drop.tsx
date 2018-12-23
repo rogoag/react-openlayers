@@ -140,6 +140,25 @@ export class DragAndDrop extends React.Component<any, any> {
           </Controls>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/drag-and-drop.tsx">source</a>
+        <pre>{`
+        <Map view={{ center: [0, 0], zoom: 2 }} mapRef={map => this.map = map}>
+          <Layers>
+            <layer.Tile />
+          </Layers>
+          <Controls>
+            <interaction.DragAndDrop
+              formatConstructors={[
+                GPXFormat,
+                GeoJSONFormat,
+                IGCFormat,
+                KMLFormat,
+                TopoJSONFormat
+              ]}
+              onAddfeatures={this.handleAddFeatures}
+            />
+          </Controls>
+        </Map>
+        `}</pre>
       </div>
     );
   }

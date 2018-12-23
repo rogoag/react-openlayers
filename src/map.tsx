@@ -121,6 +121,11 @@ export class Map extends React.Component<any, any> {
     }
   }
 
+  // Prevents misbehavior, maybe there's a cleaner way to achieve that
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     return (
       <div>
