@@ -3,16 +3,19 @@ import * as ReactDOM from 'react-dom';
 
 import olOverlay from 'ol/overlay'
 
-import { Util } from './util';
-import { MapContext } from './map';
+import { Util } from '../util';
+import { MapContext } from '../map';
+import { OverlayType } from 'overlays';
 
-export class Overlay extends React.Component<any, any> {
+export interface OverlayProps extends ol.olx.OverlayOptions, OverlayType<olOverlay> {};
+
+export class Overlay extends React.Component<OverlayProps, any> {
   public static contextType = MapContext;
 
   overlay: olOverlay;
   el: HTMLElement;
 
-  options: any = {
+  options: OverlayProps = {
     id: undefined,
     element: undefined,
     offset: undefined,
@@ -48,5 +51,6 @@ export class Overlay extends React.Component<any, any> {
     // console.log('options.element', options.element);
     this.overlay = new olOverlay(options);
     this.context.mapComp.overlays.push(this.overlay);
+    if (this.props.overlayRef) this.props.overlayRef(this.overlay);
   }
 }

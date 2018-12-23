@@ -4,8 +4,9 @@ import olVector from 'ol/layer/vector';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { LayerType } from 'layers';
 
-export type VectorProps = ol.olx.layer.VectorOptions;
+export interface VectorProps extends ol.olx.layer.VectorOptions, LayerType<olVector> {};
 
 export class Vector extends React.Component<VectorProps, any> {
   public static contextType = MapContext;
@@ -69,6 +70,8 @@ export class Vector extends React.Component<VectorProps, any> {
         this.layer.setZIndex(this.props.zIndex);
       }
       this.context.mapComp.map.addLayer(this.layer);
+
+      if (this.props.layerRef) this.props.layerRef(this.layer);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

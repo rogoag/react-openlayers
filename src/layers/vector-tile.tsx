@@ -5,8 +5,9 @@ import olVector from 'ol/layer/vector';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { LayerType } from 'layers';
 
-export interface VectorTileProps extends ol.olx.layer.VectorTileOptions {
+export interface VectorTileProps extends ol.olx.layer.VectorTileOptions, LayerType<olVector> {
   callback?(layer:olVector):void
 }
 
@@ -81,6 +82,8 @@ export class VectorTile extends React.Component<VectorTileProps, any> {
         this.layer.setZIndex(this.props.zIndex);
       }
       this.context.mapComp.map.addLayer(this.layer);
+
+      if (this.props.layerRef) this.props.layerRef(this.layer);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

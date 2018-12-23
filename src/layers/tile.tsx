@@ -5,8 +5,9 @@ import olOSMSource from 'ol/source/osm';
 
 import { MapContext } from '../map';
 import { Util, Omit } from '../util';
+import { LayerType } from 'layers';
 
-export interface TileProps extends Omit<ol.olx.layer.TileOptions, 'source'> {
+export interface TileProps extends Omit<ol.olx.layer.TileOptions, 'source'>, LayerType<olTile> {
   source?: ol.olx.layer.TileOptions['source']
 }
 
@@ -77,6 +78,8 @@ export class Tile extends React.Component<TileProps, any> {
         this.layer.setZIndex(this.props.zIndex);
       }
       this.context.mapComp.map.addLayer(this.layer);
+
+      if (this.props.layerRef) this.props.layerRef(this.layer);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

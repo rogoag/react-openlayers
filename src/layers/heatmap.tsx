@@ -4,8 +4,9 @@ import olHeatmap from 'ol/layer/heatmap';
 
 import { MapContext } from '../map';
 import { Util, Omit } from '../util';
+import { LayerType } from 'layers';
 
-export interface HeatmapProps extends Omit<ol.olx.layer.HeatmapOptions, 'weight'> {
+export interface HeatmapProps extends Omit<ol.olx.layer.HeatmapOptions, 'weight'>, LayerType<olHeatmap> {
   weight?: ol.olx.layer.HeatmapOptions['weight']
 }
 
@@ -72,6 +73,8 @@ export class Heatmap extends React.Component<HeatmapProps, any> {
         this.layer.setZIndex(this.props.zIndex);
       }
       this.context.mapComp.map.addLayer(this.layer);
+
+      if (this.props.layerRef) this.props.layerRef(this.layer);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for (let eventName in olEvents) {

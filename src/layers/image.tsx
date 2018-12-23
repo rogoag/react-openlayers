@@ -4,8 +4,9 @@ import olImage from 'ol/layer/image';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { LayerType } from 'layers';
 
-export type ImageProps = ol.olx.layer.ImageOptions;
+export interface ImageProps extends ol.olx.layer.ImageOptions, LayerType<olImage> {};
 
 
 export class Image extends React.Component<ImageProps, any> {
@@ -67,6 +68,8 @@ export class Image extends React.Component<ImageProps, any> {
         this.layer.setZIndex(this.props.zIndex);
       }
       this.context.mapComp.map.addLayer(this.layer);
+
+      if (this.props.layerRef) this.props.layerRef(this.layer);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {
