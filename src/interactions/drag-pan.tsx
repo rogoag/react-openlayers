@@ -5,7 +5,7 @@ import olDragPan from 'ol/interaction/dragpan';
 import { MapContext } from '../map';
 import { Util } from '../util';
 
-export type DragPanProps = ol.olx.interaction.DragPanOptions;4
+export type DragPanProps = ol.olx.interaction.DragPanOptions;
 
 export class DragPan extends React.Component<DragPanProps, any> {
   public static contextType = MapContext;

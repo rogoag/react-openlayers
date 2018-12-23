@@ -100,6 +100,7 @@ export class Map extends React.Component<any, any> {
     
     options.layers = this.layers;
     options.overlays = this.overlays;
+    console.log("Map options", options, interactionsCmp.props)
     this.map = new olMap(options);
     this.map.setTarget(options.target || this.mapDiv);
 
