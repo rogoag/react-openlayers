@@ -12,6 +12,7 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
 
 var vectorSource= new ClusterSource({
   distance: 40,
@@ -38,6 +39,8 @@ export class EarthquakeClusters extends React.Component<any,any> {
   render(){
     return (
       <div>
+        <p>This example parses a KML file and renders the features as clusters on a vector layer. The styling in this example is quite involved. Single earthquake locations (rendered as stars) have a size relative to their magnitude. Clusters have an opacity relative to the number of features in the cluster, and a size that represents the extent of the features that make up the cluster. When clicking or hovering on a cluster, the individual features that make up the cluster will be shown.
+        To achieve this, we make heavy use of style functions and <code>ol.style.Style#geometry.</code></p>
         <Map view={{center: [0,0], zoom:2}}>
           <Interactions>
             <interaction.Select
@@ -52,23 +55,21 @@ export class EarthquakeClusters extends React.Component<any,any> {
           </Layers>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/custom/earthquake-clusters.tsx">source</a>
-        This example parses a KML file and renders the features as clusters on a vector layer. The styling in this example is quite involved. Single earthquake locations (rendered as stars) have a size relative to their magnitude. Clusters have an opacity relative to the number of features in the cluster, and a size that represents the extent of the features that make up the cluster. When clicking or hovering on a cluster, the individual features that make up the cluster will be shown.
-        To achieve this, we make heavy use of style functions and ol.style.Style#geometry.
-        <pre>{`
-        <Map view={{center: [0,0], zoom:2}}>
-          <Interactions>
-            <interaction.Select
-             condition={selectCondition} 
-             style={cluster.selectStyleFunction} />
-          </Interactions>
-          <Layers>
-            <layer.Tile source={tileSource}/>
-            <layer.Vector 
-              source={vectorSource} 
-              style={cluster.vectorStyleFunction}/>
-          </Layers>
-        </Map>
-        `}</pre>
+        <Highlighter lang="jsx" code={
+`<Map view={{center: [0,0], zoom:2}}>
+  <Interactions>
+    <interaction.Select
+      condition={selectCondition} 
+      style={cluster.selectStyleFunction} />
+  </Interactions>
+  <Layers>
+    <layer.Tile source={tileSource}/>
+    <layer.Vector 
+      source={vectorSource} 
+      style={cluster.vectorStyleFunction}/>
+  </Layers>
+</Map>`
+        } />
       </div>
     );
   }

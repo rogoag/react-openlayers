@@ -12,6 +12,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 export class DragBox extends React.Component<any, any> {
   state = {
     selectedFeatures: null
@@ -70,23 +72,23 @@ export class DragBox extends React.Component<any, any> {
         </Map>
         <p>{this.state.selectedFeatures.length === 0 ? "No selected countries" : this.state.selectedFeatures.getArray().map(f => f.get('name')).join(', ')}</p>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/drag-box.tsx">source</a>
-        <pre>{`
-        <Map view={{ center: [0, 0], zoom: 2 }}>
-          <Layers>
-            <layer.Tile />
-            <layer.Vector source={this.source} />
-          </Layers>
-          <Controls>
-            <interaction.Select instance={this.select} onSelect={this.handleDeselect}/>
-            <interaction.DragBox
-              condition={olEventConditions.platformModifierKeyOnly}
-              onBoxstart={this.clearSelectedFeatures}
-              onBoxend={this.handleBoxEnd}
-              />
-          </Controls>
-        </Map>
-        <p>{this.state.selectedFeatures.length === 0 ? "No selected countries" : this.state.selectedFeatures.getArray().map(f => f.get('name')).join(', ')}</p>
-        `}</pre>
+        <Highlighter lang="jsx" code={
+`<Map view={{ center: [0, 0], zoom: 2 }}>
+  <Layers>
+    <layer.Tile />
+    <layer.Vector source={this.source} />
+  </Layers>
+  <Controls>
+    <interaction.Select instance={this.select} onSelect={this.handleDeselect}/>
+    <interaction.DragBox
+      condition={olEventConditions.platformModifierKeyOnly}
+      onBoxstart={this.clearSelectedFeatures}
+      onBoxend={this.handleBoxEnd}
+      />
+  </Controls>
+</Map>
+<p>{this.state.selectedFeatures.length === 0 ? "No selected countries" : this.state.selectedFeatures.getArray().map(f => f.get('name')).join(', ')}</p>`
+        } />
       </div>
     );
   }

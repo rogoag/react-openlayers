@@ -11,6 +11,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 let tileSource = new StamenSource({
   layer: 'toner'
 });
@@ -33,14 +35,14 @@ export class Heatmap extends React.Component<any,any> {
           </Layers>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/heatmap.tsx">source</a>
-        <pre>{`
-          <Map center={[0,0]} view={{center:[0,0], zoom:1}}>
-            <Layers>
-              <layer.Tile source={tileSource} />
-              <layer.Heatmap source={heatmapSource} blur={15} radius={5} />
-            </Layers>
-          </Map>
-        `}</pre>
+        <Highlighter lang="jsx"  code={
+`<Map center={[0,0]} view={{center:[0,0], zoom:1}}>
+  <Layers>
+    <layer.Tile source={tileSource} />
+    <layer.Heatmap source={heatmapSource} blur={15} radius={5} />
+  </Layers>
+</Map>`
+        } />
       </div>
     );
   }

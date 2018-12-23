@@ -10,6 +10,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 //AppOverlay to avoid conflict to Overlay
 export class AppOverlay extends React.Component<any,any> {
   overlayComp: any;
@@ -43,19 +45,19 @@ export class AppOverlay extends React.Component<any,any> {
           </Overlays>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/overlays/app-overlay.tsx">Source Code</a>
-        <pre>{`
-        <Map onClick={this.showPopup}>
-          <Layers>
-            <layer.Tile source={new StamenSource({ layer: 'watercolor' })}/>
-          </Layers>
-          <Overlays>
-            <Overlay ref={comp => this.overlayComp = comp}>
-              <custom.Popup ref={comp => this.popupComp = comp}>
-              </custom.Popup>
-            </Overlay>
-          </Overlays>
-        </Map>
-       `}</pre>
+        <Highlighter lang="jsx" code={
+`<Map onClick={this.showPopup}>
+  <Layers>
+    <layer.Tile source={new StamenSource({ layer: 'watercolor' })}/>
+  </Layers>
+  <Overlays>
+    <Overlay ref={comp => this.overlayComp = comp}>
+      <custom.Popup ref={comp => this.popupComp = comp}>
+      </custom.Popup>
+    </Overlay>
+  </Overlays>
+</Map>`
+        } />
       </div>
     );
   }

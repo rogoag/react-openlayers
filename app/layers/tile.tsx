@@ -10,6 +10,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 export class Tile extends React.Component<any,any> {
   render(){
     return (
@@ -20,13 +22,13 @@ export class Tile extends React.Component<any,any> {
           </Layers>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/tile.tsx">Source Code</a>
-        <pre>{`
-        <Map>
-          <Layers>
-            <layer.Tile source={new StamenSource({ layer: 'watercolor' })}/>
-          </Layers>
-        </Map>
-        `}</pre>
+        <Highlighter lang="jsx" code={
+`<Map>
+  <Layers>
+    <layer.Tile source={new StamenSource({ layer: 'watercolor' })}/>
+  </Layers>
+</Map>`
+        } />
       </div>
     );
   }

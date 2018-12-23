@@ -13,6 +13,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 import {createMapboxStreetsV6Style} from './mapbox-streets-v6-style';
 
 var key = 'pk.eyJ1IjoiYWxsZW5od2tpbSIsImEiOiJjajBlbzkzazYwMWh1Mndya3R2amw0ang1In0.QU0YtPQ0-IgHMLt574HGlw';
@@ -39,12 +41,13 @@ export class VectorTile extends React.Component<any,any> {
           </Layers>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/vector-tile.tsx">Source Code</a>
-        <pre>{`
-        <Map view={{center: [0,0], zoom:2}}>
-          <Layers>
-            <layer.VectorTile source={source} style={createMapboxStreetsV6Style()} />
-          </Layers>
-        `}</pre>
+        <Highlighter lang="jsx" code={
+`<Map view={{center: [0,0], zoom:2}}>
+  <Layers>
+    <layer.VectorTile source={source} style={createMapboxStreetsV6Style()} />
+  </Layers>
+`
+        } />
       </div>
     );
   }

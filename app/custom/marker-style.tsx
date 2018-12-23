@@ -12,6 +12,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 var iconFeature = new Feature(new Point([0, 0]));
 var source = new VectorSource({features: [iconFeature]});
 var marker = new custom.style.MarkerStyle(
@@ -31,16 +33,16 @@ export class MarkerStyle extends React.Component<any,any> {
           </Layers>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/custom/marker-style.tsx">source</a>
-        <pre>{`
-        <Map>
-          <Layers>
-            <layer.Tile />
-            <layer.Vector 
-              style={marker.style}
-              source={source}/>
-          </Layers>
-        </Map>
-        `}</pre>
+        <Highlighter lang="jsx" code={
+`<Map>
+  <Layers>
+    <layer.Tile />
+    <layer.Vector 
+      style={marker.style}
+      source={source}/>
+  </Layers>
+</Map>`
+        } />
       </div>
     );
   }

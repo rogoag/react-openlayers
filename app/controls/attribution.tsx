@@ -7,6 +7,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 export class Attribution extends React.Component<any, any> {
   render() {
     return (
@@ -16,12 +18,12 @@ export class Attribution extends React.Component<any, any> {
           <Controls attribution={false} zoom={false}></Controls>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/controls/attribution.tsx">source</a>
-        <pre>{`
-      <Map>
-        <Layers><layer.Tile/></Layers>
-        <Controls attribution={false} zoom={false}></Controls>
-      </Map>
-      `}</pre>
+        <Highlighter lang="jsx" code={
+`<Map>
+  <Layers><layer.Tile/></Layers>
+  <Controls attribution={false} zoom={false}></Controls>
+</Map>`
+        } />
       </div>
     );
   }

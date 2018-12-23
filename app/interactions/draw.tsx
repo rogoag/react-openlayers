@@ -10,6 +10,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 var rasterTile = new OSMSource();
 
 var vectorSource = new VectorSource({wrapX: false});
@@ -24,10 +26,9 @@ export class Draw extends React.Component<any, any> {
       },
       interactionType: 'Circle',
     };
-    this.drawend = this.drawend.bind(this);
   }
 
-  drawend(e) {
+  drawend = (e) => {
     console.log('xxxxxxxxxxxxx, draw end', e);
   }
 
@@ -55,8 +56,26 @@ export class Draw extends React.Component<any, any> {
         </select>
         <br/>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/draw.tsx">source</a>
-        <pre>{`
-        `}</pre>
+        <Highlighter lang="jsx"  code={
+`<Map view={this.state.view}>
+  <Layers>
+    <layer.Tile source={rasterTile} />
+    <layer.Vector source={vectorSource} />
+  </Layers>
+  <Interactions>
+    <interaction.Draw
+      onDrawend={this.drawend}
+      source={vectorSource}
+      type={this.state.interactionType} />
+  </Interactions>
+</Map>
+<select onChange={(event) => this.setState({interactionType: event.target.value})} value={this.state.interactionType}>
+  <option value="Point">Point</option>
+  <option value="Polygon">Polygon</option>
+  <option value="Line">Line</option>
+  <option value="Circle">Circle</option>
+</select> `
+        } />
       </div>
     );
   }

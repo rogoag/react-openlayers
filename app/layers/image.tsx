@@ -11,6 +11,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 var extent: any = [0, 0, 1024, 968];
 var projection = new Projection({
   code: 'xkcd-image',
@@ -40,13 +42,13 @@ export class Image extends React.Component<any,any> {
           </Layers>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/image.tsx">source</a>
-        <pre>{`
-          <Map view={view}>
-            <Layers>
-              <layer.Image source={imageSource} />
-            </Layers>
-          </Map>
-        `}</pre>
+        <Highlighter lang="jsx" code={
+`<Map view={view}>
+  <Layers>
+    <layer.Image source={imageSource} />
+  </Layers>
+</Map>`
+        } />
       </div>
     );
   }

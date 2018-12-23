@@ -7,6 +7,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 export class DoubleClickZoom extends React.Component<any, any> {
   render() {
     return (
@@ -20,16 +22,16 @@ export class DoubleClickZoom extends React.Component<any, any> {
           </Interactions>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/double-click-zoom.tsx">source</a>
-        <pre>{`
-          <Map>
-            <Layers>
-              <layer.Tile />
-            </Layers>
-            <Controls>
-              <interaction.DoubleClickZoom />
-            </Controls>
-          </Map>
-        `}</pre>
+        <Highlighter lang="jsx"  code={
+`<Map>
+  <Layers>
+    <layer.Tile />
+  </Layers>
+  <Controls>
+    <interaction.DoubleClickZoom />
+  </Controls>
+</Map>`
+        } />
       </div>
     );
   }

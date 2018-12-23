@@ -8,6 +8,7 @@ import {
   Interactions, Overlays, Controls,     //group
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
+import Highlighter from "../Highlighter";
 
 export class DragPan extends React.Component<any, any> {
   render() {
@@ -25,18 +26,18 @@ export class DragPan extends React.Component<any, any> {
           </Interactions>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/drag-pan.tsx">source</a>
-        <pre>{`
-        <Map view={{ center: [0, 0], zoom: 2 }}>
-          <Layers>
-            <layer.Tile />
-          </Layers>
-          <Interactions dragPan={false}>
-            <interaction.DragPan
-              condition={olEventConditions.platformModifierKeyOnly}
-            />
-          </Interactions>
-        </Map>
-        `}</pre>
+        <Highlighter lang="jsx" code={
+`<Map view={{ center: [0, 0], zoom: 2 }}>
+  <Layers>
+    <layer.Tile />
+  </Layers>
+  <Interactions dragPan={false}>
+    <interaction.DragPan
+      condition={olEventConditions.platformModifierKeyOnly}
+    />
+  </Interactions>
+</Map>`
+        } />
       </div>
     );
   }

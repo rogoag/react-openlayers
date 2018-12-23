@@ -19,6 +19,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 var key = 'mapzen-2pRGhe5';
 
 var attribution = [new Attribution({
@@ -112,15 +114,15 @@ export class OSMVectorTiles extends React.Component<any, any> {
           </Layers>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/osm-vector-tiles.tsx">Source Code</a>
-        <pre>{`
-        <Map view={{center: olProj.fromLonLat([-74.0064, 40.7142]), maxZoom: 19, zoom: 15 }}>
-          <Layers>
-            <layer.VectorTile source={source1} style={style1} />
-            <layer.VectorTile source={source2} style={style2} />
-            <layer.VectorTile source={source3} style={style3} />
-          </Layers>
-        </Map>
-        `}</pre>
+        <Highlighter lang="jsx" code={
+`<Map view={{center: olProj.fromLonLat([-74.0064, 40.7142]), maxZoom: 19, zoom: 15 }}>
+  <Layers>
+    <layer.VectorTile source={source1} style={style1} />
+    <layer.VectorTile source={source2} style={style2} />
+    <layer.VectorTile source={source3} style={style3} />
+  </Layers>
+</Map>`
+        } />
       </div>
     );
   }

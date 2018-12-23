@@ -20,6 +20,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 const defaultStyle = {
   'Point': new Style({
     image: new CircleStyle({
@@ -109,19 +111,18 @@ export class DragAndDrop extends React.Component<any, any> {
 
           Copy the following code into a <code>drag-and-drop-example.json</code> file on your desktop, then drag-and-drop it on the map :
         </p>
-        <pre>{`
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [125.6, 10.1]
-          },
-          "properties": {
-            "name": "Dinagat Islands"
-          }
-        }
-        `}
-        </pre>
+        <Highlighter lang="json"  code={
+`{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [125.6, 10.1]
+  },
+  "properties": {
+    "name": "Dinagat Islands"
+  }
+}`
+        } />
         <Map view={{ center: [0, 0], zoom: 2 }} mapRef={map => this.map = map}>
           <Layers>
             <layer.Tile />
@@ -140,25 +141,25 @@ export class DragAndDrop extends React.Component<any, any> {
           </Interactions>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/drag-and-drop.tsx">source</a>
-        <pre>{`
-        <Map view={{ center: [0, 0], zoom: 2 }} mapRef={map => this.map = map}>
-          <Layers>
-            <layer.Tile />
-          </Layers>
-          <Controls>
-            <interaction.DragAndDrop
-              formatConstructors={[
-                GPXFormat,
-                GeoJSONFormat,
-                IGCFormat,
-                KMLFormat,
-                TopoJSONFormat
-              ]}
-              onAddfeatures={this.handleAddFeatures}
-            />
-          </Controls>
-        </Map>
-        `}</pre>
+        <Highlighter lang="jsx"  code={
+`<Map view={{ center: [0, 0], zoom: 2 }} mapRef={map => this.map = map}>
+  <Layers>
+    <layer.Tile />
+  </Layers>
+  <Controls>
+    <interaction.DragAndDrop
+      formatConstructors={[
+        GPXFormat,
+        GeoJSONFormat,
+        IGCFormat,
+        KMLFormat,
+        TopoJSONFormat
+      ]}
+      onAddfeatures={this.handleAddFeatures}
+    />
+  </Controls>
+</Map>`
+        } />
       </div>
     );
   }

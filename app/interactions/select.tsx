@@ -11,6 +11,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 var iconFeature = new Feature(new Point([0, 0]));
 var source = new VectorSource({features: [iconFeature]});
 var marker = new custom.style.MarkerStyle(
@@ -35,17 +37,17 @@ export class Select extends React.Component<any, any> {
           </Interactions>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/select.tsx">source</a>
-        <pre>{`
-          <Map>
-            <Layers>
-              <layer.Tile />
-              <layer.Vector source={markers} style={markers.style} />
-            </Layers>
-            <Interactions>
-              <interaction.Select style={selectedMarkerStyle} />
-            </Interactions>
-          </Map>
-        `}</pre>
+        <Highlighter lang="jsx"  code={
+`<Map>
+  <Layers>
+    <layer.Tile />
+    <layer.Vector source={markers} style={markers.style} />
+  </Layers>
+  <Interactions>
+    <interaction.Select style={selectedMarkerStyle} />
+  </Interactions>
+</Map>`
+        } />
       </div>
     );
   }

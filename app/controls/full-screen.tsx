@@ -7,6 +7,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 export class FullScreen extends React.Component<any,any> {
   render(){
     return (
@@ -19,14 +21,14 @@ export class FullScreen extends React.Component<any,any> {
           </Controls>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/controls/full-screen.tsx">source</a>
-        <pre>{`
-        <Map>
-          <Layers><layer.Tile/></Layers>
-          <Controls>
-            <control.FullScreen />
-          </Controls>
-        </Map>
-        `}</pre>
+        <Highlighter lang="jsx" code={
+`<Map>
+  <Layers><layer.Tile/></Layers>
+  <Controls>
+    <control.FullScreen />
+  </Controls>
+</Map>`
+        } />
       </div>
     );
   }
