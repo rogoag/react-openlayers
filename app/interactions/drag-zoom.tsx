@@ -9,6 +9,8 @@ import {
   Map, Layers, Overlay, Util    //objects
 } from "react-openlayers";
 
+import Highlighter from "../Highlighter";
+
 export class DragZoom extends React.Component<any, any> {
   render() {
     return (
@@ -24,6 +26,19 @@ export class DragZoom extends React.Component<any, any> {
             />
           </Interactions>
         </Map>
+        <Highlighter lang="jsx" code={
+`<Map view={{ center: [0, 0], zoom: 2 }}>
+  <Layers>
+    <layer.Tile />
+  </Layers>
+  <Interactions shiftDragZoom={false}>
+    <interaction.DragZoom
+      condition={olEventConditions.platformModifierKeyOnly}
+    />
+  </Interactions>
+</Map>`
+        } />
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/drag-zoom.tsx">source</a>
       </div>
     );
   }

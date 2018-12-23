@@ -100,7 +100,7 @@ export class Map extends React.Component<any, any> {
     
     options.layers = this.layers;
     options.overlays = this.overlays;
-    console.log("Map options", options, interactionsCmp.props)
+    console.log("Map options", options)
     this.map = new olMap(options);
     this.map.setTarget(options.target || this.mapDiv);
 
@@ -130,7 +130,7 @@ export class Map extends React.Component<any, any> {
   render() {
     return (
       <div>
-        <div className="openlayers-map" ref={(el) => this.mapDiv = el}>
+        <div className="openlayers-map" ref={(el) => this.mapDiv = el} tabIndex={0}>
           <MapContext.Provider value={{ map: this.map, mapComp: this }}>
             {this.props.children}
           </MapContext.Provider>

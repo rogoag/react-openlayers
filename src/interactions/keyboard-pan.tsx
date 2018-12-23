@@ -5,7 +5,9 @@ import olKeyboardPan from 'ol/interaction/keyboardpan';
 import { MapContext } from '../map';
 import { Util } from '../util';
 
-export type KeyboardPanProps = ol.olx.interaction.KeyboardPanOptions;
+export interface KeyboardPanProps extends ol.olx.interaction.KeyboardPanOptions {
+  onChange?(e:any):void
+}
 
 
 export class KeyboardPan extends React.Component<KeyboardPanProps, any> {
