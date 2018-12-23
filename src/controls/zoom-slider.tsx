@@ -31,7 +31,7 @@ export class ZoomSlider extends React.Component<ZoomSliderProps, any> {
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     this.control = new olZoomSlider(options);
-    this.context.mapComp.controls.push(this.control)
+    this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);
 

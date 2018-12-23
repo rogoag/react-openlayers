@@ -13,20 +13,12 @@ import { layer } from './layers/index';
 import './ol.css';
 import './map.css';
 
-export interface MapContextType {
-  mapComp: Map;
-  map: olMap;
-}
+export const MapContext = React.createContext<Map|void>(null);
 
-export const MapContext = React.createContext<MapContextType>({
-  mapComp: undefined,
-  map: undefined,
-});
-
-export type MapOptions = ol.olx.MapOptions; 
+export type MapOptions = ol.olx.MapOptions;
 
 export interface MapProps extends MapOptions {
-  mapRef?(map: olMap):void
+  mapRef?(map: olMap): void
 }
 
 /**
@@ -88,21 +80,30 @@ export class Map extends React.Component<any, any> {
     'singleclick': undefined
   };
 
+  constructor(props) {
+    super(props);
+    this.mapDiv = React.createRef();
+  }
+
   componentDidMount() {
+    // console.log("Map did mount", this.props)
     let options = Util.getOptions(Object.assign(this.options, this.props));
     !(options.view instanceof olView) && (options.view = new olView(options.view));
-    
+
     let controlsCmp = Util.findChild(this.props.children, 'Controls') || {};
     let interactionsCmp = Util.findChild(this.props.children, 'Interactions') || {};
-    
+
     options.controls = olControl.defaults(controlsCmp.props).extend(this.controls);
     options.interactions = olInteraction.defaults(interactionsCmp.props).extend(this.interactions);
-    
+
     options.layers = this.layers;
     options.overlays = this.overlays;
     console.log("Map options", options)
     this.map = new olMap(options);
     this.map.setTarget(options.target || this.mapDiv);
+    this.updateFromProps(this.props, /* isMounting = */ true);
+
+    // console.log("Map created", this.map);
 
     if (this.props.mapRef) this.props.mapRef(this.map);
 
@@ -114,28 +115,73 @@ export class Map extends React.Component<any, any> {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.view && nextProps.view.center !== this.props.view.center) {
-      this.map.getView().setCenter(nextProps.view.center);
-    }
-    if (this.props.view && nextProps.view.zoom !== this.props.view.zoom) {
-      this.map.getView().setZoom(nextProps.view.zoom);
+    // console.log("Map will recieve props", nextProps)
+    this.updateFromProps(nextProps, false);
+  }
+
+  componentDidUpdate() {
+    // console.log("Map did update", this.map, this.mapDiv)
+    if (this.map) {
+      // this.map.getLayers().forEach(l => l.load())
+      // this.mapDiv.querySelector('.ol-viewport > canvas').width += 0;
+      this.map.setTarget(this.mapDiv);
+      this.map.updateSize();
+      this.map.renderSync();
     }
   }
 
   // Prevents misbehavior, maybe there's a cleaner way to achieve that
-  shouldComponentUpdate() {
-    return false;
+  // shouldComponentUpdate() {
+  //   return false;
+  // }
+
+  private updateFromProps(props: any, isMounting: boolean) {
+    if (isMounting || (props.view && props.view.position && props.view.position.allowUpdate)) {
+      // Update the center and the resolution of the view only when it is
+      // mounted the first time but not when the properties are updated.
+      // *Unless* we're passed a position object that explicitly declares
+      // that we need to update.
+      this.updateCenterAndResolutionFromProps(props)
+    }
+  }
+
+  private updateCenterAndResolutionFromProps(props: any) {
+    const view = this.map.getView();
+
+    // FIXME For standalone usage
+    if (props.view && props.view.position && props.view.position.allowUpdate) {
+      // The position object has declared that we need to update the map position (allowUpdate).
+      // A position object is:
+      // {
+      //   zoom: Number = Required
+      //   extent: ol.Extent = Optional
+      //   center: ol.Coordinate = Optional
+      // }
+      if (typeof props.view.position.extent !== "undefined") {
+        view.fit(props.view.position.extent, { size: this.map.getSize(), maxZoom: props.view.position.zoom })
+      } else if (typeof props.view.position.center !== "undefined" && typeof props.view.position.zoom !== "undefined") {
+        view.setCenter(props.view.position.center)
+        view.setZoom(props.view.position.zoom)
+      }
+    } else if (props.view) {
+      // Only used at mount time
+      view.setCenter(props.view.center)
+      if (typeof props.view.resolution !== "undefined") {
+        view.setResolution(props.view.resolution)
+      } else if (typeof props.view.zoom !== "undefined") {
+        view.setZoom(props.view.zoom)
+      }
+    }
   }
 
   render() {
+    // console.log("Map render", this.map, this.props)
     return (
-      <div>
-        <div className="openlayers-map" ref={(el) => this.mapDiv = el} tabIndex={0}>
-          <MapContext.Provider value={{ map: this.map, mapComp: this }}>
-            {this.props.children}
-          </MapContext.Provider>
+      <MapContext.Provider value={this}>
+        <div className="openlayers-map" ref={ref => this.mapDiv = ref} tabIndex={0}>
+          {this.props.children}
         </div>
-      </div>
+      </MapContext.Provider>
     );
 
   }

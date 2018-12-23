@@ -32,7 +32,7 @@ export class ScaleLine extends React.Component<ScaleLineProps, any> {
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     this.control = new olScaleLine(options);
-    this.context.mapComp.controls.push(this.control)
+    this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);
 

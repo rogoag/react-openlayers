@@ -50,7 +50,7 @@ export class Overlay extends React.Component<OverlayProps, any> {
     options.element = (ReactDOM.findDOMNode(this) as Element).querySelector('div');
     // console.log('options.element', options.element);
     this.overlay = new olOverlay(options);
-    this.context.mapComp.overlays.push(this.overlay);
+    this.context.overlays.push(this.overlay);
     if (this.props.overlayRef) this.props.overlayRef(this.overlay);
   }
 }

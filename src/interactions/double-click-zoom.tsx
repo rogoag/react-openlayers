@@ -26,17 +26,17 @@ export class DoubleClickZoom extends React.Component<DoubleClickZoomProps, any> 
 
   render() { return null; }
 
-  initInteraction() {
-    if (this.props.interactionRef) this.props.interactionRef(this.interaction);
-    if (this.props.active !== undefined) this.interaction.setActive(this.props.active);
+  initInteraction(props) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
   }
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     this.interaction = new olDoubleClickZoom(options);
-    this.context.mapComp.interactions.push(this.interaction)
+    this.context.interactions.push(this.interaction)
 
-    this.initInteraction();
+    this.initInteraction(this.props);
 
     let olEvents = Util.getEvents(this.events, this.props);
     for(let eventName in olEvents) {
@@ -46,12 +46,12 @@ export class DoubleClickZoom extends React.Component<DoubleClickZoomProps, any> 
 
   componentWillReceiveProps (nextProps) {
     if(nextProps !== this.props){
-      this.context.mapComp.map.removeInteraction(this.interaction);
+      this.context.map.removeInteraction(this.interaction);
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olDoubleClickZoom(options);
-      this.context.mapComp.map.addInteraction(this.interaction);
+      this.context.map.addInteraction(this.interaction);
 
-      this.initInteraction();
+      this.initInteraction(nextProps);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {
@@ -61,6 +61,6 @@ export class DoubleClickZoom extends React.Component<DoubleClickZoomProps, any> 
   }
   
   componentWillUnmount () {
-    this.context.mapComp.map.removeInteraction(this.interaction);
+    this.context.map.removeInteraction(this.interaction);
   }
 }

@@ -34,7 +34,7 @@ export class MousePosition extends React.Component<MousePositionProps, any> {
   componentDidMount() {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     this.control = new olMousePosition(options);
-    this.context.mapComp.controls.push(this.control)
+    this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);
 

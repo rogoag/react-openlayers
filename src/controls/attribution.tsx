@@ -34,7 +34,7 @@ export class Attribution extends React.Component<AttributionProps> {
   public componentDidMount() {
     const options = Util.getOptions({ ...this.options, ...this.props });
     this.control = new olAttribution(options);
-    this.context.mapComp.controls.push(this.control);
+    this.context.controls.push(this.control);
 
     if (this.props.controlRef) this.props.controlRef(this.control);
 

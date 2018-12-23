@@ -33,7 +33,7 @@ export class FullScreen extends React.Component<FullScreenProps, any> {
   componentDidMount() {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     this.control = new olFullScreen(options);
-    this.context.mapComp.controls.push(this.control)
+    this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);
 
