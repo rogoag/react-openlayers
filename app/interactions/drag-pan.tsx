@@ -10,8 +10,15 @@ import {
 export class DragPan extends React.Component<any, any> {
   render() {
     return (
-      <div className="todo">
-        TODO: Coming Soon(PR would be highly appreciated)
+      <div>
+        <Map view={{ center: [0, 0], zoom: 2 }}>
+          <Layers>
+            <layer.Tile />
+          </Layers>
+          <Interactions >
+            <interaction.DragPan />
+          </Interactions>
+        </Map>
       </div>
     );
   }

@@ -15,9 +15,9 @@ export class DoubleClickZoom extends React.Component<any, any> {
           <Layers>
             <layer.Tile />
           </Layers>
-          <Controls>
+          <Interactions>
             <interaction.DoubleClickZoom />
-          </Controls>
+          </Interactions>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/double-click-zoom.tsx">source</a>
         <pre>{`

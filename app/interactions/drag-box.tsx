@@ -59,14 +59,14 @@ export class DragBox extends React.Component<any, any> {
             <layer.Tile />
             <layer.Vector source={this.source} />
           </Layers>
-          <Controls>
+          <Interactions>
             <interaction.Select instance={this.select} onSelect={this.handleDeselect}/>
             <interaction.DragBox
               condition={olEventConditions.platformModifierKeyOnly}
               onBoxstart={this.clearSelectedFeatures}
               onBoxend={this.handleBoxEnd}
               />
-          </Controls>
+          </Interactions>
         </Map>
         <p>{this.state.selectedFeatures.length === 0 ? "No selected countries" : this.state.selectedFeatures.getArray().map(f => f.get('name')).join(', ')}</p>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/drag-and-drop.tsx">source</a>

@@ -126,7 +126,7 @@ export class DragAndDrop extends React.Component<any, any> {
           <Layers>
             <layer.Tile />
           </Layers>
-          <Controls>
+          <Interactions>
             <interaction.DragAndDrop
               formatConstructors={[
                 GPXFormat,
@@ -137,7 +137,7 @@ export class DragAndDrop extends React.Component<any, any> {
               ]}
               onAddfeatures={this.handleAddFeatures}
             />
-          </Controls>
+          </Interactions>
         </Map>
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/drag-and-drop.tsx">source</a>
         <pre>{`
