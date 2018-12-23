@@ -33,7 +33,7 @@ export class DragZoom extends React.Component<DragZoomProps, any> {
 
   initInteraction() {
     if (this.props.interactionRef) this.props.interactionRef(this.interaction);
-    if (this.props.active) this.interaction.setActive(this.props.active);
+    if (this.props.active !== undefined) this.interaction.setActive(this.props.active);
   }
 
   componentDidMount () {
