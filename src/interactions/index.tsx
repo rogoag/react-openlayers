@@ -19,6 +19,12 @@ import { Select } from './select';
 import { Snap } from './snap';
 import { Translate } from './translate';
 
+import ol from 'ol';
+
+export interface InteractionType<T extends ol.interaction.Interaction> {
+  interactionRef?(ref:T):void
+}
+
 let interaction = {
   DoubleClickZoom,
   DragAndDrop,

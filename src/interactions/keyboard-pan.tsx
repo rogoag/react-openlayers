@@ -4,10 +4,9 @@ import olKeyboardPan from 'ol/interaction/keyboardpan';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export interface KeyboardPanProps extends ol.olx.interaction.KeyboardPanOptions {
-  onChange?(e:any):void
-}
+export interface KeyboardPanProps extends ol.olx.interaction.KeyboardPanOptions, InteractionType<olKeyboardPan> {}
 
 
 export class KeyboardPan extends React.Component<KeyboardPanProps, any> {
@@ -47,6 +46,8 @@ export class KeyboardPan extends React.Component<KeyboardPanProps, any> {
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olKeyboardPan(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

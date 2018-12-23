@@ -4,8 +4,9 @@ import olPinchRotate from 'ol/interaction/pinchrotate';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type PinchRotateProps = ol.olx.interaction.PinchRotateOptions;
+export interface PinchRotateProps extends ol.olx.interaction.PinchRotateOptions, InteractionType<olPinchRotate> {};
 
 export class PinchRotate extends React.Component<PinchRotateProps, any> {
   public static contextType = MapContext;
@@ -42,6 +43,8 @@ export class PinchRotate extends React.Component<PinchRotateProps, any> {
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olPinchRotate(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

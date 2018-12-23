@@ -4,8 +4,9 @@ import olPointer from 'ol/interaction/pointer';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type PointerProps = ol.olx.interaction.PointerOptions;
+export interface PointerProps extends ol.olx.interaction.PointerOptions, InteractionType<olPointer> {};
 
 export class Pointer extends React.Component<PointerProps, any> {
   public static contextType = MapContext;
@@ -45,6 +46,8 @@ export class Pointer extends React.Component<PointerProps, any> {
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olPointer(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

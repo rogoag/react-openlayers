@@ -4,8 +4,9 @@ import olExtent from 'ol/interaction/extent';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type ExtentProps = olFix.olx.interaction.ExtentOptions;
+export interface ExtentProps extends olFix.olx.interaction.ExtentOptions, InteractionType<olExtent> {};
 
 export class Extent extends React.Component<ExtentProps, any> {
   public static contextType = MapContext;
@@ -47,6 +48,9 @@ export class Extent extends React.Component<ExtentProps, any> {
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olExtent(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
+
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

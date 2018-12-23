@@ -4,8 +4,9 @@ import olDragRotateAndZoom from 'ol/interaction/dragrotateandzoom';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type DragRotateAndZoomProps = ol.olx.interaction.DragRotateAndZoomOptions;
+export interface DragRotateAndZoomProps extends ol.olx.interaction.DragRotateAndZoomOptions, InteractionType<olDragRotateAndZoom> {};
 
 export class DragRotateAndZoom extends React.Component<DragRotateAndZoomProps, any> {
   public static contextType = MapContext;
@@ -43,6 +44,8 @@ export class DragRotateAndZoom extends React.Component<DragRotateAndZoomProps, a
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olDragRotateAndZoom(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

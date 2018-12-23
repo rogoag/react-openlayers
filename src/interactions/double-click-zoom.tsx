@@ -4,8 +4,9 @@ import olDoubleClickZoom from 'ol/interaction/doubleclickzoom';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type DoubleClickZoomProps = ol.olx.interaction.DoubleClickZoomOptions;
+export interface DoubleClickZoomProps extends ol.olx.interaction.DoubleClickZoomOptions, InteractionType<olDoubleClickZoom> {}
 
 export class DoubleClickZoom extends React.Component<DoubleClickZoomProps, any> {
   public static contextType = MapContext;
@@ -42,6 +43,8 @@ export class DoubleClickZoom extends React.Component<DoubleClickZoomProps, any> 
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olDoubleClickZoom(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

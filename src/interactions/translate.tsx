@@ -4,9 +4,9 @@ import olTranslate from 'ol/interaction/translate';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type TranslateProps = ol.olx.interaction.TranslateOptions;
-
+export interface TranslateProps extends ol.olx.interaction.TranslateOptions, InteractionType<olTranslate> {};
 
 export class Translate extends React.Component<TranslateProps, any> {
   public static contextType = MapContext;
@@ -47,6 +47,8 @@ export class Translate extends React.Component<TranslateProps, any> {
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olTranslate(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

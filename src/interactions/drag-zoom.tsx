@@ -4,8 +4,9 @@ import olDragZoom from 'ol/interaction/dragzoom';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type DragZoomProps = ol.olx.interaction.DragZoomOptions;
+export interface DragZoomProps extends ol.olx.interaction.DragZoomOptions, InteractionType<olDragZoom> {};
 
 export class DragZoom extends React.Component<DragZoomProps, any> {
   public static contextType = MapContext;
@@ -32,7 +33,6 @@ export class DragZoom extends React.Component<DragZoomProps, any> {
 
   componentDidMount () {
     let options = Util.getOptions(Object.assign(this.options, this.props));
-    console.log('options', options);
     this.interaction = new olDragZoom(options);
     this.context.mapComp.interactions.push(this.interaction)
     
@@ -48,6 +48,8 @@ export class DragZoom extends React.Component<DragZoomProps, any> {
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olDragZoom(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

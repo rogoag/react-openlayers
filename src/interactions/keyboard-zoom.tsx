@@ -4,8 +4,9 @@ import olKeyboardZoom from 'ol/interaction/keyboardzoom';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type KeyboardZoomProps = ol.olx.interaction.KeyboardZoomOptions;
+export interface KeyboardZoomProps extends ol.olx.interaction.KeyboardZoomOptions, InteractionType<olKeyboardZoom> {};
 
 export class KeyboardZoom extends React.Component<KeyboardZoomProps, any> {
   public static contextType = MapContext;
@@ -44,6 +45,8 @@ export class KeyboardZoom extends React.Component<KeyboardZoomProps, any> {
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olKeyboardZoom(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

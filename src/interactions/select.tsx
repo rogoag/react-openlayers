@@ -4,8 +4,9 @@ import olSelect from 'ol/interaction/select';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export interface SelectProps extends ol.olx.interaction.SelectOptions {
+export interface SelectProps extends ol.olx.interaction.SelectOptions, InteractionType<olSelect> {
   instance?: olSelect;
 }
 
@@ -63,6 +64,8 @@ export class Select extends React.Component<SelectProps, any> {
         this.interaction = new olSelect(options);
       }
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

@@ -4,8 +4,9 @@ import olPinchZoom from 'ol/interaction/pinchzoom';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type PinchZoomProps = ol.olx.interaction.PinchZoomOptions;
+export interface PinchZoomProps extends ol.olx.interaction.PinchZoomOptions, InteractionType<olPinchZoom> {};
 
 export class PinchZoom extends React.Component<PinchZoomProps, any> {
   public static contextType = MapContext;
@@ -43,6 +44,8 @@ export class PinchZoom extends React.Component<PinchZoomProps, any> {
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olPinchZoom(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

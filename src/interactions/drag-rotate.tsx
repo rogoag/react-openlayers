@@ -4,8 +4,9 @@ import olDragRotate from 'ol/interaction/dragrotate';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type DragRotateProps = ol.olx.interaction.DragRotateOptions;
+export interface DragRotateProps extends ol.olx.interaction.DragRotateOptions, InteractionType<olDragRotate> {};
 
 export class DragRotate extends React.Component<DragRotateProps, any> {
   public static contextType = MapContext;
@@ -43,6 +44,8 @@ export class DragRotate extends React.Component<DragRotateProps, any> {
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olDragRotate(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

@@ -4,13 +4,14 @@ import olSnap from 'ol/interaction/snap';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type SnapProps = ol.olx.interaction.SnapOptions;
+export interface SnapProps extends ol.olx.interaction.SnapOptions, InteractionType<olSnap> {};
 
 export class Snap extends React.Component<SnapProps, any> {
   public static contextType = MapContext;
 
-  interaction: ol.interaction.Snap;
+  interaction: olSnap;
 
   options: SnapProps = {
     features: undefined,
@@ -45,6 +46,8 @@ export class Snap extends React.Component<SnapProps, any> {
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olSnap(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

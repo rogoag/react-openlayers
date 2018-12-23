@@ -4,8 +4,9 @@ import olDragPan from 'ol/interaction/dragpan';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type DragPanProps = ol.olx.interaction.DragPanOptions;
+export interface DragPanProps extends ol.olx.interaction.DragPanOptions, InteractionType<olDragPan> {};
 
 export class DragPan extends React.Component<DragPanProps, any> {
   public static contextType = MapContext;
@@ -43,6 +44,8 @@ export class DragPan extends React.Component<DragPanProps, any> {
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olDragPan(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

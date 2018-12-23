@@ -4,8 +4,10 @@ import olModify from 'ol/interaction/modify';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type ModifyProps = ol.olx.interaction.ModifyOptions;
+export interface ModifyProps extends ol.olx.interaction.ModifyOptions, InteractionType<olModify> {};
+
 
 export class Modify extends React.Component<ModifyProps, any> {
   public static contextType = MapContext;
@@ -49,6 +51,8 @@ export class Modify extends React.Component<ModifyProps, any> {
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olModify(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

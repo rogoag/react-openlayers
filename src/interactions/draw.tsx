@@ -4,8 +4,9 @@ import olDraw from 'ol/interaction/draw';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type DrawProps = ol.olx.interaction.DrawOptions;
+export interface DrawProps extends ol.olx.interaction.DrawOptions, InteractionType<olDraw> {}
 
 export class Draw extends React.Component<DrawProps, any> {
   public static contextType = MapContext;
@@ -57,6 +58,8 @@ export class Draw extends React.Component<DrawProps, any> {
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olDraw(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {

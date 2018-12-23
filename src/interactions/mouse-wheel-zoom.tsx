@@ -4,8 +4,9 @@ import olMouseWheelZoom from 'ol/interaction/mousewheelzoom';
 
 import { MapContext } from '../map';
 import { Util } from '../util';
+import { InteractionType } from 'interactions';
 
-export type MouseWheelZoomProps = ol.olx.interaction.MouseWheelZoomOptions;
+export interface MouseWheelZoomProps extends ol.olx.interaction.MouseWheelZoomOptions, InteractionType<olMouseWheelZoom> {};
 
 export class MouseWheelZoom extends React.Component<MouseWheelZoomProps, any> {
   public static contextType = MapContext;
@@ -44,6 +45,8 @@ export class MouseWheelZoom extends React.Component<MouseWheelZoomProps, any> {
       let options = Util.getOptions(Object.assign(this.options, nextProps));
       this.interaction = new olMouseWheelZoom(options);
       this.context.mapComp.map.addInteraction(this.interaction);
+
+      if (this.props.interactionRef) this.props.interactionRef(this.interaction);
 
       let olEvents = Util.getEvents(this.events, this.props);
       for(let eventName in olEvents) {
