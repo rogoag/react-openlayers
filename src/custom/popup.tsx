@@ -1,26 +1,19 @@
 import * as React from 'react';
-import ol from 'ol'
 
 import './popup.css';
 
 export class Popup extends React.Component<any, any> {
   containerEl: HTMLElement;
   contentEl: HTMLElement;
-  contentClose:HTMLElement;
+  contentClose: HTMLElement;
 
-  constructor(props) {
-    console.log(2222222222);
-    super(props);
-  }
-
-  componentDidMount(){
-    this.contentClose.addEventListener("click",()=>{
-      this.containerEl.style.display='none';
+  componentDidMount() {
+    this.contentClose.addEventListener("click", () => {
+      this.containerEl.style.display = 'none';
     });
   }
 
   render() {
-    console.log(3333333333);
     return (
       <div className="olPopup" ref={el => this.containerEl = el}>
         <a className="olPopupCloser"
@@ -40,5 +33,4 @@ export class Popup extends React.Component<any, any> {
     this.containerEl.style.bottom = bottomDistance;
     this.containerEl.style.display = 'block';
   }
-
 }

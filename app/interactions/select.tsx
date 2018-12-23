@@ -14,8 +14,9 @@ import {
 var iconFeature = new Feature(new Point([0, 0]));
 var source = new VectorSource({features: [iconFeature]});
 var marker = new custom.style.MarkerStyle(
-  'https://openlayers.org/en/v4.0.1/examples/data/icon.png'
+  'https://openlayers.org/en/v4.6.5/examples/data/icon.png'
 );
+marker.style.getImage().setOpacity(0.5);
 
 let selectedMarkerStyle = Util.cloneObject(marker.style);
 selectedMarkerStyle.getImage().setOpacity(1);

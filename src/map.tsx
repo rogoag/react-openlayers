@@ -4,6 +4,7 @@ import olView from 'ol/view';
 import olMap from 'ol/map';
 import olControl from 'ol/control';
 import olInteraction from 'ol/interaction';
+import olOverlay from 'ol/overlay';
 
 import { Util } from './util';
 import { Layers } from './layers/layers';
@@ -19,7 +20,7 @@ export interface MapContextType {
 
 export const MapContext = React.createContext<MapContextType>({
   mapComp: undefined,
-  map: undefined
+  map: undefined,
 });
 
 /**
@@ -53,7 +54,7 @@ export class Map extends React.Component<any, any> {
     loadTilesWhileInteractiong: undefined,
     logo: undefined,
     renderer: undefined,
-    //new options  for map component : setZoom, SetCenter, setResolution
+    //new options for map component : setZoom, SetCenter, setResolution
     /* Added by : Harinder Randhawa */
     setCenter: undefined,
     setZoom: undefined,
@@ -83,16 +84,7 @@ export class Map extends React.Component<any, any> {
     'singleclick': undefined
   };
 
-  /**
-   * Component mounting LifeCycle; constructor, componentDidMount, and render
-   * https://facebook.github.io/react/docs/react-component.html#mounting
-   */
-  constructor(props) {
-    super(props);
-    console.log('Map constructor');
-  }
-  
-  componentWillMount() {
+  componentDidMount() {
     let options = Util.getOptions(Object.assign(this.options, this.props));
     !(options.view instanceof olView) && (options.view = new olView(options.view));
     
@@ -104,8 +96,6 @@ export class Map extends React.Component<any, any> {
     
     options.layers = this.layers;
     options.overlays = this.overlays;
-    console.log('map options', options);
-    
     this.map = new olMap(options);
     this.map.setTarget(options.target || this.mapDiv);
 
@@ -140,34 +130,7 @@ export class Map extends React.Component<any, any> {
 
   }
 
-  /**
-   * Component Updating LifeCycle
-   * https://facebook.github.io/react/docs/react-component.html#updating
-   */
-  //componentWillReceiveProps(nextProps)
-  //shouldComponentUpdate(nextProps, nextState)
-  //componentWillUpdate(nextProps, nextState)
-  //componentDidUpdate(prevProps, prevState)
-
-  /**
-   * Component Unmounting LifeCycle
-   * https://facebook.github.io/react/docs/react-component.html#unmounting
-   */
   componentWillUnmount() {
     this.map.setTarget(undefined)
   }
-
-  // Ref. https://facebook.github.io/react/docs/context.html#how-to-use-context
-  // getChildContext(): any {
-  //   return {
-  //     mapComp: this,
-  //     map: this.map
-  //   }
-  // }
 }
-
-// Ref. https://facebook.github.io/react/docs/context.html#how-to-use-context
-// Map['childContextTypes'] = {
-//   mapComp: React.PropTypes.instanceOf(Map),
-//   map: React.PropTypes.instanceOf(ol.Map)
-// };

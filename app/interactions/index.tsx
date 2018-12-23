@@ -45,46 +45,46 @@ export class Interactions extends React.Component<any, any> {
       <div>
         <h1>Interactions</h1>
         <ul role="nav" className="group-menu">
-          <li><Link to="interactions/select">Select</Link></li>
-          <li><Link to="interactions/draw">Draw</Link></li>
-          <li><Link to="interactions/modify">Modify</Link></li>
-          <li><Link to="interactions/double-click-zoom">DoubleClickZoom</Link></li>
-          <li><Link to="interactions/drag-and-drop">DragAndDrop</Link></li>
-          <li><Link to="interactions/drag-box">DragBox</Link></li>
-          <li><Link to="interactions/drag-pan">DragPan</Link></li>
-          <li><Link to="interactions/drag-rotate-and-zoom">DragRotateAndZoom</Link></li>
-          <li><Link to="interactions/drag-rotate">DragRotate</Link></li>
-          <li><Link to="interactions/drag-zoom">DragZoom</Link></li>
-          <li><Link to="interactions/keyboard-pan">KeyboardPan</Link></li>
-          <li><Link to="interactions/keyboard-zoom">KeyboardZoom</Link></li>
-          <li><Link to="interactions/mouse-wheel-zoom">MouseWheelZoom</Link></li>
-          <li><Link to="interactions/pinch-rotate">PinchRotate</Link></li>
-          <li><Link to="interactions/pinch-zoom">PinchZoom</Link></li>
-          <li><Link to="interactions/pointer">Pointer</Link></li>
-          <li><Link to="interactions/snap">Snap</Link></li>
-          <li><Link to="interactions/translate">Translate</Link></li>
+          <li><Link to="/interactions/select">Select</Link></li>
+          <li><Link to="/interactions/draw">Draw</Link></li>
+          <li><Link to="/interactions/modify">Modify</Link></li>
+          <li><Link to="/interactions/double-click-zoom">DoubleClickZoom</Link></li>
+          <li><Link to="/interactions/drag-and-drop">DragAndDrop</Link></li>
+          <li><Link to="/interactions/drag-box">DragBox</Link></li>
+          <li><Link to="/interactions/drag-pan">DragPan</Link></li>
+          <li><Link to="/interactions/drag-rotate-and-zoom">DragRotateAndZoom</Link></li>
+          <li><Link to="/interactions/drag-rotate">DragRotate</Link></li>
+          <li><Link to="/interactions/drag-zoom">DragZoom</Link></li>
+          <li><Link to="/interactions/keyboard-pan">KeyboardPan</Link></li>
+          <li><Link to="/interactions/keyboard-zoom">KeyboardZoom</Link></li>
+          <li><Link to="/interactions/mouse-wheel-zoom">MouseWheelZoom</Link></li>
+          <li><Link to="/interactions/pinch-rotate">PinchRotate</Link></li>
+          <li><Link to="/interactions/pinch-zoom">PinchZoom</Link></li>
+          <li><Link to="/interactions/pointer">Pointer</Link></li>
+          <li><Link to="/interactions/snap">Snap</Link></li>
+          <li><Link to="/interactions/translate">Translate</Link></li>
         </ul>
 
         <div className="contents">
-          <Route component={Select} />
-          <Route path="select" component={Select} />
-          <Route path="draw" component={Draw} />
-          <Route path="modify" component={Modify} />
-          <Route path="double-click-zoom" component={DoubleClickZoom} />
-          <Route path="drag-and-drop" component={DragAndDrop} />
-          <Route path="drag-box" component={DragBox} />
-          <Route path="drag-pan" component={DragPan} />
-          <Route path="drag-rotate-and-zoom" component={DragRotateAndZoom} />
-          <Route path="drag-rotate" component={DragRotate} />
-          <Route path="drag-zoom" component={DragZoom} />
-          <Route path="keyboard-pan" component={KeyboardPan} />
-          <Route path="keyboard-zoom" component={KeyboardZoom} />
-          <Route path="mouse-wheel-zoom" component={MouseWheelZoom} />
-          <Route path="pinch-rotate" component={PinchRotate} />
-          <Route path="pinch-zoom" component={PinchZoom} />
-          <Route path="pointer" component={Pointer} />
-          <Route path="snap" component={Snap} />
-          <Route path="translate" component={Translate} />
+          <Route path="/interactions" exact component={Select} />
+          <Route path="/interactions/select" component={Select} />
+          <Route path="/interactions/draw" component={Draw} />
+          <Route path="/interactions/modify" component={Modify} />
+          <Route path="/interactions/double-click-zoom" component={DoubleClickZoom} />
+          <Route path="/interactions/drag-and-drop" component={DragAndDrop} />
+          <Route path="/interactions/drag-box" component={DragBox} />
+          <Route path="/interactions/drag-pan" component={DragPan} />
+          <Route path="/interactions/drag-rotate-and-zoom" component={DragRotateAndZoom} />
+          <Route path="/interactions/drag-rotate" component={DragRotate} />
+          <Route path="/interactions/drag-zoom" component={DragZoom} />
+          <Route path="/interactions/keyboard-pan" component={KeyboardPan} />
+          <Route path="/interactions/keyboard-zoom" component={KeyboardZoom} />
+          <Route path="/interactions/mouse-wheel-zoom" component={MouseWheelZoom} />
+          <Route path="/interactions/pinch-rotate" component={PinchRotate} />
+          <Route path="/interactions/pinch-zoom" component={PinchZoom} />
+          <Route path="/interactions/pointer" component={Pointer} />
+          <Route path="/interactions/snap" component={Snap} />
+          <Route path="/interactions/translate" component={Translate} />
         </div>
       </div>
     );

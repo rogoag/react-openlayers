@@ -17,18 +17,18 @@ export class Custom extends React.Component<any, any> {
       <div>
         <h1>Customized Examples</h1>
         <ul role="nav" className="group-menu">
-          <li><Link to="custom/earthquake-clusters">Earthquake Clusters</Link></li>
-          <li><Link to="custom/marker-style">Marker Style</Link></li>
-          <li><Link to="custom/google-street-view-panorama">Google StreetView Panorama</Link></li>
-          {/* <li><Link to="custom/geo-code">Geocode</Link></li> */}
+          <li><Link to="/custom/earthquake-clusters">Earthquake Clusters</Link></li>
+          <li><Link to="/custom/marker-style">Marker Style</Link></li>
+          <li><Link to="/custom/google-street-view-panorama">Google StreetView Panorama</Link></li>
+          {/* <li><Link to="/custom/geo-code">Geocode</Link></li> */}
         </ul>
         
         <div className="contents">
-          <Route component={EarthquakeClusters} />
-          <Route path="earthquake-clusters" component={EarthquakeClusters} />
-          <Route path="marker-style" component={MarkerStyle} />
-          <Route path="google-street-view-panorama" component={GoogleStreetViewPanorama} />
-          {/* <Route path="geo-code" component={GeoCoder} /> */}
+          <Route path="/custom" exact component={EarthquakeClusters} />
+          <Route path="/custom/earthquake-clusters" component={EarthquakeClusters} />
+          <Route path="/custom/marker-style" component={MarkerStyle} />
+          <Route path="/custom/google-street-view-panorama" component={GoogleStreetViewPanorama} />
+          {/* <Route path="/custom/geo-code" component={GeoCoder} /> */}
         </div>
       </div>
     );

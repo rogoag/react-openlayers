@@ -21,24 +21,24 @@ export class Layers extends React.Component<any, any> {
   render() {
     return (
       <div>
-        <h1>Controls</h1>
+        <h1>Layers</h1>
         <ul role="nav" className="group-menu">
-          <li><Link to="layers/tile">Tile</Link></li>
-          <li><Link to="layers/vector">Vector</Link></li>
-          <li><Link to="layers/vector-tile">Vector Tile</Link></li>
-          <li><Link to="layers/osm-vector-tiles">OSM Vector Tiles</Link></li>
-          <li><Link to="layers/heatmap">Heatmap</Link></li>
-          <li><Link to="layers/image">Image</Link></li>
+          <li><Link to="/layers/tile">Tile</Link></li>
+          <li><Link to="/layers/vector">Vector</Link></li>
+          <li><Link to="/layers/vector-tile">Vector Tile</Link></li>
+          <li><Link to="/layers/osm-vector-tiles">OSM Vector Tiles</Link></li>
+          <li><Link to="/layers/heatmap">Heatmap</Link></li>
+          <li><Link to="/layers/image">Image</Link></li>
         </ul>
         <div className="contents">
-        {/* <Route component={Tile} /> */}
-          <Route path="tile" component={Tile} />
-          <Route path="vector" component={Vector} />
-          <Route path="heatmap" component={Heatmap} />
-          <Route path="image" component={Image} />
-          <Route path="vector-tile" component={VectorTile} />
-          <Route path="vector-tile-2" component={VectorTile2} />
-          <Route path="osm-vector-tiles" component={OSMVectorTiles} />
+          <Route path="/layers" exact component={Tile} />
+          <Route path="/layers/tile" component={Tile} />
+          <Route path="/layers/vector" component={Vector} />
+          <Route path="/layers/heatmap" component={Heatmap} />
+          <Route path="/layers/image" component={Image} />
+          <Route path="/layers/vector-tile" component={VectorTile} />
+          <Route path="/layers/vector-tile-2" component={VectorTile2} />
+          <Route path="/layers/osm-vector-tiles" component={OSMVectorTiles} />
         </div>
       </div>
     );

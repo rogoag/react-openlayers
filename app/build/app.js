@@ -166,12 +166,12 @@ var App = /** @class */ (function (_super) {
                     React.createElement(react_router_dom_1.Link, { to: "/interactions" }, "Interactions")),
                 React.createElement("li", null,
                     React.createElement(react_router_dom_1.Link, { to: "/custom" }, "Custom Examples"))),
-            React.createElement(react_router_dom_1.Route, { component: custom_1.EarthquakeClusters }),
-            React.createElement(react_router_dom_1.Route, { path: "controls", component: controls_1.Controls }),
-            React.createElement(react_router_dom_1.Route, { path: "layers", component: layers_1.Layers }),
-            React.createElement(react_router_dom_1.Route, { path: "interactions", component: interactions_1.Interactions }),
-            React.createElement(react_router_dom_1.Route, { path: "overlays", component: overlays_1.Overlays }),
-            React.createElement(react_router_dom_1.Route, { path: "custom", component: custom_1.Custom })));
+            React.createElement(react_router_dom_1.Route, { path: "/", exact: true, component: custom_1.EarthquakeClusters }),
+            React.createElement(react_router_dom_1.Route, { path: "/controls", component: controls_1.Controls }),
+            React.createElement(react_router_dom_1.Route, { path: "/layers", component: layers_1.Layers }),
+            React.createElement(react_router_dom_1.Route, { path: "/interactions", component: interactions_1.Interactions }),
+            React.createElement(react_router_dom_1.Route, { path: "/overlays", component: overlays_1.Overlays }),
+            React.createElement(react_router_dom_1.Route, { path: "/custom", component: custom_1.Custom })));
     };
     return App;
 }(React.Component));
@@ -336,34 +336,34 @@ var Controls = /** @class */ (function (_super) {
             React.createElement("h1", null, "Controls"),
             React.createElement("ul", { role: "nav", className: "group-menu" },
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "controls/attribution" }, "Attribution")),
+                    React.createElement(react_router_dom_1.Link, { to: "/controls/attribution" }, "Attribution")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "controls/full-screen" }, "FullScreen")),
+                    React.createElement(react_router_dom_1.Link, { to: "/controls/full-screen" }, "FullScreen")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "controls/mouse-position" }, "MousePosition")),
+                    React.createElement(react_router_dom_1.Link, { to: "/controls/mouse-position" }, "MousePosition")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "controls/overview-map" }, "OverviewMap")),
+                    React.createElement(react_router_dom_1.Link, { to: "/controls/overview-map" }, "OverviewMap")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "controls/rotate" }, "Rotate")),
+                    React.createElement(react_router_dom_1.Link, { to: "/controls/rotate" }, "Rotate")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "controls/scale-line" }, "ScaleLine")),
+                    React.createElement(react_router_dom_1.Link, { to: "/controls/scale-line" }, "ScaleLine")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "controls/zoom-slider" }, "ZoomSlider")),
+                    React.createElement(react_router_dom_1.Link, { to: "/controls/zoom-slider" }, "ZoomSlider")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "controls/zoom-to-extent" }, "ZoomToExtent")),
+                    React.createElement(react_router_dom_1.Link, { to: "/controls/zoom-to-extent" }, "ZoomToExtent")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "controls/zoom" }, "Zoom"))),
+                    React.createElement(react_router_dom_1.Link, { to: "/controls/zoom" }, "Zoom"))),
             React.createElement("div", { className: "contents" },
-                React.createElement(react_router_dom_1.Route, { component: attribution_1.Attribution }),
-                React.createElement(react_router_dom_1.Route, { path: "attribution", component: attribution_1.Attribution }),
-                React.createElement(react_router_dom_1.Route, { path: "full-screen", component: full_screen_1.FullScreen }),
-                React.createElement(react_router_dom_1.Route, { path: "mouse-position", component: mouse_position_1.MousePosition }),
-                React.createElement(react_router_dom_1.Route, { path: "overview-map", component: overview_map_1.OverviewMap }),
-                React.createElement(react_router_dom_1.Route, { path: "rotate", component: rotate_1.Rotate }),
-                React.createElement(react_router_dom_1.Route, { path: "scale-line", component: scale_line_1.ScaleLine }),
-                React.createElement(react_router_dom_1.Route, { path: "zoom-slider", component: zoom_slider_1.ZoomSlider }),
-                React.createElement(react_router_dom_1.Route, { path: "zoom-to-extent", component: zoom_to_extent_1.ZoomToExtent }),
-                React.createElement(react_router_dom_1.Route, { path: "zoom", component: zoom_1.Zoom }))));
+                React.createElement(react_router_dom_1.Route, { path: "/controls", exact: true, component: attribution_1.Attribution }),
+                React.createElement(react_router_dom_1.Route, { path: "/controls/attribution", component: attribution_1.Attribution }),
+                React.createElement(react_router_dom_1.Route, { path: "/controls/full-screen", component: full_screen_1.FullScreen }),
+                React.createElement(react_router_dom_1.Route, { path: "/controls/mouse-position", component: mouse_position_1.MousePosition }),
+                React.createElement(react_router_dom_1.Route, { path: "/controls/overview-map", component: overview_map_1.OverviewMap }),
+                React.createElement(react_router_dom_1.Route, { path: "/controls/rotate", component: rotate_1.Rotate }),
+                React.createElement(react_router_dom_1.Route, { path: "/controls/scale-line", component: scale_line_1.ScaleLine }),
+                React.createElement(react_router_dom_1.Route, { path: "/controls/zoom-slider", component: zoom_slider_1.ZoomSlider }),
+                React.createElement(react_router_dom_1.Route, { path: "/controls/zoom-to-extent", component: zoom_to_extent_1.ZoomToExtent }),
+                React.createElement(react_router_dom_1.Route, { path: "/controls/zoom", component: zoom_1.Zoom }))));
     };
     return Controls;
 }(React.Component));
@@ -864,16 +864,16 @@ var Custom = /** @class */ (function (_super) {
             React.createElement("h1", null, "Customized Examples"),
             React.createElement("ul", { role: "nav", className: "group-menu" },
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "custom/earthquake-clusters" }, "Earthquake Clusters")),
+                    React.createElement(react_router_dom_1.Link, { to: "/custom/earthquake-clusters" }, "Earthquake Clusters")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "custom/marker-style" }, "Marker Style")),
+                    React.createElement(react_router_dom_1.Link, { to: "/custom/marker-style" }, "Marker Style")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "custom/google-street-view-panorama" }, "Google StreetView Panorama"))),
+                    React.createElement(react_router_dom_1.Link, { to: "/custom/google-street-view-panorama" }, "Google StreetView Panorama"))),
             React.createElement("div", { className: "contents" },
-                React.createElement(react_router_dom_1.Route, { component: earthquake_clusters_1.EarthquakeClusters }),
-                React.createElement(react_router_dom_1.Route, { path: "earthquake-clusters", component: earthquake_clusters_1.EarthquakeClusters }),
-                React.createElement(react_router_dom_1.Route, { path: "marker-style", component: marker_style_1.MarkerStyle }),
-                React.createElement(react_router_dom_1.Route, { path: "google-street-view-panorama", component: google_street_view_panorama_1.GoogleStreetViewPanorama }))));
+                React.createElement(react_router_dom_1.Route, { path: "/custom", exact: true, component: earthquake_clusters_1.EarthquakeClusters }),
+                React.createElement(react_router_dom_1.Route, { path: "/custom/earthquake-clusters", component: earthquake_clusters_1.EarthquakeClusters }),
+                React.createElement(react_router_dom_1.Route, { path: "/custom/marker-style", component: marker_style_1.MarkerStyle }),
+                React.createElement(react_router_dom_1.Route, { path: "/custom/google-street-view-panorama", component: google_street_view_panorama_1.GoogleStreetViewPanorama }))));
     };
     return Custom;
 }(React.Component));
@@ -2065,28 +2065,29 @@ var Layers = /** @class */ (function (_super) {
     }
     Layers.prototype.render = function () {
         return (React.createElement("div", null,
-            React.createElement("h1", null, "Controls"),
+            React.createElement("h1", null, "Layers"),
             React.createElement("ul", { role: "nav", className: "group-menu" },
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "layers/tile" }, "Tile")),
+                    React.createElement(react_router_dom_1.Link, { to: "/layers/tile" }, "Tile")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "layers/vector" }, "Vector")),
+                    React.createElement(react_router_dom_1.Link, { to: "/layers/vector" }, "Vector")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "layers/vector-tile" }, "Vector Tile")),
+                    React.createElement(react_router_dom_1.Link, { to: "/layers/vector-tile" }, "Vector Tile")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "layers/osm-vector-tiles" }, "OSM Vector Tiles")),
+                    React.createElement(react_router_dom_1.Link, { to: "/layers/osm-vector-tiles" }, "OSM Vector Tiles")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "layers/heatmap" }, "Heatmap")),
+                    React.createElement(react_router_dom_1.Link, { to: "/layers/heatmap" }, "Heatmap")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "layers/image" }, "Image"))),
+                    React.createElement(react_router_dom_1.Link, { to: "/layers/image" }, "Image"))),
             React.createElement("div", { className: "contents" },
-                React.createElement(react_router_dom_1.Route, { path: "tile", component: tile_1.Tile }),
-                React.createElement(react_router_dom_1.Route, { path: "vector", component: vector_1.Vector }),
-                React.createElement(react_router_dom_1.Route, { path: "heatmap", component: heatmap_1.Heatmap }),
-                React.createElement(react_router_dom_1.Route, { path: "image", component: image_1.Image }),
-                React.createElement(react_router_dom_1.Route, { path: "vector-tile", component: vector_tile_1.VectorTile }),
-                React.createElement(react_router_dom_1.Route, { path: "vector-tile-2", component: vector_tile_2_1.VectorTile2 }),
-                React.createElement(react_router_dom_1.Route, { path: "osm-vector-tiles", component: osm_vector_tiles_1.OSMVectorTiles }))));
+                React.createElement(react_router_dom_1.Route, { path: "/layers", exact: true, component: tile_1.Tile }),
+                React.createElement(react_router_dom_1.Route, { path: "/layers/tile", component: tile_1.Tile }),
+                React.createElement(react_router_dom_1.Route, { path: "/layers/vector", component: vector_1.Vector }),
+                React.createElement(react_router_dom_1.Route, { path: "/layers/heatmap", component: heatmap_1.Heatmap }),
+                React.createElement(react_router_dom_1.Route, { path: "/layers/image", component: image_1.Image }),
+                React.createElement(react_router_dom_1.Route, { path: "/layers/vector-tile", component: vector_tile_1.VectorTile }),
+                React.createElement(react_router_dom_1.Route, { path: "/layers/vector-tile-2", component: vector_tile_2_1.VectorTile2 }),
+                React.createElement(react_router_dom_1.Route, { path: "/layers/osm-vector-tiles", component: osm_vector_tiles_1.OSMVectorTiles }))));
     };
     return Layers;
 }(React.Component));
@@ -2879,7 +2880,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var proj_1 = __webpack_require__(/*! ol/proj */ "./node_modules/ol/proj.js");
+var stamen_1 = __webpack_require__(/*! ol/source/stamen */ "./node_modules/ol/source/stamen.js");
 var react_openlayers_1 = __webpack_require__(/*! react-openlayers */ "./src/index.tsx");
 //AppOverlay to avoid conflict to Overlay
 var AppOverlay = /** @class */ (function (_super) {
@@ -2888,7 +2890,7 @@ var AppOverlay = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.showPopup = function (evt) {
             _this.overlayComp.overlay.setPosition(evt.coordinate);
-            var lonlat = ol_1.default.proj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
+            var lonlat = proj_1.default.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
             _this.popupComp.setContents("<p>You clicked here:</p><code> " + lonlat[0] + ", " + lonlat[1] + "</code>");
             _this.popupComp.show();
         };
@@ -2899,12 +2901,14 @@ var AppOverlay = /** @class */ (function (_super) {
         return (React.createElement("div", null,
             React.createElement(react_openlayers_1.Map, { onClick: this.showPopup },
                 React.createElement(react_openlayers_1.Layers, null,
-                    React.createElement(react_openlayers_1.layer.Tile, { source: new ol_1.default.source.Stamen({ layer: 'watercolor' }) })),
+                    React.createElement(react_openlayers_1.layer.Tile, { source: new stamen_1.default({ layer: 'watercolor' }) })),
+                React.createElement(react_openlayers_1.Controls, null,
+                    React.createElement(react_openlayers_1.control.FullScreen, null)),
                 React.createElement(react_openlayers_1.Overlays, null,
                     React.createElement(react_openlayers_1.Overlay, { ref: function (comp) { return _this.overlayComp = comp; } },
                         React.createElement(react_openlayers_1.custom.Popup, { ref: function (comp) { return _this.popupComp = comp; } })))),
             React.createElement("a", { href: "https://github.com/allenhwkim/react-openlayers/blob/master/app/overlays/app-overlay.tsx" }, "Source Code"),
-            React.createElement("pre", null, "\n        <Map onClick={this.showPopup}>\n          <Layers>\n            <layer.Tile source={new ol.source.Stamen({ layer: 'watercolor' })}/>\n          </Layers>\n          <Overlays>\n            <Overlay ref={comp => this.overlayComp = comp}>\n              <custom.Popup ref={comp => this.popupComp = comp}>\n              </custom.Popup>\n            </Overlay>\n          </Overlays>\n        </Map>\n       ")));
+            React.createElement("pre", null, "\n        <Map onClick={this.showPopup}>\n          <Layers>\n            <layer.Tile source={new StamenSource({ layer: 'watercolor' })}/>\n          </Layers>\n          <Overlays>\n            <Overlay ref={comp => this.overlayComp = comp}>\n              <custom.Popup ref={comp => this.popupComp = comp}>\n              </custom.Popup>\n            </Overlay>\n          </Overlays>\n        </Map>\n       ")));
     };
     return AppOverlay;
 }(React.Component));
@@ -2959,18 +2963,18 @@ var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "./node_mod
 var app_overlay_1 = __webpack_require__(/*! ./app-overlay */ "./app/overlays/app-overlay.tsx");
 var Overlays = /** @class */ (function (_super) {
     __extends(Overlays, _super);
-    function Overlays(props) {
-        return _super.call(this, props) || this;
+    function Overlays() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     Overlays.prototype.render = function () {
         return (React.createElement("div", null,
             React.createElement("h1", null, "Controls"),
             React.createElement("ul", { role: "nav", className: "group-menu" },
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "overlays/overlay" }, "Overlay"))),
+                    React.createElement(react_router_dom_1.Link, { to: "/overlays/overlay" }, "Overlay"))),
             React.createElement("div", { className: "contents" },
-                React.createElement(react_router_dom_1.Route, { component: app_overlay_1.AppOverlay }),
-                React.createElement(react_router_dom_1.Route, { path: "overlay", component: app_overlay_1.AppOverlay }))));
+                React.createElement(react_router_dom_1.Route, { path: "/overlays", exact: true, component: app_overlay_1.AppOverlay }),
+                React.createElement(react_router_dom_1.Route, { path: "/overlays/overlay", component: app_overlay_1.AppOverlay }))));
     };
     return Overlays;
 }(React.Component));
@@ -8967,6 +8971,1138 @@ _ol_control_Control_.prototype.setTarget = function(target) {
 
 /***/ }),
 
+/***/ "./node_modules/ol/control/fullscreen.js":
+/*!***********************************************!*\
+  !*** ./node_modules/ol/control/fullscreen.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _control_control_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../control/control.js */ "./node_modules/ol/control/control.js");
+/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../dom.js */ "./node_modules/ol/dom.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_eventtype_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../events/eventtype.js */ "./node_modules/ol/events/eventtype.js");
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * Provides a button that when clicked fills up the full screen with the map.
+ * The full screen source element is by default the element containing the map viewport unless
+ * overridden by providing the `source` option. In which case, the dom
+ * element introduced using this parameter will be displayed in full screen.
+ *
+ * When in full screen mode, a close button is shown to exit full screen mode.
+ * The [Fullscreen API](http://www.w3.org/TR/fullscreen/) is used to
+ * toggle the map in full screen mode.
+ *
+ *
+ * @constructor
+ * @extends {ol.control.Control}
+ * @param {olx.control.FullScreenOptions=} opt_options Options.
+ * @api
+ */
+var _ol_control_FullScreen_ = function(opt_options) {
+
+  var options = opt_options ? opt_options : {};
+
+  /**
+   * @private
+   * @type {string}
+   */
+  this.cssClassName_ = options.className !== undefined ? options.className :
+    'ol-full-screen';
+
+  var label = options.label !== undefined ? options.label : '\u2922';
+
+  /**
+   * @private
+   * @type {Node}
+   */
+  this.labelNode_ = typeof label === 'string' ?
+    document.createTextNode(label) : label;
+
+  var labelActive = options.labelActive !== undefined ? options.labelActive : '\u00d7';
+
+  /**
+   * @private
+   * @type {Node}
+   */
+  this.labelActiveNode_ = typeof labelActive === 'string' ?
+    document.createTextNode(labelActive) : labelActive;
+
+  var tipLabel = options.tipLabel ? options.tipLabel : 'Toggle full-screen';
+  var button = document.createElement('button');
+  button.className = this.cssClassName_ + '-' + _ol_control_FullScreen_.isFullScreen();
+  button.setAttribute('type', 'button');
+  button.title = tipLabel;
+  button.appendChild(this.labelNode_);
+
+  _events_js__WEBPACK_IMPORTED_MODULE_4__["default"].listen(button, _events_eventtype_js__WEBPACK_IMPORTED_MODULE_5__["default"].CLICK,
+      this.handleClick_, this);
+
+  var cssClasses = this.cssClassName_ + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_2__["default"].CLASS_UNSELECTABLE +
+      ' ' + _css_js__WEBPACK_IMPORTED_MODULE_2__["default"].CLASS_CONTROL + ' ' +
+      (!_ol_control_FullScreen_.isFullScreenSupported() ? _css_js__WEBPACK_IMPORTED_MODULE_2__["default"].CLASS_UNSUPPORTED : '');
+  var element = document.createElement('div');
+  element.className = cssClasses;
+  element.appendChild(button);
+
+  _control_control_js__WEBPACK_IMPORTED_MODULE_1__["default"].call(this, {
+    element: element,
+    target: options.target
+  });
+
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.keys_ = options.keys !== undefined ? options.keys : false;
+
+  /**
+   * @private
+   * @type {Element|string|undefined}
+   */
+  this.source_ = options.source;
+
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_control_FullScreen_, _control_control_js__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+
+/**
+ * @param {Event} event The event to handle
+ * @private
+ */
+_ol_control_FullScreen_.prototype.handleClick_ = function(event) {
+  event.preventDefault();
+  this.handleFullScreen_();
+};
+
+
+/**
+ * @private
+ */
+_ol_control_FullScreen_.prototype.handleFullScreen_ = function() {
+  if (!_ol_control_FullScreen_.isFullScreenSupported()) {
+    return;
+  }
+  var map = this.getMap();
+  if (!map) {
+    return;
+  }
+  if (_ol_control_FullScreen_.isFullScreen()) {
+    _ol_control_FullScreen_.exitFullScreen();
+  } else {
+    var element;
+    if (this.source_) {
+      element = typeof this.source_ === 'string' ?
+        document.getElementById(this.source_) :
+        this.source_;
+    } else {
+      element = map.getTargetElement();
+    }
+    if (this.keys_) {
+      _ol_control_FullScreen_.requestFullScreenWithKeys(element);
+
+    } else {
+      _ol_control_FullScreen_.requestFullScreen(element);
+    }
+  }
+};
+
+
+/**
+ * @private
+ */
+_ol_control_FullScreen_.prototype.handleFullScreenChange_ = function() {
+  var button = this.element.firstElementChild;
+  var map = this.getMap();
+  if (_ol_control_FullScreen_.isFullScreen()) {
+    button.className = this.cssClassName_ + '-true';
+    _dom_js__WEBPACK_IMPORTED_MODULE_3__["default"].replaceNode(this.labelActiveNode_, this.labelNode_);
+  } else {
+    button.className = this.cssClassName_ + '-false';
+    _dom_js__WEBPACK_IMPORTED_MODULE_3__["default"].replaceNode(this.labelNode_, this.labelActiveNode_);
+  }
+  if (map) {
+    map.updateSize();
+  }
+};
+
+
+/**
+ * @inheritDoc
+ * @api
+ */
+_ol_control_FullScreen_.prototype.setMap = function(map) {
+  _control_control_js__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.setMap.call(this, map);
+  if (map) {
+    this.listenerKeys.push(_events_js__WEBPACK_IMPORTED_MODULE_4__["default"].listen(document,
+        _ol_control_FullScreen_.getChangeType_(),
+        this.handleFullScreenChange_, this)
+    );
+  }
+};
+
+/**
+ * @return {boolean} Fullscreen is supported by the current platform.
+ */
+_ol_control_FullScreen_.isFullScreenSupported = function() {
+  var body = document.body;
+  return !!(
+    body.webkitRequestFullscreen ||
+    (body.mozRequestFullScreen && document.mozFullScreenEnabled) ||
+    (body.msRequestFullscreen && document.msFullscreenEnabled) ||
+    (body.requestFullscreen && document.fullscreenEnabled)
+  );
+};
+
+/**
+ * @return {boolean} Element is currently in fullscreen.
+ */
+_ol_control_FullScreen_.isFullScreen = function() {
+  return !!(
+    document.webkitIsFullScreen || document.mozFullScreen ||
+    document.msFullscreenElement || document.fullscreenElement
+  );
+};
+
+/**
+ * Request to fullscreen an element.
+ * @param {Node} element Element to request fullscreen
+ */
+_ol_control_FullScreen_.requestFullScreen = function(element) {
+  if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  } else if (element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if (element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  }
+};
+
+/**
+ * Request to fullscreen an element with keyboard input.
+ * @param {Node} element Element to request fullscreen
+ */
+_ol_control_FullScreen_.requestFullScreenWithKeys = function(element) {
+  if (element.mozRequestFullScreenWithKeys) {
+    element.mozRequestFullScreenWithKeys();
+  } else if (element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+  } else {
+    _ol_control_FullScreen_.requestFullScreen(element);
+  }
+};
+
+/**
+ * Exit fullscreen.
+ */
+_ol_control_FullScreen_.exitFullScreen = function() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+};
+
+/**
+ * @return {string} Change type.
+ * @private
+ */
+_ol_control_FullScreen_.getChangeType_ = (function() {
+  var changeType;
+  return function() {
+    if (!changeType) {
+      var body = document.body;
+      if (body.webkitRequestFullscreen) {
+        changeType = 'webkitfullscreenchange';
+      } else if (body.mozRequestFullScreen) {
+        changeType = 'mozfullscreenchange';
+      } else if (body.msRequestFullscreen) {
+        changeType = 'MSFullscreenChange';
+      } else if (body.requestFullscreen) {
+        changeType = 'fullscreenchange';
+      }
+    }
+    return changeType;
+  };
+})();
+/* harmony default export */ __webpack_exports__["default"] = (_ol_control_FullScreen_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/control/mouseposition.js":
+/*!**************************************************!*\
+  !*** ./node_modules/ol/control/mouseposition.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_eventtype_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../events/eventtype.js */ "./node_modules/ol/events/eventtype.js");
+/* harmony import */ var _object_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../object.js */ "./node_modules/ol/object.js");
+/* harmony import */ var _control_control_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../control/control.js */ "./node_modules/ol/control/control.js");
+/* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../proj.js */ "./node_modules/ol/proj.js");
+// FIXME should listen on appropriate pane, once it is defined
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * A control to show the 2D coordinates of the mouse cursor. By default, these
+ * are in the view projection, but can be in any supported projection.
+ * By default the control is shown in the top right corner of the map, but this
+ * can be changed by using the css selector `.ol-mouse-position`.
+ *
+ * @constructor
+ * @extends {ol.control.Control}
+ * @param {olx.control.MousePositionOptions=} opt_options Mouse position
+ *     options.
+ * @api
+ */
+var _ol_control_MousePosition_ = function(opt_options) {
+
+  var options = opt_options ? opt_options : {};
+
+  var element = document.createElement('DIV');
+  element.className = options.className !== undefined ? options.className : 'ol-mouse-position';
+
+  var render = options.render ?
+    options.render : _ol_control_MousePosition_.render;
+
+  _control_control_js__WEBPACK_IMPORTED_MODULE_4__["default"].call(this, {
+    element: element,
+    render: render,
+    target: options.target
+  });
+
+  _events_js__WEBPACK_IMPORTED_MODULE_1__["default"].listen(this,
+      _object_js__WEBPACK_IMPORTED_MODULE_3__["default"].getChangeEventType(_ol_control_MousePosition_.Property_.PROJECTION),
+      this.handleProjectionChanged_, this);
+
+  if (options.coordinateFormat) {
+    this.setCoordinateFormat(options.coordinateFormat);
+  }
+  if (options.projection) {
+    this.setProjection(options.projection);
+  }
+
+  /**
+   * @private
+   * @type {string}
+   */
+  this.undefinedHTML_ = options.undefinedHTML !== undefined ? options.undefinedHTML : '';
+
+  /**
+   * @private
+   * @type {string}
+   */
+  this.renderedHTML_ = element.innerHTML;
+
+  /**
+   * @private
+   * @type {ol.proj.Projection}
+   */
+  this.mapProjection_ = null;
+
+  /**
+   * @private
+   * @type {?ol.TransformFunction}
+   */
+  this.transform_ = null;
+
+  /**
+   * @private
+   * @type {ol.Pixel}
+   */
+  this.lastMouseMovePixel_ = null;
+
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_control_MousePosition_, _control_control_js__WEBPACK_IMPORTED_MODULE_4__["default"]);
+
+
+/**
+ * Update the mouseposition element.
+ * @param {ol.MapEvent} mapEvent Map event.
+ * @this {ol.control.MousePosition}
+ * @api
+ */
+_ol_control_MousePosition_.render = function(mapEvent) {
+  var frameState = mapEvent.frameState;
+  if (!frameState) {
+    this.mapProjection_ = null;
+  } else {
+    if (this.mapProjection_ != frameState.viewState.projection) {
+      this.mapProjection_ = frameState.viewState.projection;
+      this.transform_ = null;
+    }
+  }
+  this.updateHTML_(this.lastMouseMovePixel_);
+};
+
+
+/**
+ * @private
+ */
+_ol_control_MousePosition_.prototype.handleProjectionChanged_ = function() {
+  this.transform_ = null;
+};
+
+
+/**
+ * Return the coordinate format type used to render the current position or
+ * undefined.
+ * @return {ol.CoordinateFormatType|undefined} The format to render the current
+ *     position in.
+ * @observable
+ * @api
+ */
+_ol_control_MousePosition_.prototype.getCoordinateFormat = function() {
+  return (
+    /** @type {ol.CoordinateFormatType|undefined} */ this.get(_ol_control_MousePosition_.Property_.COORDINATE_FORMAT)
+  );
+};
+
+
+/**
+ * Return the projection that is used to report the mouse position.
+ * @return {ol.proj.Projection|undefined} The projection to report mouse
+ *     position in.
+ * @observable
+ * @api
+ */
+_ol_control_MousePosition_.prototype.getProjection = function() {
+  return (
+    /** @type {ol.proj.Projection|undefined} */ this.get(_ol_control_MousePosition_.Property_.PROJECTION)
+  );
+};
+
+
+/**
+ * @param {Event} event Browser event.
+ * @protected
+ */
+_ol_control_MousePosition_.prototype.handleMouseMove = function(event) {
+  var map = this.getMap();
+  this.lastMouseMovePixel_ = map.getEventPixel(event);
+  this.updateHTML_(this.lastMouseMovePixel_);
+};
+
+
+/**
+ * @param {Event} event Browser event.
+ * @protected
+ */
+_ol_control_MousePosition_.prototype.handleMouseOut = function(event) {
+  this.updateHTML_(null);
+  this.lastMouseMovePixel_ = null;
+};
+
+
+/**
+ * @inheritDoc
+ * @api
+ */
+_ol_control_MousePosition_.prototype.setMap = function(map) {
+  _control_control_js__WEBPACK_IMPORTED_MODULE_4__["default"].prototype.setMap.call(this, map);
+  if (map) {
+    var viewport = map.getViewport();
+    this.listenerKeys.push(
+        _events_js__WEBPACK_IMPORTED_MODULE_1__["default"].listen(viewport, _events_eventtype_js__WEBPACK_IMPORTED_MODULE_2__["default"].MOUSEMOVE,
+            this.handleMouseMove, this),
+        _events_js__WEBPACK_IMPORTED_MODULE_1__["default"].listen(viewport, _events_eventtype_js__WEBPACK_IMPORTED_MODULE_2__["default"].MOUSEOUT,
+            this.handleMouseOut, this)
+    );
+  }
+};
+
+
+/**
+ * Set the coordinate format type used to render the current position.
+ * @param {ol.CoordinateFormatType} format The format to render the current
+ *     position in.
+ * @observable
+ * @api
+ */
+_ol_control_MousePosition_.prototype.setCoordinateFormat = function(format) {
+  this.set(_ol_control_MousePosition_.Property_.COORDINATE_FORMAT, format);
+};
+
+
+/**
+ * Set the projection that is used to report the mouse position.
+ * @param {ol.ProjectionLike} projection The projection to report mouse
+ *     position in.
+ * @observable
+ * @api
+ */
+_ol_control_MousePosition_.prototype.setProjection = function(projection) {
+  this.set(_ol_control_MousePosition_.Property_.PROJECTION, _proj_js__WEBPACK_IMPORTED_MODULE_5__["default"].get(projection));
+};
+
+
+/**
+ * @param {?ol.Pixel} pixel Pixel.
+ * @private
+ */
+_ol_control_MousePosition_.prototype.updateHTML_ = function(pixel) {
+  var html = this.undefinedHTML_;
+  if (pixel && this.mapProjection_) {
+    if (!this.transform_) {
+      var projection = this.getProjection();
+      if (projection) {
+        this.transform_ = _proj_js__WEBPACK_IMPORTED_MODULE_5__["default"].getTransformFromProjections(
+            this.mapProjection_, projection);
+      } else {
+        this.transform_ = _proj_js__WEBPACK_IMPORTED_MODULE_5__["default"].identityTransform;
+      }
+    }
+    var map = this.getMap();
+    var coordinate = map.getCoordinateFromPixel(pixel);
+    if (coordinate) {
+      this.transform_(coordinate, coordinate);
+      var coordinateFormat = this.getCoordinateFormat();
+      if (coordinateFormat) {
+        html = coordinateFormat(coordinate);
+      } else {
+        html = coordinate.toString();
+      }
+    }
+  }
+  if (!this.renderedHTML_ || html != this.renderedHTML_) {
+    this.element.innerHTML = html;
+    this.renderedHTML_ = html;
+  }
+};
+
+
+/**
+ * @enum {string}
+ * @private
+ */
+_ol_control_MousePosition_.Property_ = {
+  PROJECTION: 'projection',
+  COORDINATE_FORMAT: 'coordinateFormat'
+};
+/* harmony default export */ __webpack_exports__["default"] = (_ol_control_MousePosition_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/control/overviewmap.js":
+/*!************************************************!*\
+  !*** ./node_modules/ol/control/overviewmap.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _collection_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../collection.js */ "./node_modules/ol/collection.js");
+/* harmony import */ var _pluggablemap_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pluggablemap.js */ "./node_modules/ol/pluggablemap.js");
+/* harmony import */ var _mapeventtype_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mapeventtype.js */ "./node_modules/ol/mapeventtype.js");
+/* harmony import */ var _mapproperty_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mapproperty.js */ "./node_modules/ol/mapproperty.js");
+/* harmony import */ var _object_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../object.js */ "./node_modules/ol/object.js");
+/* harmony import */ var _objecteventtype_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../objecteventtype.js */ "./node_modules/ol/objecteventtype.js");
+/* harmony import */ var _overlay_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../overlay.js */ "./node_modules/ol/overlay.js");
+/* harmony import */ var _overlaypositioning_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../overlaypositioning.js */ "./node_modules/ol/overlaypositioning.js");
+/* harmony import */ var _viewproperty_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../viewproperty.js */ "./node_modules/ol/viewproperty.js");
+/* harmony import */ var _control_control_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../control/control.js */ "./node_modules/ol/control/control.js");
+/* harmony import */ var _coordinate_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../coordinate.js */ "./node_modules/ol/coordinate.js");
+/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../dom.js */ "./node_modules/ol/dom.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_eventtype_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../events/eventtype.js */ "./node_modules/ol/events/eventtype.js");
+/* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../extent.js */ "./node_modules/ol/extent.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Create a new control with a map acting as an overview map for an other
+ * defined map.
+ * @constructor
+ * @extends {ol.control.Control}
+ * @param {olx.control.OverviewMapOptions=} opt_options OverviewMap options.
+ * @api
+ */
+var _ol_control_OverviewMap_ = function(opt_options) {
+
+  var options = opt_options ? opt_options : {};
+
+  /**
+   * @type {boolean}
+   * @private
+   */
+  this.collapsed_ = options.collapsed !== undefined ? options.collapsed : true;
+
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.collapsible_ = options.collapsible !== undefined ?
+    options.collapsible : true;
+
+  if (!this.collapsible_) {
+    this.collapsed_ = false;
+  }
+
+  var className = options.className !== undefined ? options.className : 'ol-overviewmap';
+
+  var tipLabel = options.tipLabel !== undefined ? options.tipLabel : 'Overview map';
+
+  var collapseLabel = options.collapseLabel !== undefined ? options.collapseLabel : '\u00AB';
+
+  if (typeof collapseLabel === 'string') {
+    /**
+     * @private
+     * @type {Node}
+     */
+    this.collapseLabel_ = document.createElement('span');
+    this.collapseLabel_.textContent = collapseLabel;
+  } else {
+    this.collapseLabel_ = collapseLabel;
+  }
+
+  var label = options.label !== undefined ? options.label : '\u00BB';
+
+
+  if (typeof label === 'string') {
+    /**
+     * @private
+     * @type {Node}
+     */
+    this.label_ = document.createElement('span');
+    this.label_.textContent = label;
+  } else {
+    this.label_ = label;
+  }
+
+  var activeLabel = (this.collapsible_ && !this.collapsed_) ?
+    this.collapseLabel_ : this.label_;
+  var button = document.createElement('button');
+  button.setAttribute('type', 'button');
+  button.title = tipLabel;
+  button.appendChild(activeLabel);
+
+  _events_js__WEBPACK_IMPORTED_MODULE_14__["default"].listen(button, _events_eventtype_js__WEBPACK_IMPORTED_MODULE_15__["default"].CLICK,
+      this.handleClick_, this);
+
+  /**
+   * @type {Element}
+   * @private
+   */
+  this.ovmapDiv_ = document.createElement('DIV');
+  this.ovmapDiv_.className = 'ol-overviewmap-map';
+
+  /**
+   * @type {ol.PluggableMap}
+   * @private
+   */
+  this.ovmap_ = new _pluggablemap_js__WEBPACK_IMPORTED_MODULE_2__["default"]({
+    controls: new _collection_js__WEBPACK_IMPORTED_MODULE_1__["default"](),
+    interactions: new _collection_js__WEBPACK_IMPORTED_MODULE_1__["default"](),
+    view: options.view
+  });
+  var ovmap = this.ovmap_;
+
+  if (options.layers) {
+    options.layers.forEach(
+        /**
+       * @param {ol.layer.Layer} layer Layer.
+       */
+        function(layer) {
+          ovmap.addLayer(layer);
+        }, this);
+  }
+
+  var box = document.createElement('DIV');
+  box.className = 'ol-overviewmap-box';
+  box.style.boxSizing = 'border-box';
+
+  /**
+   * @type {ol.Overlay}
+   * @private
+   */
+  this.boxOverlay_ = new _overlay_js__WEBPACK_IMPORTED_MODULE_7__["default"]({
+    position: [0, 0],
+    positioning: _overlaypositioning_js__WEBPACK_IMPORTED_MODULE_8__["default"].BOTTOM_LEFT,
+    element: box
+  });
+  this.ovmap_.addOverlay(this.boxOverlay_);
+
+  var cssClasses = className + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_12__["default"].CLASS_UNSELECTABLE + ' ' +
+      _css_js__WEBPACK_IMPORTED_MODULE_12__["default"].CLASS_CONTROL +
+      (this.collapsed_ && this.collapsible_ ? ' ol-collapsed' : '') +
+      (this.collapsible_ ? '' : ' ol-uncollapsible');
+  var element = document.createElement('div');
+  element.className = cssClasses;
+  element.appendChild(this.ovmapDiv_);
+  element.appendChild(button);
+
+  var render = options.render ? options.render : _ol_control_OverviewMap_.render;
+
+  _control_control_js__WEBPACK_IMPORTED_MODULE_10__["default"].call(this, {
+    element: element,
+    render: render,
+    target: options.target
+  });
+
+  /* Interactive map */
+
+  var scope = this;
+
+  var overlay = this.boxOverlay_;
+  var overlayBox = this.boxOverlay_.getElement();
+
+  /* Functions definition */
+
+  var computeDesiredMousePosition = function(mousePosition) {
+    return {
+      clientX: mousePosition.clientX - (overlayBox.offsetWidth / 2),
+      clientY: mousePosition.clientY + (overlayBox.offsetHeight / 2)
+    };
+  };
+
+  var move = function(event) {
+    var coordinates = ovmap.getEventCoordinate(computeDesiredMousePosition(event));
+
+    overlay.setPosition(coordinates);
+  };
+
+  var endMoving = function(event) {
+    var coordinates = ovmap.getEventCoordinate(event);
+
+    scope.getMap().getView().setCenter(coordinates);
+
+    window.removeEventListener('mousemove', move);
+    window.removeEventListener('mouseup', endMoving);
+  };
+
+  /* Binding */
+
+  overlayBox.addEventListener('mousedown', function() {
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', endMoving);
+  });
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_control_OverviewMap_, _control_control_js__WEBPACK_IMPORTED_MODULE_10__["default"]);
+
+
+/**
+ * @inheritDoc
+ * @api
+ */
+_ol_control_OverviewMap_.prototype.setMap = function(map) {
+  var oldMap = this.getMap();
+  if (map === oldMap) {
+    return;
+  }
+  if (oldMap) {
+    var oldView = oldMap.getView();
+    if (oldView) {
+      this.unbindView_(oldView);
+    }
+    this.ovmap_.setTarget(null);
+  }
+  _control_control_js__WEBPACK_IMPORTED_MODULE_10__["default"].prototype.setMap.call(this, map);
+
+  if (map) {
+    this.ovmap_.setTarget(this.ovmapDiv_);
+    this.listenerKeys.push(_events_js__WEBPACK_IMPORTED_MODULE_14__["default"].listen(
+        map, _objecteventtype_js__WEBPACK_IMPORTED_MODULE_6__["default"].PROPERTYCHANGE,
+        this.handleMapPropertyChange_, this));
+
+    // TODO: to really support map switching, this would need to be reworked
+    if (this.ovmap_.getLayers().getLength() === 0) {
+      this.ovmap_.setLayerGroup(map.getLayerGroup());
+    }
+
+    var view = map.getView();
+    if (view) {
+      this.bindView_(view);
+      if (view.isDef()) {
+        this.ovmap_.updateSize();
+        this.resetExtent_();
+      }
+    }
+  }
+};
+
+
+/**
+ * Handle map property changes.  This only deals with changes to the map's view.
+ * @param {ol.Object.Event} event The propertychange event.
+ * @private
+ */
+_ol_control_OverviewMap_.prototype.handleMapPropertyChange_ = function(event) {
+  if (event.key === _mapproperty_js__WEBPACK_IMPORTED_MODULE_4__["default"].VIEW) {
+    var oldView = /** @type {ol.View} */ (event.oldValue);
+    if (oldView) {
+      this.unbindView_(oldView);
+    }
+    var newView = this.getMap().getView();
+    this.bindView_(newView);
+  }
+};
+
+
+/**
+ * Register listeners for view property changes.
+ * @param {ol.View} view The view.
+ * @private
+ */
+_ol_control_OverviewMap_.prototype.bindView_ = function(view) {
+  _events_js__WEBPACK_IMPORTED_MODULE_14__["default"].listen(view,
+      _object_js__WEBPACK_IMPORTED_MODULE_5__["default"].getChangeEventType(_viewproperty_js__WEBPACK_IMPORTED_MODULE_9__["default"].ROTATION),
+      this.handleRotationChanged_, this);
+};
+
+
+/**
+ * Unregister listeners for view property changes.
+ * @param {ol.View} view The view.
+ * @private
+ */
+_ol_control_OverviewMap_.prototype.unbindView_ = function(view) {
+  _events_js__WEBPACK_IMPORTED_MODULE_14__["default"].unlisten(view,
+      _object_js__WEBPACK_IMPORTED_MODULE_5__["default"].getChangeEventType(_viewproperty_js__WEBPACK_IMPORTED_MODULE_9__["default"].ROTATION),
+      this.handleRotationChanged_, this);
+};
+
+
+/**
+ * Handle rotation changes to the main map.
+ * TODO: This should rotate the extent rectrangle instead of the
+ * overview map's view.
+ * @private
+ */
+_ol_control_OverviewMap_.prototype.handleRotationChanged_ = function() {
+  this.ovmap_.getView().setRotation(this.getMap().getView().getRotation());
+};
+
+
+/**
+ * Update the overview map element.
+ * @param {ol.MapEvent} mapEvent Map event.
+ * @this {ol.control.OverviewMap}
+ * @api
+ */
+_ol_control_OverviewMap_.render = function(mapEvent) {
+  this.validateExtent_();
+  this.updateBox_();
+};
+
+
+/**
+ * Reset the overview map extent if the box size (width or
+ * height) is less than the size of the overview map size times minRatio
+ * or is greater than the size of the overview size times maxRatio.
+ *
+ * If the map extent was not reset, the box size can fits in the defined
+ * ratio sizes. This method then checks if is contained inside the overview
+ * map current extent. If not, recenter the overview map to the current
+ * main map center location.
+ * @private
+ */
+_ol_control_OverviewMap_.prototype.validateExtent_ = function() {
+  var map = this.getMap();
+  var ovmap = this.ovmap_;
+
+  if (!map.isRendered() || !ovmap.isRendered()) {
+    return;
+  }
+
+  var mapSize = /** @type {ol.Size} */ (map.getSize());
+
+  var view = map.getView();
+  var extent = view.calculateExtent(mapSize);
+
+  var ovmapSize = /** @type {ol.Size} */ (ovmap.getSize());
+
+  var ovview = ovmap.getView();
+  var ovextent = ovview.calculateExtent(ovmapSize);
+
+  var topLeftPixel =
+      ovmap.getPixelFromCoordinate(_extent_js__WEBPACK_IMPORTED_MODULE_16__["default"].getTopLeft(extent));
+  var bottomRightPixel =
+      ovmap.getPixelFromCoordinate(_extent_js__WEBPACK_IMPORTED_MODULE_16__["default"].getBottomRight(extent));
+
+  var boxWidth = Math.abs(topLeftPixel[0] - bottomRightPixel[0]);
+  var boxHeight = Math.abs(topLeftPixel[1] - bottomRightPixel[1]);
+
+  var ovmapWidth = ovmapSize[0];
+  var ovmapHeight = ovmapSize[1];
+
+  if (boxWidth < ovmapWidth * _index_js__WEBPACK_IMPORTED_MODULE_0__["default"].OVERVIEWMAP_MIN_RATIO ||
+      boxHeight < ovmapHeight * _index_js__WEBPACK_IMPORTED_MODULE_0__["default"].OVERVIEWMAP_MIN_RATIO ||
+      boxWidth > ovmapWidth * _index_js__WEBPACK_IMPORTED_MODULE_0__["default"].OVERVIEWMAP_MAX_RATIO ||
+      boxHeight > ovmapHeight * _index_js__WEBPACK_IMPORTED_MODULE_0__["default"].OVERVIEWMAP_MAX_RATIO) {
+    this.resetExtent_();
+  } else if (!_extent_js__WEBPACK_IMPORTED_MODULE_16__["default"].containsExtent(ovextent, extent)) {
+    this.recenter_();
+  }
+};
+
+
+/**
+ * Reset the overview map extent to half calculated min and max ratio times
+ * the extent of the main map.
+ * @private
+ */
+_ol_control_OverviewMap_.prototype.resetExtent_ = function() {
+  if (_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].OVERVIEWMAP_MAX_RATIO === 0 || _index_js__WEBPACK_IMPORTED_MODULE_0__["default"].OVERVIEWMAP_MIN_RATIO === 0) {
+    return;
+  }
+
+  var map = this.getMap();
+  var ovmap = this.ovmap_;
+
+  var mapSize = /** @type {ol.Size} */ (map.getSize());
+
+  var view = map.getView();
+  var extent = view.calculateExtent(mapSize);
+
+  var ovview = ovmap.getView();
+
+  // get how many times the current map overview could hold different
+  // box sizes using the min and max ratio, pick the step in the middle used
+  // to calculate the extent from the main map to set it to the overview map,
+  var steps = Math.log(
+      _index_js__WEBPACK_IMPORTED_MODULE_0__["default"].OVERVIEWMAP_MAX_RATIO / _index_js__WEBPACK_IMPORTED_MODULE_0__["default"].OVERVIEWMAP_MIN_RATIO) / Math.LN2;
+  var ratio = 1 / (Math.pow(2, steps / 2) * _index_js__WEBPACK_IMPORTED_MODULE_0__["default"].OVERVIEWMAP_MIN_RATIO);
+  _extent_js__WEBPACK_IMPORTED_MODULE_16__["default"].scaleFromCenter(extent, ratio);
+  ovview.fit(extent);
+};
+
+
+/**
+ * Set the center of the overview map to the map center without changing its
+ * resolution.
+ * @private
+ */
+_ol_control_OverviewMap_.prototype.recenter_ = function() {
+  var map = this.getMap();
+  var ovmap = this.ovmap_;
+
+  var view = map.getView();
+
+  var ovview = ovmap.getView();
+
+  ovview.setCenter(view.getCenter());
+};
+
+
+/**
+ * Update the box using the main map extent
+ * @private
+ */
+_ol_control_OverviewMap_.prototype.updateBox_ = function() {
+  var map = this.getMap();
+  var ovmap = this.ovmap_;
+
+  if (!map.isRendered() || !ovmap.isRendered()) {
+    return;
+  }
+
+  var mapSize = /** @type {ol.Size} */ (map.getSize());
+
+  var view = map.getView();
+
+  var ovview = ovmap.getView();
+
+  var rotation = view.getRotation();
+
+  var overlay = this.boxOverlay_;
+  var box = this.boxOverlay_.getElement();
+  var extent = view.calculateExtent(mapSize);
+  var ovresolution = ovview.getResolution();
+  var bottomLeft = _extent_js__WEBPACK_IMPORTED_MODULE_16__["default"].getBottomLeft(extent);
+  var topRight = _extent_js__WEBPACK_IMPORTED_MODULE_16__["default"].getTopRight(extent);
+
+  // set position using bottom left coordinates
+  var rotateBottomLeft = this.calculateCoordinateRotate_(rotation, bottomLeft);
+  overlay.setPosition(rotateBottomLeft);
+
+  // set box size calculated from map extent size and overview map resolution
+  if (box) {
+    box.style.width = Math.abs((bottomLeft[0] - topRight[0]) / ovresolution) + 'px';
+    box.style.height = Math.abs((topRight[1] - bottomLeft[1]) / ovresolution) + 'px';
+  }
+};
+
+
+/**
+ * @param {number} rotation Target rotation.
+ * @param {ol.Coordinate} coordinate Coordinate.
+ * @return {ol.Coordinate|undefined} Coordinate for rotation and center anchor.
+ * @private
+ */
+_ol_control_OverviewMap_.prototype.calculateCoordinateRotate_ = function(
+    rotation, coordinate) {
+  var coordinateRotate;
+
+  var map = this.getMap();
+  var view = map.getView();
+
+  var currentCenter = view.getCenter();
+
+  if (currentCenter) {
+    coordinateRotate = [
+      coordinate[0] - currentCenter[0],
+      coordinate[1] - currentCenter[1]
+    ];
+    _coordinate_js__WEBPACK_IMPORTED_MODULE_11__["default"].rotate(coordinateRotate, rotation);
+    _coordinate_js__WEBPACK_IMPORTED_MODULE_11__["default"].add(coordinateRotate, currentCenter);
+  }
+  return coordinateRotate;
+};
+
+
+/**
+ * @param {Event} event The event to handle
+ * @private
+ */
+_ol_control_OverviewMap_.prototype.handleClick_ = function(event) {
+  event.preventDefault();
+  this.handleToggle_();
+};
+
+
+/**
+ * @private
+ */
+_ol_control_OverviewMap_.prototype.handleToggle_ = function() {
+  this.element.classList.toggle('ol-collapsed');
+  if (this.collapsed_) {
+    _dom_js__WEBPACK_IMPORTED_MODULE_13__["default"].replaceNode(this.collapseLabel_, this.label_);
+  } else {
+    _dom_js__WEBPACK_IMPORTED_MODULE_13__["default"].replaceNode(this.label_, this.collapseLabel_);
+  }
+  this.collapsed_ = !this.collapsed_;
+
+  // manage overview map if it had not been rendered before and control
+  // is expanded
+  var ovmap = this.ovmap_;
+  if (!this.collapsed_ && !ovmap.isRendered()) {
+    ovmap.updateSize();
+    this.resetExtent_();
+    _events_js__WEBPACK_IMPORTED_MODULE_14__["default"].listenOnce(ovmap, _mapeventtype_js__WEBPACK_IMPORTED_MODULE_3__["default"].POSTRENDER,
+        function(event) {
+          this.updateBox_();
+        },
+        this);
+  }
+};
+
+
+/**
+ * Return `true` if the overview map is collapsible, `false` otherwise.
+ * @return {boolean} True if the widget is collapsible.
+ * @api
+ */
+_ol_control_OverviewMap_.prototype.getCollapsible = function() {
+  return this.collapsible_;
+};
+
+
+/**
+ * Set whether the overview map should be collapsible.
+ * @param {boolean} collapsible True if the widget is collapsible.
+ * @api
+ */
+_ol_control_OverviewMap_.prototype.setCollapsible = function(collapsible) {
+  if (this.collapsible_ === collapsible) {
+    return;
+  }
+  this.collapsible_ = collapsible;
+  this.element.classList.toggle('ol-uncollapsible');
+  if (!collapsible && this.collapsed_) {
+    this.handleToggle_();
+  }
+};
+
+
+/**
+ * Collapse or expand the overview map according to the passed parameter. Will
+ * not do anything if the overview map isn't collapsible or if the current
+ * collapsed state is already the one requested.
+ * @param {boolean} collapsed True if the widget is collapsed.
+ * @api
+ */
+_ol_control_OverviewMap_.prototype.setCollapsed = function(collapsed) {
+  if (!this.collapsible_ || this.collapsed_ === collapsed) {
+    return;
+  }
+  this.handleToggle_();
+};
+
+
+/**
+ * Determine if the overview map is collapsed.
+ * @return {boolean} The overview map is collapsed.
+ * @api
+ */
+_ol_control_OverviewMap_.prototype.getCollapsed = function() {
+  return this.collapsed_;
+};
+
+
+/**
+ * Return the overview map.
+ * @return {ol.PluggableMap} Overview map.
+ * @api
+ */
+_ol_control_OverviewMap_.prototype.getOverviewMap = function() {
+  return this.ovmap_;
+};
+/* harmony default export */ __webpack_exports__["default"] = (_ol_control_OverviewMap_);
+
+
+/***/ }),
+
 /***/ "./node_modules/ol/control/rotate.js":
 /*!*******************************************!*\
   !*** ./node_modules/ol/control/rotate.js ***!
@@ -9149,6 +10285,338 @@ _ol_control_Rotate_.render = function(mapEvent) {
 
 /***/ }),
 
+/***/ "./node_modules/ol/control/scaleline.js":
+/*!**********************************************!*\
+  !*** ./node_modules/ol/control/scaleline.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _object_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../object.js */ "./node_modules/ol/object.js");
+/* harmony import */ var _asserts_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../asserts.js */ "./node_modules/ol/asserts.js");
+/* harmony import */ var _control_control_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../control/control.js */ "./node_modules/ol/control/control.js");
+/* harmony import */ var _control_scalelineunits_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../control/scalelineunits.js */ "./node_modules/ol/control/scalelineunits.js");
+/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../proj.js */ "./node_modules/ol/proj.js");
+/* harmony import */ var _proj_units_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../proj/units.js */ "./node_modules/ol/proj/units.js");
+
+
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * A control displaying rough y-axis distances, calculated for the center of the
+ * viewport. For conformal projections (e.g. EPSG:3857, the default view
+ * projection in OpenLayers), the scale is valid for all directions.
+ * No scale line will be shown when the y-axis distance of a pixel at the
+ * viewport center cannot be calculated in the view projection.
+ * By default the scale line will show in the bottom left portion of the map,
+ * but this can be changed by using the css selector `.ol-scale-line`.
+ *
+ * @constructor
+ * @extends {ol.control.Control}
+ * @param {olx.control.ScaleLineOptions=} opt_options Scale line options.
+ * @api
+ */
+var _ol_control_ScaleLine_ = function(opt_options) {
+
+  var options = opt_options ? opt_options : {};
+
+  var className = options.className !== undefined ? options.className : 'ol-scale-line';
+
+  /**
+   * @private
+   * @type {Element}
+   */
+  this.innerElement_ = document.createElement('DIV');
+  this.innerElement_.className = className + '-inner';
+
+  /**
+   * @private
+   * @type {Element}
+   */
+  this.element_ = document.createElement('DIV');
+  this.element_.className = className + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_5__["default"].CLASS_UNSELECTABLE;
+  this.element_.appendChild(this.innerElement_);
+
+  /**
+   * @private
+   * @type {?olx.ViewState}
+   */
+  this.viewState_ = null;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.minWidth_ = options.minWidth !== undefined ? options.minWidth : 64;
+
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.renderedVisible_ = false;
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.renderedWidth_ = undefined;
+
+  /**
+   * @private
+   * @type {string}
+   */
+  this.renderedHTML_ = '';
+
+  var render = options.render ? options.render : _ol_control_ScaleLine_.render;
+
+  _control_control_js__WEBPACK_IMPORTED_MODULE_3__["default"].call(this, {
+    element: this.element_,
+    render: render,
+    target: options.target
+  });
+
+  _events_js__WEBPACK_IMPORTED_MODULE_6__["default"].listen(
+      this, _object_js__WEBPACK_IMPORTED_MODULE_1__["default"].getChangeEventType(_ol_control_ScaleLine_.Property_.UNITS),
+      this.handleUnitsChanged_, this);
+
+  this.setUnits(/** @type {ol.control.ScaleLineUnits} */ (options.units) ||
+      _control_scalelineunits_js__WEBPACK_IMPORTED_MODULE_4__["default"].METRIC);
+
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_control_ScaleLine_, _control_control_js__WEBPACK_IMPORTED_MODULE_3__["default"]);
+
+
+/**
+ * @const
+ * @type {Array.<number>}
+ */
+_ol_control_ScaleLine_.LEADING_DIGITS = [1, 2, 5];
+
+
+/**
+ * Return the units to use in the scale line.
+ * @return {ol.control.ScaleLineUnits|undefined} The units to use in the scale
+ *     line.
+ * @observable
+ * @api
+ */
+_ol_control_ScaleLine_.prototype.getUnits = function() {
+  return (
+    /** @type {ol.control.ScaleLineUnits|undefined} */ this.get(_ol_control_ScaleLine_.Property_.UNITS)
+  );
+};
+
+
+/**
+ * Update the scale line element.
+ * @param {ol.MapEvent} mapEvent Map event.
+ * @this {ol.control.ScaleLine}
+ * @api
+ */
+_ol_control_ScaleLine_.render = function(mapEvent) {
+  var frameState = mapEvent.frameState;
+  if (!frameState) {
+    this.viewState_ = null;
+  } else {
+    this.viewState_ = frameState.viewState;
+  }
+  this.updateElement_();
+};
+
+
+/**
+ * @private
+ */
+_ol_control_ScaleLine_.prototype.handleUnitsChanged_ = function() {
+  this.updateElement_();
+};
+
+
+/**
+ * Set the units to use in the scale line.
+ * @param {ol.control.ScaleLineUnits} units The units to use in the scale line.
+ * @observable
+ * @api
+ */
+_ol_control_ScaleLine_.prototype.setUnits = function(units) {
+  this.set(_ol_control_ScaleLine_.Property_.UNITS, units);
+};
+
+
+/**
+ * @private
+ */
+_ol_control_ScaleLine_.prototype.updateElement_ = function() {
+  var viewState = this.viewState_;
+
+  if (!viewState) {
+    if (this.renderedVisible_) {
+      this.element_.style.display = 'none';
+      this.renderedVisible_ = false;
+    }
+    return;
+  }
+
+  var center = viewState.center;
+  var projection = viewState.projection;
+  var units = this.getUnits();
+  var pointResolutionUnits = units == _control_scalelineunits_js__WEBPACK_IMPORTED_MODULE_4__["default"].DEGREES ?
+    _proj_units_js__WEBPACK_IMPORTED_MODULE_8__["default"].DEGREES :
+    _proj_units_js__WEBPACK_IMPORTED_MODULE_8__["default"].METERS;
+  var pointResolution =
+      _proj_js__WEBPACK_IMPORTED_MODULE_7__["default"].getPointResolution(projection, viewState.resolution, center, pointResolutionUnits);
+  if (units != _control_scalelineunits_js__WEBPACK_IMPORTED_MODULE_4__["default"].DEGREES) {
+    pointResolution *= projection.getMetersPerUnit();
+  }
+
+  var nominalCount = this.minWidth_ * pointResolution;
+  var suffix = '';
+  if (units == _control_scalelineunits_js__WEBPACK_IMPORTED_MODULE_4__["default"].DEGREES) {
+    var metersPerDegree = _proj_js__WEBPACK_IMPORTED_MODULE_7__["default"].METERS_PER_UNIT[_proj_units_js__WEBPACK_IMPORTED_MODULE_8__["default"].DEGREES];
+    if (projection.getUnits() == _proj_units_js__WEBPACK_IMPORTED_MODULE_8__["default"].DEGREES) {
+      nominalCount *= metersPerDegree;
+    } else {
+      pointResolution /= metersPerDegree;
+    }
+    if (nominalCount < metersPerDegree / 60) {
+      suffix = '\u2033'; // seconds
+      pointResolution *= 3600;
+    } else if (nominalCount < metersPerDegree) {
+      suffix = '\u2032'; // minutes
+      pointResolution *= 60;
+    } else {
+      suffix = '\u00b0'; // degrees
+    }
+  } else if (units == _control_scalelineunits_js__WEBPACK_IMPORTED_MODULE_4__["default"].IMPERIAL) {
+    if (nominalCount < 0.9144) {
+      suffix = 'in';
+      pointResolution /= 0.0254;
+    } else if (nominalCount < 1609.344) {
+      suffix = 'ft';
+      pointResolution /= 0.3048;
+    } else {
+      suffix = 'mi';
+      pointResolution /= 1609.344;
+    }
+  } else if (units == _control_scalelineunits_js__WEBPACK_IMPORTED_MODULE_4__["default"].NAUTICAL) {
+    pointResolution /= 1852;
+    suffix = 'nm';
+  } else if (units == _control_scalelineunits_js__WEBPACK_IMPORTED_MODULE_4__["default"].METRIC) {
+    if (nominalCount < 0.001) {
+      suffix = 'μm';
+      pointResolution *= 1000000;
+    } else if (nominalCount < 1) {
+      suffix = 'mm';
+      pointResolution *= 1000;
+    } else if (nominalCount < 1000) {
+      suffix = 'm';
+    } else {
+      suffix = 'km';
+      pointResolution /= 1000;
+    }
+  } else if (units == _control_scalelineunits_js__WEBPACK_IMPORTED_MODULE_4__["default"].US) {
+    if (nominalCount < 0.9144) {
+      suffix = 'in';
+      pointResolution *= 39.37;
+    } else if (nominalCount < 1609.344) {
+      suffix = 'ft';
+      pointResolution /= 0.30480061;
+    } else {
+      suffix = 'mi';
+      pointResolution /= 1609.3472;
+    }
+  } else {
+    _asserts_js__WEBPACK_IMPORTED_MODULE_2__["default"].assert(false, 33); // Invalid units
+  }
+
+  var i = 3 * Math.floor(
+      Math.log(this.minWidth_ * pointResolution) / Math.log(10));
+  var count, width;
+  while (true) {
+    count = _ol_control_ScaleLine_.LEADING_DIGITS[((i % 3) + 3) % 3] *
+        Math.pow(10, Math.floor(i / 3));
+    width = Math.round(count / pointResolution);
+    if (isNaN(width)) {
+      this.element_.style.display = 'none';
+      this.renderedVisible_ = false;
+      return;
+    } else if (width >= this.minWidth_) {
+      break;
+    }
+    ++i;
+  }
+
+  var html = count + ' ' + suffix;
+  if (this.renderedHTML_ != html) {
+    this.innerElement_.innerHTML = html;
+    this.renderedHTML_ = html;
+  }
+
+  if (this.renderedWidth_ != width) {
+    this.innerElement_.style.width = width + 'px';
+    this.renderedWidth_ = width;
+  }
+
+  if (!this.renderedVisible_) {
+    this.element_.style.display = '';
+    this.renderedVisible_ = true;
+  }
+
+};
+
+
+/**
+ * @enum {string}
+ * @private
+ */
+_ol_control_ScaleLine_.Property_ = {
+  UNITS: 'units'
+};
+/* harmony default export */ __webpack_exports__["default"] = (_ol_control_ScaleLine_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/control/scalelineunits.js":
+/*!***************************************************!*\
+  !*** ./node_modules/ol/control/scalelineunits.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**
+ * Units for the scale line. Supported values are `'degrees'`, `'imperial'`,
+ * `'nautical'`, `'metric'`, `'us'`.
+ * @enum {string}
+ */
+var _ol_control_ScaleLineUnits_ = {
+  DEGREES: 'degrees',
+  IMPERIAL: 'imperial',
+  NAUTICAL: 'nautical',
+  METRIC: 'metric',
+  US: 'us'
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (_ol_control_ScaleLineUnits_);
+
+
+/***/ }),
+
 /***/ "./node_modules/ol/control/zoom.js":
 /*!*****************************************!*\
   !*** ./node_modules/ol/control/zoom.js ***!
@@ -9284,6 +10752,493 @@ _ol_control_Zoom_.prototype.zoomByDelta_ = function(delta) {
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (_ol_control_Zoom_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/control/zoomslider.js":
+/*!***********************************************!*\
+  !*** ./node_modules/ol/control/zoomslider.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _viewhint_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../viewhint.js */ "./node_modules/ol/viewhint.js");
+/* harmony import */ var _control_control_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../control/control.js */ "./node_modules/ol/control/control.js");
+/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
+/* harmony import */ var _easing_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../easing.js */ "./node_modules/ol/easing.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_event_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../events/event.js */ "./node_modules/ol/events/event.js");
+/* harmony import */ var _events_eventtype_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../events/eventtype.js */ "./node_modules/ol/events/eventtype.js");
+/* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../math.js */ "./node_modules/ol/math.js");
+/* harmony import */ var _pointer_eventtype_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../pointer/eventtype.js */ "./node_modules/ol/pointer/eventtype.js");
+/* harmony import */ var _pointer_pointereventhandler_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../pointer/pointereventhandler.js */ "./node_modules/ol/pointer/pointereventhandler.js");
+// FIXME should possibly show tooltip when dragging?
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * A slider type of control for zooming.
+ *
+ * Example:
+ *
+ *     map.addControl(new ol.control.ZoomSlider());
+ *
+ * @constructor
+ * @extends {ol.control.Control}
+ * @param {olx.control.ZoomSliderOptions=} opt_options Zoom slider options.
+ * @api
+ */
+var _ol_control_ZoomSlider_ = function(opt_options) {
+
+  var options = opt_options ? opt_options : {};
+
+  /**
+   * Will hold the current resolution of the view.
+   *
+   * @type {number|undefined}
+   * @private
+   */
+  this.currentResolution_ = undefined;
+
+  /**
+   * The direction of the slider. Will be determined from actual display of the
+   * container and defaults to ol.control.ZoomSlider.Direction_.VERTICAL.
+   *
+   * @type {ol.control.ZoomSlider.Direction_}
+   * @private
+   */
+  this.direction_ = _ol_control_ZoomSlider_.Direction_.VERTICAL;
+
+  /**
+   * @type {boolean}
+   * @private
+   */
+  this.dragging_;
+
+  /**
+   * @type {number}
+   * @private
+   */
+  this.heightLimit_ = 0;
+
+  /**
+   * @type {number}
+   * @private
+   */
+  this.widthLimit_ = 0;
+
+  /**
+   * @type {number|undefined}
+   * @private
+   */
+  this.previousX_;
+
+  /**
+   * @type {number|undefined}
+   * @private
+   */
+  this.previousY_;
+
+  /**
+   * The calculated thumb size (border box plus margins).  Set when initSlider_
+   * is called.
+   * @type {ol.Size}
+   * @private
+   */
+  this.thumbSize_ = null;
+
+  /**
+   * Whether the slider is initialized.
+   * @type {boolean}
+   * @private
+   */
+  this.sliderInitialized_ = false;
+
+  /**
+   * @type {number}
+   * @private
+   */
+  this.duration_ = options.duration !== undefined ? options.duration : 200;
+
+  var className = options.className !== undefined ? options.className : 'ol-zoomslider';
+  var thumbElement = document.createElement('button');
+  thumbElement.setAttribute('type', 'button');
+  thumbElement.className = className + '-thumb ' + _css_js__WEBPACK_IMPORTED_MODULE_3__["default"].CLASS_UNSELECTABLE;
+  var containerElement = document.createElement('div');
+  containerElement.className = className + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_3__["default"].CLASS_UNSELECTABLE + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_3__["default"].CLASS_CONTROL;
+  containerElement.appendChild(thumbElement);
+  /**
+   * @type {ol.pointer.PointerEventHandler}
+   * @private
+   */
+  this.dragger_ = new _pointer_pointereventhandler_js__WEBPACK_IMPORTED_MODULE_10__["default"](containerElement);
+
+  _events_js__WEBPACK_IMPORTED_MODULE_5__["default"].listen(this.dragger_, _pointer_eventtype_js__WEBPACK_IMPORTED_MODULE_9__["default"].POINTERDOWN,
+      this.handleDraggerStart_, this);
+  _events_js__WEBPACK_IMPORTED_MODULE_5__["default"].listen(this.dragger_, _pointer_eventtype_js__WEBPACK_IMPORTED_MODULE_9__["default"].POINTERMOVE,
+      this.handleDraggerDrag_, this);
+  _events_js__WEBPACK_IMPORTED_MODULE_5__["default"].listen(this.dragger_, _pointer_eventtype_js__WEBPACK_IMPORTED_MODULE_9__["default"].POINTERUP,
+      this.handleDraggerEnd_, this);
+
+  _events_js__WEBPACK_IMPORTED_MODULE_5__["default"].listen(containerElement, _events_eventtype_js__WEBPACK_IMPORTED_MODULE_7__["default"].CLICK,
+      this.handleContainerClick_, this);
+  _events_js__WEBPACK_IMPORTED_MODULE_5__["default"].listen(thumbElement, _events_eventtype_js__WEBPACK_IMPORTED_MODULE_7__["default"].CLICK,
+      _events_event_js__WEBPACK_IMPORTED_MODULE_6__["default"].stopPropagation);
+
+  var render = options.render ? options.render : _ol_control_ZoomSlider_.render;
+
+  _control_control_js__WEBPACK_IMPORTED_MODULE_2__["default"].call(this, {
+    element: containerElement,
+    render: render
+  });
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_control_ZoomSlider_, _control_control_js__WEBPACK_IMPORTED_MODULE_2__["default"]);
+
+
+/**
+ * @inheritDoc
+ */
+_ol_control_ZoomSlider_.prototype.disposeInternal = function() {
+  this.dragger_.dispose();
+  _control_control_js__WEBPACK_IMPORTED_MODULE_2__["default"].prototype.disposeInternal.call(this);
+};
+
+
+/**
+ * The enum for available directions.
+ *
+ * @enum {number}
+ * @private
+ */
+_ol_control_ZoomSlider_.Direction_ = {
+  VERTICAL: 0,
+  HORIZONTAL: 1
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_control_ZoomSlider_.prototype.setMap = function(map) {
+  _control_control_js__WEBPACK_IMPORTED_MODULE_2__["default"].prototype.setMap.call(this, map);
+  if (map) {
+    map.render();
+  }
+};
+
+
+/**
+ * Initializes the slider element. This will determine and set this controls
+ * direction_ and also constrain the dragging of the thumb to always be within
+ * the bounds of the container.
+ *
+ * @private
+ */
+_ol_control_ZoomSlider_.prototype.initSlider_ = function() {
+  var container = this.element;
+  var containerSize = {
+    width: container.offsetWidth, height: container.offsetHeight
+  };
+
+  var thumb = container.firstElementChild;
+  var computedStyle = getComputedStyle(thumb);
+  var thumbWidth = thumb.offsetWidth +
+      parseFloat(computedStyle['marginRight']) +
+      parseFloat(computedStyle['marginLeft']);
+  var thumbHeight = thumb.offsetHeight +
+      parseFloat(computedStyle['marginTop']) +
+      parseFloat(computedStyle['marginBottom']);
+  this.thumbSize_ = [thumbWidth, thumbHeight];
+
+  if (containerSize.width > containerSize.height) {
+    this.direction_ = _ol_control_ZoomSlider_.Direction_.HORIZONTAL;
+    this.widthLimit_ = containerSize.width - thumbWidth;
+  } else {
+    this.direction_ = _ol_control_ZoomSlider_.Direction_.VERTICAL;
+    this.heightLimit_ = containerSize.height - thumbHeight;
+  }
+  this.sliderInitialized_ = true;
+};
+
+
+/**
+ * Update the zoomslider element.
+ * @param {ol.MapEvent} mapEvent Map event.
+ * @this {ol.control.ZoomSlider}
+ * @api
+ */
+_ol_control_ZoomSlider_.render = function(mapEvent) {
+  if (!mapEvent.frameState) {
+    return;
+  }
+  if (!this.sliderInitialized_) {
+    this.initSlider_();
+  }
+  var res = mapEvent.frameState.viewState.resolution;
+  if (res !== this.currentResolution_) {
+    this.currentResolution_ = res;
+    this.setThumbPosition_(res);
+  }
+};
+
+
+/**
+ * @param {Event} event The browser event to handle.
+ * @private
+ */
+_ol_control_ZoomSlider_.prototype.handleContainerClick_ = function(event) {
+  var view = this.getMap().getView();
+
+  var relativePosition = this.getRelativePosition_(
+      event.offsetX - this.thumbSize_[0] / 2,
+      event.offsetY - this.thumbSize_[1] / 2);
+
+  var resolution = this.getResolutionForPosition_(relativePosition);
+
+  view.animate({
+    resolution: view.constrainResolution(resolution),
+    duration: this.duration_,
+    easing: _easing_js__WEBPACK_IMPORTED_MODULE_4__["default"].easeOut
+  });
+};
+
+
+/**
+ * Handle dragger start events.
+ * @param {ol.pointer.PointerEvent} event The drag event.
+ * @private
+ */
+_ol_control_ZoomSlider_.prototype.handleDraggerStart_ = function(event) {
+  if (!this.dragging_ && event.originalEvent.target === this.element.firstElementChild) {
+    this.getMap().getView().setHint(_viewhint_js__WEBPACK_IMPORTED_MODULE_1__["default"].INTERACTING, 1);
+    this.previousX_ = event.clientX;
+    this.previousY_ = event.clientY;
+    this.dragging_ = true;
+  }
+};
+
+
+/**
+ * Handle dragger drag events.
+ *
+ * @param {ol.pointer.PointerEvent|Event} event The drag event.
+ * @private
+ */
+_ol_control_ZoomSlider_.prototype.handleDraggerDrag_ = function(event) {
+  if (this.dragging_) {
+    var element = this.element.firstElementChild;
+    var deltaX = event.clientX - this.previousX_ + parseInt(element.style.left, 10);
+    var deltaY = event.clientY - this.previousY_ + parseInt(element.style.top, 10);
+    var relativePosition = this.getRelativePosition_(deltaX, deltaY);
+    this.currentResolution_ = this.getResolutionForPosition_(relativePosition);
+    this.getMap().getView().setResolution(this.currentResolution_);
+    this.setThumbPosition_(this.currentResolution_);
+    this.previousX_ = event.clientX;
+    this.previousY_ = event.clientY;
+  }
+};
+
+
+/**
+ * Handle dragger end events.
+ * @param {ol.pointer.PointerEvent|Event} event The drag event.
+ * @private
+ */
+_ol_control_ZoomSlider_.prototype.handleDraggerEnd_ = function(event) {
+  if (this.dragging_) {
+    var view = this.getMap().getView();
+    view.setHint(_viewhint_js__WEBPACK_IMPORTED_MODULE_1__["default"].INTERACTING, -1);
+
+    view.animate({
+      resolution: view.constrainResolution(this.currentResolution_),
+      duration: this.duration_,
+      easing: _easing_js__WEBPACK_IMPORTED_MODULE_4__["default"].easeOut
+    });
+
+    this.dragging_ = false;
+    this.previousX_ = undefined;
+    this.previousY_ = undefined;
+  }
+};
+
+
+/**
+ * Positions the thumb inside its container according to the given resolution.
+ *
+ * @param {number} res The res.
+ * @private
+ */
+_ol_control_ZoomSlider_.prototype.setThumbPosition_ = function(res) {
+  var position = this.getPositionForResolution_(res);
+  var thumb = this.element.firstElementChild;
+
+  if (this.direction_ == _ol_control_ZoomSlider_.Direction_.HORIZONTAL) {
+    thumb.style.left = this.widthLimit_ * position + 'px';
+  } else {
+    thumb.style.top = this.heightLimit_ * position + 'px';
+  }
+};
+
+
+/**
+ * Calculates the relative position of the thumb given x and y offsets.  The
+ * relative position scales from 0 to 1.  The x and y offsets are assumed to be
+ * in pixel units within the dragger limits.
+ *
+ * @param {number} x Pixel position relative to the left of the slider.
+ * @param {number} y Pixel position relative to the top of the slider.
+ * @return {number} The relative position of the thumb.
+ * @private
+ */
+_ol_control_ZoomSlider_.prototype.getRelativePosition_ = function(x, y) {
+  var amount;
+  if (this.direction_ === _ol_control_ZoomSlider_.Direction_.HORIZONTAL) {
+    amount = x / this.widthLimit_;
+  } else {
+    amount = y / this.heightLimit_;
+  }
+  return _math_js__WEBPACK_IMPORTED_MODULE_8__["default"].clamp(amount, 0, 1);
+};
+
+
+/**
+ * Calculates the corresponding resolution of the thumb given its relative
+ * position (where 0 is the minimum and 1 is the maximum).
+ *
+ * @param {number} position The relative position of the thumb.
+ * @return {number} The corresponding resolution.
+ * @private
+ */
+_ol_control_ZoomSlider_.prototype.getResolutionForPosition_ = function(position) {
+  var fn = this.getMap().getView().getResolutionForValueFunction();
+  return fn(1 - position);
+};
+
+
+/**
+ * Determines the relative position of the slider for the given resolution.  A
+ * relative position of 0 corresponds to the minimum view resolution.  A
+ * relative position of 1 corresponds to the maximum view resolution.
+ *
+ * @param {number} res The resolution.
+ * @return {number} The relative position value (between 0 and 1).
+ * @private
+ */
+_ol_control_ZoomSlider_.prototype.getPositionForResolution_ = function(res) {
+  var fn = this.getMap().getView().getValueForResolutionFunction();
+  return 1 - fn(res);
+};
+/* harmony default export */ __webpack_exports__["default"] = (_ol_control_ZoomSlider_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/control/zoomtoextent.js":
+/*!*************************************************!*\
+  !*** ./node_modules/ol/control/zoomtoextent.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_eventtype_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../events/eventtype.js */ "./node_modules/ol/events/eventtype.js");
+/* harmony import */ var _control_control_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../control/control.js */ "./node_modules/ol/control/control.js");
+/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
+
+
+
+
+
+
+/**
+ * @classdesc
+ * A button control which, when pressed, changes the map view to a specific
+ * extent. To style this control use the css selector `.ol-zoom-extent`.
+ *
+ * @constructor
+ * @extends {ol.control.Control}
+ * @param {olx.control.ZoomToExtentOptions=} opt_options Options.
+ * @api
+ */
+var _ol_control_ZoomToExtent_ = function(opt_options) {
+  var options = opt_options ? opt_options : {};
+
+  /**
+   * @type {ol.Extent}
+   * @protected
+   */
+  this.extent = options.extent ? options.extent : null;
+
+  var className = options.className !== undefined ? options.className :
+    'ol-zoom-extent';
+
+  var label = options.label !== undefined ? options.label : 'E';
+  var tipLabel = options.tipLabel !== undefined ?
+    options.tipLabel : 'Fit to extent';
+  var button = document.createElement('button');
+  button.setAttribute('type', 'button');
+  button.title = tipLabel;
+  button.appendChild(
+      typeof label === 'string' ? document.createTextNode(label) : label
+  );
+
+  _events_js__WEBPACK_IMPORTED_MODULE_1__["default"].listen(button, _events_eventtype_js__WEBPACK_IMPORTED_MODULE_2__["default"].CLICK,
+      this.handleClick_, this);
+
+  var cssClasses = className + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_4__["default"].CLASS_UNSELECTABLE + ' ' +
+      _css_js__WEBPACK_IMPORTED_MODULE_4__["default"].CLASS_CONTROL;
+  var element = document.createElement('div');
+  element.className = cssClasses;
+  element.appendChild(button);
+
+  _control_control_js__WEBPACK_IMPORTED_MODULE_3__["default"].call(this, {
+    element: element,
+    target: options.target
+  });
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_control_ZoomToExtent_, _control_control_js__WEBPACK_IMPORTED_MODULE_3__["default"]);
+
+
+/**
+ * @param {Event} event The event to handle
+ * @private
+ */
+_ol_control_ZoomToExtent_.prototype.handleClick_ = function(event) {
+  event.preventDefault();
+  this.handleZoomToExtent();
+};
+
+
+/**
+ * @protected
+ */
+_ol_control_ZoomToExtent_.prototype.handleZoomToExtent = function() {
+  var map = this.getMap();
+  var view = map.getView();
+  var extent = !this.extent ? view.getProjection().getExtent() : this.extent;
+  view.fit(extent);
+};
+/* harmony default export */ __webpack_exports__["default"] = (_ol_control_ZoomToExtent_);
 
 
 /***/ }),
@@ -17755,6 +19710,288 @@ _ol_functions_.FALSE = function() {
 
 /***/ }),
 
+/***/ "./node_modules/ol/geom/circle.js":
+/*!****************************************!*\
+  !*** ./node_modules/ol/geom/circle.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../extent.js */ "./node_modules/ol/extent.js");
+/* harmony import */ var _geom_geometrylayout_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../geom/geometrylayout.js */ "./node_modules/ol/geom/geometrylayout.js");
+/* harmony import */ var _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../geom/geometrytype.js */ "./node_modules/ol/geom/geometrytype.js");
+/* harmony import */ var _geom_simplegeometry_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../geom/simplegeometry.js */ "./node_modules/ol/geom/simplegeometry.js");
+/* harmony import */ var _geom_flat_deflate_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../geom/flat/deflate.js */ "./node_modules/ol/geom/flat/deflate.js");
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * Circle geometry.
+ *
+ * @constructor
+ * @extends {ol.geom.SimpleGeometry}
+ * @param {ol.Coordinate} center Center.
+ * @param {number=} opt_radius Radius.
+ * @param {ol.geom.GeometryLayout=} opt_layout Layout.
+ * @api
+ */
+var _ol_geom_Circle_ = function(center, opt_radius, opt_layout) {
+  _geom_simplegeometry_js__WEBPACK_IMPORTED_MODULE_4__["default"].call(this);
+  var radius = opt_radius ? opt_radius : 0;
+  this.setCenterAndRadius(center, radius, opt_layout);
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_geom_Circle_, _geom_simplegeometry_js__WEBPACK_IMPORTED_MODULE_4__["default"]);
+
+
+/**
+ * Make a complete copy of the geometry.
+ * @return {!ol.geom.Circle} Clone.
+ * @override
+ * @api
+ */
+_ol_geom_Circle_.prototype.clone = function() {
+  var circle = new _ol_geom_Circle_(null);
+  circle.setFlatCoordinates(this.layout, this.flatCoordinates.slice());
+  return circle;
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_geom_Circle_.prototype.closestPointXY = function(x, y, closestPoint, minSquaredDistance) {
+  var flatCoordinates = this.flatCoordinates;
+  var dx = x - flatCoordinates[0];
+  var dy = y - flatCoordinates[1];
+  var squaredDistance = dx * dx + dy * dy;
+  if (squaredDistance < minSquaredDistance) {
+    var i;
+    if (squaredDistance === 0) {
+      for (i = 0; i < this.stride; ++i) {
+        closestPoint[i] = flatCoordinates[i];
+      }
+    } else {
+      var delta = this.getRadius() / Math.sqrt(squaredDistance);
+      closestPoint[0] = flatCoordinates[0] + delta * dx;
+      closestPoint[1] = flatCoordinates[1] + delta * dy;
+      for (i = 2; i < this.stride; ++i) {
+        closestPoint[i] = flatCoordinates[i];
+      }
+    }
+    closestPoint.length = this.stride;
+    return squaredDistance;
+  } else {
+    return minSquaredDistance;
+  }
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_geom_Circle_.prototype.containsXY = function(x, y) {
+  var flatCoordinates = this.flatCoordinates;
+  var dx = x - flatCoordinates[0];
+  var dy = y - flatCoordinates[1];
+  return dx * dx + dy * dy <= this.getRadiusSquared_();
+};
+
+
+/**
+ * Return the center of the circle as {@link ol.Coordinate coordinate}.
+ * @return {ol.Coordinate} Center.
+ * @api
+ */
+_ol_geom_Circle_.prototype.getCenter = function() {
+  return this.flatCoordinates.slice(0, this.stride);
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_geom_Circle_.prototype.computeExtent = function(extent) {
+  var flatCoordinates = this.flatCoordinates;
+  var radius = flatCoordinates[this.stride] - flatCoordinates[0];
+  return _extent_js__WEBPACK_IMPORTED_MODULE_1__["default"].createOrUpdate(
+      flatCoordinates[0] - radius, flatCoordinates[1] - radius,
+      flatCoordinates[0] + radius, flatCoordinates[1] + radius,
+      extent);
+};
+
+
+/**
+ * Return the radius of the circle.
+ * @return {number} Radius.
+ * @api
+ */
+_ol_geom_Circle_.prototype.getRadius = function() {
+  return Math.sqrt(this.getRadiusSquared_());
+};
+
+
+/**
+ * @private
+ * @return {number} Radius squared.
+ */
+_ol_geom_Circle_.prototype.getRadiusSquared_ = function() {
+  var dx = this.flatCoordinates[this.stride] - this.flatCoordinates[0];
+  var dy = this.flatCoordinates[this.stride + 1] - this.flatCoordinates[1];
+  return dx * dx + dy * dy;
+};
+
+
+/**
+ * @inheritDoc
+ * @api
+ */
+_ol_geom_Circle_.prototype.getType = function() {
+  return _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_3__["default"].CIRCLE;
+};
+
+
+/**
+ * @inheritDoc
+ * @api
+ */
+_ol_geom_Circle_.prototype.intersectsExtent = function(extent) {
+  var circleExtent = this.getExtent();
+  if (_extent_js__WEBPACK_IMPORTED_MODULE_1__["default"].intersects(extent, circleExtent)) {
+    var center = this.getCenter();
+
+    if (extent[0] <= center[0] && extent[2] >= center[0]) {
+      return true;
+    }
+    if (extent[1] <= center[1] && extent[3] >= center[1]) {
+      return true;
+    }
+
+    return _extent_js__WEBPACK_IMPORTED_MODULE_1__["default"].forEachCorner(extent, this.intersectsCoordinate, this);
+  }
+  return false;
+
+};
+
+
+/**
+ * Set the center of the circle as {@link ol.Coordinate coordinate}.
+ * @param {ol.Coordinate} center Center.
+ * @api
+ */
+_ol_geom_Circle_.prototype.setCenter = function(center) {
+  var stride = this.stride;
+  var radius = this.flatCoordinates[stride] - this.flatCoordinates[0];
+  var flatCoordinates = center.slice();
+  flatCoordinates[stride] = flatCoordinates[0] + radius;
+  var i;
+  for (i = 1; i < stride; ++i) {
+    flatCoordinates[stride + i] = center[i];
+  }
+  this.setFlatCoordinates(this.layout, flatCoordinates);
+};
+
+
+/**
+ * Set the center (as {@link ol.Coordinate coordinate}) and the radius (as
+ * number) of the circle.
+ * @param {ol.Coordinate} center Center.
+ * @param {number} radius Radius.
+ * @param {ol.geom.GeometryLayout=} opt_layout Layout.
+ * @api
+ */
+_ol_geom_Circle_.prototype.setCenterAndRadius = function(center, radius, opt_layout) {
+  if (!center) {
+    this.setFlatCoordinates(_geom_geometrylayout_js__WEBPACK_IMPORTED_MODULE_2__["default"].XY, null);
+  } else {
+    this.setLayout(opt_layout, center, 0);
+    if (!this.flatCoordinates) {
+      this.flatCoordinates = [];
+    }
+    /** @type {Array.<number>} */
+    var flatCoordinates = this.flatCoordinates;
+    var offset = _geom_flat_deflate_js__WEBPACK_IMPORTED_MODULE_5__["default"].coordinate(
+        flatCoordinates, 0, center, this.stride);
+    flatCoordinates[offset++] = flatCoordinates[0] + radius;
+    var i, ii;
+    for (i = 1, ii = this.stride; i < ii; ++i) {
+      flatCoordinates[offset++] = flatCoordinates[i];
+    }
+    flatCoordinates.length = offset;
+    this.changed();
+  }
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_geom_Circle_.prototype.getCoordinates = function() {};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_geom_Circle_.prototype.setCoordinates = function(coordinates, opt_layout) {};
+
+
+/**
+ * @param {ol.geom.GeometryLayout} layout Layout.
+ * @param {Array.<number>} flatCoordinates Flat coordinates.
+ */
+_ol_geom_Circle_.prototype.setFlatCoordinates = function(layout, flatCoordinates) {
+  this.setFlatCoordinatesInternal(layout, flatCoordinates);
+  this.changed();
+};
+
+
+/**
+ * Set the radius of the circle. The radius is in the units of the projection.
+ * @param {number} radius Radius.
+ * @api
+ */
+_ol_geom_Circle_.prototype.setRadius = function(radius) {
+  this.flatCoordinates[this.stride] = this.flatCoordinates[0] + radius;
+  this.changed();
+};
+
+
+/**
+ * Transform each coordinate of the circle from one coordinate reference system
+ * to another. The geometry is modified in place.
+ * If you do not want the geometry modified in place, first clone() it and
+ * then use this function on the clone.
+ *
+ * Internally a circle is currently represented by two points: the center of
+ * the circle `[cx, cy]`, and the point to the right of the circle
+ * `[cx + r, cy]`. This `transform` function just transforms these two points.
+ * So the resulting geometry is also a circle, and that circle does not
+ * correspond to the shape that would be obtained by transforming every point
+ * of the original circle.
+ *
+ * @param {ol.ProjectionLike} source The current projection.  Can be a
+ *     string identifier or a {@link ol.proj.Projection} object.
+ * @param {ol.ProjectionLike} destination The desired projection.  Can be a
+ *     string identifier or a {@link ol.proj.Projection} object.
+ * @return {ol.geom.Circle} This geometry.  Note that original geometry is
+ *     modified in place.
+ * @function
+ * @api
+ */
+_ol_geom_Circle_.prototype.transform;
+/* harmony default export */ __webpack_exports__["default"] = (_ol_geom_Circle_);
+
+
+/***/ }),
+
 /***/ "./node_modules/ol/geom/flat/area.js":
 /*!*******************************************!*\
   !*** ./node_modules/ol/geom/flat/area.js ***!
@@ -24377,6 +26614,304 @@ _ol_interaction_DoubleClickZoom_.handleEvent = function(mapBrowserEvent) {
 
 /***/ }),
 
+/***/ "./node_modules/ol/interaction/draganddrop.js":
+/*!****************************************************!*\
+  !*** ./node_modules/ol/interaction/draganddrop.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _functions_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions.js */ "./node_modules/ol/functions.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_event_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../events/event.js */ "./node_modules/ol/events/event.js");
+/* harmony import */ var _events_eventtype_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../events/eventtype.js */ "./node_modules/ol/events/eventtype.js");
+/* harmony import */ var _interaction_interaction_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../interaction/interaction.js */ "./node_modules/ol/interaction/interaction.js");
+/* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../proj.js */ "./node_modules/ol/proj.js");
+// FIXME should handle all geo-referenced data, not just vector data
+
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * Handles input of vector data by drag and drop.
+ *
+ * @constructor
+ * @extends {ol.interaction.Interaction}
+ * @fires ol.interaction.DragAndDrop.Event
+ * @param {olx.interaction.DragAndDropOptions=} opt_options Options.
+ * @api
+ */
+var _ol_interaction_DragAndDrop_ = function(opt_options) {
+
+  var options = opt_options ? opt_options : {};
+
+  _interaction_interaction_js__WEBPACK_IMPORTED_MODULE_5__["default"].call(this, {
+    handleEvent: _ol_interaction_DragAndDrop_.handleEvent
+  });
+
+  /**
+   * @private
+   * @type {Array.<function(new: ol.format.Feature)>}
+   */
+  this.formatConstructors_ = options.formatConstructors ?
+    options.formatConstructors : [];
+
+  /**
+   * @private
+   * @type {ol.proj.Projection}
+   */
+  this.projection_ = options.projection ?
+    _proj_js__WEBPACK_IMPORTED_MODULE_6__["default"].get(options.projection) : null;
+
+  /**
+   * @private
+   * @type {Array.<ol.EventsKey>}
+   */
+  this.dropListenKeys_ = null;
+
+  /**
+   * @private
+   * @type {ol.source.Vector}
+   */
+  this.source_ = options.source || null;
+
+  /**
+   * @private
+   * @type {Element}
+   */
+  this.target = options.target ? options.target : null;
+
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_interaction_DragAndDrop_, _interaction_interaction_js__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
+
+/**
+ * @param {Event} event Event.
+ * @this {ol.interaction.DragAndDrop}
+ * @private
+ */
+_ol_interaction_DragAndDrop_.handleDrop_ = function(event) {
+  var files = event.dataTransfer.files;
+  var i, ii, file;
+  for (i = 0, ii = files.length; i < ii; ++i) {
+    file = files.item(i);
+    var reader = new FileReader();
+    reader.addEventListener(_events_eventtype_js__WEBPACK_IMPORTED_MODULE_4__["default"].LOAD,
+        this.handleResult_.bind(this, file));
+    reader.readAsText(file);
+  }
+};
+
+
+/**
+ * @param {Event} event Event.
+ * @private
+ */
+_ol_interaction_DragAndDrop_.handleStop_ = function(event) {
+  event.stopPropagation();
+  event.preventDefault();
+  event.dataTransfer.dropEffect = 'copy';
+};
+
+
+/**
+ * @param {File} file File.
+ * @param {Event} event Load event.
+ * @private
+ */
+_ol_interaction_DragAndDrop_.prototype.handleResult_ = function(file, event) {
+  var result = event.target.result;
+  var map = this.getMap();
+  var projection = this.projection_;
+  if (!projection) {
+    var view = map.getView();
+    projection = view.getProjection();
+  }
+
+  var formatConstructors = this.formatConstructors_;
+  var features = [];
+  var i, ii;
+  for (i = 0, ii = formatConstructors.length; i < ii; ++i) {
+    /**
+     * Avoid "cannot instantiate abstract class" error.
+     * @type {Function}
+     */
+    var formatConstructor = formatConstructors[i];
+    /**
+     * @type {ol.format.Feature}
+     */
+    var format = new formatConstructor();
+    features = this.tryReadFeatures_(format, result, {
+      featureProjection: projection
+    });
+    if (features && features.length > 0) {
+      break;
+    }
+  }
+  if (this.source_) {
+    this.source_.clear();
+    this.source_.addFeatures(features);
+  }
+  this.dispatchEvent(
+      new _ol_interaction_DragAndDrop_.Event(
+          _ol_interaction_DragAndDrop_.EventType_.ADD_FEATURES, file,
+          features, projection));
+};
+
+
+/**
+ * Handles the {@link ol.MapBrowserEvent map browser event} unconditionally and
+ * neither prevents the browser default nor stops event propagation.
+ * @param {ol.MapBrowserEvent} mapBrowserEvent Map browser event.
+ * @return {boolean} `false` to stop event propagation.
+ * @this {ol.interaction.DragAndDrop}
+ * @api
+ */
+_ol_interaction_DragAndDrop_.handleEvent = _functions_js__WEBPACK_IMPORTED_MODULE_1__["default"].TRUE;
+
+
+/**
+ * @private
+ */
+_ol_interaction_DragAndDrop_.prototype.registerListeners_ = function() {
+  var map = this.getMap();
+  if (map) {
+    var dropArea = this.target ? this.target : map.getViewport();
+    this.dropListenKeys_ = [
+      _events_js__WEBPACK_IMPORTED_MODULE_2__["default"].listen(dropArea, _events_eventtype_js__WEBPACK_IMPORTED_MODULE_4__["default"].DROP,
+          _ol_interaction_DragAndDrop_.handleDrop_, this),
+      _events_js__WEBPACK_IMPORTED_MODULE_2__["default"].listen(dropArea, _events_eventtype_js__WEBPACK_IMPORTED_MODULE_4__["default"].DRAGENTER,
+          _ol_interaction_DragAndDrop_.handleStop_, this),
+      _events_js__WEBPACK_IMPORTED_MODULE_2__["default"].listen(dropArea, _events_eventtype_js__WEBPACK_IMPORTED_MODULE_4__["default"].DRAGOVER,
+          _ol_interaction_DragAndDrop_.handleStop_, this),
+      _events_js__WEBPACK_IMPORTED_MODULE_2__["default"].listen(dropArea, _events_eventtype_js__WEBPACK_IMPORTED_MODULE_4__["default"].DROP,
+          _ol_interaction_DragAndDrop_.handleStop_, this)
+    ];
+  }
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_interaction_DragAndDrop_.prototype.setActive = function(active) {
+  _interaction_interaction_js__WEBPACK_IMPORTED_MODULE_5__["default"].prototype.setActive.call(this, active);
+  if (active) {
+    this.registerListeners_();
+  } else {
+    this.unregisterListeners_();
+  }
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_interaction_DragAndDrop_.prototype.setMap = function(map) {
+  this.unregisterListeners_();
+  _interaction_interaction_js__WEBPACK_IMPORTED_MODULE_5__["default"].prototype.setMap.call(this, map);
+  if (this.getActive()) {
+    this.registerListeners_();
+  }
+};
+
+
+/**
+ * @param {ol.format.Feature} format Format.
+ * @param {string} text Text.
+ * @param {olx.format.ReadOptions} options Read options.
+ * @private
+ * @return {Array.<ol.Feature>} Features.
+ */
+_ol_interaction_DragAndDrop_.prototype.tryReadFeatures_ = function(format, text, options) {
+  try {
+    return format.readFeatures(text, options);
+  } catch (e) {
+    return null;
+  }
+};
+
+
+/**
+ * @private
+ */
+_ol_interaction_DragAndDrop_.prototype.unregisterListeners_ = function() {
+  if (this.dropListenKeys_) {
+    this.dropListenKeys_.forEach(_events_js__WEBPACK_IMPORTED_MODULE_2__["default"].unlistenByKey);
+    this.dropListenKeys_ = null;
+  }
+};
+
+
+/**
+ * @enum {string}
+ * @private
+ */
+_ol_interaction_DragAndDrop_.EventType_ = {
+  /**
+   * Triggered when features are added
+   * @event ol.interaction.DragAndDrop.Event#addfeatures
+   * @api
+   */
+  ADD_FEATURES: 'addfeatures'
+};
+
+
+/**
+ * @classdesc
+ * Events emitted by {@link ol.interaction.DragAndDrop} instances are instances
+ * of this type.
+ *
+ * @constructor
+ * @extends {ol.events.Event}
+ * @implements {oli.interaction.DragAndDropEvent}
+ * @param {ol.interaction.DragAndDrop.EventType_} type Type.
+ * @param {File} file File.
+ * @param {Array.<ol.Feature>=} opt_features Features.
+ * @param {ol.proj.Projection=} opt_projection Projection.
+ */
+_ol_interaction_DragAndDrop_.Event = function(type, file, opt_features, opt_projection) {
+
+  _events_event_js__WEBPACK_IMPORTED_MODULE_3__["default"].call(this, type);
+
+  /**
+   * The features parsed from dropped data.
+   * @type {Array.<ol.Feature>|undefined}
+   * @api
+   */
+  this.features = opt_features;
+
+  /**
+   * The dropped file.
+   * @type {File}
+   * @api
+   */
+  this.file = file;
+
+  /**
+   * The feature projection.
+   * @type {ol.proj.Projection|undefined}
+   * @api
+   */
+  this.projection = opt_projection;
+
+};
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_interaction_DragAndDrop_.Event, _events_event_js__WEBPACK_IMPORTED_MODULE_3__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (_ol_interaction_DragAndDrop_);
+
+
+/***/ }),
+
 /***/ "./node_modules/ol/interaction/dragbox.js":
 /*!************************************************!*\
   !*** ./node_modules/ol/interaction/dragbox.js ***!
@@ -24971,6 +27506,172 @@ _ol_interaction_DragRotate_.prototype.shouldStopEvent = _functions_js__WEBPACK_I
 
 /***/ }),
 
+/***/ "./node_modules/ol/interaction/dragrotateandzoom.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/ol/interaction/dragrotateandzoom.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _rotationconstraint_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../rotationconstraint.js */ "./node_modules/ol/rotationconstraint.js");
+/* harmony import */ var _viewhint_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../viewhint.js */ "./node_modules/ol/viewhint.js");
+/* harmony import */ var _events_condition_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../events/condition.js */ "./node_modules/ol/events/condition.js");
+/* harmony import */ var _interaction_interaction_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../interaction/interaction.js */ "./node_modules/ol/interaction/interaction.js");
+/* harmony import */ var _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../interaction/pointer.js */ "./node_modules/ol/interaction/pointer.js");
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * Allows the user to zoom and rotate the map by clicking and dragging
+ * on the map.  By default, this interaction is limited to when the shift
+ * key is held down.
+ *
+ * This interaction is only supported for mouse devices.
+ *
+ * And this interaction is not included in the default interactions.
+ *
+ * @constructor
+ * @extends {ol.interaction.Pointer}
+ * @param {olx.interaction.DragRotateAndZoomOptions=} opt_options Options.
+ * @api
+ */
+var _ol_interaction_DragRotateAndZoom_ = function(opt_options) {
+
+  var options = opt_options ? opt_options : {};
+
+  _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_5__["default"].call(this, {
+    handleDownEvent: _ol_interaction_DragRotateAndZoom_.handleDownEvent_,
+    handleDragEvent: _ol_interaction_DragRotateAndZoom_.handleDragEvent_,
+    handleUpEvent: _ol_interaction_DragRotateAndZoom_.handleUpEvent_
+  });
+
+  /**
+   * @private
+   * @type {ol.EventsConditionType}
+   */
+  this.condition_ = options.condition ?
+    options.condition : _events_condition_js__WEBPACK_IMPORTED_MODULE_3__["default"].shiftKeyOnly;
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.lastAngle_ = undefined;
+
+  /**
+   * @private
+   * @type {number|undefined}
+   */
+  this.lastMagnitude_ = undefined;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.lastScaleDelta_ = 0;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.duration_ = options.duration !== undefined ? options.duration : 400;
+
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_interaction_DragRotateAndZoom_, _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
+
+/**
+ * @param {ol.MapBrowserPointerEvent} mapBrowserEvent Event.
+ * @this {ol.interaction.DragRotateAndZoom}
+ * @private
+ */
+_ol_interaction_DragRotateAndZoom_.handleDragEvent_ = function(mapBrowserEvent) {
+  if (!_events_condition_js__WEBPACK_IMPORTED_MODULE_3__["default"].mouseOnly(mapBrowserEvent)) {
+    return;
+  }
+
+  var map = mapBrowserEvent.map;
+  var size = map.getSize();
+  var offset = mapBrowserEvent.pixel;
+  var deltaX = offset[0] - size[0] / 2;
+  var deltaY = size[1] / 2 - offset[1];
+  var theta = Math.atan2(deltaY, deltaX);
+  var magnitude = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+  var view = map.getView();
+  if (view.getConstraints().rotation !== _rotationconstraint_js__WEBPACK_IMPORTED_MODULE_1__["default"].disable && this.lastAngle_ !== undefined) {
+    var angleDelta = theta - this.lastAngle_;
+    _interaction_interaction_js__WEBPACK_IMPORTED_MODULE_4__["default"].rotateWithoutConstraints(
+        view, view.getRotation() - angleDelta);
+  }
+  this.lastAngle_ = theta;
+  if (this.lastMagnitude_ !== undefined) {
+    var resolution = this.lastMagnitude_ * (view.getResolution() / magnitude);
+    _interaction_interaction_js__WEBPACK_IMPORTED_MODULE_4__["default"].zoomWithoutConstraints(view, resolution);
+  }
+  if (this.lastMagnitude_ !== undefined) {
+    this.lastScaleDelta_ = this.lastMagnitude_ / magnitude;
+  }
+  this.lastMagnitude_ = magnitude;
+};
+
+
+/**
+ * @param {ol.MapBrowserPointerEvent} mapBrowserEvent Event.
+ * @return {boolean} Stop drag sequence?
+ * @this {ol.interaction.DragRotateAndZoom}
+ * @private
+ */
+_ol_interaction_DragRotateAndZoom_.handleUpEvent_ = function(mapBrowserEvent) {
+  if (!_events_condition_js__WEBPACK_IMPORTED_MODULE_3__["default"].mouseOnly(mapBrowserEvent)) {
+    return true;
+  }
+
+  var map = mapBrowserEvent.map;
+  var view = map.getView();
+  view.setHint(_viewhint_js__WEBPACK_IMPORTED_MODULE_2__["default"].INTERACTING, -1);
+  var direction = this.lastScaleDelta_ - 1;
+  _interaction_interaction_js__WEBPACK_IMPORTED_MODULE_4__["default"].rotate(view, view.getRotation());
+  _interaction_interaction_js__WEBPACK_IMPORTED_MODULE_4__["default"].zoom(view, view.getResolution(),
+      undefined, this.duration_, direction);
+  this.lastScaleDelta_ = 0;
+  return false;
+};
+
+
+/**
+ * @param {ol.MapBrowserPointerEvent} mapBrowserEvent Event.
+ * @return {boolean} Start drag sequence?
+ * @this {ol.interaction.DragRotateAndZoom}
+ * @private
+ */
+_ol_interaction_DragRotateAndZoom_.handleDownEvent_ = function(mapBrowserEvent) {
+  if (!_events_condition_js__WEBPACK_IMPORTED_MODULE_3__["default"].mouseOnly(mapBrowserEvent)) {
+    return false;
+  }
+
+  if (this.condition_(mapBrowserEvent)) {
+    mapBrowserEvent.map.getView().setHint(_viewhint_js__WEBPACK_IMPORTED_MODULE_2__["default"].INTERACTING, 1);
+    this.lastAngle_ = undefined;
+    this.lastMagnitude_ = undefined;
+    return true;
+  } else {
+    return false;
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (_ol_interaction_DragRotateAndZoom_);
+
+
+/***/ }),
+
 /***/ "./node_modules/ol/interaction/dragzoom.js":
 /*!*************************************************!*\
   !*** ./node_modules/ol/interaction/dragzoom.js ***!
@@ -25071,6 +27772,1494 @@ _ol_interaction_DragZoom_.prototype.onBoxEnd = function() {
 
 };
 /* harmony default export */ __webpack_exports__["default"] = (_ol_interaction_DragZoom_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/interaction/draw.js":
+/*!*********************************************!*\
+  !*** ./node_modules/ol/interaction/draw.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _feature_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../feature.js */ "./node_modules/ol/feature.js");
+/* harmony import */ var _mapbrowsereventtype_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mapbrowsereventtype.js */ "./node_modules/ol/mapbrowsereventtype.js");
+/* harmony import */ var _object_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../object.js */ "./node_modules/ol/object.js");
+/* harmony import */ var _coordinate_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../coordinate.js */ "./node_modules/ol/coordinate.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_event_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../events/event.js */ "./node_modules/ol/events/event.js");
+/* harmony import */ var _events_condition_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../events/condition.js */ "./node_modules/ol/events/condition.js");
+/* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../extent.js */ "./node_modules/ol/extent.js");
+/* harmony import */ var _functions_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../functions.js */ "./node_modules/ol/functions.js");
+/* harmony import */ var _geom_circle_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../geom/circle.js */ "./node_modules/ol/geom/circle.js");
+/* harmony import */ var _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../geom/geometrytype.js */ "./node_modules/ol/geom/geometrytype.js");
+/* harmony import */ var _geom_linestring_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../geom/linestring.js */ "./node_modules/ol/geom/linestring.js");
+/* harmony import */ var _geom_multilinestring_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../geom/multilinestring.js */ "./node_modules/ol/geom/multilinestring.js");
+/* harmony import */ var _geom_multipoint_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../geom/multipoint.js */ "./node_modules/ol/geom/multipoint.js");
+/* harmony import */ var _geom_multipolygon_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../geom/multipolygon.js */ "./node_modules/ol/geom/multipolygon.js");
+/* harmony import */ var _geom_point_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../geom/point.js */ "./node_modules/ol/geom/point.js");
+/* harmony import */ var _geom_polygon_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../geom/polygon.js */ "./node_modules/ol/geom/polygon.js");
+/* harmony import */ var _interaction_draweventtype_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../interaction/draweventtype.js */ "./node_modules/ol/interaction/draweventtype.js");
+/* harmony import */ var _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../interaction/pointer.js */ "./node_modules/ol/interaction/pointer.js");
+/* harmony import */ var _interaction_property_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../interaction/property.js */ "./node_modules/ol/interaction/property.js");
+/* harmony import */ var _layer_vector_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../layer/vector.js */ "./node_modules/ol/layer/vector.js");
+/* harmony import */ var _source_vector_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../source/vector.js */ "./node_modules/ol/source/vector.js");
+/* harmony import */ var _style_style_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../style/style.js */ "./node_modules/ol/style/style.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * Interaction for drawing feature geometries.
+ *
+ * @constructor
+ * @extends {ol.interaction.Pointer}
+ * @fires ol.interaction.Draw.Event
+ * @param {olx.interaction.DrawOptions} options Options.
+ * @api
+ */
+var _ol_interaction_Draw_ = function(options) {
+
+  _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_19__["default"].call(this, {
+    handleDownEvent: _ol_interaction_Draw_.handleDownEvent_,
+    handleEvent: _ol_interaction_Draw_.handleEvent,
+    handleUpEvent: _ol_interaction_Draw_.handleUpEvent_
+  });
+
+  /**
+   * @type {boolean}
+   * @private
+   */
+  this.shouldHandle_ = false;
+
+  /**
+   * @type {ol.Pixel}
+   * @private
+   */
+  this.downPx_ = null;
+
+  /**
+   * @type {boolean}
+   * @private
+   */
+  this.freehand_ = false;
+
+  /**
+   * Target source for drawn features.
+   * @type {ol.source.Vector}
+   * @private
+   */
+  this.source_ = options.source ? options.source : null;
+
+  /**
+   * Target collection for drawn features.
+   * @type {ol.Collection.<ol.Feature>}
+   * @private
+   */
+  this.features_ = options.features ? options.features : null;
+
+  /**
+   * Pixel distance for snapping.
+   * @type {number}
+   * @private
+   */
+  this.snapTolerance_ = options.snapTolerance ? options.snapTolerance : 12;
+
+  /**
+   * Geometry type.
+   * @type {ol.geom.GeometryType}
+   * @private
+   */
+  this.type_ = /** @type {ol.geom.GeometryType} */ (options.type);
+
+  /**
+   * Drawing mode (derived from geometry type.
+   * @type {ol.interaction.Draw.Mode_}
+   * @private
+   */
+  this.mode_ = _ol_interaction_Draw_.getMode_(this.type_);
+
+  /**
+   * Stop click, singleclick, and doubleclick events from firing during drawing.
+   * Default is `false`.
+   * @type {boolean}
+   * @private
+   */
+  this.stopClick_ = !!options.stopClick;
+
+  /**
+   * The number of points that must be drawn before a polygon ring or line
+   * string can be finished.  The default is 3 for polygon rings and 2 for
+   * line strings.
+   * @type {number}
+   * @private
+   */
+  this.minPoints_ = options.minPoints ?
+    options.minPoints :
+    (this.mode_ === _ol_interaction_Draw_.Mode_.POLYGON ? 3 : 2);
+
+  /**
+   * The number of points that can be drawn before a polygon ring or line string
+   * is finished. The default is no restriction.
+   * @type {number}
+   * @private
+   */
+  this.maxPoints_ = options.maxPoints ? options.maxPoints : Infinity;
+
+  /**
+   * A function to decide if a potential finish coordinate is permissible
+   * @private
+   * @type {ol.EventsConditionType}
+   */
+  this.finishCondition_ = options.finishCondition ? options.finishCondition : _functions_js__WEBPACK_IMPORTED_MODULE_9__["default"].TRUE;
+
+  var geometryFunction = options.geometryFunction;
+  if (!geometryFunction) {
+    if (this.type_ === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_11__["default"].CIRCLE) {
+      /**
+       * @param {!Array.<ol.Coordinate>} coordinates
+       *     The coordinates.
+       * @param {ol.geom.SimpleGeometry=} opt_geometry Optional geometry.
+       * @return {ol.geom.SimpleGeometry} A geometry.
+       */
+      geometryFunction = function(coordinates, opt_geometry) {
+        var circle = opt_geometry ? /** @type {ol.geom.Circle} */ (opt_geometry) :
+          new _geom_circle_js__WEBPACK_IMPORTED_MODULE_10__["default"]([NaN, NaN]);
+        var squaredLength = _coordinate_js__WEBPACK_IMPORTED_MODULE_4__["default"].squaredDistance(
+            coordinates[0], coordinates[1]);
+        circle.setCenterAndRadius(coordinates[0], Math.sqrt(squaredLength));
+        return circle;
+      };
+    } else {
+      var Constructor;
+      var mode = this.mode_;
+      if (mode === _ol_interaction_Draw_.Mode_.POINT) {
+        Constructor = _geom_point_js__WEBPACK_IMPORTED_MODULE_16__["default"];
+      } else if (mode === _ol_interaction_Draw_.Mode_.LINE_STRING) {
+        Constructor = _geom_linestring_js__WEBPACK_IMPORTED_MODULE_12__["default"];
+      } else if (mode === _ol_interaction_Draw_.Mode_.POLYGON) {
+        Constructor = _geom_polygon_js__WEBPACK_IMPORTED_MODULE_17__["default"];
+      }
+      /**
+       * @param {!Array.<ol.Coordinate>} coordinates
+       *     The coordinates.
+       * @param {ol.geom.SimpleGeometry=} opt_geometry Optional geometry.
+       * @return {ol.geom.SimpleGeometry} A geometry.
+       */
+      geometryFunction = function(coordinates, opt_geometry) {
+        var geometry = opt_geometry;
+        if (geometry) {
+          if (mode === _ol_interaction_Draw_.Mode_.POLYGON) {
+            if (coordinates[0].length) {
+              // Add a closing coordinate to match the first
+              geometry.setCoordinates([coordinates[0].concat([coordinates[0][0]])]);
+            } else {
+              geometry.setCoordinates([]);
+            }
+          } else {
+            geometry.setCoordinates(coordinates);
+          }
+        } else {
+          geometry = new Constructor(coordinates);
+        }
+        return geometry;
+      };
+    }
+  }
+
+  /**
+   * @type {ol.DrawGeometryFunctionType}
+   * @private
+   */
+  this.geometryFunction_ = geometryFunction;
+
+  /**
+   * Finish coordinate for the feature (first point for polygons, last point for
+   * linestrings).
+   * @type {ol.Coordinate}
+   * @private
+   */
+  this.finishCoordinate_ = null;
+
+  /**
+   * Sketch feature.
+   * @type {ol.Feature}
+   * @private
+   */
+  this.sketchFeature_ = null;
+
+  /**
+   * Sketch point.
+   * @type {ol.Feature}
+   * @private
+   */
+  this.sketchPoint_ = null;
+
+  /**
+   * Sketch coordinates. Used when drawing a line or polygon.
+   * @type {ol.Coordinate|Array.<ol.Coordinate>|Array.<Array.<ol.Coordinate>>}
+   * @private
+   */
+  this.sketchCoords_ = null;
+
+  /**
+   * Sketch line. Used when drawing polygon.
+   * @type {ol.Feature}
+   * @private
+   */
+  this.sketchLine_ = null;
+
+  /**
+   * Sketch line coordinates. Used when drawing a polygon or circle.
+   * @type {Array.<ol.Coordinate>}
+   * @private
+   */
+  this.sketchLineCoords_ = null;
+
+  /**
+   * Squared tolerance for handling up events.  If the squared distance
+   * between a down and up event is greater than this tolerance, up events
+   * will not be handled.
+   * @type {number}
+   * @private
+   */
+  this.squaredClickTolerance_ = options.clickTolerance ?
+    options.clickTolerance * options.clickTolerance : 36;
+
+  /**
+   * Draw overlay where our sketch features are drawn.
+   * @type {ol.layer.Vector}
+   * @private
+   */
+  this.overlay_ = new _layer_vector_js__WEBPACK_IMPORTED_MODULE_21__["default"]({
+    source: new _source_vector_js__WEBPACK_IMPORTED_MODULE_22__["default"]({
+      useSpatialIndex: false,
+      wrapX: options.wrapX ? options.wrapX : false
+    }),
+    style: options.style ? options.style :
+      _ol_interaction_Draw_.getDefaultStyleFunction()
+  });
+
+  /**
+   * Name of the geometry attribute for newly created features.
+   * @type {string|undefined}
+   * @private
+   */
+  this.geometryName_ = options.geometryName;
+
+  /**
+   * @private
+   * @type {ol.EventsConditionType}
+   */
+  this.condition_ = options.condition ?
+    options.condition : _events_condition_js__WEBPACK_IMPORTED_MODULE_7__["default"].noModifierKeys;
+
+  /**
+   * @private
+   * @type {ol.EventsConditionType}
+   */
+  this.freehandCondition_;
+  if (options.freehand) {
+    this.freehandCondition_ = _events_condition_js__WEBPACK_IMPORTED_MODULE_7__["default"].always;
+  } else {
+    this.freehandCondition_ = options.freehandCondition ?
+      options.freehandCondition : _events_condition_js__WEBPACK_IMPORTED_MODULE_7__["default"].shiftKeyOnly;
+  }
+
+  _events_js__WEBPACK_IMPORTED_MODULE_5__["default"].listen(this,
+      _object_js__WEBPACK_IMPORTED_MODULE_3__["default"].getChangeEventType(_interaction_property_js__WEBPACK_IMPORTED_MODULE_20__["default"].ACTIVE),
+      this.updateState_, this);
+
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_interaction_Draw_, _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_19__["default"]);
+
+
+/**
+ * @return {ol.StyleFunction} Styles.
+ */
+_ol_interaction_Draw_.getDefaultStyleFunction = function() {
+  var styles = _style_style_js__WEBPACK_IMPORTED_MODULE_23__["default"].createDefaultEditing();
+  return function(feature, resolution) {
+    return styles[feature.getGeometry().getType()];
+  };
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_interaction_Draw_.prototype.setMap = function(map) {
+  _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_19__["default"].prototype.setMap.call(this, map);
+  this.updateState_();
+};
+
+
+/**
+ * Handles the {@link ol.MapBrowserEvent map browser event} and may actually
+ * draw or finish the drawing.
+ * @param {ol.MapBrowserEvent} event Map browser event.
+ * @return {boolean} `false` to stop event propagation.
+ * @this {ol.interaction.Draw}
+ * @api
+ */
+_ol_interaction_Draw_.handleEvent = function(event) {
+  this.freehand_ = this.mode_ !== _ol_interaction_Draw_.Mode_.POINT && this.freehandCondition_(event);
+  var pass = true;
+  if (this.freehand_ &&
+      event.type === _mapbrowsereventtype_js__WEBPACK_IMPORTED_MODULE_2__["default"].POINTERDRAG &&
+      this.sketchFeature_ !== null) {
+    this.addToDrawing_(event);
+    pass = false;
+  } else if (this.freehand_ &&
+      event.type === _mapbrowsereventtype_js__WEBPACK_IMPORTED_MODULE_2__["default"].POINTERDOWN) {
+    pass = false;
+  } else if (event.type === _mapbrowsereventtype_js__WEBPACK_IMPORTED_MODULE_2__["default"].POINTERMOVE) {
+    pass = this.handlePointerMove_(event);
+  } else if (event.type === _mapbrowsereventtype_js__WEBPACK_IMPORTED_MODULE_2__["default"].DBLCLICK) {
+    pass = false;
+  }
+  return _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_19__["default"].handleEvent.call(this, event) && pass;
+};
+
+
+/**
+ * @param {ol.MapBrowserPointerEvent} event Event.
+ * @return {boolean} Start drag sequence?
+ * @this {ol.interaction.Draw}
+ * @private
+ */
+_ol_interaction_Draw_.handleDownEvent_ = function(event) {
+  this.shouldHandle_ = !this.freehand_;
+
+  if (this.freehand_) {
+    this.downPx_ = event.pixel;
+    if (!this.finishCoordinate_) {
+      this.startDrawing_(event);
+    }
+    return true;
+  } else if (this.condition_(event)) {
+    this.downPx_ = event.pixel;
+    return true;
+  } else {
+    return false;
+  }
+};
+
+
+/**
+ * @param {ol.MapBrowserPointerEvent} event Event.
+ * @return {boolean} Stop drag sequence?
+ * @this {ol.interaction.Draw}
+ * @private
+ */
+_ol_interaction_Draw_.handleUpEvent_ = function(event) {
+  var pass = true;
+
+  this.handlePointerMove_(event);
+
+  var circleMode = this.mode_ === _ol_interaction_Draw_.Mode_.CIRCLE;
+
+  if (this.shouldHandle_) {
+    if (!this.finishCoordinate_) {
+      this.startDrawing_(event);
+      if (this.mode_ === _ol_interaction_Draw_.Mode_.POINT) {
+        this.finishDrawing();
+      }
+    } else if (this.freehand_ || circleMode) {
+      this.finishDrawing();
+    } else if (this.atFinish_(event)) {
+      if (this.finishCondition_(event)) {
+        this.finishDrawing();
+      }
+    } else {
+      this.addToDrawing_(event);
+    }
+    pass = false;
+  } else if (this.freehand_) {
+    this.finishCoordinate_ = null;
+    this.abortDrawing_();
+  }
+  if (!pass && this.stopClick_) {
+    event.stopPropagation();
+  }
+  return pass;
+};
+
+
+/**
+ * Handle move events.
+ * @param {ol.MapBrowserEvent} event A move event.
+ * @return {boolean} Pass the event to other interactions.
+ * @private
+ */
+_ol_interaction_Draw_.prototype.handlePointerMove_ = function(event) {
+  if (this.downPx_ &&
+      ((!this.freehand_ && this.shouldHandle_) ||
+      (this.freehand_ && !this.shouldHandle_))) {
+    var downPx = this.downPx_;
+    var clickPx = event.pixel;
+    var dx = downPx[0] - clickPx[0];
+    var dy = downPx[1] - clickPx[1];
+    var squaredDistance = dx * dx + dy * dy;
+    this.shouldHandle_ = this.freehand_ ?
+      squaredDistance > this.squaredClickTolerance_ :
+      squaredDistance <= this.squaredClickTolerance_;
+  }
+
+  if (this.finishCoordinate_) {
+    this.modifyDrawing_(event);
+  } else {
+    this.createOrUpdateSketchPoint_(event);
+  }
+  return true;
+};
+
+
+/**
+ * Determine if an event is within the snapping tolerance of the start coord.
+ * @param {ol.MapBrowserEvent} event Event.
+ * @return {boolean} The event is within the snapping tolerance of the start.
+ * @private
+ */
+_ol_interaction_Draw_.prototype.atFinish_ = function(event) {
+  var at = false;
+  if (this.sketchFeature_) {
+    var potentiallyDone = false;
+    var potentiallyFinishCoordinates = [this.finishCoordinate_];
+    if (this.mode_ === _ol_interaction_Draw_.Mode_.LINE_STRING) {
+      potentiallyDone = this.sketchCoords_.length > this.minPoints_;
+    } else if (this.mode_ === _ol_interaction_Draw_.Mode_.POLYGON) {
+      potentiallyDone = this.sketchCoords_[0].length >
+          this.minPoints_;
+      potentiallyFinishCoordinates = [this.sketchCoords_[0][0],
+        this.sketchCoords_[0][this.sketchCoords_[0].length - 2]];
+    }
+    if (potentiallyDone) {
+      var map = event.map;
+      for (var i = 0, ii = potentiallyFinishCoordinates.length; i < ii; i++) {
+        var finishCoordinate = potentiallyFinishCoordinates[i];
+        var finishPixel = map.getPixelFromCoordinate(finishCoordinate);
+        var pixel = event.pixel;
+        var dx = pixel[0] - finishPixel[0];
+        var dy = pixel[1] - finishPixel[1];
+        var snapTolerance = this.freehand_ ? 1 : this.snapTolerance_;
+        at = Math.sqrt(dx * dx + dy * dy) <= snapTolerance;
+        if (at) {
+          this.finishCoordinate_ = finishCoordinate;
+          break;
+        }
+      }
+    }
+  }
+  return at;
+};
+
+
+/**
+ * @param {ol.MapBrowserEvent} event Event.
+ * @private
+ */
+_ol_interaction_Draw_.prototype.createOrUpdateSketchPoint_ = function(event) {
+  var coordinates = event.coordinate.slice();
+  if (!this.sketchPoint_) {
+    this.sketchPoint_ = new _feature_js__WEBPACK_IMPORTED_MODULE_1__["default"](new _geom_point_js__WEBPACK_IMPORTED_MODULE_16__["default"](coordinates));
+    this.updateSketchFeatures_();
+  } else {
+    var sketchPointGeom = /** @type {ol.geom.Point} */ (this.sketchPoint_.getGeometry());
+    sketchPointGeom.setCoordinates(coordinates);
+  }
+};
+
+
+/**
+ * Start the drawing.
+ * @param {ol.MapBrowserEvent} event Event.
+ * @private
+ */
+_ol_interaction_Draw_.prototype.startDrawing_ = function(event) {
+  var start = event.coordinate;
+  this.finishCoordinate_ = start;
+  if (this.mode_ === _ol_interaction_Draw_.Mode_.POINT) {
+    this.sketchCoords_ = start.slice();
+  } else if (this.mode_ === _ol_interaction_Draw_.Mode_.POLYGON) {
+    this.sketchCoords_ = [[start.slice(), start.slice()]];
+    this.sketchLineCoords_ = this.sketchCoords_[0];
+  } else {
+    this.sketchCoords_ = [start.slice(), start.slice()];
+    if (this.mode_ === _ol_interaction_Draw_.Mode_.CIRCLE) {
+      this.sketchLineCoords_ = this.sketchCoords_;
+    }
+  }
+  if (this.sketchLineCoords_) {
+    this.sketchLine_ = new _feature_js__WEBPACK_IMPORTED_MODULE_1__["default"](
+        new _geom_linestring_js__WEBPACK_IMPORTED_MODULE_12__["default"](this.sketchLineCoords_));
+  }
+  var geometry = this.geometryFunction_(this.sketchCoords_);
+  this.sketchFeature_ = new _feature_js__WEBPACK_IMPORTED_MODULE_1__["default"]();
+  if (this.geometryName_) {
+    this.sketchFeature_.setGeometryName(this.geometryName_);
+  }
+  this.sketchFeature_.setGeometry(geometry);
+  this.updateSketchFeatures_();
+  this.dispatchEvent(new _ol_interaction_Draw_.Event(
+      _interaction_draweventtype_js__WEBPACK_IMPORTED_MODULE_18__["default"].DRAWSTART, this.sketchFeature_));
+};
+
+
+/**
+ * Modify the drawing.
+ * @param {ol.MapBrowserEvent} event Event.
+ * @private
+ */
+_ol_interaction_Draw_.prototype.modifyDrawing_ = function(event) {
+  var coordinate = event.coordinate;
+  var geometry = /** @type {ol.geom.SimpleGeometry} */ (this.sketchFeature_.getGeometry());
+  var coordinates, last;
+  if (this.mode_ === _ol_interaction_Draw_.Mode_.POINT) {
+    last = this.sketchCoords_;
+  } else if (this.mode_ === _ol_interaction_Draw_.Mode_.POLYGON) {
+    coordinates = this.sketchCoords_[0];
+    last = coordinates[coordinates.length - 1];
+    if (this.atFinish_(event)) {
+      // snap to finish
+      coordinate = this.finishCoordinate_.slice();
+    }
+  } else {
+    coordinates = this.sketchCoords_;
+    last = coordinates[coordinates.length - 1];
+  }
+  last[0] = coordinate[0];
+  last[1] = coordinate[1];
+  this.geometryFunction_(/** @type {!Array.<ol.Coordinate>} */ (this.sketchCoords_), geometry);
+  if (this.sketchPoint_) {
+    var sketchPointGeom = /** @type {ol.geom.Point} */ (this.sketchPoint_.getGeometry());
+    sketchPointGeom.setCoordinates(coordinate);
+  }
+  var sketchLineGeom;
+  if (geometry instanceof _geom_polygon_js__WEBPACK_IMPORTED_MODULE_17__["default"] &&
+      this.mode_ !== _ol_interaction_Draw_.Mode_.POLYGON) {
+    if (!this.sketchLine_) {
+      this.sketchLine_ = new _feature_js__WEBPACK_IMPORTED_MODULE_1__["default"](new _geom_linestring_js__WEBPACK_IMPORTED_MODULE_12__["default"](null));
+    }
+    var ring = geometry.getLinearRing(0);
+    sketchLineGeom = /** @type {ol.geom.LineString} */ (this.sketchLine_.getGeometry());
+    sketchLineGeom.setFlatCoordinates(
+        ring.getLayout(), ring.getFlatCoordinates());
+  } else if (this.sketchLineCoords_) {
+    sketchLineGeom = /** @type {ol.geom.LineString} */ (this.sketchLine_.getGeometry());
+    sketchLineGeom.setCoordinates(this.sketchLineCoords_);
+  }
+  this.updateSketchFeatures_();
+};
+
+
+/**
+ * Add a new coordinate to the drawing.
+ * @param {ol.MapBrowserEvent} event Event.
+ * @private
+ */
+_ol_interaction_Draw_.prototype.addToDrawing_ = function(event) {
+  var coordinate = event.coordinate;
+  var geometry = /** @type {ol.geom.SimpleGeometry} */ (this.sketchFeature_.getGeometry());
+  var done;
+  var coordinates;
+  if (this.mode_ === _ol_interaction_Draw_.Mode_.LINE_STRING) {
+    this.finishCoordinate_ = coordinate.slice();
+    coordinates = this.sketchCoords_;
+    if (coordinates.length >= this.maxPoints_) {
+      if (this.freehand_) {
+        coordinates.pop();
+      } else {
+        done = true;
+      }
+    }
+    coordinates.push(coordinate.slice());
+    this.geometryFunction_(coordinates, geometry);
+  } else if (this.mode_ === _ol_interaction_Draw_.Mode_.POLYGON) {
+    coordinates = this.sketchCoords_[0];
+    if (coordinates.length >= this.maxPoints_) {
+      if (this.freehand_) {
+        coordinates.pop();
+      } else {
+        done = true;
+      }
+    }
+    coordinates.push(coordinate.slice());
+    if (done) {
+      this.finishCoordinate_ = coordinates[0];
+    }
+    this.geometryFunction_(this.sketchCoords_, geometry);
+  }
+  this.updateSketchFeatures_();
+  if (done) {
+    this.finishDrawing();
+  }
+};
+
+
+/**
+ * Remove last point of the feature currently being drawn.
+ * @api
+ */
+_ol_interaction_Draw_.prototype.removeLastPoint = function() {
+  if (!this.sketchFeature_) {
+    return;
+  }
+  var geometry = /** @type {ol.geom.SimpleGeometry} */ (this.sketchFeature_.getGeometry());
+  var coordinates, sketchLineGeom;
+  if (this.mode_ === _ol_interaction_Draw_.Mode_.LINE_STRING) {
+    coordinates = this.sketchCoords_;
+    coordinates.splice(-2, 1);
+    this.geometryFunction_(coordinates, geometry);
+    if (coordinates.length >= 2) {
+      this.finishCoordinate_ = coordinates[coordinates.length - 2].slice();
+    }
+  } else if (this.mode_ === _ol_interaction_Draw_.Mode_.POLYGON) {
+    coordinates = this.sketchCoords_[0];
+    coordinates.splice(-2, 1);
+    sketchLineGeom = /** @type {ol.geom.LineString} */ (this.sketchLine_.getGeometry());
+    sketchLineGeom.setCoordinates(coordinates);
+    this.geometryFunction_(this.sketchCoords_, geometry);
+  }
+
+  if (coordinates.length === 0) {
+    this.finishCoordinate_ = null;
+  }
+
+  this.updateSketchFeatures_();
+};
+
+
+/**
+ * Stop drawing and add the sketch feature to the target layer.
+ * The {@link ol.interaction.DrawEventType.DRAWEND} event is dispatched before
+ * inserting the feature.
+ * @api
+ */
+_ol_interaction_Draw_.prototype.finishDrawing = function() {
+  var sketchFeature = this.abortDrawing_();
+  var coordinates = this.sketchCoords_;
+  var geometry = /** @type {ol.geom.SimpleGeometry} */ (sketchFeature.getGeometry());
+  if (this.mode_ === _ol_interaction_Draw_.Mode_.LINE_STRING) {
+    // remove the redundant last point
+    coordinates.pop();
+    this.geometryFunction_(coordinates, geometry);
+  } else if (this.mode_ === _ol_interaction_Draw_.Mode_.POLYGON) {
+    // remove the redundant last point in ring
+    coordinates[0].pop();
+    this.geometryFunction_(coordinates, geometry);
+    coordinates = geometry.getCoordinates();
+  }
+
+  // cast multi-part geometries
+  if (this.type_ === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_11__["default"].MULTI_POINT) {
+    sketchFeature.setGeometry(new _geom_multipoint_js__WEBPACK_IMPORTED_MODULE_14__["default"]([coordinates]));
+  } else if (this.type_ === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_11__["default"].MULTI_LINE_STRING) {
+    sketchFeature.setGeometry(new _geom_multilinestring_js__WEBPACK_IMPORTED_MODULE_13__["default"]([coordinates]));
+  } else if (this.type_ === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_11__["default"].MULTI_POLYGON) {
+    sketchFeature.setGeometry(new _geom_multipolygon_js__WEBPACK_IMPORTED_MODULE_15__["default"]([coordinates]));
+  }
+
+  // First dispatch event to allow full set up of feature
+  this.dispatchEvent(new _ol_interaction_Draw_.Event(
+      _interaction_draweventtype_js__WEBPACK_IMPORTED_MODULE_18__["default"].DRAWEND, sketchFeature));
+
+  // Then insert feature
+  if (this.features_) {
+    this.features_.push(sketchFeature);
+  }
+  if (this.source_) {
+    this.source_.addFeature(sketchFeature);
+  }
+};
+
+
+/**
+ * Stop drawing without adding the sketch feature to the target layer.
+ * @return {ol.Feature} The sketch feature (or null if none).
+ * @private
+ */
+_ol_interaction_Draw_.prototype.abortDrawing_ = function() {
+  this.finishCoordinate_ = null;
+  var sketchFeature = this.sketchFeature_;
+  if (sketchFeature) {
+    this.sketchFeature_ = null;
+    this.sketchPoint_ = null;
+    this.sketchLine_ = null;
+    this.overlay_.getSource().clear(true);
+  }
+  return sketchFeature;
+};
+
+
+/**
+ * Extend an existing geometry by adding additional points. This only works
+ * on features with `LineString` geometries, where the interaction will
+ * extend lines by adding points to the end of the coordinates array.
+ * @param {!ol.Feature} feature Feature to be extended.
+ * @api
+ */
+_ol_interaction_Draw_.prototype.extend = function(feature) {
+  var geometry = feature.getGeometry();
+  var lineString = /** @type {ol.geom.LineString} */ (geometry);
+  this.sketchFeature_ = feature;
+  this.sketchCoords_ = lineString.getCoordinates();
+  var last = this.sketchCoords_[this.sketchCoords_.length - 1];
+  this.finishCoordinate_ = last.slice();
+  this.sketchCoords_.push(last.slice());
+  this.updateSketchFeatures_();
+  this.dispatchEvent(new _ol_interaction_Draw_.Event(
+      _interaction_draweventtype_js__WEBPACK_IMPORTED_MODULE_18__["default"].DRAWSTART, this.sketchFeature_));
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_interaction_Draw_.prototype.shouldStopEvent = _functions_js__WEBPACK_IMPORTED_MODULE_9__["default"].FALSE;
+
+
+/**
+ * Redraw the sketch features.
+ * @private
+ */
+_ol_interaction_Draw_.prototype.updateSketchFeatures_ = function() {
+  var sketchFeatures = [];
+  if (this.sketchFeature_) {
+    sketchFeatures.push(this.sketchFeature_);
+  }
+  if (this.sketchLine_) {
+    sketchFeatures.push(this.sketchLine_);
+  }
+  if (this.sketchPoint_) {
+    sketchFeatures.push(this.sketchPoint_);
+  }
+  var overlaySource = this.overlay_.getSource();
+  overlaySource.clear(true);
+  overlaySource.addFeatures(sketchFeatures);
+};
+
+
+/**
+ * @private
+ */
+_ol_interaction_Draw_.prototype.updateState_ = function() {
+  var map = this.getMap();
+  var active = this.getActive();
+  if (!map || !active) {
+    this.abortDrawing_();
+  }
+  this.overlay_.setMap(active ? map : null);
+};
+
+
+/**
+ * Create a `geometryFunction` for `type: 'Circle'` that will create a regular
+ * polygon with a user specified number of sides and start angle instead of an
+ * `ol.geom.Circle` geometry.
+ * @param {number=} opt_sides Number of sides of the regular polygon. Default is
+ *     32.
+ * @param {number=} opt_angle Angle of the first point in radians. 0 means East.
+ *     Default is the angle defined by the heading from the center of the
+ *     regular polygon to the current pointer position.
+ * @return {ol.DrawGeometryFunctionType} Function that draws a
+ *     polygon.
+ * @api
+ */
+_ol_interaction_Draw_.createRegularPolygon = function(opt_sides, opt_angle) {
+  return (
+    /**
+         * @param {ol.Coordinate|Array.<ol.Coordinate>|Array.<Array.<ol.Coordinate>>} coordinates
+         * @param {ol.geom.SimpleGeometry=} opt_geometry
+         * @return {ol.geom.SimpleGeometry}
+         */
+    function(coordinates, opt_geometry) {
+      var center = coordinates[0];
+      var end = coordinates[1];
+      var radius = Math.sqrt(
+          _coordinate_js__WEBPACK_IMPORTED_MODULE_4__["default"].squaredDistance(center, end));
+      var geometry = opt_geometry ? /** @type {ol.geom.Polygon} */ (opt_geometry) :
+        _geom_polygon_js__WEBPACK_IMPORTED_MODULE_17__["default"].fromCircle(new _geom_circle_js__WEBPACK_IMPORTED_MODULE_10__["default"](center), opt_sides);
+      var angle = opt_angle ? opt_angle :
+        Math.atan((end[1] - center[1]) / (end[0] - center[0]));
+      _geom_polygon_js__WEBPACK_IMPORTED_MODULE_17__["default"].makeRegular(geometry, center, radius, angle);
+      return geometry;
+    }
+  );
+};
+
+
+/**
+ * Create a `geometryFunction` that will create a box-shaped polygon (aligned
+ * with the coordinate system axes).  Use this with the draw interaction and
+ * `type: 'Circle'` to return a box instead of a circle geometry.
+ * @return {ol.DrawGeometryFunctionType} Function that draws a box-shaped polygon.
+ * @api
+ */
+_ol_interaction_Draw_.createBox = function() {
+  return (
+    /**
+     * @param {Array.<ol.Coordinate>} coordinates
+     * @param {ol.geom.SimpleGeometry=} opt_geometry
+     * @return {ol.geom.SimpleGeometry}
+     */
+    function(coordinates, opt_geometry) {
+      var extent = _extent_js__WEBPACK_IMPORTED_MODULE_8__["default"].boundingExtent(coordinates);
+      var geometry = opt_geometry || new _geom_polygon_js__WEBPACK_IMPORTED_MODULE_17__["default"](null);
+      geometry.setCoordinates([[
+        _extent_js__WEBPACK_IMPORTED_MODULE_8__["default"].getBottomLeft(extent),
+        _extent_js__WEBPACK_IMPORTED_MODULE_8__["default"].getBottomRight(extent),
+        _extent_js__WEBPACK_IMPORTED_MODULE_8__["default"].getTopRight(extent),
+        _extent_js__WEBPACK_IMPORTED_MODULE_8__["default"].getTopLeft(extent),
+        _extent_js__WEBPACK_IMPORTED_MODULE_8__["default"].getBottomLeft(extent)
+      ]]);
+      return geometry;
+    }
+  );
+};
+
+
+/**
+ * Get the drawing mode.  The mode for mult-part geometries is the same as for
+ * their single-part cousins.
+ * @param {ol.geom.GeometryType} type Geometry type.
+ * @return {ol.interaction.Draw.Mode_} Drawing mode.
+ * @private
+ */
+_ol_interaction_Draw_.getMode_ = function(type) {
+  var mode;
+  if (type === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_11__["default"].POINT ||
+      type === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_11__["default"].MULTI_POINT) {
+    mode = _ol_interaction_Draw_.Mode_.POINT;
+  } else if (type === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_11__["default"].LINE_STRING ||
+      type === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_11__["default"].MULTI_LINE_STRING) {
+    mode = _ol_interaction_Draw_.Mode_.LINE_STRING;
+  } else if (type === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_11__["default"].POLYGON ||
+      type === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_11__["default"].MULTI_POLYGON) {
+    mode = _ol_interaction_Draw_.Mode_.POLYGON;
+  } else if (type === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_11__["default"].CIRCLE) {
+    mode = _ol_interaction_Draw_.Mode_.CIRCLE;
+  }
+  return /** @type {!ol.interaction.Draw.Mode_} */ (mode);
+};
+
+
+/**
+ * Draw mode.  This collapses multi-part geometry types with their single-part
+ * cousins.
+ * @enum {string}
+ * @private
+ */
+_ol_interaction_Draw_.Mode_ = {
+  POINT: 'Point',
+  LINE_STRING: 'LineString',
+  POLYGON: 'Polygon',
+  CIRCLE: 'Circle'
+};
+
+/**
+ * @classdesc
+ * Events emitted by {@link ol.interaction.Draw} instances are instances of
+ * this type.
+ *
+ * @constructor
+ * @extends {ol.events.Event}
+ * @implements {oli.DrawEvent}
+ * @param {ol.interaction.DrawEventType} type Type.
+ * @param {ol.Feature} feature The feature drawn.
+ */
+_ol_interaction_Draw_.Event = function(type, feature) {
+
+  _events_event_js__WEBPACK_IMPORTED_MODULE_6__["default"].call(this, type);
+
+  /**
+   * The feature being drawn.
+   * @type {ol.Feature}
+   * @api
+   */
+  this.feature = feature;
+
+};
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_interaction_Draw_.Event, _events_event_js__WEBPACK_IMPORTED_MODULE_6__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (_ol_interaction_Draw_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/interaction/draweventtype.js":
+/*!******************************************************!*\
+  !*** ./node_modules/ol/interaction/draweventtype.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**
+ * @enum {string}
+ */
+var _ol_interaction_DrawEventType_ = {
+  /**
+   * Triggered upon feature draw start
+   * @event ol.interaction.Draw.Event#drawstart
+   * @api
+   */
+  DRAWSTART: 'drawstart',
+  /**
+   * Triggered upon feature draw end
+   * @event ol.interaction.Draw.Event#drawend
+   * @api
+   */
+  DRAWEND: 'drawend'
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (_ol_interaction_DrawEventType_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/interaction/extent.js":
+/*!***********************************************!*\
+  !*** ./node_modules/ol/interaction/extent.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _feature_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../feature.js */ "./node_modules/ol/feature.js");
+/* harmony import */ var _mapbrowsereventtype_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mapbrowsereventtype.js */ "./node_modules/ol/mapbrowsereventtype.js");
+/* harmony import */ var _mapbrowserpointerevent_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mapbrowserpointerevent.js */ "./node_modules/ol/mapbrowserpointerevent.js");
+/* harmony import */ var _coordinate_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../coordinate.js */ "./node_modules/ol/coordinate.js");
+/* harmony import */ var _events_event_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../events/event.js */ "./node_modules/ol/events/event.js");
+/* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../extent.js */ "./node_modules/ol/extent.js");
+/* harmony import */ var _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../geom/geometrytype.js */ "./node_modules/ol/geom/geometrytype.js");
+/* harmony import */ var _geom_point_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../geom/point.js */ "./node_modules/ol/geom/point.js");
+/* harmony import */ var _geom_polygon_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../geom/polygon.js */ "./node_modules/ol/geom/polygon.js");
+/* harmony import */ var _interaction_extenteventtype_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../interaction/extenteventtype.js */ "./node_modules/ol/interaction/extenteventtype.js");
+/* harmony import */ var _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../interaction/pointer.js */ "./node_modules/ol/interaction/pointer.js");
+/* harmony import */ var _layer_vector_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../layer/vector.js */ "./node_modules/ol/layer/vector.js");
+/* harmony import */ var _source_vector_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../source/vector.js */ "./node_modules/ol/source/vector.js");
+/* harmony import */ var _style_style_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../style/style.js */ "./node_modules/ol/style/style.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * Allows the user to draw a vector box by clicking and dragging on the map.
+ * Once drawn, the vector box can be modified by dragging its vertices or edges.
+ * This interaction is only supported for mouse devices.
+ *
+ * @constructor
+ * @extends {ol.interaction.Pointer}
+ * @fires ol.interaction.Extent.Event
+ * @param {olx.interaction.ExtentOptions=} opt_options Options.
+ * @api
+ */
+var _ol_interaction_Extent_ = function(opt_options) {
+
+  var options = opt_options || {};
+
+  /**
+   * Extent of the drawn box
+   * @type {ol.Extent}
+   * @private
+   */
+  this.extent_ = null;
+
+  /**
+   * Handler for pointer move events
+   * @type {function (ol.Coordinate): ol.Extent|null}
+   * @private
+   */
+  this.pointerHandler_ = null;
+
+  /**
+   * Pixel threshold to snap to extent
+   * @type {number}
+   * @private
+   */
+  this.pixelTolerance_ = options.pixelTolerance !== undefined ?
+    options.pixelTolerance : 10;
+
+  /**
+   * Is the pointer snapped to an extent vertex
+   * @type {boolean}
+   * @private
+   */
+  this.snappedToVertex_ = false;
+
+  /**
+   * Feature for displaying the visible extent
+   * @type {ol.Feature}
+   * @private
+   */
+  this.extentFeature_ = null;
+
+  /**
+   * Feature for displaying the visible pointer
+   * @type {ol.Feature}
+   * @private
+   */
+  this.vertexFeature_ = null;
+
+  if (!opt_options) {
+    opt_options = {};
+  }
+
+  /* Inherit ol.interaction.Pointer */
+  _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_11__["default"].call(this, {
+    handleDownEvent: _ol_interaction_Extent_.handleDownEvent_,
+    handleDragEvent: _ol_interaction_Extent_.handleDragEvent_,
+    handleEvent: _ol_interaction_Extent_.handleEvent_,
+    handleUpEvent: _ol_interaction_Extent_.handleUpEvent_
+  });
+
+  /**
+   * Layer for the extentFeature
+   * @type {ol.layer.Vector}
+   * @private
+   */
+  this.extentOverlay_ = new _layer_vector_js__WEBPACK_IMPORTED_MODULE_12__["default"]({
+    source: new _source_vector_js__WEBPACK_IMPORTED_MODULE_13__["default"]({
+      useSpatialIndex: false,
+      wrapX: !!opt_options.wrapX
+    }),
+    style: opt_options.boxStyle ? opt_options.boxStyle : _ol_interaction_Extent_.getDefaultExtentStyleFunction_(),
+    updateWhileAnimating: true,
+    updateWhileInteracting: true
+  });
+
+  /**
+   * Layer for the vertexFeature
+   * @type {ol.layer.Vector}
+   * @private
+   */
+  this.vertexOverlay_ = new _layer_vector_js__WEBPACK_IMPORTED_MODULE_12__["default"]({
+    source: new _source_vector_js__WEBPACK_IMPORTED_MODULE_13__["default"]({
+      useSpatialIndex: false,
+      wrapX: !!opt_options.wrapX
+    }),
+    style: opt_options.pointerStyle ? opt_options.pointerStyle : _ol_interaction_Extent_.getDefaultPointerStyleFunction_(),
+    updateWhileAnimating: true,
+    updateWhileInteracting: true
+  });
+
+  if (opt_options.extent) {
+    this.setExtent(opt_options.extent);
+  }
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_interaction_Extent_, _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_11__["default"]);
+
+/**
+ * @param {ol.MapBrowserEvent} mapBrowserEvent Event.
+ * @return {boolean} Propagate event?
+ * @this {ol.interaction.Extent}
+ * @private
+ */
+_ol_interaction_Extent_.handleEvent_ = function(mapBrowserEvent) {
+  if (!(mapBrowserEvent instanceof _mapbrowserpointerevent_js__WEBPACK_IMPORTED_MODULE_3__["default"])) {
+    return true;
+  }
+  //display pointer (if not dragging)
+  if (mapBrowserEvent.type == _mapbrowsereventtype_js__WEBPACK_IMPORTED_MODULE_2__["default"].POINTERMOVE && !this.handlingDownUpSequence) {
+    this.handlePointerMove_(mapBrowserEvent);
+  }
+  //call pointer to determine up/down/drag
+  _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_11__["default"].handleEvent.call(this, mapBrowserEvent);
+  //return false to stop propagation
+  return false;
+};
+
+/**
+ * @param {ol.MapBrowserPointerEvent} mapBrowserEvent Event.
+ * @return {boolean} Event handled?
+ * @this {ol.interaction.Extent}
+ * @private
+ */
+_ol_interaction_Extent_.handleDownEvent_ = function(mapBrowserEvent) {
+  var pixel = mapBrowserEvent.pixel;
+  var map = mapBrowserEvent.map;
+
+  var extent = this.getExtent();
+  var vertex = this.snapToVertex_(pixel, map);
+
+  //find the extent corner opposite the passed corner
+  var getOpposingPoint = function(point) {
+    var x_ = null;
+    var y_ = null;
+    if (point[0] == extent[0]) {
+      x_ = extent[2];
+    } else if (point[0] == extent[2]) {
+      x_ = extent[0];
+    }
+    if (point[1] == extent[1]) {
+      y_ = extent[3];
+    } else if (point[1] == extent[3]) {
+      y_ = extent[1];
+    }
+    if (x_ !== null && y_ !== null) {
+      return [x_, y_];
+    }
+    return null;
+  };
+  if (vertex && extent) {
+    var x = (vertex[0] == extent[0] || vertex[0] == extent[2]) ? vertex[0] : null;
+    var y = (vertex[1] == extent[1] || vertex[1] == extent[3]) ? vertex[1] : null;
+
+    //snap to point
+    if (x !== null && y !== null) {
+      this.pointerHandler_ = _ol_interaction_Extent_.getPointHandler_(getOpposingPoint(vertex));
+    //snap to edge
+    } else if (x !== null) {
+      this.pointerHandler_ = _ol_interaction_Extent_.getEdgeHandler_(
+          getOpposingPoint([x, extent[1]]),
+          getOpposingPoint([x, extent[3]])
+      );
+    } else if (y !== null) {
+      this.pointerHandler_ = _ol_interaction_Extent_.getEdgeHandler_(
+          getOpposingPoint([extent[0], y]),
+          getOpposingPoint([extent[2], y])
+      );
+    }
+  //no snap - new bbox
+  } else {
+    vertex = map.getCoordinateFromPixel(pixel);
+    this.setExtent([vertex[0], vertex[1], vertex[0], vertex[1]]);
+    this.pointerHandler_ = _ol_interaction_Extent_.getPointHandler_(vertex);
+  }
+  return true; //event handled; start downup sequence
+};
+
+/**
+ * @param {ol.MapBrowserPointerEvent} mapBrowserEvent Event.
+ * @return {boolean} Event handled?
+ * @this {ol.interaction.Extent}
+ * @private
+ */
+_ol_interaction_Extent_.handleDragEvent_ = function(mapBrowserEvent) {
+  if (this.pointerHandler_) {
+    var pixelCoordinate = mapBrowserEvent.coordinate;
+    this.setExtent(this.pointerHandler_(pixelCoordinate));
+    this.createOrUpdatePointerFeature_(pixelCoordinate);
+  }
+  return true;
+};
+
+/**
+ * @param {ol.MapBrowserPointerEvent} mapBrowserEvent Event.
+ * @return {boolean} Stop drag sequence?
+ * @this {ol.interaction.Extent}
+ * @private
+ */
+_ol_interaction_Extent_.handleUpEvent_ = function(mapBrowserEvent) {
+  this.pointerHandler_ = null;
+  //If bbox is zero area, set to null;
+  var extent = this.getExtent();
+  if (!extent || _extent_js__WEBPACK_IMPORTED_MODULE_6__["default"].getArea(extent) === 0) {
+    this.setExtent(null);
+  }
+  return false; //Stop handling downup sequence
+};
+
+/**
+ * Returns the default style for the drawn bbox
+ *
+ * @return {ol.StyleFunction} Default Extent style
+ * @private
+ */
+_ol_interaction_Extent_.getDefaultExtentStyleFunction_ = function() {
+  var style = _style_style_js__WEBPACK_IMPORTED_MODULE_14__["default"].createDefaultEditing();
+  return function(feature, resolution) {
+    return style[_geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_7__["default"].POLYGON];
+  };
+};
+
+/**
+ * Returns the default style for the pointer
+ *
+ * @return {ol.StyleFunction} Default pointer style
+ * @private
+ */
+_ol_interaction_Extent_.getDefaultPointerStyleFunction_ = function() {
+  var style = _style_style_js__WEBPACK_IMPORTED_MODULE_14__["default"].createDefaultEditing();
+  return function(feature, resolution) {
+    return style[_geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_7__["default"].POINT];
+  };
+};
+
+/**
+ * @param {ol.Coordinate} fixedPoint corner that will be unchanged in the new extent
+ * @returns {function (ol.Coordinate): ol.Extent} event handler
+ * @private
+ */
+_ol_interaction_Extent_.getPointHandler_ = function(fixedPoint) {
+  return function(point) {
+    return _extent_js__WEBPACK_IMPORTED_MODULE_6__["default"].boundingExtent([fixedPoint, point]);
+  };
+};
+
+/**
+ * @param {ol.Coordinate} fixedP1 first corner that will be unchanged in the new extent
+ * @param {ol.Coordinate} fixedP2 second corner that will be unchanged in the new extent
+ * @returns {function (ol.Coordinate): ol.Extent|null} event handler
+ * @private
+ */
+_ol_interaction_Extent_.getEdgeHandler_ = function(fixedP1, fixedP2) {
+  if (fixedP1[0] == fixedP2[0]) {
+    return function(point) {
+      return _extent_js__WEBPACK_IMPORTED_MODULE_6__["default"].boundingExtent([fixedP1, [point[0], fixedP2[1]]]);
+    };
+  } else if (fixedP1[1] == fixedP2[1]) {
+    return function(point) {
+      return _extent_js__WEBPACK_IMPORTED_MODULE_6__["default"].boundingExtent([fixedP1, [fixedP2[0], point[1]]]);
+    };
+  } else {
+    return null;
+  }
+};
+
+/**
+ * @param {ol.Extent} extent extent
+ * @returns {Array<Array<ol.Coordinate>>} extent line segments
+ * @private
+ */
+_ol_interaction_Extent_.getSegments_ = function(extent) {
+  return [
+    [[extent[0], extent[1]], [extent[0], extent[3]]],
+    [[extent[0], extent[3]], [extent[2], extent[3]]],
+    [[extent[2], extent[3]], [extent[2], extent[1]]],
+    [[extent[2], extent[1]], [extent[0], extent[1]]]
+  ];
+};
+
+/**
+ * @param {ol.Pixel} pixel cursor location
+ * @param {ol.PluggableMap} map map
+ * @returns {ol.Coordinate|null} snapped vertex on extent
+ * @private
+ */
+_ol_interaction_Extent_.prototype.snapToVertex_ = function(pixel, map) {
+  var pixelCoordinate = map.getCoordinateFromPixel(pixel);
+  var sortByDistance = function(a, b) {
+    return _coordinate_js__WEBPACK_IMPORTED_MODULE_4__["default"].squaredDistanceToSegment(pixelCoordinate, a) -
+        _coordinate_js__WEBPACK_IMPORTED_MODULE_4__["default"].squaredDistanceToSegment(pixelCoordinate, b);
+  };
+  var extent = this.getExtent();
+  if (extent) {
+    //convert extents to line segments and find the segment closest to pixelCoordinate
+    var segments = _ol_interaction_Extent_.getSegments_(extent);
+    segments.sort(sortByDistance);
+    var closestSegment = segments[0];
+
+    var vertex = (_coordinate_js__WEBPACK_IMPORTED_MODULE_4__["default"].closestOnSegment(pixelCoordinate,
+        closestSegment));
+    var vertexPixel = map.getPixelFromCoordinate(vertex);
+
+    //if the distance is within tolerance, snap to the segment
+    if (_coordinate_js__WEBPACK_IMPORTED_MODULE_4__["default"].distance(pixel, vertexPixel) <= this.pixelTolerance_) {
+      //test if we should further snap to a vertex
+      var pixel1 = map.getPixelFromCoordinate(closestSegment[0]);
+      var pixel2 = map.getPixelFromCoordinate(closestSegment[1]);
+      var squaredDist1 = _coordinate_js__WEBPACK_IMPORTED_MODULE_4__["default"].squaredDistance(vertexPixel, pixel1);
+      var squaredDist2 = _coordinate_js__WEBPACK_IMPORTED_MODULE_4__["default"].squaredDistance(vertexPixel, pixel2);
+      var dist = Math.sqrt(Math.min(squaredDist1, squaredDist2));
+      this.snappedToVertex_ = dist <= this.pixelTolerance_;
+      if (this.snappedToVertex_) {
+        vertex = squaredDist1 > squaredDist2 ?
+          closestSegment[1] : closestSegment[0];
+      }
+      return vertex;
+    }
+  }
+  return null;
+};
+
+/**
+ * @param {ol.MapBrowserEvent} mapBrowserEvent pointer move event
+ * @private
+ */
+_ol_interaction_Extent_.prototype.handlePointerMove_ = function(mapBrowserEvent) {
+  var pixel = mapBrowserEvent.pixel;
+  var map = mapBrowserEvent.map;
+
+  var vertex = this.snapToVertex_(pixel, map);
+  if (!vertex) {
+    vertex = map.getCoordinateFromPixel(pixel);
+  }
+  this.createOrUpdatePointerFeature_(vertex);
+};
+
+/**
+ * @param {ol.Extent} extent extent
+ * @returns {ol.Feature} extent as featrue
+ * @private
+ */
+_ol_interaction_Extent_.prototype.createOrUpdateExtentFeature_ = function(extent) {
+  var extentFeature = this.extentFeature_;
+
+  if (!extentFeature) {
+    if (!extent) {
+      extentFeature = new _feature_js__WEBPACK_IMPORTED_MODULE_1__["default"]({});
+    } else {
+      extentFeature = new _feature_js__WEBPACK_IMPORTED_MODULE_1__["default"](_geom_polygon_js__WEBPACK_IMPORTED_MODULE_9__["default"].fromExtent(extent));
+    }
+    this.extentFeature_ = extentFeature;
+    this.extentOverlay_.getSource().addFeature(extentFeature);
+  } else {
+    if (!extent) {
+      extentFeature.setGeometry(undefined);
+    } else {
+      extentFeature.setGeometry(_geom_polygon_js__WEBPACK_IMPORTED_MODULE_9__["default"].fromExtent(extent));
+    }
+  }
+  return extentFeature;
+};
+
+
+/**
+ * @param {ol.Coordinate} vertex location of feature
+ * @returns {ol.Feature} vertex as feature
+ * @private
+ */
+_ol_interaction_Extent_.prototype.createOrUpdatePointerFeature_ = function(vertex) {
+  var vertexFeature = this.vertexFeature_;
+  if (!vertexFeature) {
+    vertexFeature = new _feature_js__WEBPACK_IMPORTED_MODULE_1__["default"](new _geom_point_js__WEBPACK_IMPORTED_MODULE_8__["default"](vertex));
+    this.vertexFeature_ = vertexFeature;
+    this.vertexOverlay_.getSource().addFeature(vertexFeature);
+  } else {
+    var geometry = /** @type {ol.geom.Point} */ (vertexFeature.getGeometry());
+    geometry.setCoordinates(vertex);
+  }
+  return vertexFeature;
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_interaction_Extent_.prototype.setMap = function(map) {
+  this.extentOverlay_.setMap(map);
+  this.vertexOverlay_.setMap(map);
+  _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_11__["default"].prototype.setMap.call(this, map);
+};
+
+/**
+ * Returns the current drawn extent in the view projection
+ *
+ * @return {ol.Extent} Drawn extent in the view projection.
+ * @api
+ */
+_ol_interaction_Extent_.prototype.getExtent = function() {
+  return this.extent_;
+};
+
+/**
+ * Manually sets the drawn extent, using the view projection.
+ *
+ * @param {ol.Extent} extent Extent
+ * @api
+ */
+_ol_interaction_Extent_.prototype.setExtent = function(extent) {
+  //Null extent means no bbox
+  this.extent_ = extent ? extent : null;
+  this.createOrUpdateExtentFeature_(extent);
+  this.dispatchEvent(new _ol_interaction_Extent_.Event(this.extent_));
+};
+
+
+/**
+ * @classdesc
+ * Events emitted by {@link ol.interaction.Extent} instances are instances of
+ * this type.
+ *
+ * @constructor
+ * @implements {oli.ExtentEvent}
+ * @param {ol.Extent} extent the new extent
+ * @extends {ol.events.Event}
+ */
+_ol_interaction_Extent_.Event = function(extent) {
+  _events_event_js__WEBPACK_IMPORTED_MODULE_5__["default"].call(this, _interaction_extenteventtype_js__WEBPACK_IMPORTED_MODULE_10__["default"].EXTENTCHANGED);
+
+  /**
+   * The current extent.
+   * @type {ol.Extent}
+   * @api
+   */
+  this.extent = extent;
+
+};
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_interaction_Extent_.Event, _events_event_js__WEBPACK_IMPORTED_MODULE_5__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (_ol_interaction_Extent_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/interaction/extenteventtype.js":
+/*!********************************************************!*\
+  !*** ./node_modules/ol/interaction/extenteventtype.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**
+ * @enum {string}
+ */
+var _ol_interaction_ExtentEventType_ = {
+  /**
+   * Triggered after the extent is changed
+   * @event ol.interaction.Extent.Event#extentchanged
+   * @api
+   */
+  EXTENTCHANGED: 'extentchanged'
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (_ol_interaction_ExtentEventType_);
 
 
 /***/ }),
@@ -25556,6 +29745,1306 @@ _ol_interaction_KeyboardZoom_.handleEvent = function(mapBrowserEvent) {
   return !stopEvent;
 };
 /* harmony default export */ __webpack_exports__["default"] = (_ol_interaction_KeyboardZoom_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/interaction/modify.js":
+/*!***********************************************!*\
+  !*** ./node_modules/ol/interaction/modify.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _collection_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../collection.js */ "./node_modules/ol/collection.js");
+/* harmony import */ var _collectioneventtype_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../collectioneventtype.js */ "./node_modules/ol/collectioneventtype.js");
+/* harmony import */ var _feature_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../feature.js */ "./node_modules/ol/feature.js");
+/* harmony import */ var _mapbrowsereventtype_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mapbrowsereventtype.js */ "./node_modules/ol/mapbrowsereventtype.js");
+/* harmony import */ var _mapbrowserpointerevent_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mapbrowserpointerevent.js */ "./node_modules/ol/mapbrowserpointerevent.js");
+/* harmony import */ var _array_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../array.js */ "./node_modules/ol/array.js");
+/* harmony import */ var _coordinate_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../coordinate.js */ "./node_modules/ol/coordinate.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_event_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../events/event.js */ "./node_modules/ol/events/event.js");
+/* harmony import */ var _events_eventtype_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../events/eventtype.js */ "./node_modules/ol/events/eventtype.js");
+/* harmony import */ var _events_condition_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../events/condition.js */ "./node_modules/ol/events/condition.js");
+/* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../extent.js */ "./node_modules/ol/extent.js");
+/* harmony import */ var _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../geom/geometrytype.js */ "./node_modules/ol/geom/geometrytype.js");
+/* harmony import */ var _geom_point_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../geom/point.js */ "./node_modules/ol/geom/point.js");
+/* harmony import */ var _interaction_modifyeventtype_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../interaction/modifyeventtype.js */ "./node_modules/ol/interaction/modifyeventtype.js");
+/* harmony import */ var _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../interaction/pointer.js */ "./node_modules/ol/interaction/pointer.js");
+/* harmony import */ var _layer_vector_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../layer/vector.js */ "./node_modules/ol/layer/vector.js");
+/* harmony import */ var _source_vector_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../source/vector.js */ "./node_modules/ol/source/vector.js");
+/* harmony import */ var _source_vectoreventtype_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../source/vectoreventtype.js */ "./node_modules/ol/source/vectoreventtype.js");
+/* harmony import */ var _structs_rbush_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../structs/rbush.js */ "./node_modules/ol/structs/rbush.js");
+/* harmony import */ var _style_style_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../style/style.js */ "./node_modules/ol/style/style.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * Interaction for modifying feature geometries.  To modify features that have
+ * been added to an existing source, construct the modify interaction with the
+ * `source` option.  If you want to modify features in a collection (for example,
+ * the collection used by a select interaction), construct the interaction with
+ * the `features` option.  The interaction must be constructed with either a
+ * `source` or `features` option.
+ *
+ * By default, the interaction will allow deletion of vertices when the `alt`
+ * key is pressed.  To configure the interaction with a different condition
+ * for deletion, use the `deleteCondition` option.
+ *
+ * @constructor
+ * @extends {ol.interaction.Pointer}
+ * @param {olx.interaction.ModifyOptions} options Options.
+ * @fires ol.interaction.Modify.Event
+ * @api
+ */
+var _ol_interaction_Modify_ = function(options) {
+
+  _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_16__["default"].call(this, {
+    handleDownEvent: _ol_interaction_Modify_.handleDownEvent_,
+    handleDragEvent: _ol_interaction_Modify_.handleDragEvent_,
+    handleEvent: _ol_interaction_Modify_.handleEvent,
+    handleUpEvent: _ol_interaction_Modify_.handleUpEvent_
+  });
+
+  /**
+   * @private
+   * @type {ol.EventsConditionType}
+   */
+  this.condition_ = options.condition ?
+    options.condition : _events_condition_js__WEBPACK_IMPORTED_MODULE_11__["default"].primaryAction;
+
+
+  /**
+   * @private
+   * @param {ol.MapBrowserEvent} mapBrowserEvent Browser event.
+   * @return {boolean} Combined condition result.
+   */
+  this.defaultDeleteCondition_ = function(mapBrowserEvent) {
+    return _events_condition_js__WEBPACK_IMPORTED_MODULE_11__["default"].altKeyOnly(mapBrowserEvent) &&
+      _events_condition_js__WEBPACK_IMPORTED_MODULE_11__["default"].singleClick(mapBrowserEvent);
+  };
+
+  /**
+   * @type {ol.EventsConditionType}
+   * @private
+   */
+  this.deleteCondition_ = options.deleteCondition ?
+    options.deleteCondition : this.defaultDeleteCondition_;
+
+  /**
+   * @type {ol.EventsConditionType}
+   * @private
+   */
+  this.insertVertexCondition_ = options.insertVertexCondition ?
+    options.insertVertexCondition : _events_condition_js__WEBPACK_IMPORTED_MODULE_11__["default"].always;
+
+  /**
+   * Editing vertex.
+   * @type {ol.Feature}
+   * @private
+   */
+  this.vertexFeature_ = null;
+
+  /**
+   * Segments intersecting {@link this.vertexFeature_} by segment uid.
+   * @type {Object.<string, boolean>}
+   * @private
+   */
+  this.vertexSegments_ = null;
+
+  /**
+   * @type {ol.Pixel}
+   * @private
+   */
+  this.lastPixel_ = [0, 0];
+
+  /**
+   * Tracks if the next `singleclick` event should be ignored to prevent
+   * accidental deletion right after vertex creation.
+   * @type {boolean}
+   * @private
+   */
+  this.ignoreNextSingleClick_ = false;
+
+  /**
+   * @type {boolean}
+   * @private
+   */
+  this.modified_ = false;
+
+  /**
+   * Segment RTree for each layer
+   * @type {ol.structs.RBush.<ol.ModifySegmentDataType>}
+   * @private
+   */
+  this.rBush_ = new _structs_rbush_js__WEBPACK_IMPORTED_MODULE_20__["default"]();
+
+  /**
+   * @type {number}
+   * @private
+   */
+  this.pixelTolerance_ = options.pixelTolerance !== undefined ?
+    options.pixelTolerance : 10;
+
+  /**
+   * @type {boolean}
+   * @private
+   */
+  this.snappedToVertex_ = false;
+
+  /**
+   * Indicate whether the interaction is currently changing a feature's
+   * coordinates.
+   * @type {boolean}
+   * @private
+   */
+  this.changingFeature_ = false;
+
+  /**
+   * @type {Array}
+   * @private
+   */
+  this.dragSegments_ = [];
+
+  /**
+   * Draw overlay where sketch features are drawn.
+   * @type {ol.layer.Vector}
+   * @private
+   */
+  this.overlay_ = new _layer_vector_js__WEBPACK_IMPORTED_MODULE_17__["default"]({
+    source: new _source_vector_js__WEBPACK_IMPORTED_MODULE_18__["default"]({
+      useSpatialIndex: false,
+      wrapX: !!options.wrapX
+    }),
+    style: options.style ? options.style :
+      _ol_interaction_Modify_.getDefaultStyleFunction(),
+    updateWhileAnimating: true,
+    updateWhileInteracting: true
+  });
+
+  /**
+  * @const
+  * @private
+  * @type {Object.<string, function(ol.Feature, ol.geom.Geometry)>}
+  */
+  this.SEGMENT_WRITERS_ = {
+    'Point': this.writePointGeometry_,
+    'LineString': this.writeLineStringGeometry_,
+    'LinearRing': this.writeLineStringGeometry_,
+    'Polygon': this.writePolygonGeometry_,
+    'MultiPoint': this.writeMultiPointGeometry_,
+    'MultiLineString': this.writeMultiLineStringGeometry_,
+    'MultiPolygon': this.writeMultiPolygonGeometry_,
+    'Circle': this.writeCircleGeometry_,
+    'GeometryCollection': this.writeGeometryCollectionGeometry_
+  };
+
+
+  /**
+   * @type {ol.source.Vector}
+   * @private
+   */
+  this.source_ = null;
+
+  var features;
+  if (options.source) {
+    this.source_ = options.source;
+    features = new _collection_js__WEBPACK_IMPORTED_MODULE_1__["default"](this.source_.getFeatures());
+    _events_js__WEBPACK_IMPORTED_MODULE_8__["default"].listen(this.source_, _source_vectoreventtype_js__WEBPACK_IMPORTED_MODULE_19__["default"].ADDFEATURE,
+        this.handleSourceAdd_, this);
+    _events_js__WEBPACK_IMPORTED_MODULE_8__["default"].listen(this.source_, _source_vectoreventtype_js__WEBPACK_IMPORTED_MODULE_19__["default"].REMOVEFEATURE,
+        this.handleSourceRemove_, this);
+  } else {
+    features = options.features;
+  }
+  if (!features) {
+    throw new Error('The modify interaction requires features or a source');
+  }
+
+  /**
+   * @type {ol.Collection.<ol.Feature>}
+   * @private
+   */
+  this.features_ = features;
+
+  this.features_.forEach(this.addFeature_, this);
+  _events_js__WEBPACK_IMPORTED_MODULE_8__["default"].listen(this.features_, _collectioneventtype_js__WEBPACK_IMPORTED_MODULE_2__["default"].ADD,
+      this.handleFeatureAdd_, this);
+  _events_js__WEBPACK_IMPORTED_MODULE_8__["default"].listen(this.features_, _collectioneventtype_js__WEBPACK_IMPORTED_MODULE_2__["default"].REMOVE,
+      this.handleFeatureRemove_, this);
+
+  /**
+   * @type {ol.MapBrowserPointerEvent}
+   * @private
+   */
+  this.lastPointerEvent_ = null;
+
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_interaction_Modify_, _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_16__["default"]);
+
+
+/**
+ * @define {number} The segment index assigned to a circle's center when
+ * breaking up a cicrle into ModifySegmentDataType segments.
+ */
+_ol_interaction_Modify_.MODIFY_SEGMENT_CIRCLE_CENTER_INDEX = 0;
+
+/**
+ * @define {number} The segment index assigned to a circle's circumference when
+ * breaking up a circle into ModifySegmentDataType segments.
+ */
+_ol_interaction_Modify_.MODIFY_SEGMENT_CIRCLE_CIRCUMFERENCE_INDEX = 1;
+
+
+/**
+ * @param {ol.Feature} feature Feature.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.addFeature_ = function(feature) {
+  var geometry = feature.getGeometry();
+  if (geometry && geometry.getType() in this.SEGMENT_WRITERS_) {
+    this.SEGMENT_WRITERS_[geometry.getType()].call(this, feature, geometry);
+  }
+  var map = this.getMap();
+  if (map && map.isRendered() && this.getActive()) {
+    this.handlePointerAtPixel_(this.lastPixel_, map);
+  }
+  _events_js__WEBPACK_IMPORTED_MODULE_8__["default"].listen(feature, _events_eventtype_js__WEBPACK_IMPORTED_MODULE_10__["default"].CHANGE,
+      this.handleFeatureChange_, this);
+};
+
+
+/**
+ * @param {ol.MapBrowserPointerEvent} evt Map browser event
+ * @private
+ */
+_ol_interaction_Modify_.prototype.willModifyFeatures_ = function(evt) {
+  if (!this.modified_) {
+    this.modified_ = true;
+    this.dispatchEvent(new _ol_interaction_Modify_.Event(
+        _interaction_modifyeventtype_js__WEBPACK_IMPORTED_MODULE_15__["default"].MODIFYSTART, this.features_, evt));
+  }
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.removeFeature_ = function(feature) {
+  this.removeFeatureSegmentData_(feature);
+  // Remove the vertex feature if the collection of canditate features
+  // is empty.
+  if (this.vertexFeature_ && this.features_.getLength() === 0) {
+    this.overlay_.getSource().removeFeature(this.vertexFeature_);
+    this.vertexFeature_ = null;
+  }
+  _events_js__WEBPACK_IMPORTED_MODULE_8__["default"].unlisten(feature, _events_eventtype_js__WEBPACK_IMPORTED_MODULE_10__["default"].CHANGE,
+      this.handleFeatureChange_, this);
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.removeFeatureSegmentData_ = function(feature) {
+  var rBush = this.rBush_;
+  var /** @type {Array.<ol.ModifySegmentDataType>} */ nodesToRemove = [];
+  rBush.forEach(
+      /**
+       * @param {ol.ModifySegmentDataType} node RTree node.
+       */
+      function(node) {
+        if (feature === node.feature) {
+          nodesToRemove.push(node);
+        }
+      });
+  for (var i = nodesToRemove.length - 1; i >= 0; --i) {
+    rBush.remove(nodesToRemove[i]);
+  }
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_interaction_Modify_.prototype.setActive = function(active) {
+  if (this.vertexFeature_ && !active) {
+    this.overlay_.getSource().removeFeature(this.vertexFeature_);
+    this.vertexFeature_ = null;
+  }
+  _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_16__["default"].prototype.setActive.call(this, active);
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_interaction_Modify_.prototype.setMap = function(map) {
+  this.overlay_.setMap(map);
+  _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_16__["default"].prototype.setMap.call(this, map);
+};
+
+
+/**
+ * @param {ol.source.Vector.Event} event Event.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.handleSourceAdd_ = function(event) {
+  if (event.feature) {
+    this.features_.push(event.feature);
+  }
+};
+
+
+/**
+ * @param {ol.source.Vector.Event} event Event.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.handleSourceRemove_ = function(event) {
+  if (event.feature) {
+    this.features_.remove(event.feature);
+  }
+};
+
+
+/**
+ * @param {ol.Collection.Event} evt Event.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.handleFeatureAdd_ = function(evt) {
+  this.addFeature_(/** @type {ol.Feature} */ (evt.element));
+};
+
+
+/**
+ * @param {ol.events.Event} evt Event.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.handleFeatureChange_ = function(evt) {
+  if (!this.changingFeature_) {
+    var feature = /** @type {ol.Feature} */ (evt.target);
+    this.removeFeature_(feature);
+    this.addFeature_(feature);
+  }
+};
+
+
+/**
+ * @param {ol.Collection.Event} evt Event.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.handleFeatureRemove_ = function(evt) {
+  var feature = /** @type {ol.Feature} */ (evt.element);
+  this.removeFeature_(feature);
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.Point} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.writePointGeometry_ = function(feature, geometry) {
+  var coordinates = geometry.getCoordinates();
+  var segmentData = /** @type {ol.ModifySegmentDataType} */ ({
+    feature: feature,
+    geometry: geometry,
+    segment: [coordinates, coordinates]
+  });
+  this.rBush_.insert(geometry.getExtent(), segmentData);
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.MultiPoint} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.writeMultiPointGeometry_ = function(feature, geometry) {
+  var points = geometry.getCoordinates();
+  var coordinates, i, ii, segmentData;
+  for (i = 0, ii = points.length; i < ii; ++i) {
+    coordinates = points[i];
+    segmentData = /** @type {ol.ModifySegmentDataType} */ ({
+      feature: feature,
+      geometry: geometry,
+      depth: [i],
+      index: i,
+      segment: [coordinates, coordinates]
+    });
+    this.rBush_.insert(geometry.getExtent(), segmentData);
+  }
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.LineString} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.writeLineStringGeometry_ = function(feature, geometry) {
+  var coordinates = geometry.getCoordinates();
+  var i, ii, segment, segmentData;
+  for (i = 0, ii = coordinates.length - 1; i < ii; ++i) {
+    segment = coordinates.slice(i, i + 2);
+    segmentData = /** @type {ol.ModifySegmentDataType} */ ({
+      feature: feature,
+      geometry: geometry,
+      index: i,
+      segment: segment
+    });
+    this.rBush_.insert(_extent_js__WEBPACK_IMPORTED_MODULE_12__["default"].boundingExtent(segment), segmentData);
+  }
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.MultiLineString} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.writeMultiLineStringGeometry_ = function(feature, geometry) {
+  var lines = geometry.getCoordinates();
+  var coordinates, i, ii, j, jj, segment, segmentData;
+  for (j = 0, jj = lines.length; j < jj; ++j) {
+    coordinates = lines[j];
+    for (i = 0, ii = coordinates.length - 1; i < ii; ++i) {
+      segment = coordinates.slice(i, i + 2);
+      segmentData = /** @type {ol.ModifySegmentDataType} */ ({
+        feature: feature,
+        geometry: geometry,
+        depth: [j],
+        index: i,
+        segment: segment
+      });
+      this.rBush_.insert(_extent_js__WEBPACK_IMPORTED_MODULE_12__["default"].boundingExtent(segment), segmentData);
+    }
+  }
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.Polygon} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.writePolygonGeometry_ = function(feature, geometry) {
+  var rings = geometry.getCoordinates();
+  var coordinates, i, ii, j, jj, segment, segmentData;
+  for (j = 0, jj = rings.length; j < jj; ++j) {
+    coordinates = rings[j];
+    for (i = 0, ii = coordinates.length - 1; i < ii; ++i) {
+      segment = coordinates.slice(i, i + 2);
+      segmentData = /** @type {ol.ModifySegmentDataType} */ ({
+        feature: feature,
+        geometry: geometry,
+        depth: [j],
+        index: i,
+        segment: segment
+      });
+      this.rBush_.insert(_extent_js__WEBPACK_IMPORTED_MODULE_12__["default"].boundingExtent(segment), segmentData);
+    }
+  }
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.MultiPolygon} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.writeMultiPolygonGeometry_ = function(feature, geometry) {
+  var polygons = geometry.getCoordinates();
+  var coordinates, i, ii, j, jj, k, kk, rings, segment, segmentData;
+  for (k = 0, kk = polygons.length; k < kk; ++k) {
+    rings = polygons[k];
+    for (j = 0, jj = rings.length; j < jj; ++j) {
+      coordinates = rings[j];
+      for (i = 0, ii = coordinates.length - 1; i < ii; ++i) {
+        segment = coordinates.slice(i, i + 2);
+        segmentData = /** @type {ol.ModifySegmentDataType} */ ({
+          feature: feature,
+          geometry: geometry,
+          depth: [j, k],
+          index: i,
+          segment: segment
+        });
+        this.rBush_.insert(_extent_js__WEBPACK_IMPORTED_MODULE_12__["default"].boundingExtent(segment), segmentData);
+      }
+    }
+  }
+};
+
+
+/**
+ * We convert a circle into two segments.  The segment at index
+ * {@link ol.interaction.Modify.MODIFY_SEGMENT_CIRCLE_CENTER_INDEX} is the
+ * circle's center (a point).  The segment at index
+ * {@link ol.interaction.Modify.MODIFY_SEGMENT_CIRCLE_CIRCUMFERENCE_INDEX} is
+ * the circumference, and is not a line segment.
+ *
+ * @param {ol.Feature} feature Feature.
+ * @param {ol.geom.Circle} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.writeCircleGeometry_ = function(feature, geometry) {
+  var coordinates = geometry.getCenter();
+  var centerSegmentData = /** @type {ol.ModifySegmentDataType} */ ({
+    feature: feature,
+    geometry: geometry,
+    index: _ol_interaction_Modify_.MODIFY_SEGMENT_CIRCLE_CENTER_INDEX,
+    segment: [coordinates, coordinates]
+  });
+  var circumferenceSegmentData = /** @type {ol.ModifySegmentDataType} */ ({
+    feature: feature,
+    geometry: geometry,
+    index: _ol_interaction_Modify_.MODIFY_SEGMENT_CIRCLE_CIRCUMFERENCE_INDEX,
+    segment: [coordinates, coordinates]
+  });
+  var featureSegments = [centerSegmentData, circumferenceSegmentData];
+  centerSegmentData.featureSegments = circumferenceSegmentData.featureSegments = featureSegments;
+  this.rBush_.insert(_extent_js__WEBPACK_IMPORTED_MODULE_12__["default"].createOrUpdateFromCoordinate(coordinates), centerSegmentData);
+  this.rBush_.insert(geometry.getExtent(), circumferenceSegmentData);
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.GeometryCollection} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.writeGeometryCollectionGeometry_ = function(feature, geometry) {
+  var i, geometries = geometry.getGeometriesArray();
+  for (i = 0; i < geometries.length; ++i) {
+    this.SEGMENT_WRITERS_[geometries[i].getType()].call(
+        this, feature, geometries[i]);
+  }
+};
+
+
+/**
+ * @param {ol.Coordinate} coordinates Coordinates.
+ * @return {ol.Feature} Vertex feature.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.createOrUpdateVertexFeature_ = function(coordinates) {
+  var vertexFeature = this.vertexFeature_;
+  if (!vertexFeature) {
+    vertexFeature = new _feature_js__WEBPACK_IMPORTED_MODULE_3__["default"](new _geom_point_js__WEBPACK_IMPORTED_MODULE_14__["default"](coordinates));
+    this.vertexFeature_ = vertexFeature;
+    this.overlay_.getSource().addFeature(vertexFeature);
+  } else {
+    var geometry = /** @type {ol.geom.Point} */ (vertexFeature.getGeometry());
+    geometry.setCoordinates(coordinates);
+  }
+  return vertexFeature;
+};
+
+
+/**
+ * @param {ol.ModifySegmentDataType} a The first segment data.
+ * @param {ol.ModifySegmentDataType} b The second segment data.
+ * @return {number} The difference in indexes.
+ * @private
+ */
+_ol_interaction_Modify_.compareIndexes_ = function(a, b) {
+  return a.index - b.index;
+};
+
+
+/**
+ * @param {ol.MapBrowserPointerEvent} evt Event.
+ * @return {boolean} Start drag sequence?
+ * @this {ol.interaction.Modify}
+ * @private
+ */
+_ol_interaction_Modify_.handleDownEvent_ = function(evt) {
+  if (!this.condition_(evt)) {
+    return false;
+  }
+  this.handlePointerAtPixel_(evt.pixel, evt.map);
+  var pixelCoordinate = evt.map.getCoordinateFromPixel(evt.pixel);
+  this.dragSegments_.length = 0;
+  this.modified_ = false;
+  var vertexFeature = this.vertexFeature_;
+  if (vertexFeature) {
+    var insertVertices = [];
+    var geometry = /** @type {ol.geom.Point} */ (vertexFeature.getGeometry());
+    var vertex = geometry.getCoordinates();
+    var vertexExtent = _extent_js__WEBPACK_IMPORTED_MODULE_12__["default"].boundingExtent([vertex]);
+    var segmentDataMatches = this.rBush_.getInExtent(vertexExtent);
+    var componentSegments = {};
+    segmentDataMatches.sort(_ol_interaction_Modify_.compareIndexes_);
+    for (var i = 0, ii = segmentDataMatches.length; i < ii; ++i) {
+      var segmentDataMatch = segmentDataMatches[i];
+      var segment = segmentDataMatch.segment;
+      var uid = _index_js__WEBPACK_IMPORTED_MODULE_0__["default"].getUid(segmentDataMatch.feature);
+      var depth = segmentDataMatch.depth;
+      if (depth) {
+        uid += '-' + depth.join('-'); // separate feature components
+      }
+      if (!componentSegments[uid]) {
+        componentSegments[uid] = new Array(2);
+      }
+      if (segmentDataMatch.geometry.getType() === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].CIRCLE &&
+      segmentDataMatch.index === _ol_interaction_Modify_.MODIFY_SEGMENT_CIRCLE_CIRCUMFERENCE_INDEX) {
+
+        var closestVertex = _ol_interaction_Modify_.closestOnSegmentData_(pixelCoordinate, segmentDataMatch);
+        if (_coordinate_js__WEBPACK_IMPORTED_MODULE_7__["default"].equals(closestVertex, vertex) && !componentSegments[uid][0]) {
+          this.dragSegments_.push([segmentDataMatch, 0]);
+          componentSegments[uid][0] = segmentDataMatch;
+        }
+      } else if (_coordinate_js__WEBPACK_IMPORTED_MODULE_7__["default"].equals(segment[0], vertex) &&
+          !componentSegments[uid][0]) {
+        this.dragSegments_.push([segmentDataMatch, 0]);
+        componentSegments[uid][0] = segmentDataMatch;
+      } else if (_coordinate_js__WEBPACK_IMPORTED_MODULE_7__["default"].equals(segment[1], vertex) &&
+          !componentSegments[uid][1]) {
+
+        // prevent dragging closed linestrings by the connecting node
+        if ((segmentDataMatch.geometry.getType() ===
+            _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].LINE_STRING ||
+            segmentDataMatch.geometry.getType() ===
+            _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].MULTI_LINE_STRING) &&
+            componentSegments[uid][0] &&
+            componentSegments[uid][0].index === 0) {
+          continue;
+        }
+
+        this.dragSegments_.push([segmentDataMatch, 1]);
+        componentSegments[uid][1] = segmentDataMatch;
+      } else if (this.insertVertexCondition_(evt) && _index_js__WEBPACK_IMPORTED_MODULE_0__["default"].getUid(segment) in this.vertexSegments_ &&
+          (!componentSegments[uid][0] && !componentSegments[uid][1])) {
+        insertVertices.push([segmentDataMatch, vertex]);
+      }
+    }
+    if (insertVertices.length) {
+      this.willModifyFeatures_(evt);
+    }
+    for (var j = insertVertices.length - 1; j >= 0; --j) {
+      this.insertVertex_.apply(this, insertVertices[j]);
+    }
+  }
+  return !!this.vertexFeature_;
+};
+
+
+/**
+ * @param {ol.MapBrowserPointerEvent} evt Event.
+ * @this {ol.interaction.Modify}
+ * @private
+ */
+_ol_interaction_Modify_.handleDragEvent_ = function(evt) {
+  this.ignoreNextSingleClick_ = false;
+  this.willModifyFeatures_(evt);
+
+  var vertex = evt.coordinate;
+  for (var i = 0, ii = this.dragSegments_.length; i < ii; ++i) {
+    var dragSegment = this.dragSegments_[i];
+    var segmentData = dragSegment[0];
+    var depth = segmentData.depth;
+    var geometry = segmentData.geometry;
+    var coordinates;
+    var segment = segmentData.segment;
+    var index = dragSegment[1];
+
+    while (vertex.length < geometry.getStride()) {
+      vertex.push(segment[index][vertex.length]);
+    }
+
+    switch (geometry.getType()) {
+      case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].POINT:
+        coordinates = vertex;
+        segment[0] = segment[1] = vertex;
+        break;
+      case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].MULTI_POINT:
+        coordinates = geometry.getCoordinates();
+        coordinates[segmentData.index] = vertex;
+        segment[0] = segment[1] = vertex;
+        break;
+      case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].LINE_STRING:
+        coordinates = geometry.getCoordinates();
+        coordinates[segmentData.index + index] = vertex;
+        segment[index] = vertex;
+        break;
+      case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].MULTI_LINE_STRING:
+        coordinates = geometry.getCoordinates();
+        coordinates[depth[0]][segmentData.index + index] = vertex;
+        segment[index] = vertex;
+        break;
+      case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].POLYGON:
+        coordinates = geometry.getCoordinates();
+        coordinates[depth[0]][segmentData.index + index] = vertex;
+        segment[index] = vertex;
+        break;
+      case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].MULTI_POLYGON:
+        coordinates = geometry.getCoordinates();
+        coordinates[depth[1]][depth[0]][segmentData.index + index] = vertex;
+        segment[index] = vertex;
+        break;
+      case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].CIRCLE:
+        segment[0] = segment[1] = vertex;
+        if (segmentData.index === _ol_interaction_Modify_.MODIFY_SEGMENT_CIRCLE_CENTER_INDEX) {
+          this.changingFeature_ = true;
+          geometry.setCenter(vertex);
+          this.changingFeature_ = false;
+        } else { // We're dragging the circle's circumference:
+          this.changingFeature_ = true;
+          geometry.setRadius(_coordinate_js__WEBPACK_IMPORTED_MODULE_7__["default"].distance(geometry.getCenter(), vertex));
+          this.changingFeature_ = false;
+        }
+        break;
+      default:
+        // pass
+    }
+
+    if (coordinates) {
+      this.setGeometryCoordinates_(geometry, coordinates);
+    }
+  }
+  this.createOrUpdateVertexFeature_(vertex);
+};
+
+
+/**
+ * @param {ol.MapBrowserPointerEvent} evt Event.
+ * @return {boolean} Stop drag sequence?
+ * @this {ol.interaction.Modify}
+ * @private
+ */
+_ol_interaction_Modify_.handleUpEvent_ = function(evt) {
+  var segmentData;
+  var geometry;
+  for (var i = this.dragSegments_.length - 1; i >= 0; --i) {
+    segmentData = this.dragSegments_[i][0];
+    geometry = segmentData.geometry;
+    if (geometry.getType() === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].CIRCLE) {
+      // Update a circle object in the R* bush:
+      var coordinates = geometry.getCenter();
+      var centerSegmentData = segmentData.featureSegments[0];
+      var circumferenceSegmentData = segmentData.featureSegments[1];
+      centerSegmentData.segment[0] = centerSegmentData.segment[1] = coordinates;
+      circumferenceSegmentData.segment[0] = circumferenceSegmentData.segment[1] = coordinates;
+      this.rBush_.update(_extent_js__WEBPACK_IMPORTED_MODULE_12__["default"].createOrUpdateFromCoordinate(coordinates), centerSegmentData);
+      this.rBush_.update(geometry.getExtent(), circumferenceSegmentData);
+    } else {
+      this.rBush_.update(_extent_js__WEBPACK_IMPORTED_MODULE_12__["default"].boundingExtent(segmentData.segment),
+          segmentData);
+    }
+  }
+  if (this.modified_) {
+    this.dispatchEvent(new _ol_interaction_Modify_.Event(
+        _interaction_modifyeventtype_js__WEBPACK_IMPORTED_MODULE_15__["default"].MODIFYEND, this.features_, evt));
+    this.modified_ = false;
+  }
+  return false;
+};
+
+
+/**
+ * Handles the {@link ol.MapBrowserEvent map browser event} and may modify the
+ * geometry.
+ * @param {ol.MapBrowserEvent} mapBrowserEvent Map browser event.
+ * @return {boolean} `false` to stop event propagation.
+ * @this {ol.interaction.Modify}
+ * @api
+ */
+_ol_interaction_Modify_.handleEvent = function(mapBrowserEvent) {
+  if (!(mapBrowserEvent instanceof _mapbrowserpointerevent_js__WEBPACK_IMPORTED_MODULE_5__["default"])) {
+    return true;
+  }
+  this.lastPointerEvent_ = mapBrowserEvent;
+
+  var handled;
+  if (!mapBrowserEvent.map.getView().getInteracting() &&
+      mapBrowserEvent.type == _mapbrowsereventtype_js__WEBPACK_IMPORTED_MODULE_4__["default"].POINTERMOVE &&
+      !this.handlingDownUpSequence) {
+    this.handlePointerMove_(mapBrowserEvent);
+  }
+  if (this.vertexFeature_ && this.deleteCondition_(mapBrowserEvent)) {
+    if (mapBrowserEvent.type != _mapbrowsereventtype_js__WEBPACK_IMPORTED_MODULE_4__["default"].SINGLECLICK ||
+        !this.ignoreNextSingleClick_) {
+      handled = this.removePoint();
+    } else {
+      handled = true;
+    }
+  }
+
+  if (mapBrowserEvent.type == _mapbrowsereventtype_js__WEBPACK_IMPORTED_MODULE_4__["default"].SINGLECLICK) {
+    this.ignoreNextSingleClick_ = false;
+  }
+
+  return _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_16__["default"].handleEvent.call(this, mapBrowserEvent) &&
+      !handled;
+};
+
+
+/**
+ * @param {ol.MapBrowserEvent} evt Event.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.handlePointerMove_ = function(evt) {
+  this.lastPixel_ = evt.pixel;
+  this.handlePointerAtPixel_(evt.pixel, evt.map);
+};
+
+
+/**
+ * @param {ol.Pixel} pixel Pixel
+ * @param {ol.PluggableMap} map Map.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.handlePointerAtPixel_ = function(pixel, map) {
+  var pixelCoordinate = map.getCoordinateFromPixel(pixel);
+  var sortByDistance = function(a, b) {
+    return _ol_interaction_Modify_.pointDistanceToSegmentDataSquared_(pixelCoordinate, a) -
+        _ol_interaction_Modify_.pointDistanceToSegmentDataSquared_(pixelCoordinate, b);
+  };
+
+  var box = _extent_js__WEBPACK_IMPORTED_MODULE_12__["default"].buffer(
+      _extent_js__WEBPACK_IMPORTED_MODULE_12__["default"].createOrUpdateFromCoordinate(pixelCoordinate),
+      map.getView().getResolution() * this.pixelTolerance_);
+
+  var rBush = this.rBush_;
+  var nodes = rBush.getInExtent(box);
+  if (nodes.length > 0) {
+    nodes.sort(sortByDistance);
+    var node = nodes[0];
+    var closestSegment = node.segment;
+    var vertex = _ol_interaction_Modify_.closestOnSegmentData_(pixelCoordinate, node);
+    var vertexPixel = map.getPixelFromCoordinate(vertex);
+    var dist = _coordinate_js__WEBPACK_IMPORTED_MODULE_7__["default"].distance(pixel, vertexPixel);
+    if (dist <= this.pixelTolerance_) {
+      var vertexSegments = {};
+
+      if (node.geometry.getType() === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].CIRCLE &&
+      node.index === _ol_interaction_Modify_.MODIFY_SEGMENT_CIRCLE_CIRCUMFERENCE_INDEX) {
+
+        this.snappedToVertex_ = true;
+        this.createOrUpdateVertexFeature_(vertex);
+      } else {
+        var pixel1 = map.getPixelFromCoordinate(closestSegment[0]);
+        var pixel2 = map.getPixelFromCoordinate(closestSegment[1]);
+        var squaredDist1 = _coordinate_js__WEBPACK_IMPORTED_MODULE_7__["default"].squaredDistance(vertexPixel, pixel1);
+        var squaredDist2 = _coordinate_js__WEBPACK_IMPORTED_MODULE_7__["default"].squaredDistance(vertexPixel, pixel2);
+        dist = Math.sqrt(Math.min(squaredDist1, squaredDist2));
+        this.snappedToVertex_ = dist <= this.pixelTolerance_;
+        if (this.snappedToVertex_) {
+          vertex = squaredDist1 > squaredDist2 ?
+            closestSegment[1] : closestSegment[0];
+        }
+        this.createOrUpdateVertexFeature_(vertex);
+        var segment;
+        for (var i = 1, ii = nodes.length; i < ii; ++i) {
+          segment = nodes[i].segment;
+          if ((_coordinate_js__WEBPACK_IMPORTED_MODULE_7__["default"].equals(closestSegment[0], segment[0]) &&
+              _coordinate_js__WEBPACK_IMPORTED_MODULE_7__["default"].equals(closestSegment[1], segment[1]) ||
+              (_coordinate_js__WEBPACK_IMPORTED_MODULE_7__["default"].equals(closestSegment[0], segment[1]) &&
+              _coordinate_js__WEBPACK_IMPORTED_MODULE_7__["default"].equals(closestSegment[1], segment[0])))) {
+            vertexSegments[_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].getUid(segment)] = true;
+          } else {
+            break;
+          }
+        }
+      }
+
+      vertexSegments[_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].getUid(closestSegment)] = true;
+      this.vertexSegments_ = vertexSegments;
+      return;
+    }
+  }
+  if (this.vertexFeature_) {
+    this.overlay_.getSource().removeFeature(this.vertexFeature_);
+    this.vertexFeature_ = null;
+  }
+};
+
+
+/**
+ * Returns the distance from a point to a line segment.
+ *
+ * @param {ol.Coordinate} pointCoordinates The coordinates of the point from
+ *        which to calculate the distance.
+ * @param {ol.ModifySegmentDataType} segmentData The object describing the line
+ *        segment we are calculating the distance to.
+ * @return {number} The square of the distance between a point and a line segment.
+ */
+_ol_interaction_Modify_.pointDistanceToSegmentDataSquared_ = function(pointCoordinates, segmentData) {
+  var geometry = segmentData.geometry;
+
+  if (geometry.getType() === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].CIRCLE) {
+    var circleGeometry = /** @type {ol.geom.Circle} */ (geometry);
+
+    if (segmentData.index === _ol_interaction_Modify_.MODIFY_SEGMENT_CIRCLE_CIRCUMFERENCE_INDEX) {
+      var distanceToCenterSquared =
+            _coordinate_js__WEBPACK_IMPORTED_MODULE_7__["default"].squaredDistance(circleGeometry.getCenter(), pointCoordinates);
+      var distanceToCircumference =
+            Math.sqrt(distanceToCenterSquared) - circleGeometry.getRadius();
+      return distanceToCircumference * distanceToCircumference;
+    }
+  }
+  return _coordinate_js__WEBPACK_IMPORTED_MODULE_7__["default"].squaredDistanceToSegment(pointCoordinates, segmentData.segment);
+};
+
+/**
+ * Returns the point closest to a given line segment.
+ *
+ * @param {ol.Coordinate} pointCoordinates The point to which a closest point
+ *        should be found.
+ * @param {ol.ModifySegmentDataType} segmentData The object describing the line
+ *        segment which should contain the closest point.
+ * @return {ol.Coordinate} The point closest to the specified line segment.
+ */
+_ol_interaction_Modify_.closestOnSegmentData_ = function(pointCoordinates, segmentData) {
+  var geometry = segmentData.geometry;
+
+  if (geometry.getType() === _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].CIRCLE &&
+  segmentData.index === _ol_interaction_Modify_.MODIFY_SEGMENT_CIRCLE_CIRCUMFERENCE_INDEX) {
+    return geometry.getClosestPoint(pointCoordinates);
+  }
+  return _coordinate_js__WEBPACK_IMPORTED_MODULE_7__["default"].closestOnSegment(pointCoordinates, segmentData.segment);
+};
+
+
+/**
+ * @param {ol.ModifySegmentDataType} segmentData Segment data.
+ * @param {ol.Coordinate} vertex Vertex.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.insertVertex_ = function(segmentData, vertex) {
+  var segment = segmentData.segment;
+  var feature = segmentData.feature;
+  var geometry = segmentData.geometry;
+  var depth = segmentData.depth;
+  var index = /** @type {number} */ (segmentData.index);
+  var coordinates;
+
+  while (vertex.length < geometry.getStride()) {
+    vertex.push(0);
+  }
+
+  switch (geometry.getType()) {
+    case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].MULTI_LINE_STRING:
+      coordinates = geometry.getCoordinates();
+      coordinates[depth[0]].splice(index + 1, 0, vertex);
+      break;
+    case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].POLYGON:
+      coordinates = geometry.getCoordinates();
+      coordinates[depth[0]].splice(index + 1, 0, vertex);
+      break;
+    case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].MULTI_POLYGON:
+      coordinates = geometry.getCoordinates();
+      coordinates[depth[1]][depth[0]].splice(index + 1, 0, vertex);
+      break;
+    case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].LINE_STRING:
+      coordinates = geometry.getCoordinates();
+      coordinates.splice(index + 1, 0, vertex);
+      break;
+    default:
+      return;
+  }
+
+  this.setGeometryCoordinates_(geometry, coordinates);
+  var rTree = this.rBush_;
+  rTree.remove(segmentData);
+  this.updateSegmentIndices_(geometry, index, depth, 1);
+  var newSegmentData = /** @type {ol.ModifySegmentDataType} */ ({
+    segment: [segment[0], vertex],
+    feature: feature,
+    geometry: geometry,
+    depth: depth,
+    index: index
+  });
+  rTree.insert(_extent_js__WEBPACK_IMPORTED_MODULE_12__["default"].boundingExtent(newSegmentData.segment),
+      newSegmentData);
+  this.dragSegments_.push([newSegmentData, 1]);
+
+  var newSegmentData2 = /** @type {ol.ModifySegmentDataType} */ ({
+    segment: [vertex, segment[1]],
+    feature: feature,
+    geometry: geometry,
+    depth: depth,
+    index: index + 1
+  });
+  rTree.insert(_extent_js__WEBPACK_IMPORTED_MODULE_12__["default"].boundingExtent(newSegmentData2.segment),
+      newSegmentData2);
+  this.dragSegments_.push([newSegmentData2, 0]);
+  this.ignoreNextSingleClick_ = true;
+};
+
+/**
+ * Removes the vertex currently being pointed.
+ * @return {boolean} True when a vertex was removed.
+ * @api
+ */
+_ol_interaction_Modify_.prototype.removePoint = function() {
+  if (this.lastPointerEvent_ && this.lastPointerEvent_.type != _mapbrowsereventtype_js__WEBPACK_IMPORTED_MODULE_4__["default"].POINTERDRAG) {
+    var evt = this.lastPointerEvent_;
+    this.willModifyFeatures_(evt);
+    this.removeVertex_();
+    this.dispatchEvent(new _ol_interaction_Modify_.Event(
+        _interaction_modifyeventtype_js__WEBPACK_IMPORTED_MODULE_15__["default"].MODIFYEND, this.features_, evt));
+    this.modified_ = false;
+    return true;
+  }
+  return false;
+};
+
+/**
+ * Removes a vertex from all matching features.
+ * @return {boolean} True when a vertex was removed.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.removeVertex_ = function() {
+  var dragSegments = this.dragSegments_;
+  var segmentsByFeature = {};
+  var deleted = false;
+  var component, coordinates, dragSegment, geometry, i, index, left;
+  var newIndex, right, segmentData, uid;
+  for (i = dragSegments.length - 1; i >= 0; --i) {
+    dragSegment = dragSegments[i];
+    segmentData = dragSegment[0];
+    uid = _index_js__WEBPACK_IMPORTED_MODULE_0__["default"].getUid(segmentData.feature);
+    if (segmentData.depth) {
+      // separate feature components
+      uid += '-' + segmentData.depth.join('-');
+    }
+    if (!(uid in segmentsByFeature)) {
+      segmentsByFeature[uid] = {};
+    }
+    if (dragSegment[1] === 0) {
+      segmentsByFeature[uid].right = segmentData;
+      segmentsByFeature[uid].index = segmentData.index;
+    } else if (dragSegment[1] == 1) {
+      segmentsByFeature[uid].left = segmentData;
+      segmentsByFeature[uid].index = segmentData.index + 1;
+    }
+
+  }
+  for (uid in segmentsByFeature) {
+    right = segmentsByFeature[uid].right;
+    left = segmentsByFeature[uid].left;
+    index = segmentsByFeature[uid].index;
+    newIndex = index - 1;
+    if (left !== undefined) {
+      segmentData = left;
+    } else {
+      segmentData = right;
+    }
+    if (newIndex < 0) {
+      newIndex = 0;
+    }
+    geometry = segmentData.geometry;
+    coordinates = geometry.getCoordinates();
+    component = coordinates;
+    deleted = false;
+    switch (geometry.getType()) {
+      case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].MULTI_LINE_STRING:
+        if (coordinates[segmentData.depth[0]].length > 2) {
+          coordinates[segmentData.depth[0]].splice(index, 1);
+          deleted = true;
+        }
+        break;
+      case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].LINE_STRING:
+        if (coordinates.length > 2) {
+          coordinates.splice(index, 1);
+          deleted = true;
+        }
+        break;
+      case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].MULTI_POLYGON:
+        component = component[segmentData.depth[1]];
+        /* falls through */
+      case _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].POLYGON:
+        component = component[segmentData.depth[0]];
+        if (component.length > 4) {
+          if (index == component.length - 1) {
+            index = 0;
+          }
+          component.splice(index, 1);
+          deleted = true;
+          if (index === 0) {
+            // close the ring again
+            component.pop();
+            component.push(component[0]);
+            newIndex = component.length - 1;
+          }
+        }
+        break;
+      default:
+        // pass
+    }
+
+    if (deleted) {
+      this.setGeometryCoordinates_(geometry, coordinates);
+      var segments = [];
+      if (left !== undefined) {
+        this.rBush_.remove(left);
+        segments.push(left.segment[0]);
+      }
+      if (right !== undefined) {
+        this.rBush_.remove(right);
+        segments.push(right.segment[1]);
+      }
+      if (left !== undefined && right !== undefined) {
+        var newSegmentData = /** @type {ol.ModifySegmentDataType} */ ({
+          depth: segmentData.depth,
+          feature: segmentData.feature,
+          geometry: segmentData.geometry,
+          index: newIndex,
+          segment: segments
+        });
+        this.rBush_.insert(_extent_js__WEBPACK_IMPORTED_MODULE_12__["default"].boundingExtent(newSegmentData.segment),
+            newSegmentData);
+      }
+      this.updateSegmentIndices_(geometry, index, segmentData.depth, -1);
+      if (this.vertexFeature_) {
+        this.overlay_.getSource().removeFeature(this.vertexFeature_);
+        this.vertexFeature_ = null;
+      }
+      dragSegments.length = 0;
+    }
+
+  }
+  return deleted;
+};
+
+
+/**
+ * @param {ol.geom.SimpleGeometry} geometry Geometry.
+ * @param {Array} coordinates Coordinates.
+ * @private
+ */
+_ol_interaction_Modify_.prototype.setGeometryCoordinates_ = function(geometry, coordinates) {
+  this.changingFeature_ = true;
+  geometry.setCoordinates(coordinates);
+  this.changingFeature_ = false;
+};
+
+
+/**
+ * @param {ol.geom.SimpleGeometry} geometry Geometry.
+ * @param {number} index Index.
+ * @param {Array.<number>|undefined} depth Depth.
+ * @param {number} delta Delta (1 or -1).
+ * @private
+ */
+_ol_interaction_Modify_.prototype.updateSegmentIndices_ = function(
+    geometry, index, depth, delta) {
+  this.rBush_.forEachInExtent(geometry.getExtent(), function(segmentDataMatch) {
+    if (segmentDataMatch.geometry === geometry &&
+        (depth === undefined || segmentDataMatch.depth === undefined ||
+        _array_js__WEBPACK_IMPORTED_MODULE_6__["default"].equals(segmentDataMatch.depth, depth)) &&
+        segmentDataMatch.index > index) {
+      segmentDataMatch.index += delta;
+    }
+  });
+};
+
+
+/**
+ * @return {ol.StyleFunction} Styles.
+ */
+_ol_interaction_Modify_.getDefaultStyleFunction = function() {
+  var style = _style_style_js__WEBPACK_IMPORTED_MODULE_21__["default"].createDefaultEditing();
+  return function(feature, resolution) {
+    return style[_geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_13__["default"].POINT];
+  };
+};
+
+
+/**
+ * @classdesc
+ * Events emitted by {@link ol.interaction.Modify} instances are instances of
+ * this type.
+ *
+ * @constructor
+ * @extends {ol.events.Event}
+ * @implements {oli.ModifyEvent}
+ * @param {ol.interaction.ModifyEventType} type Type.
+ * @param {ol.Collection.<ol.Feature>} features The features modified.
+ * @param {ol.MapBrowserPointerEvent} mapBrowserPointerEvent Associated
+ *     {@link ol.MapBrowserPointerEvent}.
+ */
+_ol_interaction_Modify_.Event = function(type, features, mapBrowserPointerEvent) {
+
+  _events_event_js__WEBPACK_IMPORTED_MODULE_9__["default"].call(this, type);
+
+  /**
+   * The features being modified.
+   * @type {ol.Collection.<ol.Feature>}
+   * @api
+   */
+  this.features = features;
+
+  /**
+   * Associated {@link ol.MapBrowserEvent}.
+   * @type {ol.MapBrowserEvent}
+   * @api
+   */
+  this.mapBrowserEvent = mapBrowserPointerEvent;
+};
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_interaction_Modify_.Event, _events_event_js__WEBPACK_IMPORTED_MODULE_9__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (_ol_interaction_Modify_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/interaction/modifyeventtype.js":
+/*!********************************************************!*\
+  !*** ./node_modules/ol/interaction/modifyeventtype.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**
+ * @enum {string}
+ */
+var _ol_interaction_ModifyEventType_ = {
+  /**
+   * Triggered upon feature modification start
+   * @event ol.interaction.Modify.Event#modifystart
+   * @api
+   */
+  MODIFYSTART: 'modifystart',
+  /**
+   * Triggered upon feature modification end
+   * @event ol.interaction.Modify.Event#modifyend
+   * @api
+   */
+  MODIFYEND: 'modifyend'
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (_ol_interaction_ModifyEventType_);
 
 
 /***/ }),
@@ -26960,6 +32449,1023 @@ _ol_interaction_Select_.EventType_ = {
 
 /***/ }),
 
+/***/ "./node_modules/ol/interaction/snap.js":
+/*!*********************************************!*\
+  !*** ./node_modules/ol/interaction/snap.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _collection_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../collection.js */ "./node_modules/ol/collection.js");
+/* harmony import */ var _collectioneventtype_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../collectioneventtype.js */ "./node_modules/ol/collectioneventtype.js");
+/* harmony import */ var _coordinate_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../coordinate.js */ "./node_modules/ol/coordinate.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_eventtype_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../events/eventtype.js */ "./node_modules/ol/events/eventtype.js");
+/* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../extent.js */ "./node_modules/ol/extent.js");
+/* harmony import */ var _functions_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../functions.js */ "./node_modules/ol/functions.js");
+/* harmony import */ var _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../geom/geometrytype.js */ "./node_modules/ol/geom/geometrytype.js");
+/* harmony import */ var _geom_polygon_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../geom/polygon.js */ "./node_modules/ol/geom/polygon.js");
+/* harmony import */ var _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../interaction/pointer.js */ "./node_modules/ol/interaction/pointer.js");
+/* harmony import */ var _obj_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../obj.js */ "./node_modules/ol/obj.js");
+/* harmony import */ var _source_vector_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../source/vector.js */ "./node_modules/ol/source/vector.js");
+/* harmony import */ var _source_vectoreventtype_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../source/vectoreventtype.js */ "./node_modules/ol/source/vectoreventtype.js");
+/* harmony import */ var _structs_rbush_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../structs/rbush.js */ "./node_modules/ol/structs/rbush.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * Handles snapping of vector features while modifying or drawing them.  The
+ * features can come from a {@link ol.source.Vector} or {@link ol.Collection}
+ * Any interaction object that allows the user to interact
+ * with the features using the mouse can benefit from the snapping, as long
+ * as it is added before.
+ *
+ * The snap interaction modifies map browser event `coordinate` and `pixel`
+ * properties to force the snap to occur to any interaction that them.
+ *
+ * Example:
+ *
+ *     var snap = new ol.interaction.Snap({
+ *       source: source
+ *     });
+ *
+ * @constructor
+ * @extends {ol.interaction.Pointer}
+ * @param {olx.interaction.SnapOptions=} opt_options Options.
+ * @api
+ */
+var _ol_interaction_Snap_ = function(opt_options) {
+
+  _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_10__["default"].call(this, {
+    handleEvent: _ol_interaction_Snap_.handleEvent_,
+    handleDownEvent: _functions_js__WEBPACK_IMPORTED_MODULE_7__["default"].TRUE,
+    handleUpEvent: _ol_interaction_Snap_.handleUpEvent_
+  });
+
+  var options = opt_options ? opt_options : {};
+
+  /**
+   * @type {ol.source.Vector}
+   * @private
+   */
+  this.source_ = options.source ? options.source : null;
+
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.vertex_ = options.vertex !== undefined ? options.vertex : true;
+
+  /**
+   * @private
+   * @type {boolean}
+   */
+  this.edge_ = options.edge !== undefined ? options.edge : true;
+
+  /**
+   * @type {ol.Collection.<ol.Feature>}
+   * @private
+   */
+  this.features_ = options.features ? options.features : null;
+
+  /**
+   * @type {Array.<ol.EventsKey>}
+   * @private
+   */
+  this.featuresListenerKeys_ = [];
+
+  /**
+   * @type {Object.<number, ol.EventsKey>}
+   * @private
+   */
+  this.featureChangeListenerKeys_ = {};
+
+  /**
+   * Extents are preserved so indexed segment can be quickly removed
+   * when its feature geometry changes
+   * @type {Object.<number, ol.Extent>}
+   * @private
+   */
+  this.indexedFeaturesExtents_ = {};
+
+  /**
+   * If a feature geometry changes while a pointer drag|move event occurs, the
+   * feature doesn't get updated right away.  It will be at the next 'pointerup'
+   * event fired.
+   * @type {Object.<number, ol.Feature>}
+   * @private
+   */
+  this.pendingFeatures_ = {};
+
+  /**
+   * Used for distance sorting in sortByDistance_
+   * @type {ol.Coordinate}
+   * @private
+   */
+  this.pixelCoordinate_ = null;
+
+  /**
+   * @type {number}
+   * @private
+   */
+  this.pixelTolerance_ = options.pixelTolerance !== undefined ?
+    options.pixelTolerance : 10;
+
+  /**
+   * @type {function(ol.SnapSegmentDataType, ol.SnapSegmentDataType): number}
+   * @private
+   */
+  this.sortByDistance_ = _ol_interaction_Snap_.sortByDistance.bind(this);
+
+
+  /**
+  * Segment RTree for each layer
+  * @type {ol.structs.RBush.<ol.SnapSegmentDataType>}
+  * @private
+  */
+  this.rBush_ = new _structs_rbush_js__WEBPACK_IMPORTED_MODULE_14__["default"]();
+
+
+  /**
+  * @const
+  * @private
+  * @type {Object.<string, function(ol.Feature, ol.geom.Geometry)>}
+  */
+  this.SEGMENT_WRITERS_ = {
+    'Point': this.writePointGeometry_,
+    'LineString': this.writeLineStringGeometry_,
+    'LinearRing': this.writeLineStringGeometry_,
+    'Polygon': this.writePolygonGeometry_,
+    'MultiPoint': this.writeMultiPointGeometry_,
+    'MultiLineString': this.writeMultiLineStringGeometry_,
+    'MultiPolygon': this.writeMultiPolygonGeometry_,
+    'GeometryCollection': this.writeGeometryCollectionGeometry_,
+    'Circle': this.writeCircleGeometry_
+  };
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_interaction_Snap_, _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_10__["default"]);
+
+
+/**
+ * Add a feature to the collection of features that we may snap to.
+ * @param {ol.Feature} feature Feature.
+ * @param {boolean=} opt_listen Whether to listen to the feature change or not
+ *     Defaults to `true`.
+ * @api
+ */
+_ol_interaction_Snap_.prototype.addFeature = function(feature, opt_listen) {
+  var listen = opt_listen !== undefined ? opt_listen : true;
+  var feature_uid = _index_js__WEBPACK_IMPORTED_MODULE_0__["default"].getUid(feature);
+  var geometry = feature.getGeometry();
+  if (geometry) {
+    var segmentWriter = this.SEGMENT_WRITERS_[geometry.getType()];
+    if (segmentWriter) {
+      this.indexedFeaturesExtents_[feature_uid] = geometry.getExtent(
+          _extent_js__WEBPACK_IMPORTED_MODULE_6__["default"].createEmpty());
+      segmentWriter.call(this, feature, geometry);
+    }
+  }
+
+  if (listen) {
+    this.featureChangeListenerKeys_[feature_uid] = _events_js__WEBPACK_IMPORTED_MODULE_4__["default"].listen(
+        feature,
+        _events_eventtype_js__WEBPACK_IMPORTED_MODULE_5__["default"].CHANGE,
+        this.handleFeatureChange_, this);
+  }
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature.
+ * @private
+ */
+_ol_interaction_Snap_.prototype.forEachFeatureAdd_ = function(feature) {
+  this.addFeature(feature);
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature.
+ * @private
+ */
+_ol_interaction_Snap_.prototype.forEachFeatureRemove_ = function(feature) {
+  this.removeFeature(feature);
+};
+
+
+/**
+ * @return {ol.Collection.<ol.Feature>|Array.<ol.Feature>} Features.
+ * @private
+ */
+_ol_interaction_Snap_.prototype.getFeatures_ = function() {
+  var features;
+  if (this.features_) {
+    features = this.features_;
+  } else if (this.source_) {
+    features = this.source_.getFeatures();
+  }
+  return /** @type {!Array.<ol.Feature>|!ol.Collection.<ol.Feature>} */ (features);
+};
+
+
+/**
+ * @param {ol.source.Vector.Event|ol.Collection.Event} evt Event.
+ * @private
+ */
+_ol_interaction_Snap_.prototype.handleFeatureAdd_ = function(evt) {
+  var feature;
+  if (evt instanceof _source_vector_js__WEBPACK_IMPORTED_MODULE_12__["default"].Event) {
+    feature = evt.feature;
+  } else if (evt instanceof _collection_js__WEBPACK_IMPORTED_MODULE_1__["default"].Event) {
+    feature = evt.element;
+  }
+  this.addFeature(/** @type {ol.Feature} */ (feature));
+};
+
+
+/**
+ * @param {ol.source.Vector.Event|ol.Collection.Event} evt Event.
+ * @private
+ */
+_ol_interaction_Snap_.prototype.handleFeatureRemove_ = function(evt) {
+  var feature;
+  if (evt instanceof _source_vector_js__WEBPACK_IMPORTED_MODULE_12__["default"].Event) {
+    feature = evt.feature;
+  } else if (evt instanceof _collection_js__WEBPACK_IMPORTED_MODULE_1__["default"].Event) {
+    feature = evt.element;
+  }
+  this.removeFeature(/** @type {ol.Feature} */ (feature));
+};
+
+
+/**
+ * @param {ol.events.Event} evt Event.
+ * @private
+ */
+_ol_interaction_Snap_.prototype.handleFeatureChange_ = function(evt) {
+  var feature = /** @type {ol.Feature} */ (evt.target);
+  if (this.handlingDownUpSequence) {
+    var uid = _index_js__WEBPACK_IMPORTED_MODULE_0__["default"].getUid(feature);
+    if (!(uid in this.pendingFeatures_)) {
+      this.pendingFeatures_[uid] = feature;
+    }
+  } else {
+    this.updateFeature_(feature);
+  }
+};
+
+
+/**
+ * Remove a feature from the collection of features that we may snap to.
+ * @param {ol.Feature} feature Feature
+ * @param {boolean=} opt_unlisten Whether to unlisten to the feature change
+ *     or not. Defaults to `true`.
+ * @api
+ */
+_ol_interaction_Snap_.prototype.removeFeature = function(feature, opt_unlisten) {
+  var unlisten = opt_unlisten !== undefined ? opt_unlisten : true;
+  var feature_uid = _index_js__WEBPACK_IMPORTED_MODULE_0__["default"].getUid(feature);
+  var extent = this.indexedFeaturesExtents_[feature_uid];
+  if (extent) {
+    var rBush = this.rBush_;
+    var i, nodesToRemove = [];
+    rBush.forEachInExtent(extent, function(node) {
+      if (feature === node.feature) {
+        nodesToRemove.push(node);
+      }
+    });
+    for (i = nodesToRemove.length - 1; i >= 0; --i) {
+      rBush.remove(nodesToRemove[i]);
+    }
+  }
+
+  if (unlisten) {
+    _events_js__WEBPACK_IMPORTED_MODULE_4__["default"].unlistenByKey(this.featureChangeListenerKeys_[feature_uid]);
+    delete this.featureChangeListenerKeys_[feature_uid];
+  }
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_interaction_Snap_.prototype.setMap = function(map) {
+  var currentMap = this.getMap();
+  var keys = this.featuresListenerKeys_;
+  var features = this.getFeatures_();
+
+  if (currentMap) {
+    keys.forEach(_events_js__WEBPACK_IMPORTED_MODULE_4__["default"].unlistenByKey);
+    keys.length = 0;
+    features.forEach(this.forEachFeatureRemove_, this);
+  }
+  _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_10__["default"].prototype.setMap.call(this, map);
+
+  if (map) {
+    if (this.features_) {
+      keys.push(
+          _events_js__WEBPACK_IMPORTED_MODULE_4__["default"].listen(this.features_, _collectioneventtype_js__WEBPACK_IMPORTED_MODULE_2__["default"].ADD,
+              this.handleFeatureAdd_, this),
+          _events_js__WEBPACK_IMPORTED_MODULE_4__["default"].listen(this.features_, _collectioneventtype_js__WEBPACK_IMPORTED_MODULE_2__["default"].REMOVE,
+              this.handleFeatureRemove_, this)
+      );
+    } else if (this.source_) {
+      keys.push(
+          _events_js__WEBPACK_IMPORTED_MODULE_4__["default"].listen(this.source_, _source_vectoreventtype_js__WEBPACK_IMPORTED_MODULE_13__["default"].ADDFEATURE,
+              this.handleFeatureAdd_, this),
+          _events_js__WEBPACK_IMPORTED_MODULE_4__["default"].listen(this.source_, _source_vectoreventtype_js__WEBPACK_IMPORTED_MODULE_13__["default"].REMOVEFEATURE,
+              this.handleFeatureRemove_, this)
+      );
+    }
+    features.forEach(this.forEachFeatureAdd_, this);
+  }
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_interaction_Snap_.prototype.shouldStopEvent = _functions_js__WEBPACK_IMPORTED_MODULE_7__["default"].FALSE;
+
+
+/**
+ * @param {ol.Pixel} pixel Pixel
+ * @param {ol.Coordinate} pixelCoordinate Coordinate
+ * @param {ol.PluggableMap} map Map.
+ * @return {ol.SnapResultType} Snap result
+ */
+_ol_interaction_Snap_.prototype.snapTo = function(pixel, pixelCoordinate, map) {
+
+  var lowerLeft = map.getCoordinateFromPixel(
+      [pixel[0] - this.pixelTolerance_, pixel[1] + this.pixelTolerance_]);
+  var upperRight = map.getCoordinateFromPixel(
+      [pixel[0] + this.pixelTolerance_, pixel[1] - this.pixelTolerance_]);
+  var box = _extent_js__WEBPACK_IMPORTED_MODULE_6__["default"].boundingExtent([lowerLeft, upperRight]);
+
+  var segments = this.rBush_.getInExtent(box);
+
+  // If snapping on vertices only, don't consider circles
+  if (this.vertex_ && !this.edge_) {
+    segments = segments.filter(function(segment) {
+      return segment.feature.getGeometry().getType() !==
+          _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_8__["default"].CIRCLE;
+    });
+  }
+
+  var snappedToVertex = false;
+  var snapped = false;
+  var vertex = null;
+  var vertexPixel = null;
+  var dist, pixel1, pixel2, squaredDist1, squaredDist2;
+  if (segments.length > 0) {
+    this.pixelCoordinate_ = pixelCoordinate;
+    segments.sort(this.sortByDistance_);
+    var closestSegment = segments[0].segment;
+    var isCircle = segments[0].feature.getGeometry().getType() ===
+        _geom_geometrytype_js__WEBPACK_IMPORTED_MODULE_8__["default"].CIRCLE;
+    if (this.vertex_ && !this.edge_) {
+      pixel1 = map.getPixelFromCoordinate(closestSegment[0]);
+      pixel2 = map.getPixelFromCoordinate(closestSegment[1]);
+      squaredDist1 = _coordinate_js__WEBPACK_IMPORTED_MODULE_3__["default"].squaredDistance(pixel, pixel1);
+      squaredDist2 = _coordinate_js__WEBPACK_IMPORTED_MODULE_3__["default"].squaredDistance(pixel, pixel2);
+      dist = Math.sqrt(Math.min(squaredDist1, squaredDist2));
+      snappedToVertex = dist <= this.pixelTolerance_;
+      if (snappedToVertex) {
+        snapped = true;
+        vertex = squaredDist1 > squaredDist2 ?
+          closestSegment[1] : closestSegment[0];
+        vertexPixel = map.getPixelFromCoordinate(vertex);
+      }
+    } else if (this.edge_) {
+      if (isCircle) {
+        vertex = _coordinate_js__WEBPACK_IMPORTED_MODULE_3__["default"].closestOnCircle(pixelCoordinate,
+            /** @type {ol.geom.Circle} */ (segments[0].feature.getGeometry()));
+      } else {
+        vertex = (_coordinate_js__WEBPACK_IMPORTED_MODULE_3__["default"].closestOnSegment(pixelCoordinate,
+            closestSegment));
+      }
+      vertexPixel = map.getPixelFromCoordinate(vertex);
+      if (_coordinate_js__WEBPACK_IMPORTED_MODULE_3__["default"].distance(pixel, vertexPixel) <= this.pixelTolerance_) {
+        snapped = true;
+        if (this.vertex_ && !isCircle) {
+          pixel1 = map.getPixelFromCoordinate(closestSegment[0]);
+          pixel2 = map.getPixelFromCoordinate(closestSegment[1]);
+          squaredDist1 = _coordinate_js__WEBPACK_IMPORTED_MODULE_3__["default"].squaredDistance(vertexPixel, pixel1);
+          squaredDist2 = _coordinate_js__WEBPACK_IMPORTED_MODULE_3__["default"].squaredDistance(vertexPixel, pixel2);
+          dist = Math.sqrt(Math.min(squaredDist1, squaredDist2));
+          snappedToVertex = dist <= this.pixelTolerance_;
+          if (snappedToVertex) {
+            vertex = squaredDist1 > squaredDist2 ?
+              closestSegment[1] : closestSegment[0];
+            vertexPixel = map.getPixelFromCoordinate(vertex);
+          }
+        }
+      }
+    }
+    if (snapped) {
+      vertexPixel = [Math.round(vertexPixel[0]), Math.round(vertexPixel[1])];
+    }
+  }
+  return /** @type {ol.SnapResultType} */ ({
+    snapped: snapped,
+    vertex: vertex,
+    vertexPixel: vertexPixel
+  });
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @private
+ */
+_ol_interaction_Snap_.prototype.updateFeature_ = function(feature) {
+  this.removeFeature(feature, false);
+  this.addFeature(feature, false);
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.Circle} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Snap_.prototype.writeCircleGeometry_ = function(feature, geometry) {
+  var polygon = _geom_polygon_js__WEBPACK_IMPORTED_MODULE_9__["default"].fromCircle(geometry);
+  var coordinates = polygon.getCoordinates()[0];
+  var i, ii, segment, segmentData;
+  for (i = 0, ii = coordinates.length - 1; i < ii; ++i) {
+    segment = coordinates.slice(i, i + 2);
+    segmentData = /** @type {ol.SnapSegmentDataType} */ ({
+      feature: feature,
+      segment: segment
+    });
+    this.rBush_.insert(_extent_js__WEBPACK_IMPORTED_MODULE_6__["default"].boundingExtent(segment), segmentData);
+  }
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.GeometryCollection} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Snap_.prototype.writeGeometryCollectionGeometry_ = function(feature, geometry) {
+  var i, geometries = geometry.getGeometriesArray();
+  for (i = 0; i < geometries.length; ++i) {
+    var segmentWriter = this.SEGMENT_WRITERS_[geometries[i].getType()];
+    if (segmentWriter) {
+      segmentWriter.call(this, feature, geometries[i]);
+    }
+  }
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.LineString} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Snap_.prototype.writeLineStringGeometry_ = function(feature, geometry) {
+  var coordinates = geometry.getCoordinates();
+  var i, ii, segment, segmentData;
+  for (i = 0, ii = coordinates.length - 1; i < ii; ++i) {
+    segment = coordinates.slice(i, i + 2);
+    segmentData = /** @type {ol.SnapSegmentDataType} */ ({
+      feature: feature,
+      segment: segment
+    });
+    this.rBush_.insert(_extent_js__WEBPACK_IMPORTED_MODULE_6__["default"].boundingExtent(segment), segmentData);
+  }
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.MultiLineString} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Snap_.prototype.writeMultiLineStringGeometry_ = function(feature, geometry) {
+  var lines = geometry.getCoordinates();
+  var coordinates, i, ii, j, jj, segment, segmentData;
+  for (j = 0, jj = lines.length; j < jj; ++j) {
+    coordinates = lines[j];
+    for (i = 0, ii = coordinates.length - 1; i < ii; ++i) {
+      segment = coordinates.slice(i, i + 2);
+      segmentData = /** @type {ol.SnapSegmentDataType} */ ({
+        feature: feature,
+        segment: segment
+      });
+      this.rBush_.insert(_extent_js__WEBPACK_IMPORTED_MODULE_6__["default"].boundingExtent(segment), segmentData);
+    }
+  }
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.MultiPoint} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Snap_.prototype.writeMultiPointGeometry_ = function(feature, geometry) {
+  var points = geometry.getCoordinates();
+  var coordinates, i, ii, segmentData;
+  for (i = 0, ii = points.length; i < ii; ++i) {
+    coordinates = points[i];
+    segmentData = /** @type {ol.SnapSegmentDataType} */ ({
+      feature: feature,
+      segment: [coordinates, coordinates]
+    });
+    this.rBush_.insert(geometry.getExtent(), segmentData);
+  }
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.MultiPolygon} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Snap_.prototype.writeMultiPolygonGeometry_ = function(feature, geometry) {
+  var polygons = geometry.getCoordinates();
+  var coordinates, i, ii, j, jj, k, kk, rings, segment, segmentData;
+  for (k = 0, kk = polygons.length; k < kk; ++k) {
+    rings = polygons[k];
+    for (j = 0, jj = rings.length; j < jj; ++j) {
+      coordinates = rings[j];
+      for (i = 0, ii = coordinates.length - 1; i < ii; ++i) {
+        segment = coordinates.slice(i, i + 2);
+        segmentData = /** @type {ol.SnapSegmentDataType} */ ({
+          feature: feature,
+          segment: segment
+        });
+        this.rBush_.insert(_extent_js__WEBPACK_IMPORTED_MODULE_6__["default"].boundingExtent(segment), segmentData);
+      }
+    }
+  }
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.Point} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Snap_.prototype.writePointGeometry_ = function(feature, geometry) {
+  var coordinates = geometry.getCoordinates();
+  var segmentData = /** @type {ol.SnapSegmentDataType} */ ({
+    feature: feature,
+    segment: [coordinates, coordinates]
+  });
+  this.rBush_.insert(geometry.getExtent(), segmentData);
+};
+
+
+/**
+ * @param {ol.Feature} feature Feature
+ * @param {ol.geom.Polygon} geometry Geometry.
+ * @private
+ */
+_ol_interaction_Snap_.prototype.writePolygonGeometry_ = function(feature, geometry) {
+  var rings = geometry.getCoordinates();
+  var coordinates, i, ii, j, jj, segment, segmentData;
+  for (j = 0, jj = rings.length; j < jj; ++j) {
+    coordinates = rings[j];
+    for (i = 0, ii = coordinates.length - 1; i < ii; ++i) {
+      segment = coordinates.slice(i, i + 2);
+      segmentData = /** @type {ol.SnapSegmentDataType} */ ({
+        feature: feature,
+        segment: segment
+      });
+      this.rBush_.insert(_extent_js__WEBPACK_IMPORTED_MODULE_6__["default"].boundingExtent(segment), segmentData);
+    }
+  }
+};
+
+
+/**
+ * Handle all pointer events events.
+ * @param {ol.MapBrowserEvent} evt A move event.
+ * @return {boolean} Pass the event to other interactions.
+ * @this {ol.interaction.Snap}
+ * @private
+ */
+_ol_interaction_Snap_.handleEvent_ = function(evt) {
+  var result = this.snapTo(evt.pixel, evt.coordinate, evt.map);
+  if (result.snapped) {
+    evt.coordinate = result.vertex.slice(0, 2);
+    evt.pixel = result.vertexPixel;
+  }
+  return _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_10__["default"].handleEvent.call(this, evt);
+};
+
+
+/**
+ * @param {ol.MapBrowserPointerEvent} evt Event.
+ * @return {boolean} Stop drag sequence?
+ * @this {ol.interaction.Snap}
+ * @private
+ */
+_ol_interaction_Snap_.handleUpEvent_ = function(evt) {
+  var featuresToUpdate = _obj_js__WEBPACK_IMPORTED_MODULE_11__["default"].getValues(this.pendingFeatures_);
+  if (featuresToUpdate.length) {
+    featuresToUpdate.forEach(this.updateFeature_, this);
+    this.pendingFeatures_ = {};
+  }
+  return false;
+};
+
+
+/**
+ * Sort segments by distance, helper function
+ * @param {ol.SnapSegmentDataType} a The first segment data.
+ * @param {ol.SnapSegmentDataType} b The second segment data.
+ * @return {number} The difference in distance.
+ * @this {ol.interaction.Snap}
+ */
+_ol_interaction_Snap_.sortByDistance = function(a, b) {
+  return _coordinate_js__WEBPACK_IMPORTED_MODULE_3__["default"].squaredDistanceToSegment(
+      this.pixelCoordinate_, a.segment) -
+      _coordinate_js__WEBPACK_IMPORTED_MODULE_3__["default"].squaredDistanceToSegment(
+          this.pixelCoordinate_, b.segment);
+};
+/* harmony default export */ __webpack_exports__["default"] = (_ol_interaction_Snap_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/interaction/translate.js":
+/*!**************************************************!*\
+  !*** ./node_modules/ol/interaction/translate.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _collection_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../collection.js */ "./node_modules/ol/collection.js");
+/* harmony import */ var _object_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../object.js */ "./node_modules/ol/object.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_event_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../events/event.js */ "./node_modules/ol/events/event.js");
+/* harmony import */ var _functions_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../functions.js */ "./node_modules/ol/functions.js");
+/* harmony import */ var _array_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../array.js */ "./node_modules/ol/array.js");
+/* harmony import */ var _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../interaction/pointer.js */ "./node_modules/ol/interaction/pointer.js");
+/* harmony import */ var _interaction_property_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../interaction/property.js */ "./node_modules/ol/interaction/property.js");
+/* harmony import */ var _interaction_translateeventtype_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../interaction/translateeventtype.js */ "./node_modules/ol/interaction/translateeventtype.js");
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * Interaction for translating (moving) features.
+ *
+ * @constructor
+ * @extends {ol.interaction.Pointer}
+ * @fires ol.interaction.Translate.Event
+ * @param {olx.interaction.TranslateOptions=} opt_options Options.
+ * @api
+ */
+var _ol_interaction_Translate_ = function(opt_options) {
+  _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_7__["default"].call(this, {
+    handleDownEvent: _ol_interaction_Translate_.handleDownEvent_,
+    handleDragEvent: _ol_interaction_Translate_.handleDragEvent_,
+    handleMoveEvent: _ol_interaction_Translate_.handleMoveEvent_,
+    handleUpEvent: _ol_interaction_Translate_.handleUpEvent_
+  });
+
+  var options = opt_options ? opt_options : {};
+
+  /**
+   * The last position we translated to.
+   * @type {ol.Coordinate}
+   * @private
+   */
+  this.lastCoordinate_ = null;
+
+
+  /**
+   * @type {ol.Collection.<ol.Feature>}
+   * @private
+   */
+  this.features_ = options.features !== undefined ? options.features : null;
+
+  /** @type {function(ol.layer.Layer): boolean} */
+  var layerFilter;
+  if (options.layers) {
+    if (typeof options.layers === 'function') {
+      layerFilter = options.layers;
+    } else {
+      var layers = options.layers;
+      layerFilter = function(layer) {
+        return _array_js__WEBPACK_IMPORTED_MODULE_6__["default"].includes(layers, layer);
+      };
+    }
+  } else {
+    layerFilter = _functions_js__WEBPACK_IMPORTED_MODULE_5__["default"].TRUE;
+  }
+
+  /**
+   * @private
+   * @type {function(ol.layer.Layer): boolean}
+   */
+  this.layerFilter_ = layerFilter;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.hitTolerance_ = options.hitTolerance ? options.hitTolerance : 0;
+
+  /**
+   * @type {ol.Feature}
+   * @private
+   */
+  this.lastFeature_ = null;
+
+  _events_js__WEBPACK_IMPORTED_MODULE_3__["default"].listen(this,
+      _object_js__WEBPACK_IMPORTED_MODULE_2__["default"].getChangeEventType(_interaction_property_js__WEBPACK_IMPORTED_MODULE_8__["default"].ACTIVE),
+      this.handleActiveChanged_, this);
+
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_interaction_Translate_, _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_7__["default"]);
+
+
+/**
+ * @param {ol.MapBrowserPointerEvent} event Event.
+ * @return {boolean} Start drag sequence?
+ * @this {ol.interaction.Translate}
+ * @private
+ */
+_ol_interaction_Translate_.handleDownEvent_ = function(event) {
+  this.lastFeature_ = this.featuresAtPixel_(event.pixel, event.map);
+  if (!this.lastCoordinate_ && this.lastFeature_) {
+    this.lastCoordinate_ = event.coordinate;
+    _ol_interaction_Translate_.handleMoveEvent_.call(this, event);
+
+    var features = this.features_ || new _collection_js__WEBPACK_IMPORTED_MODULE_1__["default"]([this.lastFeature_]);
+
+    this.dispatchEvent(
+        new _ol_interaction_Translate_.Event(
+            _interaction_translateeventtype_js__WEBPACK_IMPORTED_MODULE_9__["default"].TRANSLATESTART, features,
+            event.coordinate));
+    return true;
+  }
+  return false;
+};
+
+
+/**
+ * @param {ol.MapBrowserPointerEvent} event Event.
+ * @return {boolean} Stop drag sequence?
+ * @this {ol.interaction.Translate}
+ * @private
+ */
+_ol_interaction_Translate_.handleUpEvent_ = function(event) {
+  if (this.lastCoordinate_) {
+    this.lastCoordinate_ = null;
+    _ol_interaction_Translate_.handleMoveEvent_.call(this, event);
+
+    var features = this.features_ || new _collection_js__WEBPACK_IMPORTED_MODULE_1__["default"]([this.lastFeature_]);
+
+    this.dispatchEvent(
+        new _ol_interaction_Translate_.Event(
+            _interaction_translateeventtype_js__WEBPACK_IMPORTED_MODULE_9__["default"].TRANSLATEEND, features,
+            event.coordinate));
+    return true;
+  }
+  return false;
+};
+
+
+/**
+ * @param {ol.MapBrowserPointerEvent} event Event.
+ * @this {ol.interaction.Translate}
+ * @private
+ */
+_ol_interaction_Translate_.handleDragEvent_ = function(event) {
+  if (this.lastCoordinate_) {
+    var newCoordinate = event.coordinate;
+    var deltaX = newCoordinate[0] - this.lastCoordinate_[0];
+    var deltaY = newCoordinate[1] - this.lastCoordinate_[1];
+
+    var features = this.features_ || new _collection_js__WEBPACK_IMPORTED_MODULE_1__["default"]([this.lastFeature_]);
+
+    features.forEach(function(feature) {
+      var geom = feature.getGeometry();
+      geom.translate(deltaX, deltaY);
+      feature.setGeometry(geom);
+    });
+
+    this.lastCoordinate_ = newCoordinate;
+    this.dispatchEvent(
+        new _ol_interaction_Translate_.Event(
+            _interaction_translateeventtype_js__WEBPACK_IMPORTED_MODULE_9__["default"].TRANSLATING, features,
+            newCoordinate));
+  }
+};
+
+
+/**
+ * @param {ol.MapBrowserEvent} event Event.
+ * @this {ol.interaction.Translate}
+ * @private
+ */
+_ol_interaction_Translate_.handleMoveEvent_ = function(event) {
+  var elem = event.map.getViewport();
+
+  // Change the cursor to grab/grabbing if hovering any of the features managed
+  // by the interaction
+  if (this.featuresAtPixel_(event.pixel, event.map)) {
+    elem.classList.remove(this.lastCoordinate_ ? 'ol-grab' : 'ol-grabbing');
+    elem.classList.add(this.lastCoordinate_ ? 'ol-grabbing' : 'ol-grab');
+  } else {
+    elem.classList.remove('ol-grab', 'ol-grabbing');
+  }
+};
+
+
+/**
+ * Tests to see if the given coordinates intersects any of our selected
+ * features.
+ * @param {ol.Pixel} pixel Pixel coordinate to test for intersection.
+ * @param {ol.PluggableMap} map Map to test the intersection on.
+ * @return {ol.Feature} Returns the feature found at the specified pixel
+ * coordinates.
+ * @private
+ */
+_ol_interaction_Translate_.prototype.featuresAtPixel_ = function(pixel, map) {
+  return map.forEachFeatureAtPixel(pixel,
+      function(feature) {
+        if (!this.features_ ||
+            _array_js__WEBPACK_IMPORTED_MODULE_6__["default"].includes(this.features_.getArray(), feature)) {
+          return feature;
+        }
+      }.bind(this), {
+        layerFilter: this.layerFilter_,
+        hitTolerance: this.hitTolerance_
+      });
+};
+
+
+/**
+ * Returns the Hit-detection tolerance.
+ * @returns {number} Hit tolerance in pixels.
+ * @api
+ */
+_ol_interaction_Translate_.prototype.getHitTolerance = function() {
+  return this.hitTolerance_;
+};
+
+
+/**
+ * Hit-detection tolerance. Pixels inside the radius around the given position
+ * will be checked for features. This only works for the canvas renderer and
+ * not for WebGL.
+ * @param {number} hitTolerance Hit tolerance in pixels.
+ * @api
+ */
+_ol_interaction_Translate_.prototype.setHitTolerance = function(hitTolerance) {
+  this.hitTolerance_ = hitTolerance;
+};
+
+
+/**
+ * @inheritDoc
+ */
+_ol_interaction_Translate_.prototype.setMap = function(map) {
+  var oldMap = this.getMap();
+  _interaction_pointer_js__WEBPACK_IMPORTED_MODULE_7__["default"].prototype.setMap.call(this, map);
+  this.updateState_(oldMap);
+};
+
+
+/**
+ * @private
+ */
+_ol_interaction_Translate_.prototype.handleActiveChanged_ = function() {
+  this.updateState_(null);
+};
+
+
+/**
+ * @param {ol.PluggableMap} oldMap Old map.
+ * @private
+ */
+_ol_interaction_Translate_.prototype.updateState_ = function(oldMap) {
+  var map = this.getMap();
+  var active = this.getActive();
+  if (!map || !active) {
+    map = map || oldMap;
+    if (map) {
+      var elem = map.getViewport();
+      elem.classList.remove('ol-grab', 'ol-grabbing');
+    }
+  }
+};
+
+
+/**
+ * @classdesc
+ * Events emitted by {@link ol.interaction.Translate} instances are instances of
+ * this type.
+ *
+ * @constructor
+ * @extends {ol.events.Event}
+ * @implements {oli.interaction.TranslateEvent}
+ * @param {ol.interaction.TranslateEventType} type Type.
+ * @param {ol.Collection.<ol.Feature>} features The features translated.
+ * @param {ol.Coordinate} coordinate The event coordinate.
+ */
+_ol_interaction_Translate_.Event = function(type, features, coordinate) {
+
+  _events_event_js__WEBPACK_IMPORTED_MODULE_4__["default"].call(this, type);
+
+  /**
+   * The features being translated.
+   * @type {ol.Collection.<ol.Feature>}
+   * @api
+   */
+  this.features = features;
+
+  /**
+   * The coordinate of the drag event.
+   * @const
+   * @type {ol.Coordinate}
+   * @api
+   */
+  this.coordinate = coordinate;
+};
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_interaction_Translate_.Event, _events_event_js__WEBPACK_IMPORTED_MODULE_4__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (_ol_interaction_Translate_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/interaction/translateeventtype.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/ol/interaction/translateeventtype.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**
+ * @enum {string}
+ */
+var _ol_interaction_TranslateEventType_ = {
+  /**
+   * Triggered upon feature translation start.
+   * @event ol.interaction.Translate.Event#translatestart
+   * @api
+   */
+  TRANSLATESTART: 'translatestart',
+  /**
+   * Triggered upon feature translation.
+   * @event ol.interaction.Translate.Event#translating
+   * @api
+   */
+  TRANSLATING: 'translating',
+  /**
+   * Triggered upon feature translation end.
+   * @event ol.interaction.Translate.Event#translateend
+   * @api
+   */
+  TRANSLATEEND: 'translateend'
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (_ol_interaction_TranslateEventType_);
+
+
+/***/ }),
+
 /***/ "./node_modules/ol/kinetic.js":
 /*!************************************!*\
   !*** ./node_modules/ol/kinetic.js ***!
@@ -27632,6 +34138,380 @@ _ol_layer_Group_.Property_ = {
   LAYERS: 'layers'
 };
 /* harmony default export */ __webpack_exports__["default"] = (_ol_layer_Group_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/layer/heatmap.js":
+/*!******************************************!*\
+  !*** ./node_modules/ol/layer/heatmap.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _object_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../object.js */ "./node_modules/ol/object.js");
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../dom.js */ "./node_modules/ol/dom.js");
+/* harmony import */ var _layer_vector_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../layer/vector.js */ "./node_modules/ol/layer/vector.js");
+/* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../math.js */ "./node_modules/ol/math.js");
+/* harmony import */ var _obj_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../obj.js */ "./node_modules/ol/obj.js");
+/* harmony import */ var _render_eventtype_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../render/eventtype.js */ "./node_modules/ol/render/eventtype.js");
+/* harmony import */ var _style_icon_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../style/icon.js */ "./node_modules/ol/style/icon.js");
+/* harmony import */ var _style_style_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../style/style.js */ "./node_modules/ol/style/style.js");
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * Layer for rendering vector data as a heatmap.
+ * Note that any property set in the options is set as a {@link ol.Object}
+ * property on the layer object; for example, setting `title: 'My Title'` in the
+ * options means that `title` is observable, and has get/set accessors.
+ *
+ * @constructor
+ * @extends {ol.layer.Vector}
+ * @fires ol.render.Event
+ * @param {olx.layer.HeatmapOptions=} opt_options Options.
+ * @api
+ */
+var _ol_layer_Heatmap_ = function(opt_options) {
+  var options = opt_options ? opt_options : {};
+
+  var baseOptions = _obj_js__WEBPACK_IMPORTED_MODULE_6__["default"].assign({}, options);
+
+  delete baseOptions.gradient;
+  delete baseOptions.radius;
+  delete baseOptions.blur;
+  delete baseOptions.shadow;
+  delete baseOptions.weight;
+  _layer_vector_js__WEBPACK_IMPORTED_MODULE_4__["default"].call(this, /** @type {olx.layer.VectorOptions} */ (baseOptions));
+
+  /**
+   * @private
+   * @type {Uint8ClampedArray}
+   */
+  this.gradient_ = null;
+
+  /**
+   * @private
+   * @type {number}
+   */
+  this.shadow_ = options.shadow !== undefined ? options.shadow : 250;
+
+  /**
+   * @private
+   * @type {string|undefined}
+   */
+  this.circleImage_ = undefined;
+
+  /**
+   * @private
+   * @type {Array.<Array.<ol.style.Style>>}
+   */
+  this.styleCache_ = null;
+
+  _events_js__WEBPACK_IMPORTED_MODULE_0__["default"].listen(this,
+      _object_js__WEBPACK_IMPORTED_MODULE_2__["default"].getChangeEventType(_ol_layer_Heatmap_.Property_.GRADIENT),
+      this.handleGradientChanged_, this);
+
+  this.setGradient(options.gradient ?
+    options.gradient : _ol_layer_Heatmap_.DEFAULT_GRADIENT);
+
+  this.setBlur(options.blur !== undefined ? options.blur : 15);
+
+  this.setRadius(options.radius !== undefined ? options.radius : 8);
+
+  _events_js__WEBPACK_IMPORTED_MODULE_0__["default"].listen(this,
+      _object_js__WEBPACK_IMPORTED_MODULE_2__["default"].getChangeEventType(_ol_layer_Heatmap_.Property_.BLUR),
+      this.handleStyleChanged_, this);
+  _events_js__WEBPACK_IMPORTED_MODULE_0__["default"].listen(this,
+      _object_js__WEBPACK_IMPORTED_MODULE_2__["default"].getChangeEventType(_ol_layer_Heatmap_.Property_.RADIUS),
+      this.handleStyleChanged_, this);
+
+  this.handleStyleChanged_();
+
+  var weight = options.weight ? options.weight : 'weight';
+  var weightFunction;
+  if (typeof weight === 'string') {
+    weightFunction = function(feature) {
+      return feature.get(weight);
+    };
+  } else {
+    weightFunction = weight;
+  }
+
+  this.setStyle(function(feature, resolution) {
+    var weight = weightFunction(feature);
+    var opacity = weight !== undefined ? _math_js__WEBPACK_IMPORTED_MODULE_5__["default"].clamp(weight, 0, 1) : 1;
+    // cast to 8 bits
+    var index = (255 * opacity) | 0;
+    var style = this.styleCache_[index];
+    if (!style) {
+      style = [
+        new _style_style_js__WEBPACK_IMPORTED_MODULE_9__["default"]({
+          image: new _style_icon_js__WEBPACK_IMPORTED_MODULE_8__["default"]({
+            opacity: opacity,
+            src: this.circleImage_
+          })
+        })
+      ];
+      this.styleCache_[index] = style;
+    }
+    return style;
+  }.bind(this));
+
+  // For performance reasons, don't sort the features before rendering.
+  // The render order is not relevant for a heatmap representation.
+  this.setRenderOrder(null);
+
+  _events_js__WEBPACK_IMPORTED_MODULE_0__["default"].listen(this, _render_eventtype_js__WEBPACK_IMPORTED_MODULE_7__["default"].RENDER, this.handleRender_, this);
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_1__["default"].inherits(_ol_layer_Heatmap_, _layer_vector_js__WEBPACK_IMPORTED_MODULE_4__["default"]);
+
+
+/**
+ * @const
+ * @type {Array.<string>}
+ */
+_ol_layer_Heatmap_.DEFAULT_GRADIENT = ['#00f', '#0ff', '#0f0', '#ff0', '#f00'];
+
+
+/**
+ * @param {Array.<string>} colors A list of colored.
+ * @return {Uint8ClampedArray} An array.
+ * @private
+ */
+_ol_layer_Heatmap_.createGradient_ = function(colors) {
+  var width = 1;
+  var height = 256;
+  var context = _dom_js__WEBPACK_IMPORTED_MODULE_3__["default"].createCanvasContext2D(width, height);
+
+  var gradient = context.createLinearGradient(0, 0, width, height);
+  var step = 1 / (colors.length - 1);
+  for (var i = 0, ii = colors.length; i < ii; ++i) {
+    gradient.addColorStop(i * step, colors[i]);
+  }
+
+  context.fillStyle = gradient;
+  context.fillRect(0, 0, width, height);
+
+  return context.getImageData(0, 0, width, height).data;
+};
+
+
+/**
+ * @return {string} Data URL for a circle.
+ * @private
+ */
+_ol_layer_Heatmap_.prototype.createCircle_ = function() {
+  var radius = this.getRadius();
+  var blur = this.getBlur();
+  var halfSize = radius + blur + 1;
+  var size = 2 * halfSize;
+  var context = _dom_js__WEBPACK_IMPORTED_MODULE_3__["default"].createCanvasContext2D(size, size);
+  context.shadowOffsetX = context.shadowOffsetY = this.shadow_;
+  context.shadowBlur = blur;
+  context.shadowColor = '#000';
+  context.beginPath();
+  var center = halfSize - this.shadow_;
+  context.arc(center, center, radius, 0, Math.PI * 2, true);
+  context.fill();
+  return context.canvas.toDataURL();
+};
+
+
+/**
+ * Return the blur size in pixels.
+ * @return {number} Blur size in pixels.
+ * @api
+ * @observable
+ */
+_ol_layer_Heatmap_.prototype.getBlur = function() {
+  return (
+    /** @type {number} */ this.get(_ol_layer_Heatmap_.Property_.BLUR)
+  );
+};
+
+
+/**
+ * Return the gradient colors as array of strings.
+ * @return {Array.<string>} Colors.
+ * @api
+ * @observable
+ */
+_ol_layer_Heatmap_.prototype.getGradient = function() {
+  return (
+    /** @type {Array.<string>} */ this.get(_ol_layer_Heatmap_.Property_.GRADIENT)
+  );
+};
+
+
+/**
+ * Return the size of the radius in pixels.
+ * @return {number} Radius size in pixel.
+ * @api
+ * @observable
+ */
+_ol_layer_Heatmap_.prototype.getRadius = function() {
+  return (
+    /** @type {number} */ this.get(_ol_layer_Heatmap_.Property_.RADIUS)
+  );
+};
+
+
+/**
+ * @private
+ */
+_ol_layer_Heatmap_.prototype.handleGradientChanged_ = function() {
+  this.gradient_ = _ol_layer_Heatmap_.createGradient_(this.getGradient());
+};
+
+
+/**
+ * @private
+ */
+_ol_layer_Heatmap_.prototype.handleStyleChanged_ = function() {
+  this.circleImage_ = this.createCircle_();
+  this.styleCache_ = new Array(256);
+  this.changed();
+};
+
+
+/**
+ * @param {ol.render.Event} event Post compose event
+ * @private
+ */
+_ol_layer_Heatmap_.prototype.handleRender_ = function(event) {
+  var context = event.context;
+  var canvas = context.canvas;
+  var image = context.getImageData(0, 0, canvas.width, canvas.height);
+  var view8 = image.data;
+  var i, ii, alpha;
+  for (i = 0, ii = view8.length; i < ii; i += 4) {
+    alpha = view8[i + 3] * 4;
+    if (alpha) {
+      view8[i] = this.gradient_[alpha];
+      view8[i + 1] = this.gradient_[alpha + 1];
+      view8[i + 2] = this.gradient_[alpha + 2];
+    }
+  }
+  context.putImageData(image, 0, 0);
+};
+
+
+/**
+ * Set the blur size in pixels.
+ * @param {number} blur Blur size in pixels.
+ * @api
+ * @observable
+ */
+_ol_layer_Heatmap_.prototype.setBlur = function(blur) {
+  this.set(_ol_layer_Heatmap_.Property_.BLUR, blur);
+};
+
+
+/**
+ * Set the gradient colors as array of strings.
+ * @param {Array.<string>} colors Gradient.
+ * @api
+ * @observable
+ */
+_ol_layer_Heatmap_.prototype.setGradient = function(colors) {
+  this.set(_ol_layer_Heatmap_.Property_.GRADIENT, colors);
+};
+
+
+/**
+ * Set the size of the radius in pixels.
+ * @param {number} radius Radius size in pixel.
+ * @api
+ * @observable
+ */
+_ol_layer_Heatmap_.prototype.setRadius = function(radius) {
+  this.set(_ol_layer_Heatmap_.Property_.RADIUS, radius);
+};
+
+
+/**
+ * @enum {string}
+ * @private
+ */
+_ol_layer_Heatmap_.Property_ = {
+  BLUR: 'blur',
+  GRADIENT: 'gradient',
+  RADIUS: 'radius'
+};
+/* harmony default export */ __webpack_exports__["default"] = (_ol_layer_Heatmap_);
+
+
+/***/ }),
+
+/***/ "./node_modules/ol/layer/image.js":
+/*!****************************************!*\
+  !*** ./node_modules/ol/layer/image.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index.js */ "./node_modules/ol/index.js");
+/* harmony import */ var _layertype_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../layertype.js */ "./node_modules/ol/layertype.js");
+/* harmony import */ var _layer_layer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../layer/layer.js */ "./node_modules/ol/layer/layer.js");
+
+
+
+
+/**
+ * @classdesc
+ * Server-rendered images that are available for arbitrary extents and
+ * resolutions.
+ * Note that any property set in the options is set as a {@link ol.Object}
+ * property on the layer object; for example, setting `title: 'My Title'` in the
+ * options means that `title` is observable, and has get/set accessors.
+ *
+ * @constructor
+ * @extends {ol.layer.Layer}
+ * @fires ol.render.Event
+ * @param {olx.layer.ImageOptions=} opt_options Layer options.
+ * @api
+ */
+var _ol_layer_Image_ = function(opt_options) {
+  var options = opt_options ? opt_options : {};
+  _layer_layer_js__WEBPACK_IMPORTED_MODULE_2__["default"].call(this,  /** @type {olx.layer.LayerOptions} */ (options));
+
+  /**
+   * The layer type.
+   * @protected
+   * @type {ol.LayerType}
+   */
+  this.type = _layertype_js__WEBPACK_IMPORTED_MODULE_1__["default"].IMAGE;
+
+};
+
+_index_js__WEBPACK_IMPORTED_MODULE_0__["default"].inherits(_ol_layer_Image_, _layer_layer_js__WEBPACK_IMPORTED_MODULE_2__["default"]);
+
+
+/**
+ * Return the associated {@link ol.source.Image source} of the image layer.
+ * @function
+ * @return {ol.source.Image} Source.
+ * @api
+ */
+_ol_layer_Image_.prototype.getSource;
+/* harmony default export */ __webpack_exports__["default"] = (_ol_layer_Image_);
 
 
 /***/ }),
@@ -94788,8 +101668,9 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var attribution_1 = __webpack_require__(/*! ol/control/attribution */ "./node_modules/ol/control/attribution.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var Attribution = /** @class */ (function (_super) {
     __extends(Attribution, _super);
@@ -94815,13 +101696,14 @@ var Attribution = /** @class */ (function (_super) {
     Attribution.prototype.componentDidMount = function () {
         var _this = this;
         var options = util_1.Util.getOptions(__assign({}, this.options, this.props));
-        this.control = new ol_1.default.control.Attribution(options);
+        this.control = new attribution_1.default(options);
         this.context.mapComp.controls.push(this.control);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         Object.keys(olEvents).forEach(function (eventName) {
             _this.control.on(eventName, olEvents[eventName]);
         });
     };
+    Attribution.contextType = map_1.MapContext;
     return Attribution;
 }(React.Component));
 exports.Attribution = Attribution;
@@ -94906,8 +101788,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var fullscreen_1 = __webpack_require__(/*! ol/control/fullscreen */ "./node_modules/ol/control/fullscreen.js");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var FullScreen = /** @class */ (function (_super) {
     __extends(FullScreen, _super);
     function FullScreen() {
@@ -94929,14 +101812,16 @@ var FullScreen = /** @class */ (function (_super) {
     }
     FullScreen.prototype.render = function () { return null; };
     FullScreen.prototype.componentDidMount = function () {
+        console.log("Fullscren did mount", this.context);
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.control = new ol_1.default.control.FullScreen(options);
+        this.control = new fullscreen_1.default(options);
         this.context.mapComp.controls.push(this.control);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
             this.control.on(eventName, olEvents[eventName]);
         }
     };
+    FullScreen.contextType = map_1.MapContext;
     return FullScreen;
 }(React.Component));
 exports.FullScreen = FullScreen;
@@ -95005,8 +101890,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var mouseposition_1 = __webpack_require__(/*! ol/control/mouseposition */ "./node_modules/ol/control/mouseposition.js");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var MousePosition = /** @class */ (function (_super) {
     __extends(MousePosition, _super);
     function MousePosition() {
@@ -95030,13 +101916,14 @@ var MousePosition = /** @class */ (function (_super) {
     MousePosition.prototype.render = function () { return null; };
     MousePosition.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.control = new ol_1.default.control.MousePosition(options);
+        this.control = new mouseposition_1.default(options);
         this.context.mapComp.controls.push(this.control);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
             this.control.on(eventName, olEvents[eventName]);
         }
     };
+    MousePosition.contextType = map_1.MapContext;
     return MousePosition;
 }(React.Component));
 exports.MousePosition = MousePosition;
@@ -95068,8 +101955,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var overviewmap_1 = __webpack_require__(/*! ol/control/overviewmap */ "./node_modules/ol/control/overviewmap.js");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var OverviewMap = /** @class */ (function (_super) {
     __extends(OverviewMap, _super);
     function OverviewMap() {
@@ -95094,13 +101982,14 @@ var OverviewMap = /** @class */ (function (_super) {
     OverviewMap.prototype.render = function () { return null; };
     OverviewMap.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.control = new ol_1.default.control.OverviewMap(options);
+        this.control = new overviewmap_1.default(options);
         this.context.mapComp.controls.push(this.control);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
             this.control.on(eventName, olEvents[eventName]);
         }
     };
+    OverviewMap.contextType = map_1.MapContext;
     return OverviewMap;
 }(React.Component));
 exports.OverviewMap = OverviewMap;
@@ -95132,7 +102021,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var rotate_1 = __webpack_require__(/*! ol/control/rotate */ "./node_modules/ol/control/rotate.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var Rotate = /** @class */ (function (_super) {
     __extends(Rotate, _super);
@@ -95157,13 +102047,14 @@ var Rotate = /** @class */ (function (_super) {
     Rotate.prototype.render = function () { return null; };
     Rotate.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.control = new ol_1.default.control.Rotate(options);
+        this.control = new rotate_1.default(options);
         this.context.mapComp.controls.push(this.control);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
             this.control.on(eventName, olEvents[eventName]);
         }
     };
+    Rotate.contextType = map_1.MapContext;
     return Rotate;
 }(React.Component));
 exports.Rotate = Rotate;
@@ -95195,7 +102086,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var scaleline_1 = __webpack_require__(/*! ol/control/scaleline */ "./node_modules/ol/control/scaleline.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var ScaleLine = /** @class */ (function (_super) {
     __extends(ScaleLine, _super);
@@ -95218,13 +102110,14 @@ var ScaleLine = /** @class */ (function (_super) {
     ScaleLine.prototype.render = function () { return null; };
     ScaleLine.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.control = new ol_1.default.control.ScaleLine(options);
+        this.control = new scaleline_1.default(options);
         this.context.mapComp.controls.push(this.control);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
             this.control.on(eventName, olEvents[eventName]);
         }
     };
+    ScaleLine.contextType = map_1.MapContext;
     return ScaleLine;
 }(React.Component));
 exports.ScaleLine = ScaleLine;
@@ -95256,7 +102149,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var zoomslider_1 = __webpack_require__(/*! ol/control/zoomslider */ "./node_modules/ol/control/zoomslider.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var ZoomSlider = /** @class */ (function (_super) {
     __extends(ZoomSlider, _super);
@@ -95278,13 +102172,14 @@ var ZoomSlider = /** @class */ (function (_super) {
     ZoomSlider.prototype.render = function () { return null; };
     ZoomSlider.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.control = new ol_1.default.control.ZoomSlider(options);
+        this.control = new zoomslider_1.default(options);
         this.context.mapComp.controls.push(this.control);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
             this.control.on(eventName, olEvents[eventName]);
         }
     };
+    ZoomSlider.contextType = map_1.MapContext;
     return ZoomSlider;
 }(React.Component));
 exports.ZoomSlider = ZoomSlider;
@@ -95316,7 +102211,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var zoomtoextent_1 = __webpack_require__(/*! ol/control/zoomtoextent */ "./node_modules/ol/control/zoomtoextent.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var ZoomToExtent = /** @class */ (function (_super) {
     __extends(ZoomToExtent, _super);
@@ -95338,13 +102234,14 @@ var ZoomToExtent = /** @class */ (function (_super) {
     ZoomToExtent.prototype.render = function () { return null; };
     ZoomToExtent.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.control = new ol_1.default.control.ZoomToExtent(options);
+        this.control = new zoomtoextent_1.default(options);
         this.context.mapComp.controls.push(this.control);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
             this.control.on(eventName, olEvents[eventName]);
         }
     };
+    ZoomToExtent.contextType = map_1.MapContext;
     return ZoomToExtent;
 }(React.Component));
 exports.ZoomToExtent = ZoomToExtent;
@@ -95376,7 +102273,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var zoom_1 = __webpack_require__(/*! ol/control/zoom */ "./node_modules/ol/control/zoom.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var Zoom = /** @class */ (function (_super) {
     __extends(Zoom, _super);
@@ -95402,13 +102300,14 @@ var Zoom = /** @class */ (function (_super) {
     };
     Zoom.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.control = new ol_1.default.control.Zoom(options);
+        this.control = new zoom_1.default(options);
         this.context.mapComp.controls.push(this.control);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
             this.control.on(eventName, olEvents[eventName]);
         }
     };
+    Zoom.contextType = map_1.MapContext;
     return Zoom;
 }(React.Component));
 exports.Zoom = Zoom;
@@ -95566,11 +102465,8 @@ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 __webpack_require__(/*! ./popup.css */ "./src/custom/popup.css");
 var Popup = /** @class */ (function (_super) {
     __extends(Popup, _super);
-    function Popup(props) {
-        var _this = this;
-        console.log(2222222222);
-        _this = _super.call(this, props) || this;
-        return _this;
+    function Popup() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     Popup.prototype.componentDidMount = function () {
         var _this = this;
@@ -95580,7 +102476,6 @@ var Popup = /** @class */ (function (_super) {
     };
     Popup.prototype.render = function () {
         var _this = this;
-        console.log(3333333333);
         return (React.createElement("div", { className: "olPopup", ref: function (el) { return _this.containerEl = el; } },
             React.createElement("a", { className: "olPopupCloser", href: "javascript:void(0)", ref: function (el) { return _this.contentClose = el; } }),
             React.createElement("div", { className: "olPopupContents", ref: function (el) { return _this.contentEl = el; } })));
@@ -95610,7 +102505,13 @@ exports.Popup = Popup;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var style_1 = __webpack_require__(/*! ol/style/style */ "./node_modules/ol/style/style.js");
+var circle_1 = __webpack_require__(/*! ol/style/circle */ "./node_modules/ol/style/circle.js");
+var fill_1 = __webpack_require__(/*! ol/style/fill */ "./node_modules/ol/style/fill.js");
+var text_1 = __webpack_require__(/*! ol/style/text */ "./node_modules/ol/style/text.js");
+var stroke_1 = __webpack_require__(/*! ol/style/stroke */ "./node_modules/ol/style/stroke.js");
+var regularshape_1 = __webpack_require__(/*! ol/style/regularshape */ "./node_modules/ol/style/regularshape.js");
+var extent_1 = __webpack_require__(/*! ol/extent */ "./node_modules/ol/extent.js");
 var ClusterStyle = /** @class */ (function () {
     function ClusterStyle(vectorSource) {
         var _this = this;
@@ -95622,17 +102523,17 @@ var ClusterStyle = /** @class */ (function () {
             var style;
             var size = feature.get('features').length;
             if (size > 1) {
-                style = new ol_1.default.style.Style({
-                    image: new ol_1.default.style.Circle({
+                style = new style_1.default({
+                    image: new circle_1.default({
                         radius: feature.get('radius'),
-                        fill: new ol_1.default.style.Fill({
+                        fill: new fill_1.default({
                             color: [255, 153, 0, Math.min(0.8, 0.4 + (size / _this.maxFeatureCount))]
                         })
                     }),
-                    text: new ol_1.default.style.Text({
+                    text: new text_1.default({
                         text: size.toString(),
-                        fill: new ol_1.default.style.Fill({ color: '#fff' }),
-                        stroke: new ol_1.default.style.Stroke({ color: 'rgba(0, 0, 0, 0.6)', width: 3 })
+                        fill: new fill_1.default({ color: '#fff' }),
+                        stroke: new stroke_1.default({ color: 'rgba(0, 0, 0, 0.6)', width: 3 })
                     })
                 });
             }
@@ -95643,9 +102544,9 @@ var ClusterStyle = /** @class */ (function () {
             return style;
         };
         this.selectStyleFunction = function (feature) {
-            var invisibleFill = new ol_1.default.style.Fill({ color: 'rgba(255, 255, 255, 0.01)' });
-            var styles = [new ol_1.default.style.Style({
-                    image: new ol_1.default.style.Circle({
+            var invisibleFill = new fill_1.default({ color: 'rgba(255, 255, 255, 0.01)' });
+            var styles = [new style_1.default({
+                    image: new circle_1.default({
                         radius: feature.get('radius'),
                         fill: invisibleFill
                     })
@@ -95667,29 +102568,29 @@ var ClusterStyle = /** @class */ (function () {
         for (var i = features.length - 1; i >= 0; --i) {
             feature = features[i];
             var originalFeatures = feature.get('features');
-            var extent = ol_1.default.extent.createEmpty();
+            var extent = extent_1.default.createEmpty();
             var j, jj;
             for (j = 0, jj = originalFeatures.length; j < jj; ++j) {
-                ol_1.default.extent.extend(extent, originalFeatures[j].getGeometry().getExtent());
+                extent_1.default.extend(extent, originalFeatures[j].getGeometry().getExtent());
             }
             this.maxFeatureCount = Math.max(this.maxFeatureCount, jj);
-            radius = 0.25 * (ol_1.default.extent.getWidth(extent) + ol_1.default.extent.getHeight(extent)) /
+            radius = 0.25 * (extent_1.default.getWidth(extent) + extent_1.default.getHeight(extent)) /
                 resolution;
             feature.set('radius', radius);
         }
     };
     ClusterStyle.prototype.createClusterStyle = function (feature) {
-        var clusterFill = new ol_1.default.style.Fill({ color: 'rgba(255, 153, 0, 0.8)' });
-        var clusterStroke = new ol_1.default.style.Stroke({ color: 'rgba(255, 204, 0, 0.2)', width: 1 });
+        var clusterFill = new fill_1.default({ color: 'rgba(255, 153, 0, 0.8)' });
+        var clusterStroke = new stroke_1.default({ color: 'rgba(255, 204, 0, 0.2)', width: 1 });
         // 2012_Earthquakes_Mag5.kml stores the magnitude of each earthquake in a
         // standards-violating <magnitude> tag in each Placemark.  We extract it
         // from the Placemark's name instead.
         var name = feature.get('name');
         var magnitude = parseFloat(name.substr(2));
         var radius = 5 + 20 * (magnitude - 5);
-        return new ol_1.default.style.Style({
+        return new style_1.default({
             geometry: feature.getGeometry(),
-            image: new ol_1.default.style.RegularShape({
+            image: new regularshape_1.default({
                 radius1: radius,
                 radius2: 3,
                 points: 5,
@@ -95801,7 +102702,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var doubleclickzoom_1 = __webpack_require__(/*! ol/interaction/doubleclickzoom */ "./node_modules/ol/interaction/doubleclickzoom.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var DoubleClickZoom = /** @class */ (function (_super) {
     __extends(DoubleClickZoom, _super);
@@ -95821,7 +102723,7 @@ var DoubleClickZoom = /** @class */ (function (_super) {
     DoubleClickZoom.prototype.render = function () { return null; };
     DoubleClickZoom.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.interaction = new ol_1.default.interaction.DoubleClickZoom(options);
+        this.interaction = new doubleclickzoom_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -95832,7 +102734,7 @@ var DoubleClickZoom = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.DoubleClickZoom(options);
+            this.interaction = new doubleclickzoom_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -95843,6 +102745,7 @@ var DoubleClickZoom = /** @class */ (function (_super) {
     DoubleClickZoom.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    DoubleClickZoom.contextType = map_1.MapContext;
     return DoubleClickZoom;
 }(React.Component));
 exports.DoubleClickZoom = DoubleClickZoom;
@@ -95874,7 +102777,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var draganddrop_1 = __webpack_require__(/*! ol/interaction/draganddrop */ "./node_modules/ol/interaction/draganddrop.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var DragAndDrop = /** @class */ (function (_super) {
     __extends(DragAndDrop, _super);
@@ -95897,7 +102801,7 @@ var DragAndDrop = /** @class */ (function (_super) {
     DragAndDrop.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         console.log('options', options);
-        this.interaction = new ol_1.default.interaction.DragAndDrop(options);
+        this.interaction = new draganddrop_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -95908,7 +102812,7 @@ var DragAndDrop = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.DragAndDrop(options);
+            this.interaction = new draganddrop_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -95919,6 +102823,7 @@ var DragAndDrop = /** @class */ (function (_super) {
     DragAndDrop.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    DragAndDrop.contextType = map_1.MapContext;
     return DragAndDrop;
 }(React.Component));
 exports.DragAndDrop = DragAndDrop;
@@ -95950,7 +102855,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var dragbox_1 = __webpack_require__(/*! ol/interaction/dragbox */ "./node_modules/ol/interaction/dragbox.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var DragBox = /** @class */ (function (_super) {
     __extends(DragBox, _super);
@@ -95975,7 +102881,7 @@ var DragBox = /** @class */ (function (_super) {
     DragBox.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         console.log('options', options);
-        this.interaction = new ol_1.default.interaction.DragBox(options);
+        this.interaction = new dragbox_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -95986,7 +102892,7 @@ var DragBox = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.DragBox(options);
+            this.interaction = new dragbox_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -95997,6 +102903,7 @@ var DragBox = /** @class */ (function (_super) {
     DragBox.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    DragBox.contextType = map_1.MapContext;
     return DragBox;
 }(React.Component));
 exports.DragBox = DragBox;
@@ -96028,8 +102935,10 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var dragpan_1 = __webpack_require__(/*! ol/interaction/dragpan */ "./node_modules/ol/interaction/dragpan.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
+4;
 var DragPan = /** @class */ (function (_super) {
     __extends(DragPan, _super);
     function DragPan() {
@@ -96049,7 +102958,7 @@ var DragPan = /** @class */ (function (_super) {
     DragPan.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         console.log('options', options);
-        this.interaction = new ol_1.default.interaction.DragPan(options);
+        this.interaction = new dragpan_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -96060,7 +102969,7 @@ var DragPan = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.DragPan(options);
+            this.interaction = new dragpan_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -96071,6 +102980,7 @@ var DragPan = /** @class */ (function (_super) {
     DragPan.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    DragPan.contextType = map_1.MapContext;
     return DragPan;
 }(React.Component));
 exports.DragPan = DragPan;
@@ -96102,7 +103012,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var dragrotateandzoom_1 = __webpack_require__(/*! ol/interaction/dragrotateandzoom */ "./node_modules/ol/interaction/dragrotateandzoom.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var DragRotateAndZoom = /** @class */ (function (_super) {
     __extends(DragRotateAndZoom, _super);
@@ -96123,7 +103034,7 @@ var DragRotateAndZoom = /** @class */ (function (_super) {
     DragRotateAndZoom.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         console.log('options', options);
-        this.interaction = new ol_1.default.interaction.DragRotateAndZoom(options);
+        this.interaction = new dragrotateandzoom_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -96134,7 +103045,7 @@ var DragRotateAndZoom = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.DragRotateAndZoom(options);
+            this.interaction = new dragrotateandzoom_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -96145,6 +103056,7 @@ var DragRotateAndZoom = /** @class */ (function (_super) {
     DragRotateAndZoom.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    DragRotateAndZoom.contextType = map_1.MapContext;
     return DragRotateAndZoom;
 }(React.Component));
 exports.DragRotateAndZoom = DragRotateAndZoom;
@@ -96176,7 +103088,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var dragrotate_1 = __webpack_require__(/*! ol/interaction/dragrotate */ "./node_modules/ol/interaction/dragrotate.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var DragRotate = /** @class */ (function (_super) {
     __extends(DragRotate, _super);
@@ -96197,7 +103110,7 @@ var DragRotate = /** @class */ (function (_super) {
     DragRotate.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         console.log('options', options);
-        this.interaction = new ol_1.default.interaction.DragRotate(options);
+        this.interaction = new dragrotate_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -96208,7 +103121,7 @@ var DragRotate = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.DragRotate(options);
+            this.interaction = new dragrotate_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -96219,6 +103132,7 @@ var DragRotate = /** @class */ (function (_super) {
     DragRotate.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    DragRotate.contextType = map_1.MapContext;
     return DragRotate;
 }(React.Component));
 exports.DragRotate = DragRotate;
@@ -96250,7 +103164,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var dragzoom_1 = __webpack_require__(/*! ol/interaction/dragzoom */ "./node_modules/ol/interaction/dragzoom.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var DragZoom = /** @class */ (function (_super) {
     __extends(DragZoom, _super);
@@ -96276,7 +103191,7 @@ var DragZoom = /** @class */ (function (_super) {
     DragZoom.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         console.log('options', options);
-        this.interaction = new ol_1.default.interaction.DragZoom(options);
+        this.interaction = new dragzoom_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -96287,7 +103202,7 @@ var DragZoom = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.DragZoom(options);
+            this.interaction = new dragzoom_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -96298,6 +103213,7 @@ var DragZoom = /** @class */ (function (_super) {
     DragZoom.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    DragZoom.contextType = map_1.MapContext;
     return DragZoom;
 }(React.Component));
 exports.DragZoom = DragZoom;
@@ -96329,7 +103245,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var draw_1 = __webpack_require__(/*! ol/interaction/draw */ "./node_modules/ol/interaction/draw.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var Draw = /** @class */ (function (_super) {
     __extends(Draw, _super);
@@ -96364,7 +103281,7 @@ var Draw = /** @class */ (function (_super) {
     Draw.prototype.render = function () { return null; };
     Draw.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.interaction = new ol_1.default.interaction.Draw(options);
+        this.interaction = new draw_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -96375,7 +103292,7 @@ var Draw = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.Draw(options);
+            this.interaction = new draw_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -96386,6 +103303,7 @@ var Draw = /** @class */ (function (_super) {
     Draw.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    Draw.contextType = map_1.MapContext;
     return Draw;
 }(React.Component));
 exports.Draw = Draw;
@@ -96417,7 +103335,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var extent_1 = __webpack_require__(/*! ol/interaction/extent */ "./node_modules/ol/interaction/extent.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var Extent = /** @class */ (function (_super) {
     __extends(Extent, _super);
@@ -96442,7 +103361,7 @@ var Extent = /** @class */ (function (_super) {
     Extent.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         console.log('options', options);
-        this.interaction = new ol_1.default.interaction['Extent'](options);
+        this.interaction = new extent_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -96453,7 +103372,7 @@ var Extent = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction['Extent'](options);
+            this.interaction = new extent_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -96464,6 +103383,7 @@ var Extent = /** @class */ (function (_super) {
     Extent.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    Extent.contextType = map_1.MapContext;
     return Extent;
 }(React.Component));
 exports.Extent = Extent;
@@ -96591,7 +103511,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var keyboardpan_1 = __webpack_require__(/*! ol/interaction/keyboardpan */ "./node_modules/ol/interaction/keyboardpan.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var KeyboardPan = /** @class */ (function (_super) {
     __extends(KeyboardPan, _super);
@@ -96613,7 +103534,7 @@ var KeyboardPan = /** @class */ (function (_super) {
     KeyboardPan.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         console.log('options', options);
-        this.interaction = new ol_1.default.interaction.KeyboardPan(options);
+        this.interaction = new keyboardpan_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -96624,7 +103545,7 @@ var KeyboardPan = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.KeyboardPan(options);
+            this.interaction = new keyboardpan_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -96635,6 +103556,7 @@ var KeyboardPan = /** @class */ (function (_super) {
     KeyboardPan.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    KeyboardPan.contextType = map_1.MapContext;
     return KeyboardPan;
 }(React.Component));
 exports.KeyboardPan = KeyboardPan;
@@ -96666,7 +103588,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var keyboardzoom_1 = __webpack_require__(/*! ol/interaction/keyboardzoom */ "./node_modules/ol/interaction/keyboardzoom.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var KeyboardZoom = /** @class */ (function (_super) {
     __extends(KeyboardZoom, _super);
@@ -96688,7 +103611,7 @@ var KeyboardZoom = /** @class */ (function (_super) {
     KeyboardZoom.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         console.log('options', options);
-        this.interaction = new ol_1.default.interaction.KeyboardZoom(options);
+        this.interaction = new keyboardzoom_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -96699,7 +103622,7 @@ var KeyboardZoom = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.KeyboardZoom(options);
+            this.interaction = new keyboardzoom_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -96710,6 +103633,7 @@ var KeyboardZoom = /** @class */ (function (_super) {
     KeyboardZoom.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    KeyboardZoom.contextType = map_1.MapContext;
     return KeyboardZoom;
 }(React.Component));
 exports.KeyboardZoom = KeyboardZoom;
@@ -96741,7 +103665,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var modify_1 = __webpack_require__(/*! ol/interaction/modify */ "./node_modules/ol/interaction/modify.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var Modify = /** @class */ (function (_super) {
     __extends(Modify, _super);
@@ -96768,7 +103693,7 @@ var Modify = /** @class */ (function (_super) {
     Modify.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         console.log('options', options);
-        this.interaction = new ol_1.default.interaction.Modify(options);
+        this.interaction = new modify_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -96779,7 +103704,7 @@ var Modify = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.Modify(options);
+            this.interaction = new modify_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -96790,6 +103715,7 @@ var Modify = /** @class */ (function (_super) {
     Modify.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    Modify.contextType = map_1.MapContext;
     return Modify;
 }(React.Component));
 exports.Modify = Modify;
@@ -96821,7 +103747,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var mousewheelzoom_1 = __webpack_require__(/*! ol/interaction/mousewheelzoom */ "./node_modules/ol/interaction/mousewheelzoom.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var MouseWheelZoom = /** @class */ (function (_super) {
     __extends(MouseWheelZoom, _super);
@@ -96843,7 +103770,7 @@ var MouseWheelZoom = /** @class */ (function (_super) {
     MouseWheelZoom.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         console.log('options', options);
-        this.interaction = new ol_1.default.interaction.MouseWheelZoom(options);
+        this.interaction = new mousewheelzoom_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -96854,7 +103781,7 @@ var MouseWheelZoom = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.MouseWheelZoom(options);
+            this.interaction = new mousewheelzoom_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -96865,6 +103792,7 @@ var MouseWheelZoom = /** @class */ (function (_super) {
     MouseWheelZoom.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    MouseWheelZoom.contextType = map_1.MapContext;
     return MouseWheelZoom;
 }(React.Component));
 exports.MouseWheelZoom = MouseWheelZoom;
@@ -96896,7 +103824,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var pinchrotate_1 = __webpack_require__(/*! ol/interaction/pinchrotate */ "./node_modules/ol/interaction/pinchrotate.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var PinchRotate = /** @class */ (function (_super) {
     __extends(PinchRotate, _super);
@@ -96916,7 +103845,7 @@ var PinchRotate = /** @class */ (function (_super) {
     PinchRotate.prototype.render = function () { return null; };
     PinchRotate.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.interaction = new ol_1.default.interaction.PinchRotate(options);
+        this.interaction = new pinchrotate_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -96927,7 +103856,7 @@ var PinchRotate = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.PinchRotate(options);
+            this.interaction = new pinchrotate_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -96938,6 +103867,7 @@ var PinchRotate = /** @class */ (function (_super) {
     PinchRotate.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    PinchRotate.contextType = map_1.MapContext;
     return PinchRotate;
 }(React.Component));
 exports.PinchRotate = PinchRotate;
@@ -96969,7 +103899,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var pinchzoom_1 = __webpack_require__(/*! ol/interaction/pinchzoom */ "./node_modules/ol/interaction/pinchzoom.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var PinchZoom = /** @class */ (function (_super) {
     __extends(PinchZoom, _super);
@@ -96990,7 +103921,7 @@ var PinchZoom = /** @class */ (function (_super) {
     PinchZoom.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         console.log('double-click-zoom options', options);
-        this.interaction = new ol_1.default.interaction.PinchZoom(options);
+        this.interaction = new pinchzoom_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -97001,7 +103932,7 @@ var PinchZoom = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.PinchZoom(options);
+            this.interaction = new pinchzoom_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -97012,6 +103943,7 @@ var PinchZoom = /** @class */ (function (_super) {
     PinchZoom.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    PinchZoom.contextType = map_1.MapContext;
     return PinchZoom;
 }(React.Component));
 exports.PinchZoom = PinchZoom;
@@ -97043,7 +103975,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var pointer_1 = __webpack_require__(/*! ol/interaction/pointer */ "./node_modules/ol/interaction/pointer.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var Pointer = /** @class */ (function (_super) {
     __extends(Pointer, _super);
@@ -97066,7 +103999,7 @@ var Pointer = /** @class */ (function (_super) {
     Pointer.prototype.render = function () { return null; };
     Pointer.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.interaction = new ol_1.default.interaction.Pointer(options);
+        this.interaction = new pointer_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -97077,7 +104010,7 @@ var Pointer = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.Pointer(options);
+            this.interaction = new pointer_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -97088,6 +104021,7 @@ var Pointer = /** @class */ (function (_super) {
     Pointer.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    Pointer.contextType = map_1.MapContext;
     return Pointer;
 }(React.Component));
 exports.Pointer = Pointer;
@@ -97119,7 +104053,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var select_1 = __webpack_require__(/*! ol/interaction/select */ "./node_modules/ol/interaction/select.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var Select = /** @class */ (function (_super) {
     __extends(Select, _super);
@@ -97153,7 +104088,7 @@ var Select = /** @class */ (function (_super) {
         }
         else {
             var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-            this.interaction = new ol_1.default.interaction.Select(options);
+            this.interaction = new select_1.default(options);
         }
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
@@ -97169,7 +104104,7 @@ var Select = /** @class */ (function (_super) {
             }
             else {
                 var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-                this.interaction = new ol_1.default.interaction.Select(options);
+                this.interaction = new select_1.default(options);
             }
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
@@ -97181,6 +104116,7 @@ var Select = /** @class */ (function (_super) {
     Select.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    Select.contextType = map_1.MapContext;
     return Select;
 }(React.Component));
 exports.Select = Select;
@@ -97212,7 +104148,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var snap_1 = __webpack_require__(/*! ol/interaction/snap */ "./node_modules/ol/interaction/snap.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var Snap = /** @class */ (function (_super) {
     __extends(Snap, _super);
@@ -97235,7 +104172,7 @@ var Snap = /** @class */ (function (_super) {
     Snap.prototype.render = function () { return null; };
     Snap.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.interaction = new ol_1.default.interaction.Snap(options);
+        this.interaction = new snap_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -97246,7 +104183,7 @@ var Snap = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.Snap(options);
+            this.interaction = new snap_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -97257,6 +104194,7 @@ var Snap = /** @class */ (function (_super) {
     Snap.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    Snap.contextType = map_1.MapContext;
     return Snap;
 }(React.Component));
 exports.Snap = Snap;
@@ -97288,7 +104226,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var translate_1 = __webpack_require__(/*! ol/interaction/translate */ "./node_modules/ol/interaction/translate.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var Translate = /** @class */ (function (_super) {
     __extends(Translate, _super);
@@ -97312,7 +104251,7 @@ var Translate = /** @class */ (function (_super) {
     Translate.prototype.render = function () { return null; };
     Translate.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.interaction = new ol_1.default.interaction.Translate(options);
+        this.interaction = new translate_1.default(options);
         this.context.mapComp.interactions.push(this.interaction);
         var olEvents = util_1.Util.getEvents(this.events, this.props);
         for (var eventName in olEvents) {
@@ -97323,7 +104262,7 @@ var Translate = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             this.context.mapComp.map.removeInteraction(this.interaction);
             var options = util_1.Util.getOptions(Object.assign(this.options, nextProps));
-            this.interaction = new ol_1.default.interaction.Translate(options);
+            this.interaction = new translate_1.default(options);
             this.context.mapComp.map.addInteraction(this.interaction);
             var olEvents = util_1.Util.getEvents(this.events, this.props);
             for (var eventName in olEvents) {
@@ -97334,6 +104273,7 @@ var Translate = /** @class */ (function (_super) {
     Translate.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeInteraction(this.interaction);
     };
+    Translate.contextType = map_1.MapContext;
     return Translate;
 }(React.Component));
 exports.Translate = Translate;
@@ -97365,7 +104305,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var heatmap_1 = __webpack_require__(/*! ol/layer/heatmap */ "./node_modules/ol/layer/heatmap.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var Heatmap = /** @class */ (function (_super) {
     __extends(Heatmap, _super);
@@ -97408,7 +104349,7 @@ var Heatmap = /** @class */ (function (_super) {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         if (!options.weight)
             options.weight = 'weight';
-        this.layer = new ol_1.default.layer.Heatmap(options);
+        this.layer = new heatmap_1.default(options);
         if (this.props.zIndex) {
             this.layer.setZIndex(this.props.zIndex);
         }
@@ -97422,7 +104363,7 @@ var Heatmap = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
             this.context.mapComp.map.removeLayer(this.layer);
-            this.layer = new ol_1.default.layer.Heatmap(options);
+            this.layer = new heatmap_1.default(options);
             if (this.props.zIndex) {
                 this.layer.setZIndex(this.props.zIndex);
             }
@@ -97436,6 +104377,7 @@ var Heatmap = /** @class */ (function (_super) {
     Heatmap.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeLayer(this.layer);
     };
+    Heatmap.contextType = map_1.MapContext;
     return Heatmap;
 }(React.Component));
 exports.Heatmap = Heatmap;
@@ -97467,7 +104409,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var image_1 = __webpack_require__(/*! ol/layer/image */ "./node_modules/ol/layer/image.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var Image = /** @class */ (function (_super) {
     __extends(Image, _super);
@@ -97501,7 +104444,7 @@ var Image = /** @class */ (function (_super) {
     Image.prototype.render = function () { return null; };
     Image.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.layer = new ol_1.default.layer.Image(options);
+        this.layer = new image_1.default(options);
         if (this.props.zIndex) {
             this.layer.setZIndex(this.props.zIndex);
         }
@@ -97515,7 +104458,7 @@ var Image = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
             this.context.mapComp.map.removeLayer(this.layer);
-            this.layer = new ol_1.default.layer.Image(options);
+            this.layer = new image_1.default(options);
             if (this.props.zIndex) {
                 this.layer.setZIndex(this.props.zIndex);
             }
@@ -97529,6 +104472,7 @@ var Image = /** @class */ (function (_super) {
     Image.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeLayer(this.layer);
     };
+    Image.contextType = map_1.MapContext;
     return Image;
 }(React.Component));
 exports.Image = Image;
@@ -97632,7 +104576,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var tile_1 = __webpack_require__(/*! ol/layer/tile */ "./node_modules/ol/layer/tile.js");
+var osm_1 = __webpack_require__(/*! ol/source/osm */ "./node_modules/ol/source/osm.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var Tile = /** @class */ (function (_super) {
     __extends(Tile, _super);
@@ -97673,8 +104619,8 @@ var Tile = /** @class */ (function (_super) {
     };
     Tile.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        options.source = options.source || new ol_1.default.source.OSM();
-        this.layer = new ol_1.default.layer.Tile(options);
+        options.source = options.source || new osm_1.default();
+        this.layer = new tile_1.default(options);
         if (this.props.zIndex) {
             this.layer.setZIndex(this.props.zIndex);
         }
@@ -97688,7 +104634,7 @@ var Tile = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
             this.context.mapComp.map.removeLayer(this.layer);
-            this.layer = new ol_1.default.layer.Tile(options);
+            this.layer = new tile_1.default(options);
             if (this.props.zIndex) {
                 this.layer.setZIndex(this.props.zIndex);
             }
@@ -97702,6 +104648,7 @@ var Tile = /** @class */ (function (_super) {
     Tile.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeLayer(this.layer);
     };
+    Tile.contextType = map_1.MapContext;
     return Tile;
 }(React.Component));
 exports.Tile = Tile;
@@ -97733,7 +104680,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var vectortile_1 = __webpack_require__(/*! ol/layer/vectortile */ "./node_modules/ol/layer/vectortile.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var VectorTile = /** @class */ (function (_super) {
     __extends(VectorTile, _super);
@@ -97777,7 +104725,7 @@ var VectorTile = /** @class */ (function (_super) {
     };
     VectorTile.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.layer = new ol_1.default.layer.VectorTile(options);
+        this.layer = new vectortile_1.default(options);
         if (this.options.callback) {
             this.options.callback(this.layer);
         }
@@ -97794,7 +104742,7 @@ var VectorTile = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
             this.context.mapComp.map.removeLayer(this.layer);
-            this.layer = new ol_1.default.layer.VectorTile(options);
+            this.layer = new vectortile_1.default(options);
             if (this.options.callback) {
                 this.options.callback(this.layer);
             }
@@ -97811,6 +104759,7 @@ var VectorTile = /** @class */ (function (_super) {
     VectorTile.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeLayer(this.layer);
     };
+    VectorTile.contextType = map_1.MapContext;
     return VectorTile;
 }(React.Component));
 exports.VectorTile = VectorTile;
@@ -97842,7 +104791,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ol_1 = __webpack_require__(/*! ol */ "./node_modules/ol/index.js");
+var vector_1 = __webpack_require__(/*! ol/layer/vector */ "./node_modules/ol/layer/vector.js");
+var map_1 = __webpack_require__(/*! ../map */ "./src/map.tsx");
 var util_1 = __webpack_require__(/*! ../util */ "./src/util.tsx");
 var Vector = /** @class */ (function (_super) {
     __extends(Vector, _super);
@@ -97883,7 +104833,7 @@ var Vector = /** @class */ (function (_super) {
     };
     Vector.prototype.componentDidMount = function () {
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
-        this.layer = new ol_1.default.layer.Vector(options);
+        this.layer = new vector_1.default(options);
         if (this.props.zIndex) {
             this.layer.setZIndex(this.props.zIndex);
         }
@@ -97897,7 +104847,7 @@ var Vector = /** @class */ (function (_super) {
         if (nextProps !== this.props) {
             var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
             this.context.mapComp.map.removeLayer(this.layer);
-            this.layer = new ol_1.default.layer.Vector(options);
+            this.layer = new vector_1.default(options);
             if (this.props.zIndex) {
                 this.layer.setZIndex(this.props.zIndex);
             }
@@ -97911,6 +104861,7 @@ var Vector = /** @class */ (function (_super) {
     Vector.prototype.componentWillUnmount = function () {
         this.context.mapComp.map.removeLayer(this.layer);
     };
+    Vector.contextType = map_1.MapContext;
     return Vector;
 }(React.Component));
 exports.Vector = Vector;
@@ -97979,6 +104930,10 @@ var interaction_1 = __webpack_require__(/*! ol/interaction */ "./node_modules/ol
 var util_1 = __webpack_require__(/*! ./util */ "./src/util.tsx");
 __webpack_require__(/*! ./ol.css */ "./src/ol.css");
 __webpack_require__(/*! ./map.css */ "./src/map.css");
+exports.MapContext = React.createContext({
+    mapComp: undefined,
+    map: undefined,
+});
 /**
  * Implementation of ol.map https://openlayers.org/en/latest/apidoc/ol.Map.html
  *
@@ -97995,12 +104950,8 @@ __webpack_require__(/*! ./map.css */ "./src/map.css");
  */
 var Map = /** @class */ (function (_super) {
     __extends(Map, _super);
-    /**
-     * Component mounting LifeCycle; constructor, componentDidMount, and render
-     * https://facebook.github.io/react/docs/react-component.html#mounting
-     */
-    function Map(props) {
-        var _this = _super.call(this, props) || this;
+    function Map() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.layers = [];
         _this.interactions = [];
         _this.controls = [];
@@ -98012,7 +104963,7 @@ var Map = /** @class */ (function (_super) {
             loadTilesWhileInteractiong: undefined,
             logo: undefined,
             renderer: undefined,
-            //new options  for map component : setZoom, SetCenter, setResolution
+            //new options for map component : setZoom, SetCenter, setResolution
             /* Added by : Harinder Randhawa */
             setCenter: undefined,
             setZoom: undefined,
@@ -98040,10 +104991,10 @@ var Map = /** @class */ (function (_super) {
             'propertychange': undefined,
             'singleclick': undefined
         };
-        console.log('Map constructor');
         return _this;
     }
     Map.prototype.componentDidMount = function () {
+        console.log("Map did mount");
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         !(options.view instanceof view_1.default) && (options.view = new view_1.default(options.view));
         var controlsCmp = util_1.Util.findChild(this.props.children, 'Controls') || {};
@@ -98074,38 +105025,15 @@ var Map = /** @class */ (function (_super) {
     Map.prototype.render = function () {
         var _this = this;
         return (React.createElement("div", null,
-            React.createElement("div", { className: "openlayers-map", ref: function (el) { return _this.mapDiv = el; } }, this.props.children)));
+            React.createElement("div", { className: "openlayers-map", ref: function (el) { return _this.mapDiv = el; } },
+                React.createElement(exports.MapContext.Provider, { value: { map: this.map, mapComp: this } }, this.props.children))));
     };
-    /**
-     * Component Updating LifeCycle
-     * https://facebook.github.io/react/docs/react-component.html#updating
-     */
-    //componentWillReceiveProps(nextProps)
-    //shouldComponentUpdate(nextProps, nextState)
-    //componentWillUpdate(nextProps, nextState)
-    //componentDidUpdate(prevProps, prevState)
-    /**
-     * Component Unmounting LifeCycle
-     * https://facebook.github.io/react/docs/react-component.html#unmounting
-     */
     Map.prototype.componentWillUnmount = function () {
         this.map.setTarget(undefined);
-    };
-    // Ref. https://facebook.github.io/react/docs/context.html#how-to-use-context
-    Map.prototype.getChildContext = function () {
-        return {
-            mapComp: this,
-            map: this.map
-        };
     };
     return Map;
 }(React.Component));
 exports.Map = Map;
-// Ref. https://facebook.github.io/react/docs/context.html#how-to-use-context
-// Map['childContextTypes'] = {
-//   mapComp: React.PropTypes.instanceOf(Map),
-//   map: React.PropTypes.instanceOf(ol.Map)
-// };
 
 
 /***/ }),
@@ -98167,6 +105095,7 @@ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 var overlay_1 = __webpack_require__(/*! ol/overlay */ "./node_modules/ol/overlay.js");
 var util_1 = __webpack_require__(/*! ./util */ "./src/util.tsx");
+var map_1 = __webpack_require__(/*! ./map */ "./src/map.tsx");
 var Overlay = /** @class */ (function (_super) {
     __extends(Overlay, _super);
     function Overlay() {
@@ -98197,19 +105126,17 @@ var Overlay = /** @class */ (function (_super) {
         return (React.createElement("div", null, this.props.children));
     };
     Overlay.prototype.componentDidMount = function () {
+        console.log("Overlay Init", this.context);
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         options.element = ReactDOM.findDOMNode(this).querySelector('div');
         // console.log('options.element', options.element);
         this.overlay = new overlay_1.default(options);
         this.context.mapComp.overlays.push(this.overlay);
     };
+    Overlay.contextType = map_1.MapContext;
     return Overlay;
 }(React.Component));
 exports.Overlay = Overlay;
-// Overlay['contextTypes'] = {
-//   mapComp: React.PropTypes.instanceOf(Object),
-//   map: React.PropTypes.instanceOf(ol.Map)
-// };
 
 
 /***/ }),

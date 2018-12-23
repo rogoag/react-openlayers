@@ -22,12 +22,12 @@ export class App extends React.Component<any, any> {
           <li><Link to="/custom">Custom Examples</Link></li>
         </ul>
 
-        <Route component={EarthquakeClusters} />
-        <Route path="controls" component={Controls}/>
-        <Route path="layers" component={Layers}/>
-        <Route path="interactions" component={Interactions}/>
-        <Route path="overlays" component={Overlays}/>
-        <Route path="custom" component={Custom} />
+        <Route path="/" exact component={EarthquakeClusters} />
+        <Route path="/controls" component={Controls}/>
+        <Route path="/layers" component={Layers}/>
+        <Route path="/interactions" component={Interactions}/>
+        <Route path="/overlays" component={Overlays}/>
+        <Route path="/custom" component={Custom} />
       </div>
     );
   }
