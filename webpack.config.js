@@ -5,12 +5,22 @@ var path = require("path");
 var webpack = require('webpack');
 
 var config = {
-  entry: './src/index.tsx',
+  mode: process.env.NODE_ENV || "development",
+  entry: {
+    main: "./src/index.tsx",
+    vendor: ["react", "react-dom", "ol"],
+  },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: "react-openlayers.umd.js",
-    library: ["react-openlayers"],
+    filename: "lib/[name].umd.js",
+    sourceMapFilename: "lib/[name].js.map",
     libraryTarget: "umd"
+  },
+  optimization: {
+    splitChunks: {
+        chunks: "all",
+        name: "vendor",
+    },
   },
   devtool: 'source-map',
   devServer: {

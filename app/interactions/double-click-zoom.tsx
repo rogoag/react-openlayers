@@ -10,8 +10,26 @@ import {
 export class DoubleClickZoom extends React.Component<any, any> {
   render() {
     return (
-      <div className="todo">
-        TODO: Coming Soon(PR would be highly appreciated)
+      <div>
+        <Map>
+          <Layers>
+            <layer.Tile />
+          </Layers>
+          <Controls>
+            <interaction.DoubleClickZoom />
+          </Controls>
+        </Map>
+        <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/double-click-zoom.tsx">source</a>
+        <pre>{`
+          <Map>
+            <Layers>
+              <layer.Tile />
+            </Layers>
+            <Controls>
+              <interaction.DoubleClickZoom />
+            </Controls>
+          </Map>
+        `}</pre>
       </div>
     );
   }

@@ -3,9 +3,11 @@ import * as React from 'react';
 import olDragAndDrop from 'ol/interaction/draganddrop';
 
 import { MapContext } from '../map';
-import { Util } from '../util';
+import { Util, Omit } from '../util';
 
-export type DragAndDropProps = ol.olx.interaction.DragAndDropOptions;
+export interface DragAndDropProps extends Omit<ol.olx.interaction.DragAndDropOptions, 'projection'> {
+  projection?: ol.olx.interaction.DragAndDropOptions['projection']
+}
 
 export class DragAndDrop extends React.Component<DragAndDropProps, any> {
   public static contextType = MapContext;
@@ -32,7 +34,6 @@ export class DragAndDrop extends React.Component<DragAndDropProps, any> {
     console.log('options', options);
     this.interaction = new olDragAndDrop(options);
     this.context.mapComp.interactions.push(this.interaction)
-    
     let olEvents = Util.getEvents(this.events, this.props);
     for(let eventName in olEvents) {
       this.interaction.on(eventName, olEvents[eventName]);

@@ -1,7 +1,7 @@
 # react-openlayers
 
 A minimal [React](https://facebook.github.io/react/) 
-wrapper of [OpenLayers 3+](https://openlayers.org/)
+wrapper of [OpenLayers 4](https://openlayers.org/)
 written in [TypeScript](https://www.typescriptlang.org/)
 
 [![image](http://i.imgur.com/5JQcT8G.png)](https://rawgit.com/allenhwkim/react-openlayers/master/app/index.html)

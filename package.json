@@ -3,15 +3,15 @@
   "version": "0.3.0",
   "description": "OpenLayer React Components",
   "license": "MIT",
-  "main": "dist/react-openlayers.umd.js",
+  "main": "dist/index.js",
   "module": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "start": "cross-env NODE_ENV=dev webpack-dev-server --quiet --port 9001 --content-base app --config app/webpack.config --open",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --port 9001 --content-base app --config app/webpack.config --open",
     "clean": "rimraf dist",
     "build": "npm-run-all --serial clean build:umd build:app",
-    "build:umd": "cross-env NODE_ENV=prod webpack",
-    "build:app": "cross-env NODE_ENV=prod webpack --config app/webpack.config",
+    "build:umd": "cross-env NODE_ENV=production webpack",
+    "build:app": "cross-env NODE_ENV=production webpack --config app/webpack.config",
     "upgrade": "npm-check-updates -a/--upgradeAll && npm i"
   },
   "repository": {

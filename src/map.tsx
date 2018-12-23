@@ -23,11 +23,17 @@ export const MapContext = React.createContext<MapContextType>({
   map: undefined,
 });
 
+export type MapOptions = ol.olx.MapOptions; 
+
+export interface MapProps extends MapOptions {
+  mapRef?(map: olMap):void
+}
+
 /**
  * Implementation of ol.map https://openlayers.org/en/latest/apidoc/ol.Map.html
  *
  * example:
- * <Map view={{center: [0, 0], zoom: 1}}>
+ * <Map view={{center: [0, 0], zoom: 1}} mapRef={map => this.map = map}>
  *   <layers>
  *     <layer.Tile source={new ol.source.OSM()} />
  *     <layer.Vector options={}/>
@@ -47,15 +53,13 @@ export class Map extends React.Component<any, any> {
   controls: any[] = [];
   overlays: any[] = [];
 
-  options: any = {
+  options: MapOptions = {
     pixelRation: undefined,
     keyboardEventTarget: undefined,
     loadTilesWhileAnimation: undefined,
     loadTilesWhileInteractiong: undefined,
     logo: undefined,
     renderer: undefined,
-    //new options for map component : setZoom, SetCenter, setResolution
-    /* Added by : Harinder Randhawa */
     setCenter: undefined,
     setZoom: undefined,
     setResolution: undefined,
@@ -99,6 +103,8 @@ export class Map extends React.Component<any, any> {
     this.map = new olMap(options);
     this.map.setTarget(options.target || this.mapDiv);
 
+    if (this.props.mapRef) this.props.mapRef(this.map);
+
     //regitster events
     let olEvents = Util.getEvents(this.events, this.props);
     for (let eventName in olEvents) {
@@ -106,8 +112,6 @@ export class Map extends React.Component<any, any> {
     }
   }
 
-  // update the view with new props
-  /* Modified by Harinder Randhawa */
   componentWillReceiveProps(nextProps) {
     if (this.props.view && nextProps.view.center !== this.props.view.center) {
       this.map.getView().setCenter(nextProps.view.center);

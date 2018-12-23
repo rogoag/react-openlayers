@@ -978,13 +978,21 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var react_openlayers_1 = __webpack_require__(/*! react-openlayers */ "./src/index.tsx");
 var DoubleClickZoom = /** @class */ (function (_super) {
     __extends(DoubleClickZoom, _super);
     function DoubleClickZoom() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     DoubleClickZoom.prototype.render = function () {
-        return (React.createElement("div", { className: "todo" }, "TODO: Coming Soon(PR would be highly appreciated)"));
+        return (React.createElement("div", null,
+            React.createElement(react_openlayers_1.Map, null,
+                React.createElement(react_openlayers_1.Layers, null,
+                    React.createElement(react_openlayers_1.layer.Tile, null)),
+                React.createElement(react_openlayers_1.Controls, null,
+                    React.createElement(react_openlayers_1.interaction.DoubleClickZoom, null))),
+            React.createElement("a", { href: "https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/double-click-zoom.tsx" }, "source"),
+            React.createElement("pre", null, "\n          <Map>\n            <Layers>\n              <layer.Tile />\n            </Layers>\n            <Controls>\n              <interaction.DoubleClickZoom />\n            </Controls>\n          </Map>\n        ")));
     };
     return DoubleClickZoom;
 }(React.Component));
@@ -1017,13 +1025,32 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var react_openlayers_1 = __webpack_require__(/*! react-openlayers */ "./src/index.tsx");
 var DragAndDrop = /** @class */ (function (_super) {
     __extends(DragAndDrop, _super);
     function DragAndDrop() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     DragAndDrop.prototype.render = function () {
-        return (React.createElement("div", { className: "todo" }, "TODO: Coming Soon(PR would be highly appreciated)"));
+        return (React.createElement("div", null,
+            React.createElement("h4", null,
+                "The ",
+                React.createElement("code", null, "drag-and-drop"),
+                " interaction allows to import files from various formats directly into the map."),
+            React.createElement("h5", null,
+                "See ",
+                React.createElement("a", { href: "http://openlayers.org/en/v4.6.5/examples/drag-and-drop.html" }, "official OpenLayers Drag-and-Drop example")),
+            React.createElement("p", null,
+                "Copy the following code into a ",
+                React.createElement("code", null, "drag-and-drop-example.json"),
+                " file on your desktop, then drag-and-drop it on the map :"),
+            React.createElement("pre", null, "\n        {\n          \"type\": \"Feature\",\n          \"geometry\": {\n            \"type\": \"Point\",\n            \"coordinates\": [125.6, 10.1]\n          },\n          \"properties\": {\n            \"name\": \"Dinagat Islands\"\n          }\n        }\n        "),
+            React.createElement(react_openlayers_1.Map, null,
+                React.createElement(react_openlayers_1.Layers, null,
+                    React.createElement(react_openlayers_1.layer.Tile, null)),
+                React.createElement(react_openlayers_1.Controls, null,
+                    React.createElement(react_openlayers_1.interaction.DoubleClickZoom, null))),
+            React.createElement("a", { href: "https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/drag-and-drop.tsx" }, "source")));
     };
     return DragAndDrop;
 }(React.Component));
@@ -1388,61 +1415,61 @@ var Interactions = /** @class */ (function (_super) {
             React.createElement("h1", null, "Interactions"),
             React.createElement("ul", { role: "nav", className: "group-menu" },
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/select" }, "Select")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/select" }, "Select")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/draw" }, "Draw")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/draw" }, "Draw")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/modify" }, "Modify")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/modify" }, "Modify")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/double-click-zoom" }, "DoubleClickZoom")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/double-click-zoom" }, "DoubleClickZoom")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/drag-and-drop" }, "DragAndDrop")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/drag-and-drop" }, "DragAndDrop")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/drag-box" }, "DragBox")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/drag-box" }, "DragBox")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/drag-pan" }, "DragPan")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/drag-pan" }, "DragPan")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/drag-rotate-and-zoom" }, "DragRotateAndZoom")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/drag-rotate-and-zoom" }, "DragRotateAndZoom")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/drag-rotate" }, "DragRotate")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/drag-rotate" }, "DragRotate")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/drag-zoom" }, "DragZoom")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/drag-zoom" }, "DragZoom")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/keyboard-pan" }, "KeyboardPan")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/keyboard-pan" }, "KeyboardPan")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/keyboard-zoom" }, "KeyboardZoom")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/keyboard-zoom" }, "KeyboardZoom")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/mouse-wheel-zoom" }, "MouseWheelZoom")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/mouse-wheel-zoom" }, "MouseWheelZoom")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/pinch-rotate" }, "PinchRotate")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/pinch-rotate" }, "PinchRotate")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/pinch-zoom" }, "PinchZoom")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/pinch-zoom" }, "PinchZoom")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/pointer" }, "Pointer")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/pointer" }, "Pointer")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/snap" }, "Snap")),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/snap" }, "Snap")),
                 React.createElement("li", null,
-                    React.createElement(react_router_dom_1.Link, { to: "interactions/translate" }, "Translate"))),
+                    React.createElement(react_router_dom_1.Link, { to: "/interactions/translate" }, "Translate"))),
             React.createElement("div", { className: "contents" },
-                React.createElement(react_router_dom_1.Route, { component: select_1.Select }),
-                React.createElement(react_router_dom_1.Route, { path: "select", component: select_1.Select }),
-                React.createElement(react_router_dom_1.Route, { path: "draw", component: draw_1.Draw }),
-                React.createElement(react_router_dom_1.Route, { path: "modify", component: modify_1.Modify }),
-                React.createElement(react_router_dom_1.Route, { path: "double-click-zoom", component: double_click_zoom_1.DoubleClickZoom }),
-                React.createElement(react_router_dom_1.Route, { path: "drag-and-drop", component: drag_and_drop_1.DragAndDrop }),
-                React.createElement(react_router_dom_1.Route, { path: "drag-box", component: drag_box_1.DragBox }),
-                React.createElement(react_router_dom_1.Route, { path: "drag-pan", component: drag_pan_1.DragPan }),
-                React.createElement(react_router_dom_1.Route, { path: "drag-rotate-and-zoom", component: drag_rotate_and_zoom_1.DragRotateAndZoom }),
-                React.createElement(react_router_dom_1.Route, { path: "drag-rotate", component: drag_rotate_1.DragRotate }),
-                React.createElement(react_router_dom_1.Route, { path: "drag-zoom", component: drag_zoom_1.DragZoom }),
-                React.createElement(react_router_dom_1.Route, { path: "keyboard-pan", component: keyboard_pan_1.KeyboardPan }),
-                React.createElement(react_router_dom_1.Route, { path: "keyboard-zoom", component: keyboard_zoom_1.KeyboardZoom }),
-                React.createElement(react_router_dom_1.Route, { path: "mouse-wheel-zoom", component: mouse_wheel_zoom_1.MouseWheelZoom }),
-                React.createElement(react_router_dom_1.Route, { path: "pinch-rotate", component: pinch_rotate_1.PinchRotate }),
-                React.createElement(react_router_dom_1.Route, { path: "pinch-zoom", component: pinch_zoom_1.PinchZoom }),
-                React.createElement(react_router_dom_1.Route, { path: "pointer", component: pointer_1.Pointer }),
-                React.createElement(react_router_dom_1.Route, { path: "snap", component: snap_1.Snap }),
-                React.createElement(react_router_dom_1.Route, { path: "translate", component: translate_1.Translate }))));
+                React.createElement(react_router_dom_1.Route, { path: "/interactions", exact: true, component: select_1.Select }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/select", component: select_1.Select }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/draw", component: draw_1.Draw }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/modify", component: modify_1.Modify }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/double-click-zoom", component: double_click_zoom_1.DoubleClickZoom }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/drag-and-drop", component: drag_and_drop_1.DragAndDrop }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/drag-box", component: drag_box_1.DragBox }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/drag-pan", component: drag_pan_1.DragPan }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/drag-rotate-and-zoom", component: drag_rotate_and_zoom_1.DragRotateAndZoom }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/drag-rotate", component: drag_rotate_1.DragRotate }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/drag-zoom", component: drag_zoom_1.DragZoom }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/keyboard-pan", component: keyboard_pan_1.KeyboardPan }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/keyboard-zoom", component: keyboard_zoom_1.KeyboardZoom }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/mouse-wheel-zoom", component: mouse_wheel_zoom_1.MouseWheelZoom }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/pinch-rotate", component: pinch_rotate_1.PinchRotate }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/pinch-zoom", component: pinch_zoom_1.PinchZoom }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/pointer", component: pointer_1.Pointer }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/snap", component: snap_1.Snap }),
+                React.createElement(react_router_dom_1.Route, { path: "/interactions/translate", component: translate_1.Translate }))));
     };
     return Interactions;
 }(React.Component));
@@ -1784,7 +1811,8 @@ var point_1 = __webpack_require__(/*! ol/geom/point */ "./node_modules/ol/geom/p
 var react_openlayers_1 = __webpack_require__(/*! react-openlayers */ "./src/index.tsx");
 var iconFeature = new feature_1.default(new point_1.default([0, 0]));
 var source = new vector_1.default({ features: [iconFeature] });
-var marker = new react_openlayers_1.custom.style.MarkerStyle('https://openlayers.org/en/v4.0.1/examples/data/icon.png');
+var marker = new react_openlayers_1.custom.style.MarkerStyle('https://openlayers.org/en/v4.6.5/examples/data/icon.png');
+marker.style.getImage().setOpacity(0.5);
 var selectedMarkerStyle = react_openlayers_1.Util.cloneObject(marker.style);
 selectedMarkerStyle.getImage().setOpacity(1);
 var Select = /** @class */ (function (_super) {
@@ -101812,7 +101840,6 @@ var FullScreen = /** @class */ (function (_super) {
     }
     FullScreen.prototype.render = function () { return null; };
     FullScreen.prototype.componentDidMount = function () {
-        console.log("Fullscren did mount", this.context);
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         this.control = new fullscreen_1.default(options);
         this.context.mapComp.controls.push(this.control);
@@ -101859,7 +101886,7 @@ var control = {
     Rotate: rotate_1.Rotate,
     ZoomSlider: zoom_slider_1.ZoomSlider,
     ZoomToExtent: zoom_to_extent_1.ZoomToExtent,
-    Zoom: zoom_1.Zoom
+    Zoom: zoom_1.Zoom,
 };
 exports.control = control;
 
@@ -102621,7 +102648,7 @@ var style_1 = __webpack_require__(/*! ol/style/style */ "./node_modules/ol/style
 var icon_1 = __webpack_require__(/*! ol/style/icon */ "./node_modules/ol/style/icon.js");
 var MarkerStyle = /** @class */ (function () {
     function MarkerStyle(src) {
-        this.src = 'https://openlayers.org/en/v4.0.1/examples/data/icon.png';
+        this.src = 'https://openlayers.org/en/v4.6.5/examples/data/icon.png';
         this.style = new style_1.default({
             image: new icon_1.default(/** @type {olx.style.IconOptions} */ ({
                 src: this.src
@@ -102632,7 +102659,7 @@ var MarkerStyle = /** @class */ (function () {
                 image: new icon_1.default({
                     anchor: [0.5, 0.96],
                     color: '#4271AE',
-                    src: 'https://openlayers.org/en/v4.0.1/examples/data/dot.png'
+                    src: 'https://openlayers.org/en/v4.6.5/examples/data/dot.png'
                 })
             });
         };
@@ -102670,6 +102697,7 @@ var index_4 = __webpack_require__(/*! ./custom/index */ "./src/custom/index.tsx"
 exports.custom = index_4.custom;
 var map_1 = __webpack_require__(/*! ./map */ "./src/map.tsx");
 exports.Map = map_1.Map;
+exports.MapContext = map_1.MapContext;
 var overlay_1 = __webpack_require__(/*! ./overlay */ "./src/overlay.tsx");
 exports.Overlay = overlay_1.Overlay;
 var util_1 = __webpack_require__(/*! ./util */ "./src/util.tsx");
@@ -104994,7 +105022,6 @@ var Map = /** @class */ (function (_super) {
         return _this;
     }
     Map.prototype.componentDidMount = function () {
-        console.log("Map did mount");
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         !(options.view instanceof view_1.default) && (options.view = new view_1.default(options.view));
         var controlsCmp = util_1.Util.findChild(this.props.children, 'Controls') || {};
@@ -105003,7 +105030,6 @@ var Map = /** @class */ (function (_super) {
         options.interactions = interaction_1.default.defaults(interactionsCmp.props).extend(this.interactions);
         options.layers = this.layers;
         options.overlays = this.overlays;
-        console.log('map options', options);
         this.map = new map_1.default(options);
         this.map.setTarget(options.target || this.mapDiv);
         //regitster events
@@ -105126,7 +105152,6 @@ var Overlay = /** @class */ (function (_super) {
         return (React.createElement("div", null, this.props.children));
     };
     Overlay.prototype.componentDidMount = function () {
-        console.log("Overlay Init", this.context);
         var options = util_1.Util.getOptions(Object.assign(this.options, this.props));
         options.element = ReactDOM.findDOMNode(this).querySelector('div');
         // console.log('options.element', options.element);
