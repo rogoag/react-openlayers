@@ -21,6 +21,7 @@ export class KeyboardPan extends React.Component<any, any> {
             <layer.Tile />
           </Layers>
           <Interactions keyboard={false}>
+            <interaction.KeyboardZoom />
             <interaction.KeyboardPan
               condition={olEventConditions.platformModifierKeyOnly}
             />
@@ -32,6 +33,7 @@ export class KeyboardPan extends React.Component<any, any> {
     <layer.Tile />
   </Layers>
   <Interactions keyboard={false}>
+    <interaction.KeyboardZoom />
     <interaction.KeyboardPan
       condition={olEventConditions.platformModifierKeyOnly}
     />
