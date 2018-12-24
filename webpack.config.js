@@ -34,7 +34,7 @@ var config = {
   },
   module: {
     rules: [
-      { test: /\.ts$/, use: 'ts-loader' },
+      // { test: /\.ts$/, use: 'ts-loader' },
       {
         test: /\.css$/,
         use: [
@@ -43,7 +43,10 @@ var config = {
         ],
       },
       { test: /\.html/, use: 'html-loader' },
-      { test: /\.tsx?$/, use: 'ts-loader' }
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader'
+      }
     ]
   }
 };

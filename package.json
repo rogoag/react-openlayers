@@ -7,11 +7,11 @@
   "module": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --port 9001 --content-base app --config app/webpack.config --open",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --port 9001 --content-base src/examples --config src/examples/webpack.config --open",
     "clean": "rimraf dist",
     "build": "npm-run-all --serial clean build:umd build:app",
     "build:umd": "cross-env NODE_ENV=production webpack",
-    "build:app": "cross-env NODE_ENV=production webpack --config app/webpack.config",
+    "build:app": "cross-env NODE_ENV=production webpack --config src/examples/webpack.config",
     "upgrade": "npm-check-updates -a/--upgradeAll && npm i"
   },
   "repository": {
@@ -41,6 +41,8 @@
     "awesome-typescript-loader": "^5.2.1",
     "core-js": "^2.4.1",
     "css-loader": "^2.0.2",
+    "dts-gen": "^0.5.7",
+    "dts-generator": "^2.1.0",
     "forever": "^0.15.3",
     "fs-extra": "^7.0.1",
     "geo-coder": "^1.0.2",

@@ -6,7 +6,7 @@ import olControl from 'ol/control';
 import olInteraction from 'ol/interaction';
 import olOverlay from 'ol/overlay';
 
-import { Util } from './util';
+import { Util, Omit } from './util';
 import { Layers } from './layers/layers';
 import { layer } from './layers/index';
 
@@ -17,7 +17,10 @@ export const MapContext = React.createContext<Map|void>(null);
 
 export type MapOptions = ol.olx.MapOptions;
 
-export interface MapProps extends MapOptions {
+export interface MapProps extends Omit<MapOptions, 'view'> {
+  view?: ol.olx.ViewOptions | olView
+  className?: string
+  style?: React.CSSProperties
   mapRef?(map: olMap): void
 }
 
@@ -35,7 +38,7 @@ export interface MapProps extends MapOptions {
  *   <overlays></overlays>
  * </Map>
  */
-export class Map extends React.Component<any, any> {
+export class Map extends React.Component<MapProps, any> {
 
   map: olMap;
   mapDiv: any;
@@ -164,7 +167,12 @@ export class Map extends React.Component<any, any> {
   render() {
     return (
       <MapContext.Provider value={this}>
-        <div className="openlayers-map" ref={ref => this.mapDiv = ref} tabIndex={0}>
+        <div
+          className={this.props.className || "openlayers-map"}
+          ref={ref => this.mapDiv = ref}
+          tabIndex={0}
+          style={this.props.style}
+        >
           {this.props.children}
         </div>
       </MapContext.Provider>
