@@ -1,6 +1,7 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import ol from 'ol';
+
+import { Typography, Divider } from "@material-ui/core";
+
 import {
   interaction, layer, custom, control, //name spaces
   Interactions, Overlays, Controls,     //group
@@ -13,13 +14,17 @@ export class Rotate extends React.Component<any,any> {
   render(){
     return (
       <div>
+        <Typography variant="h4" paragraph>Rotate control</Typography>
+        <p>Use Alt+Shift+Drag to rotate the map.</p>
         <Map>
           <Layers><layer.Tile/></Layers>
           <Controls>
             <control.Rotate />
           </Controls>
         </Map>
-        Use Alt+Shift+Drag to rotate the map.
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers><layer.Tile/></Layers>

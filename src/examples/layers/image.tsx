@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Typography, Divider } from "@material-ui/core";
 
 import olExtent from 'ol/extent';
 import Projection from 'ol/proj/projection'
@@ -36,11 +37,15 @@ export class Image extends React.Component<any,any> {
   render(){
     return (
       <div>
+        <Typography variant="h4" paragraph>Image layer</Typography>
         <Map view={view}>
           <Layers>
             <layer.Image source={imageSource} />
           </Layers>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map view={view}>
   <Layers>

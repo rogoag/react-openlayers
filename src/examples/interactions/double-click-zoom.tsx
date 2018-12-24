@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Typography, Divider } from "@material-ui/core";
 
 import {
   interaction, layer, custom, control, //name spaces
@@ -13,6 +14,7 @@ export class DoubleClickZoom extends React.Component<any, any> {
   render() {
     return (
       <div>
+        <Typography variant="h4" paragraph>DoubleClickZoom interaction</Typography>
         <Map>
           <Layers>
             <layer.Tile />
@@ -21,6 +23,9 @@ export class DoubleClickZoom extends React.Component<any, any> {
             <interaction.DoubleClickZoom />
           </Interactions>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx"  code={
 `<Map>
   <Layers>

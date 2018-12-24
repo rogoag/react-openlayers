@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Typography, Divider } from "@material-ui/core";
 
 import VectorSource from 'ol/source/vector';
 import GeoJSONFormat from 'ol/format/geojson';
@@ -43,6 +44,7 @@ export class Modify extends React.Component<any, any> {
   render() {
     return (
       <div>
+        <Typography variant="h4" paragraph>Modify interaction</Typography>
         <Map>
           <Layers>
             <layer.Tile />
@@ -53,6 +55,9 @@ export class Modify extends React.Component<any, any> {
             <interaction.Modify features={select.getFeatures()} /> 
           </Interactions>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers>

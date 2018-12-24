@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Typography, Divider } from "@material-ui/core";
 
 import {
   interaction, layer, custom, control, //name spaces
@@ -13,7 +14,8 @@ export class MouseWheelZoom extends React.Component<any, any> {
   render() {
     return (
       <div>
-        <p>This example have disabled default <code>MouseWheel</code> interaction, and replace it with a customized one having a logner duration for a slower zoom.</p>
+        <Typography variant="h4" paragraph>MouseWheelZoom interaction</Typography>
+        <Typography variant="subtitle1">This example have disabled default <code>MouseWheel</code> interaction, and replace it with a customized one having a logner duration for a slower zoom.</Typography>
         <Map view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
             <layer.Tile />
@@ -24,6 +26,9 @@ export class MouseWheelZoom extends React.Component<any, any> {
             />
           </Interactions>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map view={{ center: [0, 0], zoom: 2 }}>
   <Layers>

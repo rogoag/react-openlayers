@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Typography, Divider } from "@material-ui/core";
 
 import {
   interaction, layer, custom, control, //name spaces
@@ -27,7 +28,8 @@ export class Pointer extends React.Component<any, any> {
   render() {
     return (
       <div>
-        <p>The <code>Pointer</code> interaction allows to handle mouse pointer event, such as click down, click up, mouse move and drag. You can create custom map behaviors by using those events.</p>
+        <Typography variant="h4" paragraph>Pointer interaction</Typography>
+        <Typography variant="subtitle1">The <code>Pointer</code> interaction allows to handle mouse pointer event, such as click down, click up, mouse move and drag. You can create custom map behaviors by using those events.</Typography>
         <p><b>Pointer action : </b>{this.state.action}</p>
         <Map view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
@@ -42,6 +44,9 @@ export class Pointer extends React.Component<any, any> {
             />
           </Interactions>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map view={{ center: [0, 0], zoom: 2 }}>
   <Layers>

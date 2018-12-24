@@ -1,6 +1,9 @@
 import * as React from 'react';
 import {Link, Route} from 'react-router-dom';
 
+import { Drawer, List, ListItem, ListItemText, withStyles } from '@material-ui/core';
+import sharedStyles from '../shared-styles';
+
 import {Tile} from './tile';
 import {Vector} from './vector';
 import {Heatmap} from './heatmap';
@@ -17,20 +20,43 @@ export {VectorTile} from './vector-tile';
 export {VectorTile2} from './vector-tile-2';
 export {OSMVectorTiles} from './osm-vector-tiles';
 
-export class Layers extends React.Component<any, any> {
+class Layers extends React.Component<any, any> {
   render() {
+    const { classes } = this.props;
     return (
-      <div>
-        <h1>Layers</h1>
-        <ul role="nav" className="group-menu">
-          <li><Link to="/layers/tile">Tile</Link></li>
-          <li><Link to="/layers/vector">Vector</Link></li>
-          <li><Link to="/layers/vector-tile">Vector Tile</Link></li>
-          <li><Link to="/layers/osm-vector-tiles">OSM Vector Tiles</Link></li>
-          <li><Link to="/layers/heatmap">Heatmap</Link></li>
-          <li><Link to="/layers/image">Image</Link></li>
-        </ul>
-        <div className="contents">
+      <div className={classes.categoryRoot}>
+        <Drawer open
+          variant="permanent"
+          anchor="left"
+          classes={{
+            paper: classes.drawerPaper
+          }}
+        >
+          <div className={classes.toolbar} />
+          <List>
+            <ListItem button to="/layers/tile" component={Link}>
+              <ListItemText primary="Tile" />
+            </ListItem>
+            <ListItem button to="/layers/vector" component={Link}>
+              <ListItemText primary="Vector" />
+            </ListItem>
+            <ListItem button to="/layers/vector-tile" component={Link}>
+              <ListItemText primary="Vector Tile" />
+            </ListItem>
+            <ListItem button to="/layers/osm-vector-tiles" component={Link}>
+              <ListItemText primary="OSM Vector Tiles" />
+            </ListItem>
+            <ListItem button to="/layers/heatmap" component={Link}>
+              <ListItemText primary="Heatmap" />
+            </ListItem>
+            <ListItem button to="/layers/image" component={Link}>
+              <ListItemText primary="Image" />
+            </ListItem>
+          </List>
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Route path="/" exact component={Tile} />
           <Route path="/layers" exact component={Tile} />
           <Route path="/layers/tile" component={Tile} />
           <Route path="/layers/vector" component={Vector} />
@@ -39,8 +65,10 @@ export class Layers extends React.Component<any, any> {
           <Route path="/layers/vector-tile" component={VectorTile} />
           <Route path="/layers/vector-tile-2" component={VectorTile2} />
           <Route path="/layers/osm-vector-tiles" component={OSMVectorTiles} />
-        </div>
+        </main>
       </div>
     );
   }
 }
+
+export default withStyles(sharedStyles, { withTheme: true })(Layers)

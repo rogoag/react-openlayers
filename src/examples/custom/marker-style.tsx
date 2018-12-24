@@ -1,7 +1,7 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
-import ol from 'ol';
+import { Typography, Divider } from "@material-ui/core";
+
 import Feature from 'ol/feature';
 import Point from 'ol/geom/point';
 import VectorSource from 'ol/source/vector';
@@ -24,6 +24,7 @@ export class MarkerStyle extends React.Component<any,any> {
   render(){
     return (
       <div>
+        <Typography variant="h4" paragraph>Marker style</Typography>
         <Map>
           <Layers>
             <layer.Tile />
@@ -32,6 +33,9 @@ export class MarkerStyle extends React.Component<any,any> {
               source={source}/>
           </Layers>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers>

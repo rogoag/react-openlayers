@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Typography, Divider } from "@material-ui/core";
 
 import Attribution from 'ol/attribution';
 import VectorTileSource from 'ol/source/vectortile';
@@ -9,9 +10,6 @@ import olProj from 'ol/proj';
 import Style from 'ol/style/style';
 import FillStyle from 'ol/style/fill';
 import StrokeStyle from 'ol/style/stroke';
-
-import * as olms from 'ol-mapbox-style'; // in case we use olms
-import * as qwest from 'qwest';          // in case we need to do ajax call
 
 import {
   interaction, layer, custom, control, //name spaces
@@ -106,6 +104,7 @@ export class OSMVectorTiles extends React.Component<any, any> {
   render() {
     return (
       <div>
+        <Typography variant="h4" paragraph>OSM Vector Tiles layer</Typography>
         <Map view={{ center: olProj.fromLonLat([-74.0064, 40.7142]), maxZoom: 19, zoom: 15 }}>
           <Layers>
             <layer.VectorTile source={source1} style={style1} />
@@ -113,6 +112,9 @@ export class OSMVectorTiles extends React.Component<any, any> {
             <layer.VectorTile source={source3} style={style3} />
           </Layers>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map view={{center: olProj.fromLonLat([-74.0064, 40.7142]), maxZoom: 19, zoom: 15 }}>
   <Layers>

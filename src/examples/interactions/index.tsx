@@ -1,6 +1,9 @@
 import * as React from 'react';
 import {Link, Route} from 'react-router-dom';
 
+import { Drawer, List, ListItem, ListItemText, withStyles } from '@material-ui/core';
+import sharedStyles from '../shared-styles';
+
 import {Select} from './select';
 import {Draw} from './draw';
 import {Modify} from './modify';
@@ -39,33 +42,79 @@ export {Pointer} from './pointer';
 export {Snap} from './snap';
 export {Translate} from './translate';
 
-export class Interactions extends React.Component<any, any> {
+class Interactions extends React.Component<any, any> {
   render() {
-    return (
-      <div>
-        <h1>Interactions</h1>
-        <ul role="nav" className="group-menu">
-          <li><Link to="/interactions/select">Select</Link></li>
-          <li><Link to="/interactions/draw">Draw</Link></li>
-          <li><Link to="/interactions/modify">Modify</Link></li>
-          <li><Link to="/interactions/double-click-zoom">DoubleClickZoom</Link></li>
-          <li><Link to="/interactions/drag-and-drop">DragAndDrop</Link></li>
-          <li><Link to="/interactions/drag-box">DragBox</Link></li>
-          <li><Link to="/interactions/drag-pan">DragPan</Link></li>
-          <li><Link to="/interactions/drag-rotate-and-zoom">DragRotateAndZoom</Link></li>
-          <li><Link to="/interactions/drag-rotate">DragRotate</Link></li>
-          <li><Link to="/interactions/drag-zoom">DragZoom</Link></li>
-          <li><Link to="/interactions/keyboard-pan">KeyboardPan</Link></li>
-          <li><Link to="/interactions/keyboard-zoom">KeyboardZoom</Link></li>
-          <li><Link to="/interactions/mouse-wheel-zoom">MouseWheelZoom</Link></li>
-          <li><Link to="/interactions/pinch-rotate">PinchRotate</Link></li>
-          <li><Link to="/interactions/pinch-zoom">PinchZoom</Link></li>
-          <li><Link to="/interactions/pointer">Pointer</Link></li>
-          <li><Link to="/interactions/snap">Snap</Link></li>
-          <li><Link to="/interactions/translate">Translate</Link></li>
-        </ul>
+    const { classes } = this.props;
 
-        <div className="contents">
+    return (
+      <div className={classes.categoryRoot}>
+      <Drawer open
+        variant="permanent"
+        anchor="left"
+        classes={{
+          paper: classes.drawerPaper
+        }}
+      >
+        <div className={classes.toolbar} />
+        <List>
+            <ListItem button to="/interactions/select" component={Link}>
+              <ListItemText primary="Select"/>
+            </ListItem>
+            <ListItem button to="/interactions/draw" component={Link}>
+              <ListItemText primary="Draw"/>
+            </ListItem>
+            <ListItem button to="/interactions/modify" component={Link}>
+              <ListItemText primary="Modify"/>
+            </ListItem>
+            <ListItem button to="/interactions/double-click-zoom" component={Link}>
+              <ListItemText primary="DoubleClickZoom"/>
+            </ListItem>
+            <ListItem button to="/interactions/drag-and-drop" component={Link}>
+              <ListItemText primary="DragAndDrop"/>
+            </ListItem>
+            <ListItem button to="/interactions/drag-box" component={Link}>
+              <ListItemText primary="DragBox"/>
+            </ListItem>
+            <ListItem button to="/interactions/drag-pan" component={Link}>
+              <ListItemText primary="DragPan"/>
+            </ListItem>
+            <ListItem button to="/interactions/drag-rotate-and-zoom" component={Link}>
+              <ListItemText primary="DragRotateAndZoom"/>
+            </ListItem>
+            <ListItem button to="/interactions/drag-rotate" component={Link}>
+              <ListItemText primary="DragRotate"/>
+            </ListItem>
+            <ListItem button to="/interactions/drag-zoom" component={Link}>
+              <ListItemText primary="DragZoom"/>
+            </ListItem>
+            <ListItem button to="/interactions/keyboard-pan" component={Link}>
+              <ListItemText primary="KeyboardPan"/>
+            </ListItem>
+            <ListItem button to="/interactions/keyboard-zoom" component={Link}>
+              <ListItemText primary="KeyboardZoom"/>
+            </ListItem>
+            <ListItem button to="/interactions/mouse-wheel-zoom" component={Link}>
+              <ListItemText primary="MouseWheelZoom"/>
+            </ListItem>
+            <ListItem button to="/interactions/pinch-rotate" component={Link}>
+              <ListItemText primary="PinchRotate"/>
+            </ListItem>
+            <ListItem button to="/interactions/pinch-zoom" component={Link}>
+              <ListItemText primary="PinchZoom"/>
+            </ListItem>
+            <ListItem button to="/interactions/pointer" component={Link}>
+              <ListItemText primary="Pointer"/>
+            </ListItem>
+            <ListItem button to="/interactions/snap" component={Link}>
+              <ListItemText primary="Snap"/>
+            </ListItem>
+            <ListItem button to="/interactions/translate" component={Link}>
+              <ListItemText primary="Translate"/>
+            </ListItem>
+          </List>
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
           <Route path="/interactions" exact component={Select} />
           <Route path="/interactions/select" component={Select} />
           <Route path="/interactions/draw" component={Draw} />
@@ -85,8 +134,10 @@ export class Interactions extends React.Component<any, any> {
           <Route path="/interactions/pointer" component={Pointer} />
           <Route path="/interactions/snap" component={Snap} />
           <Route path="/interactions/translate" component={Translate} />
-        </div>
+        </main>
       </div>
     );
   }
 }
+
+export default withStyles(sharedStyles, { withTheme: true })(Interactions)

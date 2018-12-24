@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { Link, Route } from 'react-router-dom';
 
+import { Drawer, List, ListItem, ListItemText, withStyles } from '@material-ui/core';
+import sharedStyles from '../shared-styles';
+
 import { Attribution } from './attribution';
 import { FullScreen } from './full-screen';
 import { MousePosition } from './mouse-position';
@@ -21,24 +24,51 @@ export { ZoomSlider } from './zoom-slider';
 export { ZoomToExtent } from './zoom-to-extent';
 export { Zoom } from './zoom';
 
-export class Controls extends React.Component<any, any> {
+class Controls extends React.Component<any, any> {
   render() {
+    const { classes } = this.props;
     return (
-      <div>
-        <h1>Controls</h1>
-        <ul role="nav" className="group-menu">
-          <li><Link to="/controls/attribution">Attribution</Link></li>
-          <li><Link to="/controls/full-screen">FullScreen</Link></li>
-          <li><Link to="/controls/mouse-position">MousePosition</Link></li>
-          <li><Link to="/controls/overview-map">OverviewMap</Link></li>
-          <li><Link to="/controls/rotate">Rotate</Link></li>
-          <li><Link to="/controls/scale-line">ScaleLine</Link></li>
-          <li><Link to="/controls/zoom-slider">ZoomSlider</Link></li>
-          <li><Link to="/controls/zoom-to-extent">ZoomToExtent</Link></li>
-          <li><Link to="/controls/zoom">Zoom</Link></li>
-        </ul>
-
-        <div className="contents">
+      <div className={classes.categoryRoot}>
+        <Drawer open
+          variant="permanent"
+          anchor="left"
+          classes={{
+            paper: classes.drawerPaper
+          }}
+        >
+           <div className={classes.toolbar} />
+          <List>
+            <ListItem button to="/controls/attribution" component={Link}>
+              <ListItemText primary="Attribution" />
+            </ListItem>
+            <ListItem button to="/controls/full-screen" component={Link}>
+              <ListItemText primary="FullScreen" />
+            </ListItem>
+            <ListItem button to="/controls/mouse-position" component={Link}>
+              <ListItemText primary="MousePosition" />
+            </ListItem>
+            <ListItem button to="/controls/overview-map" component={Link}>
+              <ListItemText primary="OverviewMap" />
+            </ListItem>
+            <ListItem button to="/controls/rotate" component={Link}>
+              <ListItemText primary="Rotate" />
+            </ListItem>
+            <ListItem button to="/controls/scale-line" component={Link}>
+              <ListItemText primary="ScaleLine" />
+            </ListItem>
+            <ListItem button to="/controls/zoom-slider" component={Link}>
+              <ListItemText primary="ZoomSlider" />
+            </ListItem>
+            <ListItem button to="/controls/zoom-to-extent" component={Link}>
+              <ListItemText primary="ZoomToExtent" />
+            </ListItem>
+            <ListItem button to="/controls/zoom" component={Link}>
+              <ListItemText primary="Zoom" />
+            </ListItem>
+          </List>
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
           <Route path="/controls" exact component={Attribution} />
           <Route path="/controls/attribution" component={Attribution} />
           <Route path="/controls/full-screen" component={FullScreen} />
@@ -49,8 +79,10 @@ export class Controls extends React.Component<any, any> {
           <Route path="/controls/zoom-slider" component={ZoomSlider} />
           <Route path="/controls/zoom-to-extent" component={ZoomToExtent} />
           <Route path="/controls/zoom" component={Zoom} />
-        </div>
+        </main>
       </div>
     );
   }
 }
+
+export default withStyles(sharedStyles, { withTheme: true })(Controls)

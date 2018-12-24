@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Select, MenuItem, Divider, FormControl, InputLabel, Typography } from "@material-ui/core";
 
 import OSMSource from 'ol/source/osm';
 import VectorSource from 'ol/source/vector';
@@ -28,14 +29,10 @@ export class Draw extends React.Component<any, any> {
     };
   }
 
-  drawend = (e) => {
-    console.log('xxxxxxxxxxxxx, draw end', e);
-  }
-
   render() {
-    var typeSelect = document.getElementById('type');
     return (
       <div>
+        <Typography variant="h4" paragraph>Draw interaction</Typography>
         <Map view={this.state.view}>
           <Layers>
             <layer.Tile source={rasterTile} />
@@ -43,17 +40,26 @@ export class Draw extends React.Component<any, any> {
           </Layers>
           <Interactions>
             <interaction.Draw
-              onDrawend={this.drawend}
               source={vectorSource}
               type={this.state.interactionType} />
           </Interactions>
         </Map>
-        <select onChange={(event) => this.setState({interactionType: event.target.value})} value={this.state.interactionType}>
-          <option value="Point">Point</option>
-          <option value="Polygon">Polygon</option>
-          <option value="Line">Line</option>
-          <option value="Circle">Circle</option>
-        </select>
+        <br/>
+        <FormControl>
+          <InputLabel>Type</InputLabel>
+          <Select
+            onChange={(event) => this.setState({interactionType: event.target.value})}
+            value={this.state.interactionType}
+          >
+            <MenuItem value="Point">Point</MenuItem>
+            <MenuItem value="Polygon">Polygon</MenuItem>
+            <MenuItem value="Line">Line</MenuItem>
+            <MenuItem value="Circle">Circle</MenuItem>
+          </Select>
+        </FormControl>
+        <br/>
+        <br/>
+        <Divider />
         <br/>
         <Highlighter lang="jsx"  code={
 `<Map view={this.state.view}>
@@ -67,13 +73,7 @@ export class Draw extends React.Component<any, any> {
       source={vectorSource}
       type={this.state.interactionType} />
   </Interactions>
-</Map>
-<select onChange={(event) => this.setState({interactionType: event.target.value})} value={this.state.interactionType}>
-  <option value="Point">Point</option>
-  <option value="Polygon">Polygon</option>
-  <option value="Line">Line</option>
-  <option value="Circle">Circle</option>
-</select> `
+</Map>`
         } />
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/draw.tsx">source</a>
       </div>

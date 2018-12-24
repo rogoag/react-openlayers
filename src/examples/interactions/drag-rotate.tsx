@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Typography, Divider } from "@material-ui/core";
 
 import olEventConditions from 'ol/events/condition';
 
@@ -15,7 +16,8 @@ export class DragRotate extends React.Component<any, any> {
   render() {
     return (
       <div>
-        <p>This example have disabled default <code>DragRotate</code> interaction, but it implements one that force you to use <code>CTRL + Drag</code> to rotate the map!</p>
+        <Typography variant="h4" paragraph>DragRotate interaction</Typography>
+        <Typography variant="subtitle1">This example have disabled default <code>DragRotate</code> interaction, but it implements one that force you to use <code>CTRL + Drag</code> to rotate the map.</Typography>
         <Map view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
             <layer.Tile />
@@ -26,6 +28,9 @@ export class DragRotate extends React.Component<any, any> {
             />
           </Interactions>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map view={{ center: [0, 0], zoom: 2 }}>
   <Layers>

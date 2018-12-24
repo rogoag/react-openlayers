@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Typography, Divider } from "@material-ui/core";
 
 import olEventConditions from 'ol/events/condition';
 import olSelect from 'ol/interaction/select';
@@ -32,11 +33,7 @@ export class DragBox extends React.Component<any, any> {
     this.state.selectedFeatures = this.select.getFeatures();
   }
 
-  clearSelectedFeatures = () => {
-    const sf = this.state.selectedFeatures;
-    sf.clear()
-    this.setState({ selectedFeatures: sf })
-  }
+  clearSelectedFeatures = () => this.state.selectedFeatures.clear()
 
   handleBoxEnd = event => {
     var extent = event.target.getGeometry().getExtent();
@@ -48,14 +45,20 @@ export class DragBox extends React.Component<any, any> {
   }
 
   handleDeselect = e => {
-    if (e.deselected.length > 0)
+    if (e.deselected.length > 0) {
       this.clearSelectedFeatures();
+      this.setState({ ...this.state, selectedFeatures: this.state.selectedFeatures})
+    }
   }
 
   render() {
     return (
       <div>
-        <p>Use <code>CTRL + Drag</code> to select an area</p>
+        <Typography variant="h4" paragraph>DragBox interaction</Typography>
+        <br/>
+        <Typography variant="subtitle2">
+          Use <code>CTRL + Drag</code> to select an area
+        </Typography>
         <Map view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
             <layer.Tile />
@@ -70,7 +73,10 @@ export class DragBox extends React.Component<any, any> {
               />
           </Interactions>
         </Map>
-        <p>{this.state.selectedFeatures.length === 0 ? "No selected countries" : this.state.selectedFeatures.getArray().map(f => f.get('name')).join(', ')}</p>
+        <p><b>Selected countries: </b>{this.state.selectedFeatures.getArray().length === 0 ? "No selection" : this.state.selectedFeatures.getArray().map(f => f.get('name')).join(', ')}</p>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map view={{ center: [0, 0], zoom: 2 }}>
   <Layers>
@@ -86,7 +92,7 @@ export class DragBox extends React.Component<any, any> {
       />
   </Controls>
 </Map>
-<p>{this.state.selectedFeatures.length === 0 ? "No selected countries" : this.state.selectedFeatures.getArray().map(f => f.get('name')).join(', ')}</p>`
+<p><b>Selected countries: </b>{this.state.selectedFeatures.getArray().length === 0 ? "No selection" : this.state.selectedFeatures.getArray().map(f => f.get('name')).join(', ')}</p>`
         } />
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/interactions/drag-box.tsx">source</a>
       </div>

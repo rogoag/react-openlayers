@@ -1,12 +1,11 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Typography, Divider } from "@material-ui/core";
 
 import VectorTileSource from 'ol/source/vectortile';
 import MVTFormat from 'ol/format/mvt';
 import olTilegrid from 'ol/tilegrid';
 
-import * as olms from 'ol-mapbox-style'; // in case we use olms
-import * as qwest from 'qwest';          // in case we need to do ajax call
 import {
   interaction, layer, custom, control, //name spaces
   Interactions, Overlays, Controls,     //group
@@ -35,11 +34,15 @@ export class VectorTile extends React.Component<any,any> {
     let style = createMapboxStreetsV6Style();
     return (
       <div>
+        <Typography variant="h4" paragraph>Vector Tile layer</Typography>
         <Map view={{center: [0,0], zoom:2}}>
           <Layers>
             <layer.VectorTile source={source} style={createMapboxStreetsV6Style()} />
           </Layers>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map view={{center: [0,0], zoom:2}}>
   <Layers>

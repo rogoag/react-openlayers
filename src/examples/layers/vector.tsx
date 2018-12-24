@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Typography, Divider } from "@material-ui/core";
 
 import ol from 'ol';
 import Feature from 'ol/feature';
@@ -30,12 +31,16 @@ export class Vector extends React.Component<any,any> {
   render(){
     return (
       <div>
+        <Typography variant="h4" paragraph>Vector layer</Typography>
         <Map>
           <Layers>
             <layer.Tile/>
             <layer.Vector source={source} style={marker.style} zIndex={1}/>
           </Layers>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers>

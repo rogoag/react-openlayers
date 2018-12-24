@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Typography, Divider } from "@material-ui/core";
 
 import VectorSource from 'ol/source/vector';
 import GeoJSONFormat from 'ol/format/geojson';
@@ -34,7 +35,8 @@ export class Translate extends React.Component<any, any> {
   render() {
     return (
       <div>
-        <p>Try to drag a <code>Point</code>!</p>
+        <Typography variant="h4" paragraph>Translate interaction</Typography>
+        <Typography variant="subtitle1">Try to drag a <code>Point</code>!</Typography>
         <Map>
           <Layers>
             <layer.Tile />
@@ -44,6 +46,9 @@ export class Translate extends React.Component<any, any> {
             <interaction.Translate  /> 
           </Interactions>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers>

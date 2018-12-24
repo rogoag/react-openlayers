@@ -1,13 +1,14 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Divider, Typography } from "@material-ui/core";
 
 import olProj from 'ol/proj';
 import StamenSource from 'ol/source/stamen';
 
 import {
-  interaction, layer, custom, control, //name spaces
+  interaction, layer, custom, control,  //name spaces
   Interactions, Overlays, Controls,     //group
-  Map, Layers, Overlay, Util    //objects
+  Map, Layers, Overlay, Util            //objects
 } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
@@ -30,6 +31,7 @@ export class AppOverlay extends React.Component<any,any> {
   render(){
     return (
       <div>
+        <Typography variant="h4" paragraph>Overlay</Typography>
         <Map onClick={this.showPopup}>
           <Layers>
             <layer.Tile source={new StamenSource({ layer: 'watercolor' })}/>
@@ -44,6 +46,9 @@ export class AppOverlay extends React.Component<any,any> {
             </Overlay>
           </Overlays>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map onClick={this.showPopup}>
   <Layers>

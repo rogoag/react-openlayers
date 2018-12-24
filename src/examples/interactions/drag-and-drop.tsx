@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Typography, Divider } from "@material-ui/core";
 
 import olMap from 'ol/map';
 import Style from 'ol/style/style';
@@ -105,13 +106,19 @@ export class DragAndDrop extends React.Component<any, any> {
   render() {
     return (
       <div>
-        <h4>The <code>drag-and-drop</code> interaction allows to import files from various formats directly into the map.</h4>
-        <h5>See <a href="http://openlayers.org/en/v4.6.5/examples/drag-and-drop.html">official OpenLayers Drag-and-Drop example</a></h5>
-        <p>
-
+        <Typography variant="h4" paragraph>DragAndDrop interaction</Typography>
+        <Typography variant="subtitle1">The <code>drag-and-drop</code> interaction allows to import files from various formats directly into the map.</Typography>
+        <Typography variant="caption">
+          See <a href="http://openlayers.org/en/v4.6.5/examples/drag-and-drop.html">official OpenLayers Drag-and-Drop example</a>
+        </Typography>
+        <br/>
+        <Typography variant="subtitle2">
           Copy the following code into a <code>drag-and-drop-example.json</code> file on your desktop, then drag-and-drop it on the map :
-        </p>
-        <Highlighter lang="json"  code={
+        </Typography>
+        <div style={{fontSize: "0.75em"}}>
+          <Highlighter
+            lang="json"
+            code={
 `{
   "type": "Feature",
   "geometry": {
@@ -122,7 +129,8 @@ export class DragAndDrop extends React.Component<any, any> {
     "name": "Dinagat Islands"
   }
 }`
-        } />
+          } />
+        </div>
         <Map view={{ center: [0, 0], zoom: 2 }} mapRef={map => this.map = map}>
           <Layers>
             <layer.Tile />
@@ -140,6 +148,9 @@ export class DragAndDrop extends React.Component<any, any> {
             />
           </Interactions>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx"  code={
 `<Map view={{ center: [0, 0], zoom: 2 }} mapRef={map => this.map = map}>
   <Layers>

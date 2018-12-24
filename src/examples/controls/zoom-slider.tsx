@@ -1,6 +1,7 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import ol from 'ol';
+
+import { Typography, Divider } from "@material-ui/core";
+
 import {
   interaction, layer, custom, control, //name spaces
   Interactions, Overlays, Controls,     //group
@@ -13,12 +14,16 @@ export class ZoomSlider extends React.Component<any,any> {
   render(){
     return (
       <div>
+        <Typography variant="h4" paragraph>ZoomSlider control</Typography>
         <Map>
           <Layers><layer.Tile/></Layers>
           <Controls>
             <control.ZoomSlider />
           </Controls>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers><layer.Tile/></Layers>

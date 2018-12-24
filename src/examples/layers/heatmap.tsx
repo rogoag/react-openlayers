@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Typography, Divider } from "@material-ui/core";
 
 import StamenSource from 'ol/source/stamen';
 import VectorSource from 'ol/source/vector';
@@ -28,12 +29,16 @@ export class Heatmap extends React.Component<any,any> {
   render(){
     return (
       <div>
+        <Typography variant="h4" paragraph>Heatmap layer</Typography>
         <Map view={{center:[0,0], zoom:1}}>
           <Layers>
             <layer.Tile source={tileSource} />
             <layer.Heatmap source={heatmapSource} blur={15} radius={5} />
           </Layers>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx"  code={
 `<Map center={[0,0]} view={{center:[0,0], zoom:1}}>
   <Layers>

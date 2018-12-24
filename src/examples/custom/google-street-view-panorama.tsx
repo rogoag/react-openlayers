@@ -1,7 +1,7 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import ol from 'ol';
-import * as GoogleMapsLoader from 'google-maps';
+
+import { Typography, Divider } from "@material-ui/core";
+
 import {
   interaction, layer, custom, control, //name spaces
   Interactions, Overlays, Controls,     //group
@@ -18,11 +18,15 @@ export class GoogleStreetViewPanorama extends React.Component<any,any> {
   render(){
     return (
       <div style={{height: '500px'}}>
+        <Typography variant="h4" paragraph>Google Street View panorama</Typography>
         <custom.GoogleStreetViewPanorama
           position={{lat: 43.6613184, lng: -79.3941086}}
           pov={{heading: 90, pitch: 10}}
           zoom={1} 
          />
+         <br/>
+         <Divider />
+         <br/>
         <Highlighter lang="jsx" code={
 `<custom.GoogleStreetViewPanorama
   position={{lat: 43.6613184, lng: -79.3941086}}

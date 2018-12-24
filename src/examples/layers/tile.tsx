@@ -1,7 +1,7 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
-import ol from 'ol';
+import { Typography, Divider } from "@material-ui/core";
+
 import StamenSource from 'ol/source/stamen';
 
 import {
@@ -16,11 +16,15 @@ export class Tile extends React.Component<any,any> {
   render(){
     return (
       <div>
+        <Typography variant="h4" paragraph>Tile layer</Typography>
         <Map>
           <Layers>
             <layer.Tile source={new StamenSource({ layer: 'watercolor' })}/>
           </Layers>
         </Map>
+        <br/>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers>

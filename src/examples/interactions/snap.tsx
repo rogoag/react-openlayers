@@ -1,5 +1,6 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+
+import { Typography, Divider, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Grid, InputLabel, Select, MenuItem } from "@material-ui/core";
 
 import VectorSource from 'ol/source/vector';
 import Style from 'ol/style/style';
@@ -76,7 +77,8 @@ export class Snap extends React.Component<any, any> {
 
     return (
       <div>
-        <p>The <code>Snap</code> interaction offer snapping capabilities. Try drawing a <code>LineString</code> and some <code>Point</code>s, then select the <code>Modify</code> option and try to move a <code>Point</code> near the <code>LineString</code></p>
+        <Typography variant="h4" paragraph>Snap interaction</Typography>
+        <Typography variant="subtitle1">The <code>Snap</code> interaction offer snapping capabilities. Try drawing a <code>LineString</code> and some <code>Point</code>s, then select the <code>Modify</code> option and try to move a <code>Point</code> near the <code>LineString</code>.</Typography>
         <Map view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
             <layer.Tile />
@@ -115,28 +117,39 @@ export class Snap extends React.Component<any, any> {
             <interaction.Snap source={this.source} />
           </Interactions>
         </Map>
-        <form id="options-form" autoComplete="off">
-          <div className="radio" onChange={this.handleInteractionChange}>
-            <label>
-              <input type="radio" name="interaction" value="draw" id="draw" defaultChecked/>
-              Draw
-            </label>
-            <br/>
-            <label>
-              <input type="radio" name="interaction" value="modify" />
-              Modify
-              </label>
-          </div>
-          <div className="form-group">
-            <label>Draw type</label>
-            <select name="draw-type" id="draw-type" onChange={this.handleDrawTypeChange}>
-              <option value="Point">Point</option>
-              <option value="LineString">LineString</option>
-              <option value="Polygon">Polygon</option>
-              <option value="Circle">Circle</option>
-            </select>
-          </div>
-        </form>
+        <br/>
+        <Grid container spacing={16}>
+          <Grid item sm={6}>
+            <FormControl>
+              <FormLabel>Interaction</FormLabel>
+              <RadioGroup
+                aria-label="Interaction"
+                name="gender1"
+                value={this.state.activeInteraction}
+                onChange={this.handleInteractionChange}
+              >
+                <FormControlLabel  value="draw" control={<Radio />} label="Draw" />
+                <FormControlLabel value="modify" control={<Radio />} label="Modify" />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
+          <Grid item sm={6}>
+            <FormControl>
+              <InputLabel>Type</InputLabel>
+              <Select
+                onChange={this.handleDrawTypeChange}
+                value={this.state.drawType}
+              >
+                <MenuItem value="Point">Point</MenuItem>
+                <MenuItem value="Polygon">Polygon</MenuItem>
+                <MenuItem value="LineString">LineString</MenuItem>
+                <MenuItem value="Circle">Circle</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
+        <Divider />
+        <br/>
         <Highlighter lang="jsx" code={
 `<Map view={{ center: [0, 0], zoom: 2 }}>
   <Layers>
