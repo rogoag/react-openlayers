@@ -1,29 +1,29 @@
 import * as React from "react";
 
-import { Typography, Divider } from "@material-ui/core";
+import { Divider, Typography } from "@material-ui/core";
 
 import {
-  interaction, layer, custom, control, //name spaces
-  Interactions, Overlays, Controls,     //group
-  Map, Layers, Overlay, Util    //objects
+  control, Controls, //name spaces
+  layer, Layers, //group
+  Map //objects
 } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
-export class FullScreen extends React.Component<any,any> {
-  render(){
+export class FullScreen extends React.Component {
+  public render() {
     return (
       <div>
         <Typography variant="h4" paragraph>FullScreen control</Typography>
         <Map>
-          <Layers><layer.Tile/></Layers>
+          <Layers><layer.Tile /></Layers>
           <Controls>
             <control.FullScreen />
           </Controls>
         </Map>
-        <br/>
+        <br />
         <Divider />
-        <br/>
+        <br />
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers><layer.Tile/></Layers>

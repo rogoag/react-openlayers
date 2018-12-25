@@ -2,19 +2,33 @@ import * as React from 'react';
 
 import olModify from 'ol/interaction/modify';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface ModifyProps extends ol.olx.interaction.ModifyOptions, InteractionType<olModify> {};
+export type ModifyOptions = ol.olx.interaction.ModifyOptions;
+export interface ModifyProps extends ModifyOptions, InteractionType<olModify> {
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onModifyend?: ReactOpenlayersEvent
+  onModifystart?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
+export interface ModifyEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'modifyend': ReactOpenlayersEvent
+  'modifystart': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+};
 
-export class Modify extends React.Component<ModifyProps, any> {
-  public static contextType = MapContext;
+export class Modify extends React.Component<ModifyProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  interaction: olModify;
+  public interaction: olModify;
 
-  options: ModifyProps = {
+  public options: ModifyOptions = {
     condition: undefined,
     deleteCondition: undefined,
     pixelTolerance: undefined,
@@ -23,7 +37,7 @@ export class Modify extends React.Component<ModifyProps, any> {
     wrapX: undefined
   };
 
-  events: any = {
+  public events: ModifyEvents = {
     'change': undefined,
     'change:active': undefined,
     'modifyend': undefined,
@@ -31,44 +45,43 @@ export class Modify extends React.Component<ModifyProps, any> {
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<ModifyOptions, ModifyProps>(this.options, this.props);
     this.interaction = new olModify(options);
     this.context.interactions.push(this.interaction);
 
     this.initInteraction(this.props);
-    
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: ModifyProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<ModifyOptions, ModifyProps>(this.options, nextProps);
       this.interaction = new olModify(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      })
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
   }
 
+  private initInteraction(props: ModifyProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
+  }
 }

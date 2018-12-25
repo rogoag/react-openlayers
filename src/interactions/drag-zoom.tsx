@@ -2,25 +2,42 @@ import * as React from 'react';
 
 import olDragZoom from 'ol/interaction/dragzoom';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface DragZoomProps extends ol.olx.interaction.DragZoomOptions, InteractionType<olDragZoom> {};
+export type DragZoomOptions = ol.olx.interaction.DragZoomOptions;
+export interface DragZoomProps extends DragZoomOptions, InteractionType<olDragZoom> {
+  onBoxdrag?: ReactOpenlayersEvent
+  onBoxend?: ReactOpenlayersEvent
+  onBoxstart?: ReactOpenlayersEvent
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class DragZoom extends React.Component<DragZoomProps, any> {
-  public static contextType = MapContext;
+export interface DragZoomEvents extends ReactOpenlayersEvents {
+  'boxdrag': ReactOpenlayersEvent
+  'boxend': ReactOpenlayersEvent
+  'boxstart': ReactOpenlayersEvent
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+};
 
-  interaction: olDragZoom;
+export class DragZoom extends React.Component<DragZoomProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: DragZoomProps = {
+  public interaction: olDragZoom;
+
+  public options: DragZoomProps = {
     className: undefined,
     condition: undefined,
     duration: undefined,
     out: undefined
   };
 
-  events: any = {
+  public events: DragZoomEvents = {
     'boxdrag': undefined,
     'boxend': undefined,
     'boxstart': undefined,
@@ -29,44 +46,44 @@ export class DragZoom extends React.Component<DragZoomProps, any> {
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<DragZoomOptions, DragZoomProps>(this.options, this.props);
     this.interaction = new olDragZoom(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
-    
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: DragZoomProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<DragZoomOptions, DragZoomProps>(this.options, nextProps);
       this.interaction = new olDragZoom(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      })
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
+  }
+
+  private initInteraction(props: DragZoomProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
   }
 
 }

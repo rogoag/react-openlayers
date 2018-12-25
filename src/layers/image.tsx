@@ -1,29 +1,71 @@
 import * as React from 'react';
 
 import olImage from 'ol/layer/image';
+import olProjection from 'ol/proj/projection'
+import olImageStaticSource from 'ol/source/imagestatic'
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { LayerType } from 'layers';
+import { LayerType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface ImageProps extends ol.olx.layer.ImageOptions, LayerType<olImage> {};
+export type ImageOptions = ol.olx.layer.ImageOptions;
+export interface ImageProps extends ImageOptions, LayerType<olImage> {
+  onChange?: ReactOpenlayersEvent
+  onChangeExtent?: ReactOpenlayersEvent
+  onChangeGradient?: ReactOpenlayersEvent
+  onChangeMaxResolution?: ReactOpenlayersEvent
+  onChangeMinResolution?: ReactOpenlayersEvent
+  onChangeOpacity?: ReactOpenlayersEvent
+  onChangeSource?: ReactOpenlayersEvent
+  onChangeVisible?: ReactOpenlayersEvent
+  onChangeZIndex?: ReactOpenlayersEvent
+  onPostcompose?: ReactOpenlayersEvent
+  onPrecompose?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+  onRender?: ReactOpenlayersEvent
+};
 
+export interface ImageEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:extent': ReactOpenlayersEvent
+  'change:gradient': ReactOpenlayersEvent
+  'change:maxResolution': ReactOpenlayersEvent
+  'change:minResolution': ReactOpenlayersEvent
+  'change:opacity': ReactOpenlayersEvent
+  'change:source': ReactOpenlayersEvent
+  'change:visible': ReactOpenlayersEvent
+  'change:zIndex': ReactOpenlayersEvent
+  'postcompose': ReactOpenlayersEvent
+  'precompose': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+  'render': ReactOpenlayersEvent
+};
 
-export class Image extends React.Component<ImageProps, any> {
-  public static contextType = MapContext;
+export class Image extends React.Component<ImageProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  layer: olImage;
+  public layer: olImage;
 
-  options: ImageProps = {
+  public options: ImageOptions = {
     opacity: undefined,
-    source: undefined,
+    // Source from official OpenLayers example
+    source: new olImageStaticSource({
+      attributions: '© <a href="http://xkcd.com/license.html">xkcd</a>',
+      url: 'https://imgs.xkcd.com/comics/online_communities.png',
+      projection: new olProjection({
+        code: 'xkcd-image',
+        units: 'pixels',
+        extent: [0, 0, 1024, 968]
+      }),
+      imageExtent: [0, 0, 1024, 968]
+    }),
     visible: undefined,
     extent: undefined,
     minResolution: undefined,
     maxResolution: undefined
   };
 
-  events: any = {
+  public events: ImageEvents = {
     'change': undefined,
     'change:extent': undefined,
     'change:gradient': undefined,
@@ -39,32 +81,30 @@ export class Image extends React.Component<ImageProps, any> {
     'render': undefined
   };
 
-  constructor(props) { 
-    super(props);
-  }
+  public render() { return null; }
 
-  render() { return null; }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount () {
+    const options = Util.getOptions<ImageOptions, ImageProps>(this.options, this.props);
     this.layer = new olImage(options);
     if(this.props.zIndex){
       this.layer.setZIndex(this.props.zIndex);
     }
     this.context.layers.push(this.layer);
 
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+    if (this.props.layerRef) this.props.layerRef(this.layer);
+
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.layer.on(eventName, olEvents[eventName]);
-    }
+    })
   }
 
-  componentWillReceiveProps (nextProps) {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentWillReceiveProps (nextProps: ImageProps) {
+    const options = Util.getOptions<ImageOptions, ImageProps>(this.options, this.props);
 
     // Updating options first
-    Object.keys(options).forEach(option => {
-      if (options[option] === nextProps[options]) return;
+    Object.keys(options).forEach((option: string) => {
+      if (options[option] === nextProps[option]) return;
       const newVal = nextProps[option];
       switch (option) {
         case 'zIndex': this.layer.setZIndex(newVal); break;
@@ -73,20 +113,25 @@ export class Image extends React.Component<ImageProps, any> {
         case 'visible': this.layer.setVisible(newVal); break;
         case 'extent': this.layer.setExtent(newVal); break;
         case 'minResolution': this.layer.setMinResolution(newVal); break;
-        case 'maxResolution': this.layer.setMaxResolution(newVal); break;
+        case 'maxResolution': this.layer.setMaxResolution(newVal);
+        default:
       }
     });
 
+    if (nextProps.layerRef && nextProps.layerRef !== this.props.layerRef) {
+      nextProps.layerRef(this.layer);
+    }
+
     // Then update events
-    let oldEvents = Util.getEvents(this.events, this.props);
-    let newEvents = Util.getEvents(this.events, nextProps);
-    for(let eventName in this.events) {
+    const oldEvents = Util.getEvents(this.events, this.props);
+    const newEvents = Util.getEvents(this.events, nextProps);
+    Object.keys(this.events).forEach((eventName: string) => {
       if (oldEvents[eventName]) this.layer.un(eventName, oldEvents[eventName]);
       if (newEvents[eventName]) this.layer.on(eventName, newEvents[eventName]);
-    }
+    })
   }
   
-  componentWillUnmount () {
+  public componentWillUnmount () {
     this.context.map.removeLayer(this.layer);
   }
 

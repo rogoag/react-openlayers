@@ -2,18 +2,27 @@ import * as React from 'react';
 
 import olZoomSlider from 'ol/control/zoomslider'
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { ControlType } from 'controls';
+import { ControlType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface ZoomSliderProps extends ol.olx.control.ZoomSliderOptions, ControlType<olZoomSlider> {};
+export type ZoomSliderOptions = ol.olx.control.ZoomSliderOptions;
+export interface ZoomSliderProps extends ZoomSliderOptions, ControlType<olZoomSlider> {
+  onChange?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class ZoomSlider extends React.Component<ZoomSliderProps, any> {
-  public static contextType = MapContext;
+export interface ZoomSliderEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+};
 
-  control: olZoomSlider;
+export class ZoomSlider extends React.Component<ZoomSliderProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: ZoomSliderProps = {
+  public control: olZoomSlider;
+
+  public options: ZoomSliderOptions = {
     duration: undefined,
     className: undefined,
     maxResolution: undefined,
@@ -21,24 +30,24 @@ export class ZoomSlider extends React.Component<ZoomSliderProps, any> {
     render: undefined
   };
 
-  events: any = {
+  public events: ZoomSliderEvents = {
     'change': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<ZoomSliderOptions, ZoomSliderProps>(this.options, this.props);
     this.control = new olZoomSlider(options);
     this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);
 
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.control.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
 }

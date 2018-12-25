@@ -2,18 +2,29 @@ import * as React from 'react';
 
 import olSnap from 'ol/interaction/snap';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface SnapProps extends ol.olx.interaction.SnapOptions, InteractionType<olSnap> {};
+export type SnapOptions = ol.olx.interaction.SnapOptions;
+export interface SnapProps extends SnapOptions, InteractionType<olSnap> {
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class Snap extends React.Component<SnapProps, any> {
-  public static contextType = MapContext;
+export interface SnapEvent extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+};
 
-  interaction: olSnap;
+export class Snap extends React.Component<SnapProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: SnapProps = {
+  public interaction: olSnap;
+
+  public options: SnapOptions = {
     features: undefined,
     edge: undefined,
     vertex: undefined,
@@ -21,50 +32,49 @@ export class Snap extends React.Component<SnapProps, any> {
     source: undefined
   };
 
-  events: any = {
+  public events: SnapEvent = {
     'change': undefined,
     'change:active': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<SnapOptions, SnapProps>(this.options, this.props);
     this.interaction = new olSnap(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
-    
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: SnapProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<SnapOptions, SnapProps>(this.options, nextProps);
       this.interaction = new olSnap(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      });
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
   }
 
+  private initInteraction(props: SnapProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
+  }
 }

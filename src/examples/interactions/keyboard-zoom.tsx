@@ -1,19 +1,15 @@
 import * as React from "react";
 
-import { Typography, Divider } from "@material-ui/core";
+import { Divider, Typography } from "@material-ui/core";
 
 import olEventConditions from 'ol/events/condition';
 
-import {
-  interaction, layer, custom, control, //name spaces
-  Interactions, Overlays, Controls,     //group
-  Map, Layers, Overlay, Util    //objects
-} from "react-openlayers";
+import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
-export class KeyboardZoom extends React.Component<any, any> {
-  render() {
+export class KeyboardZoom extends React.Component {
+  public render() {
     return (
       <div>
         <Typography variant="h4" paragraph>KeyboardZoom interaction</Typography>

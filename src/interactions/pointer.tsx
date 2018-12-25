@@ -2,18 +2,29 @@ import * as React from 'react';
 
 import olPointer from 'ol/interaction/pointer';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface PointerProps extends ol.olx.interaction.PointerOptions, InteractionType<olPointer> {};
+export type PointerOptions = ol.olx.interaction.PointerOptions;
+export interface PointerProps extends PointerOptions, InteractionType<olPointer> {
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class Pointer extends React.Component<PointerProps, any> {
-  public static contextType = MapContext;
+export interface PointerEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+};
 
-  interaction: olPointer;
+export class Pointer extends React.Component<PointerProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: PointerProps = {
+  public interaction: olPointer;
+
+  public options: PointerOptions = {
     handleDownEvent: undefined,
     handleDragEvent: undefined,
     handleEvent: undefined,
@@ -21,50 +32,49 @@ export class Pointer extends React.Component<PointerProps, any> {
     handleUpEvent: undefined
   };
 
-  events: any = {
+  public events: PointerEvents = {
     'change': undefined,
     'change:active': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<PointerOptions, PointerProps>(this.options, this.props);
     this.interaction = new olPointer(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
-    
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(this.events).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: PointerProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<PointerOptions, PointerProps>(this.options, nextProps);
       this.interaction = new olPointer(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(this.events).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      });
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
   }
 
+  private initInteraction(props: PointerProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
+  }
 }

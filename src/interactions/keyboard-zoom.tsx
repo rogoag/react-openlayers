@@ -2,67 +2,78 @@ import * as React from 'react';
 
 import olKeyboardZoom from 'ol/interaction/keyboardzoom';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface KeyboardZoomProps extends ol.olx.interaction.KeyboardZoomOptions, InteractionType<olKeyboardZoom> {};
+export type KeyboardZoomOptions = ol.olx.interaction.KeyboardZoomOptions;
+export interface KeyboardZoomProps extends KeyboardZoomOptions, InteractionType<olKeyboardZoom> {
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class KeyboardZoom extends React.Component<KeyboardZoomProps, any> {
-  public static contextType = MapContext;
+export interface KeyboardZoomEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+};
 
-  interaction: olKeyboardZoom;
+export class KeyboardZoom extends React.Component<KeyboardZoomProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: KeyboardZoomProps = {
+  public interaction: olKeyboardZoom;
+
+  public options: KeyboardZoomOptions = {
     condition: undefined,
     duration: undefined,
     delta: undefined
   };
 
-  events: any = {
+  public events: KeyboardZoomEvents = {
     'change': undefined,
     'change:active': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<KeyboardZoomOptions, KeyboardZoomProps>(this.options, this.props);
     this.interaction = new olKeyboardZoom(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
-    
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    })
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: KeyboardZoomProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<KeyboardZoomOptions, KeyboardZoomProps>(this.options, nextProps);
       this.interaction = new olKeyboardZoom(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      })
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
+  }
+
+  public initInteraction(props: KeyboardZoomProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
   }
 
 }

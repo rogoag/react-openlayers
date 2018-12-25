@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link, Route } from 'react-router-dom';
 
-import { Drawer, List, ListItem, ListItemText, withStyles } from '@material-ui/core';
+import { Drawer, List, ListItem, ListItemText, withStyles, WithStyles } from '@material-ui/core';
 import sharedStyles from '../shared-styles';
 
 import { Attribution } from './attribution';
@@ -10,9 +10,9 @@ import { MousePosition } from './mouse-position';
 import { OverviewMap } from './overview-map';
 import { Rotate } from './rotate';
 import { ScaleLine } from './scale-line';
+import { Zoom } from './zoom';
 import { ZoomSlider } from './zoom-slider';
 import { ZoomToExtent } from './zoom-to-extent';
-import { Zoom } from './zoom';
 
 export { Attribution } from './attribution';
 export { FullScreen } from './full-screen';
@@ -24,9 +24,10 @@ export { ZoomSlider } from './zoom-slider';
 export { ZoomToExtent } from './zoom-to-extent';
 export { Zoom } from './zoom';
 
-class Controls extends React.Component<any, any> {
-  render() {
+class Controls extends React.Component<WithStyles> {
+  public render() {
     const { classes } = this.props;
+
     return (
       <div className={classes.categoryRoot}>
         <Drawer open
@@ -38,31 +39,31 @@ class Controls extends React.Component<any, any> {
         >
            <div className={classes.toolbar} />
           <List>
-            <ListItem button to="/controls/attribution" component={Link}>
+            <ListItem button component={Link} { ...{ to: "/controls/attribution" }}>
               <ListItemText primary="Attribution" />
             </ListItem>
-            <ListItem button to="/controls/full-screen" component={Link}>
+            <ListItem button component={Link} { ...{ to: "/controls/full-screen" }}>
               <ListItemText primary="FullScreen" />
             </ListItem>
-            <ListItem button to="/controls/mouse-position" component={Link}>
+            <ListItem button component={Link} { ...{ to: "/controls/mouse-position" }}>
               <ListItemText primary="MousePosition" />
             </ListItem>
-            <ListItem button to="/controls/overview-map" component={Link}>
+            <ListItem button component={Link} { ...{ to: "/controls/overview-map" }}>
               <ListItemText primary="OverviewMap" />
             </ListItem>
-            <ListItem button to="/controls/rotate" component={Link}>
+            <ListItem button component={Link} { ...{ to: "/controls/rotate" }}>
               <ListItemText primary="Rotate" />
             </ListItem>
-            <ListItem button to="/controls/scale-line" component={Link}>
+            <ListItem button component={Link} { ...{ to: "/controls/scale-line" }}>
               <ListItemText primary="ScaleLine" />
             </ListItem>
-            <ListItem button to="/controls/zoom-slider" component={Link}>
+            <ListItem button component={Link} { ...{ to: "/controls/zoom-slider" }}>
               <ListItemText primary="ZoomSlider" />
             </ListItem>
-            <ListItem button to="/controls/zoom-to-extent" component={Link}>
+            <ListItem button component={Link} { ...{ to: "/controls/zoom-to-extent" }}>
               <ListItemText primary="ZoomToExtent" />
             </ListItem>
-            <ListItem button to="/controls/zoom" component={Link}>
+            <ListItem button component={Link} { ...{ to: "/controls/zoom" }}>
               <ListItemText primary="Zoom" />
             </ListItem>
           </List>

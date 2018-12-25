@@ -1,17 +1,17 @@
 import * as React from "react";
 
-import { Typography, Divider } from "@material-ui/core";
+import { Divider, Typography } from "@material-ui/core";
 
 import {
-  interaction, layer, custom, control, //name spaces
-  Interactions, Overlays, Controls,     //group
-  Map, Layers, Overlay, Util    //objects
+  Controls, //name spaces
+  layer, Layers, //group
+  Map //objects
 } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
-export class Attribution extends React.Component<any, any> {
-  render() {
+export class Attribution extends React.Component {
+  public render() {
     return (
       <div>
         <Typography variant="h4" paragraph>Attribution control</Typography>
@@ -19,9 +19,9 @@ export class Attribution extends React.Component<any, any> {
           <Layers><layer.Tile /></Layers>
           <Controls attribution={false} zoom={false}></Controls>
         </Map>
-        <br/>
+        <br />
         <Divider />
-        <br/>
+        <br />
         <Highlighter lang="jsx" code={
 `<Map>
   <Layers><layer.Tile/></Layers>

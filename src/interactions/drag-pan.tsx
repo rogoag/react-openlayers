@@ -2,66 +2,78 @@ import * as React from 'react';
 
 import olDragPan from 'ol/interaction/dragpan';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface DragPanProps extends ol.olx.interaction.DragPanOptions, InteractionType<olDragPan> {};
+export type DragPanOptions = ol.olx.interaction.DragPanOptions;
+export interface DragPanProps extends DragPanOptions, InteractionType<olDragPan> {
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class DragPan extends React.Component<DragPanProps, any> {
-  public static contextType = MapContext;
+export interface DragPanEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+}
 
-  interaction: olDragPan;
 
-  options: DragPanProps = {
+export class DragPan extends React.Component<DragPanProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
+
+  public interaction: olDragPan;
+
+  public options: DragPanProps = {
     condition: undefined,
     kinetic: undefined
   };
 
-  events: any = {
+  public events: DragPanEvents = {
     'change': undefined,
     'change:active': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<DragPanOptions, DragPanProps>(this.options, this.props);
     this.interaction = new olDragPan(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
-    
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    })
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: DragPanProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<DragPanOptions, DragPanProps>(this.options, nextProps);
       this.interaction = new olDragPan(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      });
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
+  }
+
+  private initInteraction(props: DragPanProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
   }
 
 }

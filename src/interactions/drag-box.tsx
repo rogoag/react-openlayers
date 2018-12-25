@@ -2,24 +2,41 @@ import * as React from 'react';
 
 import olDragBox from 'ol/interaction/dragbox';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface DragBoxProps extends ol.olx.interaction.DragBoxOptions, InteractionType<olDragBox> {};
+export type DragBoxOptions = ol.olx.interaction.DragBoxOptions;
+export interface DragBoxProps extends ol.olx.interaction.DragBoxOptions, InteractionType<olDragBox> {
+  onBoxdrag?: ReactOpenlayersEvent<ol.interaction.DragBox.Event>
+  onBoxend?: ReactOpenlayersEvent<ol.interaction.DragBox.Event>
+  onBoxstart?: ReactOpenlayersEvent<ol.interaction.DragBox.Event>
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class DragBox extends React.Component<DragBoxProps, any> {
-  public static contextType = MapContext;
+export interface DragBoxEvents extends ReactOpenlayersEvents {
+  'boxdrag': ReactOpenlayersEvent<ol.interaction.DragBox.Event>
+  'boxend': ReactOpenlayersEvent<ol.interaction.DragBox.Event>
+  'boxstart': ReactOpenlayersEvent<ol.interaction.DragBox.Event>
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+}
 
-  interaction: olDragBox;
+export class DragBox extends React.Component<DragBoxProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: DragBoxProps = {
+  public interaction: olDragBox;
+
+  public options: DragBoxOptions = {
     className: undefined,
     condition: undefined,
     boxEndCondition: undefined
   };
 
-  events: any = {
+  public events: DragBoxEvents = {
     'boxdrag': undefined,
     'boxend': undefined,
     'boxstart': undefined,
@@ -28,44 +45,43 @@ export class DragBox extends React.Component<DragBoxProps, any> {
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<DragBoxOptions, DragBoxProps>(this.options, this.props);
     this.interaction = new olDragBox(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
-    
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: DragBoxProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<DragBoxOptions, DragBoxProps>(this.options, nextProps);
       this.interaction = new olDragBox(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      })
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
   }
 
+  private initInteraction(props: DragBoxProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
+  }
 }

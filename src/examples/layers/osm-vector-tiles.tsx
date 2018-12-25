@@ -1,38 +1,35 @@
 import * as React from "react";
 
-import { Typography, Divider } from "@material-ui/core";
+import { Divider, Typography } from "@material-ui/core";
 
 import Attribution from 'ol/attribution';
-import VectorTileSource from 'ol/source/vectortile';
+import olFeature from 'ol/feature';
 import TopoJSONFormat from 'ol/format/topojson';
-import olTilegrid from 'ol/tilegrid';
 import olProj from 'ol/proj';
-import Style from 'ol/style/style';
+import VectorTileSource from 'ol/source/vectortile';
 import FillStyle from 'ol/style/fill';
 import StrokeStyle from 'ol/style/stroke';
+import Style from 'ol/style/style';
+import olTilegrid from 'ol/tilegrid';
 
-import {
-  interaction, layer, custom, control, //name spaces
-  Interactions, Overlays, Controls,     //group
-  Map, Layers, Overlay, Util    //objects
-} from "react-openlayers";
+import { layer, Layers, Map } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
-var key = 'mapzen-2pRGhe5';
+const key = 'mapzen-2pRGhe5';
 
-var attribution = [new Attribution({
+const attribution = [new Attribution({
   html: '&copy; OpenStreetMap contributors, Who’s On First, Natural Earth, and openstreetmapdata.com'
 })];
-var format = new TopoJSONFormat();
-var tileGrid = olTilegrid.createXYZ({ maxZoom: 19 });
-var roadStyleCache = {};
-var roadColor = {
+const format = new TopoJSONFormat();
+const tileGrid = olTilegrid.createXYZ({ maxZoom: 19 });
+const roadStyleCache = {};
+const roadColor = {
   'major_road': '#776',
   'minor_road': '#ccb',
   'highway': '#f39'
 };
-var buildingStyle = new Style({
+const buildingStyle = new Style({
   fill: new FillStyle({
     color: '#666',
     // opacity: 0.4
@@ -43,65 +40,69 @@ var buildingStyle = new Style({
   })
 });
 
-var source1 = new VectorTileSource({
+const source1 = new VectorTileSource({
   projection: undefined,
   attributions: attribution,
   format: format,
   tileGrid: tileGrid,
-  url: 'https://tile.mapzen.com/mapzen/vector/v1/water/{z}/{x}/{y}.topojson?api_key=' + key
+  url: `https://tile.mapzen.com/mapzen/vector/v1/water/{z}/{x}/{y}.topojson?api_key=${key}`
 });
-var style1 = new Style({
+const style1 = new Style({
   fill: new FillStyle({
     color: '#9db9e8'
   })
 });
-var source2 = new VectorTileSource({
+const source2 = new VectorTileSource({
   projection: undefined,
   attributions: attribution,
   format: format,
   tileGrid: tileGrid,
-  url: 'https://tile.mapzen.com/mapzen/vector/v1/roads/{z}/{x}/{y}.topojson?api_key=' + key
+  url: `https://tile.mapzen.com/mapzen/vector/v1/roads/{z}/{x}/{y}.topojson?api_key=${key}`
 });
-var style2 = function (feature) {
-  var kind = feature.get('kind');
-  var railway = feature.get('railway');
-  var sort_key = feature.get('sort_key');
-  var styleKey = kind + '/' + railway + '/' + sort_key;
-  var style = roadStyleCache[styleKey];
+const style2 = (feature: olFeature) => {
+  const kind = feature.get('kind');
+  const railway = feature.get('railway');
+  const sortKey = feature.get('sort_key');
+  const styleKey = `${kind}/${railway}/${sortKey}`;
+
+  let style = roadStyleCache[styleKey];
+  
   if (!style) {
-    var color, width;
+    let color;
+    let width;
     if (railway) {
       color = '#7de';
       width = 1;
     } else {
       color = roadColor[kind];
-      width = kind == 'highway' ? 1.5 : 1;
+      width = kind === 'highway' ? 1.5 : 1;
     }
     style = new Style({
       stroke: new StrokeStyle({
         color: color,
         width: width
       }),
-      zIndex: sort_key
+      zIndex: sortKey
     });
     roadStyleCache[styleKey] = style;
   }
+
   return style;
 };
-var source3 = new VectorTileSource({
+const source3 = new VectorTileSource({
   projection: undefined,
   attributions: attribution,
   format: format,
   tileGrid: tileGrid,
-  url: 'https://tile.mapzen.com/mapzen/vector/v1/buildings/{z}/{x}/{y}.topojson?api_key=' + key
+  url: `https://tile.mapzen.com/mapzen/vector/v1/buildings/{z}/{x}/{y}.topojson?api_key=${key}`
 });
-var style3 = function (f, resolution) {
-  return (resolution < 10) ? buildingStyle : null;
+const style3 = (_f: olFeature, resolution: number) => {
+  return (resolution < 10) ? buildingStyle : new Style();
 };
 
 
-export class OSMVectorTiles extends React.Component<any, any> {
-  render() {
+export class OSMVectorTiles extends React.Component {
+  public render() {
     return (
       <div>
         <Typography variant="h4" paragraph>OSM Vector Tiles layer</Typography>

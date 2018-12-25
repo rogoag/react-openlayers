@@ -2,68 +2,77 @@ import * as React from 'react';
 
 import olKeyboardPan from 'ol/interaction/keyboardpan';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface KeyboardPanProps extends ol.olx.interaction.KeyboardPanOptions, InteractionType<olKeyboardPan> {}
+export type KeyboardPanOptions = ol.olx.interaction.KeyboardPanOptions;
+export interface KeyboardPanProps extends KeyboardPanOptions, InteractionType<olKeyboardPan> {
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+}
 
+export interface KeyboardPanEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+}
 
-export class KeyboardPan extends React.Component<KeyboardPanProps, any> {
-  public static contextType = MapContext;
+export class KeyboardPan extends React.Component<KeyboardPanProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  interaction: olKeyboardPan;
+  public interaction: olKeyboardPan;
 
-  options: KeyboardPanProps = {
+  public options: KeyboardPanOptions = {
     condition: undefined,
     duration: undefined,
     pixelDelta: undefined
   };
 
-  events: any = {
+  public events: KeyboardPanEvents = {
     'change': undefined,
     'change:active': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<KeyboardPanOptions, KeyboardPanProps>(this.options, this.props);
     this.interaction = new olKeyboardPan(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
-    
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: KeyboardPanProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<KeyboardPanOptions, KeyboardPanProps>(this.options, nextProps);
       this.interaction = new olKeyboardPan(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      })
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
   }
 
+  private initInteraction(props: KeyboardPanProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
+  }
 }

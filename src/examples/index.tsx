@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {Route, HashRouter} from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 
 // Material-UI
 import { CssBaseline } from "@material-ui/core";

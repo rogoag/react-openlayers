@@ -1,19 +1,19 @@
-import { ScaleLine } from './scale-line';
 import { Attribution } from './attribution';
+import { Controls } from './controls';
 import { FullScreen } from './full-screen';
 import { MousePosition } from './mouse-position';
 import { OverviewMap } from './overview-map';
 import { Rotate } from './rotate';
+import { ScaleLine } from './scale-line';
+import { Zoom } from './zoom';
 import { ZoomSlider } from './zoom-slider';
 import { ZoomToExtent } from './zoom-to-extent';
-import { Zoom } from './zoom';
-import { Controls } from './controls';
 
 export interface ControlType<T extends ol.control.Control> {
   controlRef?(control:T):void
 }
 
-let control = {
+const control = {
   ScaleLine,
   Attribution,
   FullScreen,

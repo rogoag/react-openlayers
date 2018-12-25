@@ -2,18 +2,27 @@ import * as React from 'react';
 
 import olFullScreen from 'ol/control/fullscreen';
 
-import { Util } from '../util';
-import { MapContext } from '../map';
-import { ControlType } from 'controls';
+import { ControlType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface FullScreenProps extends ol.olx.control.FullScreenOptions, ControlType<olFullScreen> {};
+export type FullScreenOptions = ol.olx.control.FullScreenOptions;
+export interface FullScreenProps extends FullScreenOptions, ControlType<olFullScreen> {
+  onchange?: ReactOpenlayersEvent
+  onpropertychange?: ReactOpenlayersEvent
+};
 
-export class FullScreen extends React.Component<FullScreenProps, any> {
-  public static contextType = MapContext;
+export interface FullScreenEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+};
 
-  control: olFullScreen;
+export class FullScreen extends React.Component<FullScreenProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: FullScreenProps = {
+  public control: olFullScreen;
+
+  public options: FullScreenOptions = {
     className: undefined,
     label: undefined,
     labelActive: undefined,
@@ -23,24 +32,24 @@ export class FullScreen extends React.Component<FullScreenProps, any> {
     source: undefined
   };
 
-  events: any = {
+  public events: FullScreenEvents = {
     'change': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  componentDidMount() {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<FullScreenOptions, FullScreenProps>(this.options, this.props);
     this.control = new olFullScreen(options);
     this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);
 
-    let olEvents = Util.getEvents(this.events, this.props);
-    for (let eventName in olEvents) {
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.control.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
 }

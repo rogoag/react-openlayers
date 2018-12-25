@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { Link, Route } from 'react-router-dom';
 
-import { Drawer, List, ListItem, ListItemText, withStyles } from '@material-ui/core';
+import { Drawer, List, ListItem, ListItemText, withStyles, WithStyles } from '@material-ui/core';
 import sharedStyles from '../shared-styles';
 
 import { AppOverlay } from './app-overlay';
 
-class Overlays extends React.Component<any, any> {
-  render() {
+class Overlays extends React.Component<WithStyles> {
+  public render() {
     const { classes } = this.props;
+
     return (
       <div className={classes.categoryRoot}>
         <Drawer open
@@ -20,7 +21,7 @@ class Overlays extends React.Component<any, any> {
         >
           <div className={classes.toolbar} />
           <List>
-            <ListItem button to="/overlays/overlay" component={Link}>
+            <ListItem button { ...{ to: "/overlays/overlay" }} component={Link}>
               <ListItemText primary="Overlay" />
             </ListItem>
           </List>

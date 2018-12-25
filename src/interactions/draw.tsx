@@ -2,23 +2,38 @@ import * as React from 'react';
 
 import olDraw from 'ol/interaction/draw';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface DrawProps extends ol.olx.interaction.DrawOptions, InteractionType<olDraw> {}
+export type DrawOptions = ol.olx.interaction.DrawOptions;
+export interface DrawProps extends DrawOptions, InteractionType<olDraw> {
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onDrawend?: ReactOpenlayersEvent
+  onDrawstart?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+}
 
-export class Draw extends React.Component<DrawProps, any> {
-  public static contextType = MapContext;
+export interface DrawEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'drawend': ReactOpenlayersEvent
+  'drawstart': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+}
 
-  interaction: olDraw;
+export class Draw extends React.Component<DrawProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: DrawProps = {
+  public interaction: olDraw;
+
+  public options: DrawOptions = {
     clickTolerance: undefined,
     features: undefined,
     source: undefined,
     snapTolerance: undefined,
-    type: undefined,
+    type: "Point",
     maxPoints: undefined,
     minPoints: undefined,
     finishCondition: undefined,
@@ -31,7 +46,7 @@ export class Draw extends React.Component<DrawProps, any> {
     wrapX: undefined
   };
 
-  events: any = {
+  public events: DrawEvents = {
     'change': undefined,
     'change:active': undefined,
     'drawend': undefined,
@@ -39,44 +54,44 @@ export class Draw extends React.Component<DrawProps, any> {
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<DrawOptions, DrawProps>(this.options, this.props);
     this.interaction = new olDraw(options);
     this.context.interactions.push(this.interaction);
 
     this.initInteraction(this.props);
 
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: DrawProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<DrawOptions, DrawProps>(this.options, nextProps);
       this.interaction = new olDraw(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      })
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
+  }
+
+  private initInteraction(props: DrawProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
   }
 
 }

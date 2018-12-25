@@ -1,57 +1,64 @@
 import * as React from "react";
 
-import { Typography, Divider } from "@material-ui/core";
+import { Divider, Typography } from "@material-ui/core";
 
 import olEventConditions from 'ol/events/condition';
+import olFeature from 'ol/feature';
+import GeoJSONFormat from 'ol/format/geojson';
 import olSelect from 'ol/interaction/select';
 import VectorSource from 'ol/source/vector';
-import GeoJSONFormat from 'ol/format/geojson';
 
-import {
-  interaction, layer, custom, control, //name spaces
-  Interactions, Overlays, Controls,     //group
-  Map, Layers, Overlay, Util    //objects
-} from "react-openlayers";
+import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
-export class DragBox extends React.Component<any, any> {
-  state = {
-    selectedFeatures: null
+interface DragBoxState {
+  selectedFeatures: ol.Collection<ol.Feature> | void
+}
+
+export class DragBox extends React.Component<{}, DragBoxState> {
+  public state: DragBoxState = {
+    selectedFeatures: undefined
   }
 
-  select: olSelect = null;
+  public select: olSelect;
   
-  source = new VectorSource({
+  public source: VectorSource = new VectorSource({
     url: 'https://openlayers.org/en/v4.6.5/examples/data/geojson/countries.geojson',
     format: new GeoJSONFormat()
   })
 
-  constructor(props) {
+  constructor(props: {}) {
     super(props);
     this.select = new olSelect();
     this.state.selectedFeatures = this.select.getFeatures();
   }
 
-  clearSelectedFeatures = () => this.state.selectedFeatures.clear()
+  public clearSelectedFeatures = () => {
+    if (this.state.selectedFeatures) {
+      this.state.selectedFeatures.clear();
+    }
+  }
 
-  handleBoxEnd = event => {
-    var extent = event.target.getGeometry().getExtent();
+  public handleBoxEnd = (event: ol.interaction.DragBox.Event) => {
+    const extent = event.target.getGeometry().getExtent();
     const selectedFeatures = this.state.selectedFeatures;
-    this.source.forEachFeatureIntersectingExtent(extent, function(feature) {
-      selectedFeatures.push(feature);
+    this.source.forEachFeatureIntersectingExtent(extent, (feature: olFeature) => {
+      if (selectedFeatures) {
+        selectedFeatures.push(feature);
+      }
     });
     this.setState({ selectedFeatures })
   }
 
-  handleDeselect = e => {
-    if (e.deselected.length > 0) {
+  public handleDeselect = (event: ol.interaction.Select.Event) => {
+    if (event.deselected.length > 0) {
       this.clearSelectedFeatures();
       this.setState({ ...this.state, selectedFeatures: this.state.selectedFeatures})
     }
   }
 
-  render() {
+  public render() {
     return (
       <div>
         <Typography variant="h4" paragraph>DragBox interaction</Typography>
@@ -73,7 +80,7 @@ export class DragBox extends React.Component<any, any> {
               />
           </Interactions>
         </Map>
-        <p><b>Selected countries: </b>{this.state.selectedFeatures.getArray().length === 0 ? "No selection" : this.state.selectedFeatures.getArray().map(f => f.get('name')).join(', ')}</p>
+        <p><b>Selected countries: </b>{this.state.selectedFeatures && (this.state.selectedFeatures.getArray().length === 0 ? "No selection" : this.state.selectedFeatures.getArray().map((f: olFeature) => f.get('name')).join(', '))}</p>
         <br/>
         <Divider />
         <br/>

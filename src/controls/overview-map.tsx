@@ -2,18 +2,27 @@ import * as React from 'react';
 
 import olOverviewMap from 'ol/control/overviewmap'
 
-import { Util } from '../util';
-import { MapContext } from '../map';
-import { ControlType } from 'controls';
+import { ControlType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface OverviewMapProps extends ol.olx.control.OverviewMapOptions, ControlType<olOverviewMap> {};
+export type OverviewMapOptions = ol.olx.control.OverviewMapOptions;
+export interface OverviewMapProps extends OverviewMapOptions, ControlType<olOverviewMap> {
+  onChange?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class OverviewMap extends React.Component<OverviewMapProps, any> {
-  public static contextType = MapContext;
+export interface OverviewMapEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+};
 
-  control: olOverviewMap;
+export class OverviewMap extends React.Component<OverviewMapProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: OverviewMapProps = {
+  public control: olOverviewMap;
+
+  public options: OverviewMapOptions = {
     collapsed: undefined,
     collapseLabel: undefined,
     collapsible: undefined,
@@ -25,25 +34,24 @@ export class OverviewMap extends React.Component<OverviewMapProps, any> {
     view: undefined
   };
 
-  events: any = {
+  public events: OverviewMapEvents = {
     'change': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  componentDidMount() {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<OverviewMapOptions, OverviewMapProps>(this.options, this.props);
     this.control = new olOverviewMap(options);
     this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);
 
-
-    let olEvents = Util.getEvents(this.events, this.props);
-    for (let eventName in olEvents) {
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.control.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
 }

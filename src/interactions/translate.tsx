@@ -2,24 +2,39 @@ import * as React from 'react';
 
 import olTranslate from 'ol/interaction/translate';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface TranslateProps extends ol.olx.interaction.TranslateOptions, InteractionType<olTranslate> {};
+export type TranslateOptions = ol.olx.interaction.TranslateOptions;
+export interface TranslateProps extends TranslateOptions, InteractionType<olTranslate> {
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+  onTranslateend?: ReactOpenlayersEvent
+  onTranslatestart?: ReactOpenlayersEvent
+  onTranslating?: ReactOpenlayersEvent
+};
+export interface TranslateEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+  'translateend': ReactOpenlayersEvent
+  'translatestart': ReactOpenlayersEvent
+  'translating': ReactOpenlayersEvent
+};
 
-export class Translate extends React.Component<TranslateProps, any> {
-  public static contextType = MapContext;
+export class Translate extends React.Component<TranslateProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  interaction: olTranslate;
+  public interaction: olTranslate;
 
-  options: TranslateProps = {
+  public options: TranslateOptions = {
     features: undefined,
-    layers: undefined,
-    hitTolerance: undefined
+    layers: undefined
   };
 
-  events: any = {
+  public events: TranslateEvents = {
     'change': undefined,
     'change:active': undefined,
     'propertychange': undefined,
@@ -28,44 +43,43 @@ export class Translate extends React.Component<TranslateProps, any> {
     'translating': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount () {
+    const options = Util.getOptions<TranslateOptions, TranslateProps>(this.options, this.props);
     this.interaction = new olTranslate(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
     
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: TranslateProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<TranslateOptions, TranslateProps>(this.options, nextProps);
       this.interaction = new olTranslate(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      });
     }
   }
   
-  componentWillUnmount () {
+  public componentWillUnmount () {
     this.context.map.removeInteraction(this.interaction);
   }
 
+  private initInteraction(props: TranslateProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
+  }
 }

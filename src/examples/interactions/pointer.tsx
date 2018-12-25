@@ -1,31 +1,33 @@
 import * as React from "react";
 
-import { Typography, Divider } from "@material-ui/core";
+import { Divider, Typography } from "@material-ui/core";
 
-import {
-  interaction, layer, custom, control, //name spaces
-  Interactions, Overlays, Controls,     //group
-  Map, Layers, Overlay, Util    //objects
-} from "react-openlayers";
+import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
-export class Pointer extends React.Component<any, any> {
-  state = {
+interface PointerState {
+  action: string
+}
+
+export class Pointer extends React.Component<{}, PointerState> {
+  public state: PointerState = {
     action: "No action"
   }
 
-  timeout = null;
+  public timeout: number;
 
-  handleEvent = e => {
+  public handleEvent = (e: ol.MapBrowserPointerEvent) => {
     window.clearTimeout(this.timeout);
-    this.timeout = setTimeout(() => this.setState({action: "No action"}), 1000);
-    if (this.state.action !== e.type)
+    this.timeout = window.setTimeout(() => this.setState({action: "No action"}), 1000);
+    if (this.state.action !== e.type) {
       this.setState({ action: e.type })
+    }
+
     return true;
   }
 
-  render() {
+  public render() {
     return (
       <div>
         <Typography variant="h4" paragraph>Pointer interaction</Typography>

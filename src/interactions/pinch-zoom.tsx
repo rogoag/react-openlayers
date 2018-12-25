@@ -2,66 +2,76 @@ import * as React from 'react';
 
 import olPinchZoom from 'ol/interaction/pinchzoom';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface PinchZoomProps extends ol.olx.interaction.PinchZoomOptions, InteractionType<olPinchZoom> {};
+export type PinchZoomOptions = ol.olx.interaction.PinchZoomOptions;
+export interface PinchZoomProps extends PinchZoomOptions, InteractionType<olPinchZoom> {
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class PinchZoom extends React.Component<PinchZoomProps, any> {
-  public static contextType = MapContext;
+export interface PinchZoomEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+};
 
-  interaction: olPinchZoom;
+export class PinchZoom extends React.Component<PinchZoomProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: PinchZoomProps = {
+  public interaction: olPinchZoom;
+
+  public options: PinchZoomOptions = {
     duration: undefined,
     constrainResolution: undefined
   };
 
-  events: any = {
+  public events: PinchZoomEvents = {
     'change': undefined,
     'change:active': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<PinchZoomOptions, PinchZoomProps>(this.options, this.props);
     this.interaction = new olPinchZoom(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
-    
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: PinchZoomProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<PinchZoomOptions, PinchZoomProps>(this.options, nextProps);
       this.interaction = new olPinchZoom(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      });
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
   }
 
+  private initInteraction(props: PinchZoomProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
+  }
 }

@@ -2,18 +2,28 @@ import * as React from 'react';
 
 import olZoom from 'ol/control/zoom'
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { ControlType } from 'controls';
+import { ControlType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface ZoomProps extends ol.olx.control.ZoomOptions, ControlType<olZoom> {};
+export type ZoomOptions = ol.olx.control.ZoomOptions;
+export interface ZoomProps extends ZoomOptions, ControlType<olZoom> {
+  onChange?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class Zoom extends React.Component<ZoomProps, any> {
-  public static contextType = MapContext;
+export interface ZoomPropsEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+};
 
-  control: olZoom;
 
-  options: ZoomProps = {
+export class Zoom extends React.Component<ZoomProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
+
+  public control: olZoom;
+
+  public options: ZoomOptions = {
     duration: undefined,
     className: undefined,
     zoomInLabel: undefined,
@@ -23,26 +33,23 @@ export class Zoom extends React.Component<ZoomProps, any> {
     delta: undefined
   };
 
-  events: any = {
+  public events: ZoomPropsEvents = {
     'change': undefined,
     'propertychange': undefined
   };
 
-  render() {
-    return null;
-  }
+  public render() { return null; }
 
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<ZoomOptions, ZoomProps>(this.options, this.props);
     this.control = new olZoom(options);
     this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);
 
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.control.on(eventName, olEvents[eventName]);
-    }
+    });
   }
-
 }

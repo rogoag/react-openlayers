@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {Link, Route} from 'react-router-dom';
 
-import { Drawer, List, ListItem, ListItemText, withStyles } from '@material-ui/core';
+import { Drawer, List, ListItem, ListItemText, withStyles, WithStyles } from '@material-ui/core';
 import sharedStyles from '../shared-styles';
 
 import {EarthquakeClusters} from './earthquake-clusters';
-import {MarkerStyle} from './marker-style';
 import {GoogleStreetViewPanorama} from './google-street-view-panorama';
+import {MarkerStyle} from './marker-style';
 // import {GeoCoder} from './geo-coder';
 
 export {EarthquakeClusters} from './earthquake-clusters';
@@ -14,8 +14,8 @@ export {MarkerStyle} from './marker-style';
 export {GoogleStreetViewPanorama} from './google-street-view-panorama';
 // export {GeoCoder} from './geo-coder';
 
-class Custom extends React.Component<any, any> {
-  render() {
+class Custom extends React.Component<WithStyles> {
+  public render() {
     const { classes } = this.props;
 
     return (
@@ -29,13 +29,13 @@ class Custom extends React.Component<any, any> {
       >
         <div className={classes.toolbar} />
         <List>
-          <ListItem button to="/custom/earthquake-clusters" component={Link}>
+          <ListItem button { ...{ to: "/custom/earthquake-clusters" }} component={Link}>
             <ListItemText primary="Earthquake clusters" />
           </ListItem>
-          <ListItem button to="/custom/marker-style" component={Link}>
+          <ListItem button { ...{ to: "/custom/marker-style" }} component={Link}>
             <ListItemText primary="Marker style" />
           </ListItem>
-          <ListItem button to="/custom/google-street-view-panorama" component={Link}>
+          <ListItem button { ...{ to: "/custom/google-street-view-panorama" }} component={Link}>
             <ListItemText primary="Google Street View panorama" />
           </ListItem>
         </List>

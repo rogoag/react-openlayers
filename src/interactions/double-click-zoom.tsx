@@ -2,65 +2,76 @@ import * as React from 'react';
 
 import olDoubleClickZoom from 'ol/interaction/doubleclickzoom';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface DoubleClickZoomProps extends ol.olx.interaction.DoubleClickZoomOptions, InteractionType<olDoubleClickZoom> {}
+export type DoubleClickZoomOptions = ol.olx.interaction.DoubleClickZoomOptions;
+export interface DoubleClickZoomProps extends DoubleClickZoomOptions, InteractionType<olDoubleClickZoom> {
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+}
 
-export class DoubleClickZoom extends React.Component<DoubleClickZoomProps, any> {
-  public static contextType = MapContext;
+export interface DoubleClickZoomEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+}
 
-  interaction: olDoubleClickZoom;
+export class DoubleClickZoom extends React.Component<DoubleClickZoomProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: DoubleClickZoomProps = {
+  public interaction: olDoubleClickZoom;
+
+  public options: DoubleClickZoomOptions = {
     duration: undefined,
     delta: undefined
   };
 
-  events: any = {
+  public events: DoubleClickZoomEvents = {
     'change': undefined,
     'change:active': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<DoubleClickZoomOptions, DoubleClickZoomProps>(this.options, this.props);
     this.interaction = new olDoubleClickZoom(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
 
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: DoubleClickZoomProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<DoubleClickZoomOptions, DoubleClickZoomProps>(this.options, nextProps);
       this.interaction = new olDoubleClickZoom(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      });
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
+  }
+
+  private initInteraction(props: DoubleClickZoomProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
   }
 }

@@ -1,28 +1,23 @@
 import * as React from "react";
 
-import { Typography, Divider } from "@material-ui/core";
+import { Divider, Typography } from "@material-ui/core";
 
-import VectorSource from 'ol/source/vector';
 import GeoJSONFormat from 'ol/format/geojson';
-import Style from 'ol/style/style';
+import VectorSource from 'ol/source/vector';
 import CircleStyle from 'ol/style/circle';
 import FillStyle from 'ol/style/fill';
 import StrokeStyle from 'ol/style/stroke';
-import SelectInteraction from 'ol/interaction/select';
+import Style from 'ol/style/style';
 
-import {
-  interaction, layer, custom, control, //name spaces
-  Interactions, Overlays, Controls,     //group
-  Map, Layers, Overlay, Util    //objects
-} from "react-openlayers";
+import {interaction, Interactions, layer, Layers, Map } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
-var source = new VectorSource({
+const source = new VectorSource({
   url: 'https://rawgit.com/boundlessgeo/ol3-workshop/master/src/data/layers/7day-M2.5.json',
   format: new GeoJSONFormat()
 });
-var style = new Style({
+const style = new Style({
   image: new CircleStyle({
     radius: 7,
     fill: new FillStyle({ color: [0, 153, 255, 1] }),
@@ -31,8 +26,8 @@ var style = new Style({
   zIndex: 100000
 });
 
-export class Translate extends React.Component<any, any> {
-  render() {
+export class Translate extends React.Component {
+  public render() {
     return (
       <div>
         <Typography variant="h4" paragraph>Translate interaction</Typography>

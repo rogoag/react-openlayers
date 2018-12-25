@@ -22,11 +22,11 @@ import { Translate } from './translate';
 import ol from 'ol';
 
 export interface InteractionType<T extends ol.interaction.Interaction> {
-  interactionRef?(ref:T):void,
   active?:boolean
+  interactionRef?(ref:T):void,
 }
 
-let interaction = {
+const interaction = {
   DoubleClickZoom,
   DragAndDrop,
   DragBox,

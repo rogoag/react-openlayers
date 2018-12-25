@@ -1,81 +1,128 @@
 import * as React from 'react';
 
+import olStyle from 'ol/style/style';
+
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
-function getOptions(props: any): any {
-    let options: any = {};
-    for(let key in props) {
+export type ReactOpenlayersEvent<T extends ol.events.Event = ol.events.Event> = ((event: T | ol.events.Event) => void) | void;
+
+export interface ReactOpenlayersEvents {
+  [key: string]: ((event: ol.events.Event | void) => void ) | void
+} 
+
+/**
+ * Extract default options from props
+ * 
+ * @param defaultOpts Default options
+ * @param props Props to extract
+ */
+export const getOptions = <O, P>(defaultOpts: O, props: P): O => {
+    const options: O = { ...defaultOpts };
+    Object.keys(props).forEach((key: string) => {
       if (
         key !== 'children'
-        && typeof props[key] !== 'undefined' //exclude undefined ones
+        && props[key] !== undefined //exclude undefined ones
         && !key.match(/^on[A-Z]/)     //exclude events
       ) {
         options[key] = props[key];
       }
-    }
+    });
+
     return options;
   }
 
-function getPropsKey(eventName) {
-  return 'on' + eventName
-    .replace(/(\:[a-z])/g, $1 => $1.toUpperCase())
-    .replace(/^[a-z]/, $1 => $1.toUpperCase())
-    .replace(':','')
+/**
+ * Converts eventName to camelCase
+ * 
+ * @param {string} eventName
+ * @returns {string}
+ */
+export const getPropsKey = (eventName: string): string => {
+  const processedEventName: string = eventName
+    .replace(/(\:[a-z])/g, ($1: string) => $1.toUpperCase())
+    .replace(/^[a-z]/, ($1: string) => $1.toUpperCase())
+    .replace(':','');
+
+  return `on${processedEventName}`;
 }
 
-function getEvents(events: any={}, props: any={}): any {
-  let prop2EventMap: any = {};
-  for(let key in events) {
+/**
+ * Extract events from props
+ * 
+ * @param events 
+ * @param props 
+ */
+export const getEvents = <E extends ReactOpenlayersEvents, P>(events: E, props: P): Partial<P> => {
+  const prop2EventMap: Partial<P> = {};
+  Object.keys(events).forEach((key:string) => {
     prop2EventMap[getPropsKey(key)] = key;
-  } 
+  })
 
-  let ret = {};
-  for(let propName in props) {
-    let eventName = prop2EventMap[propName];
-    let prop = props[propName];
-    if (typeof prop !== 'undefined' && propName.match(/^on[A-Z]/) && eventName) {
+  const ret: Partial<P> = {};
+  Object.keys(props).forEach((propName: string) => {
+    const eventName = prop2EventMap[propName];
+    const prop = props[propName];
+    if (prop !== undefined && propName.match(/^on[A-Z]/) && eventName) {
       ret[eventName] = prop;
     }
-  }
+  })
 
   return ret;
 }
 
-let typeOf = function(obj){
-    return ({}).toString.call(obj)
-        .match(/\s([a-zA-Z]+)/)[1].toLowerCase();
-};
-function cloneObject(obj){
-  var type = typeOf(obj);
-  if (type == 'object' || type == 'array') {
+const typeOf = (obj: {}) => ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+
+/**
+ * Clones recursively Style objects
+ * 
+ * @param obj Style object
+ */
+export const cloneStyle = (obj: olStyle): olStyle => {
+  const type = typeOf(obj);
+  if (type === 'object' || type === 'array') {
     if (obj.clone) {
       return obj.clone();
     }
-    var clone = type == 'array' ? [] : {};
-    for (var key in obj) {
-      clone[key] = cloneObject(obj[key]);
-    }
-    return clone;
+    
+    // return Object.assign( Object.create( Object.getPrototypeOf(obj)), obj)
+    const clone = type === 'array' ? [] : {};
+    Object.keys(obj).forEach((key: string) => {
+      clone[key] = cloneStyle(obj[key]);
+    })
+
+    return clone as olStyle;
   }
+
   return obj;
 }
 
-function findChild(children: React.ReactNode, childType: string) {
-  let found: any;
-  let childrenArr = React.Children.toArray(children);
-  for (let i=0; i<childrenArr.length; i++) {
-    let child: any = childrenArr[i];
-    if (child.type.name == childType){
-      found = child;
-      break;
+/**
+ * Search children for a given element type
+ * 
+ * @param children React children
+ * @param childType Child type to find
+ */
+export const findChild = <T extends React.ReactElement<{}>>(children: React.ReactNode, childType: string): T | void => {
+  let found: T | void;
+  const childrenArr = React.Children.toArray(children);
+  for (const child of childrenArr) {
+    if (React.isValidElement(child)) {
+      if (typeof child.type === 'string' && child.type === childType){
+        found = child as T;
+        break;
+      } else if (typeof child.type === 'function' && child.type.name === childType) {
+        found = child as T;
+        break;
+      }
     }
   }
+
   return found;
 }
 
-export class Util {
-  static getOptions = getOptions;
-  static getEvents = getEvents;
-  static cloneObject = cloneObject;
-  static findChild = findChild;
+export default {
+  getOptions,
+  getEvents,
+  cloneStyle,
+  findChild,
 }

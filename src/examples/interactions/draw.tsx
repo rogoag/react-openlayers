@@ -1,24 +1,26 @@
 import * as React from "react";
 
-import { Select, MenuItem, Divider, FormControl, InputLabel, Typography } from "@material-ui/core";
+import { Divider, FormControl, InputLabel, MenuItem, Select, Typography } from "@material-ui/core";
 
 import OSMSource from 'ol/source/osm';
 import VectorSource from 'ol/source/vector';
 
-import {
-  interaction, layer, custom, control, //name spaces
-  Interactions, Overlays, Controls,     //group
-  Map, Layers, Overlay, Util    //objects
-} from "react-openlayers";
+import { MapProps } from "map";
+import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
-var rasterTile = new OSMSource();
+const rasterTile = new OSMSource();
 
-var vectorSource = new VectorSource({wrapX: false});
+const vectorSource = new VectorSource({wrapX: false});
 
-export class Draw extends React.Component<any, any> {
-  constructor(props) {
+interface DrawState {
+  view: MapProps['view']
+  interactionType: ol.geom.GeometryType
+}
+
+export class Draw extends React.Component<{}, DrawState> {
+  constructor(props: {}) {
     super(props);
     this.state = {
       view: {
@@ -29,7 +31,9 @@ export class Draw extends React.Component<any, any> {
     };
   }
 
-  render() {
+  public handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => this.setState({interactionType: event.target.value as ol.geom.GeometryType});
+
+  public render() {
     return (
       <div>
         <Typography variant="h4" paragraph>Draw interaction</Typography>
@@ -48,12 +52,12 @@ export class Draw extends React.Component<any, any> {
         <FormControl>
           <InputLabel>Type</InputLabel>
           <Select
-            onChange={(event) => this.setState({interactionType: event.target.value})}
+            onChange={this.handleTypeChange}
             value={this.state.interactionType}
           >
             <MenuItem value="Point">Point</MenuItem>
             <MenuItem value="Polygon">Polygon</MenuItem>
-            <MenuItem value="Line">Line</MenuItem>
+            <MenuItem value="LineString">Line</MenuItem>
             <MenuItem value="Circle">Circle</MenuItem>
           </Select>
         </FormControl>

@@ -2,18 +2,31 @@ import * as React from 'react';
 
 import olExtent from 'ol/interaction/extent';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface ExtentProps extends olFix.olx.interaction.ExtentOptions, InteractionType<olExtent> {};
+export type ExtentOptions = olFix.olx.interaction.ExtentOptions;
+export interface ExtentProps extends ExtentOptions, InteractionType<olExtent> {
+  onEvent?: ReactOpenlayersEvent
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class Extent extends React.Component<ExtentProps, any> {
-  public static contextType = MapContext;
+export interface ExtentEvents extends ReactOpenlayersEvents {
+  'Event': ReactOpenlayersEvent
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+};
 
-  interaction: olExtent;
+export class Extent extends React.Component<ExtentProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: ExtentProps = {
+  public interaction: olExtent;
+
+  public options: ExtentOptions = {
     extent: undefined,
     boxStyle: undefined,
     pixelTolerance: undefined,
@@ -21,51 +34,50 @@ export class Extent extends React.Component<ExtentProps, any> {
     wrapX: undefined
   };
 
-  events: any = {
+  public events: ExtentEvents = {
     'Event': undefined,
     'change': undefined,
     'change:active': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<ExtentOptions, ExtentProps>(this.options, this.props);
     this.interaction = new olExtent(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
-    
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: ExtentProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<ExtentOptions, ExtentProps>(this.options, nextProps);
       this.interaction = new olExtent(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      })
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
   }
 
+  public initInteraction(props: ExtentProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
+  }
 }

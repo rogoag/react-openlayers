@@ -1,17 +1,15 @@
 import * as React from "react";
 
-import { Typography, Divider } from "@material-ui/core";
+import { Divider, Typography } from "@material-ui/core";
 
-import {
-  interaction, layer, custom, control, //name spaces
-  Interactions, Overlays, Controls,     //group
-  Map, Layers, Overlay, Util    //objects
-} from "react-openlayers";
+import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
-export class PinchRotate extends React.Component<any, any> {
-  render() {
+const angleThreshold = Math.PI * 30 / 180;
+
+export class PinchRotate extends React.Component {
+  public render() {
     return (
       <div>
         <Typography variant="h4" paragraph>PinchRotate interaction</Typography>
@@ -21,7 +19,7 @@ export class PinchRotate extends React.Component<any, any> {
             <layer.Tile />
           </Layers>
           <Interactions pinchRotate={false} pinchZoom={false}>
-            <interaction.PinchRotate threshold={30 * Math.PI / 180}/>
+            <interaction.PinchRotate threshold={angleThreshold}/>
           </Interactions>
         </Map>
         <br/>

@@ -3,19 +3,38 @@ import * as ReactDOM from 'react-dom';
 
 import olOverlay from 'ol/overlay'
 
-import { Util } from '../util';
-import { MapContext } from '../map';
-import { OverlayType } from 'overlays';
+import { OverlayType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface OverlayProps extends ol.olx.OverlayOptions, OverlayType<olOverlay> {};
+export type OverlayOptions = ol.olx.OverlayOptions;
+export interface OverlayProps extends OverlayOptions, OverlayType<olOverlay> {
+  onChange?: ReactOpenlayersEvent
+  onChangeelement?: ReactOpenlayersEvent
+  onChangemap?: ReactOpenlayersEvent
+  onChangeoffset?: ReactOpenlayersEvent
+  onChangeposition?: ReactOpenlayersEvent
+  onChangepositioning?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class Overlay extends React.Component<OverlayProps, any> {
-  public static contextType = MapContext;
+export interface OverlayEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:element': ReactOpenlayersEvent
+  'change:map': ReactOpenlayersEvent
+  'change:offset': ReactOpenlayersEvent
+  'change:position': ReactOpenlayersEvent
+  'change:positioning': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+};
 
-  overlay: olOverlay;
-  el: HTMLElement;
+export class Overlay extends React.Component<OverlayProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: OverlayProps = {
+  public overlay: olOverlay;
+  public el: HTMLElement;
+
+  public options: OverlayOptions = {
     id: undefined,
     element: undefined,
     offset: undefined,
@@ -27,7 +46,7 @@ export class Overlay extends React.Component<OverlayProps, any> {
     autoPanMargin: undefined
   };
 
-  events: any = {
+  public events: OverlayEvents = {
     'change': undefined,
     'change:element': undefined,
     'change:map': undefined,
@@ -37,7 +56,7 @@ export class Overlay extends React.Component<OverlayProps, any> {
     'propertychange': undefined
   };
 
-  render() {
+  public render() {
     return (
       <div>
         {this.props.children}
@@ -45,10 +64,9 @@ export class Overlay extends React.Component<OverlayProps, any> {
     );
   }
 
-  componentDidMount() {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
-    options.element = (ReactDOM.findDOMNode(this) as Element).querySelector('div');
-    // console.log('options.element', options.element);
+  public componentDidMount() {
+    const options = Util.getOptions<OverlayOptions, OverlayProps>(this.options, this.props);
+    options.element = (ReactDOM.findDOMNode(this) as Element).querySelector('div') as Element;
     this.overlay = new olOverlay(options);
     this.context.overlays.push(this.overlay);
     if (this.props.overlayRef) this.props.overlayRef(this.overlay);

@@ -2,70 +2,80 @@ import * as React from 'react';
 
 import olDragAndDrop from 'ol/interaction/draganddrop';
 
-import { MapContext } from '../map';
-import { Util, Omit } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface DragAndDropProps extends Omit<ol.olx.interaction.DragAndDropOptions, 'projection'>, InteractionType<olDragAndDrop> {
-  projection?: ol.olx.interaction.DragAndDropOptions['projection']
+export type DragAndDropOptions = ol.olx.interaction.DragAndDropOptions;
+export interface DragAndDropProps extends DragAndDropOptions, InteractionType<olDragAndDrop> {
+  onAddfeatures?: ReactOpenlayersEvent<ol.interaction.DragAndDrop.Event>
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
 }
 
-export class DragAndDrop extends React.Component<DragAndDropProps, any> {
-  public static contextType = MapContext;
+export interface DragAndDropEvents extends ReactOpenlayersEvents {
+  'addfeatures': ReactOpenlayersEvent<ol.interaction.DragAndDrop.Event>
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+}
 
-  interaction: olDragAndDrop;
+export class DragAndDrop extends React.Component<DragAndDropProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: DragAndDropProps = {
+  public interaction: olDragAndDrop;
+
+  public options: DragAndDropOptions = {
     formatConstructors: undefined,
     projection: undefined,
     target: undefined
   };
 
-  events: any = {
+  public events: DragAndDropEvents = {
     'addfeatures': undefined,
     'change': undefined,
     'change:active': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<DragAndDropOptions, DragAndDropProps>(this.options, this.props);
     this.interaction = new olDragAndDrop(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
 
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: DragAndDropProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<DragAndDropOptions, DragAndDropProps>(this.options, nextProps);
       this.interaction = new olDragAndDrop(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      });
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
   }
 
+  private initInteraction(props: DragAndDropProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
+  }
 }

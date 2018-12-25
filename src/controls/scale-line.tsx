@@ -2,18 +2,29 @@ import * as React from 'react';
 
 import olScaleLine from 'ol/control/scaleline'
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { ControlType } from 'controls';
+import { ControlType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface ScaleLineProps extends ol.olx.control.ScaleLineOptions, ControlType<olScaleLine> {};
+export type ScaleLineOptions = ol.olx.control.ScaleLineOptions;
+export interface ScaleLineProps extends ol.olx.control.ScaleLineOptions, ControlType<olScaleLine> {
+  onChange?: ReactOpenlayersEvent
+  onChangeUnits?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class ScaleLine extends React.Component<ScaleLineProps, any> {
-  public static contextType = MapContext;
+export interface ScaleLineEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:units': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+};
 
-  control: olScaleLine;
+export class ScaleLine extends React.Component<ScaleLineProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: ScaleLineProps = {
+  public control: olScaleLine;
+
+  public options: ScaleLineOptions = {
     className: undefined,
     minWidth: undefined,
     render: undefined,
@@ -21,25 +32,25 @@ export class ScaleLine extends React.Component<ScaleLineProps, any> {
     units: undefined
   };
 
-  events: any = {
+  public events: ScaleLineEvents = {
     'change': undefined,
     'change:units': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<ScaleLineOptions, ScaleLineProps>(this.options, this.props);
     this.control = new olScaleLine(options);
     this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);
 
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.control.on(eventName, olEvents[eventName]);
-    }
+    })
   }
 
 }

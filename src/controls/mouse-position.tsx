@@ -2,18 +2,31 @@ import * as React from 'react';
 
 import olMousePosition from 'ol/control/mouseposition'
 
-import { Util } from '../util';
-import { MapContext } from '../map';
-import { ControlType } from 'controls';
+import { ControlType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface MousePositionProps extends ol.olx.control.MousePositionOptions, ControlType<olMousePosition> {};
+export type MousePositionOptions = ol.olx.control.MousePositionOptions;
+export interface MousePositionProps extends MousePositionOptions, ControlType<olMousePosition> {
+  onChange?: ReactOpenlayersEvent
+  onChangeCoordinateFormat?: ReactOpenlayersEvent
+  onChangeProjection?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class MousePosition extends React.Component<MousePositionProps, any> {
-  public static contextType = MapContext;
+export interface MousePositionEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:coordinateFormat': ReactOpenlayersEvent
+  'change:projection': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+};
 
-  control: olMousePosition;
+export class MousePosition extends React.Component<MousePositionProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: MousePositionProps = {
+  public control: olMousePosition;
+
+  public options: MousePositionOptions = {
     className: undefined,
     coordinateFormat: undefined,
     projection: undefined,
@@ -22,26 +35,26 @@ export class MousePosition extends React.Component<MousePositionProps, any> {
     undefinedHTML: undefined
   };
 
-  events: any = {
+  public events: MousePositionEvents = {
     'change': undefined,
     'change:coordinateFormat': undefined,
     'change:projection': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  componentDidMount() {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<MousePositionOptions, MousePositionProps>(this.options, this.props);
     this.control = new olMousePosition(options);
     this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);
 
 
-    let olEvents = Util.getEvents(this.events, this.props);
-    for (let eventName in olEvents) {
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.control.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 }

@@ -2,66 +2,75 @@ import * as React from 'react';
 
 import olDragRotateAndZoom from 'ol/interaction/dragrotateandzoom';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface DragRotateAndZoomProps extends ol.olx.interaction.DragRotateAndZoomOptions, InteractionType<olDragRotateAndZoom> {};
+export type DragRotateAndZoomOptions = ol.olx.interaction.DragRotateAndZoomOptions;
+export interface DragRotateAndZoomProps extends DragRotateAndZoomOptions, InteractionType<olDragRotateAndZoom> {
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+};
 
-export class DragRotateAndZoom extends React.Component<DragRotateAndZoomProps, any> {
-  public static contextType = MapContext;
+export interface DragRotateAndZoomEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+}
+export class DragRotateAndZoom extends React.Component<DragRotateAndZoomProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  interaction: olDragRotateAndZoom;
+  public interaction: olDragRotateAndZoom;
 
-  options: DragRotateAndZoomProps = {
+  public options: DragRotateAndZoomProps = {
     condition: undefined,
     duration: undefined
   };
 
-  events: any = {
+  public events: DragRotateAndZoomEvents = {
     'change': undefined,
     'change:active': undefined,
     'propertychange': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
-    let options = Util.getOptions(Object.assign(this.options, this.props));
+  public componentDidMount() {
+    const options = Util.getOptions<DragRotateAndZoomOptions, DragRotateAndZoomProps>(this.options, this.props);
     this.interaction = new olDragRotateAndZoom(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
-    
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: DragRotateAndZoomProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      let options = Util.getOptions(Object.assign(this.options, nextProps));
+      const options = Util.getOptions<DragRotateAndZoomOptions, DragRotateAndZoomProps>(this.options, nextProps);
       this.interaction = new olDragRotateAndZoom(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      })
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
   }
 
+  private initInteraction(props: DragRotateAndZoomProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
+  }
 }

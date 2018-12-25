@@ -1,24 +1,24 @@
 import * as React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './app.css';
 
 // Material-UI
 import {
   AppBar,
+  Button,
+  createStyles,
+  Theme,
   Toolbar,
   Typography,
-  Button,
   withStyles,
-  Theme,
-  createStyles,
   WithStyles,
 } from '@material-ui/core';
 
-import Layers from './layers';
 import Controls from './controls';
-import Interactions from './interactions';
-import Overlays from './overlays';
 import Custom from './custom';
+import Interactions from './interactions';
+import Layers from './layers';
+import Overlays from './overlays';
 
 const styles = (theme: Theme) => createStyles({
   root: {
@@ -32,8 +32,8 @@ const styles = (theme: Theme) => createStyles({
   }
 })
 
-class App extends React.Component<WithStyles, any> {
-  render() {
+class App extends React.Component<WithStyles> {
+  public render() {
     const { classes } = this.props;
 
     return (
@@ -57,23 +57,6 @@ class App extends React.Component<WithStyles, any> {
         <Route path="/overlays" component={Overlays}/>
         <Route path="/custom" component={Custom} />
       </div>
-      // <div className="menu">
-      //   <h1>React OpenLayers</h1>
-      //   <ul className="groups" role="nav">
-      //     <li><Link to="/layers">Layers</Link></li>
-      //     <li><Link to="/controls">Controls</Link></li>
-      //     <li><Link to="/overlays">Overlays</Link></li>
-      //     <li><Link to="/interactions">Interactions</Link></li>
-      //     <li><Link to="/custom">Custom Examples</Link></li>
-      //   </ul>
-
-      //   <Route path="/" exact component={EarthquakeClusters} />
-      //   <Route path="/controls" component={Controls}/>
-      //   <Route path="/layers" component={Layers}/>
-      //   <Route path="/interactions" component={Interactions}/>
-      //   <Route path="/overlays" component={Overlays}/>
-      //   <Route path="/custom" component={Custom} />
-      // </div>
     );
   }
 }

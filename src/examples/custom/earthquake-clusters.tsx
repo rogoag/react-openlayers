@@ -1,21 +1,19 @@
 import * as React from "react";
 
-import { Typography, Divider } from "@material-ui/core";
+import { Divider, Typography } from "@material-ui/core";
 
-import ClusterSource from 'ol/source/cluster';
-import VectorSource from 'ol/source/vector';
-import StamenSource from 'ol/source/stamen';
 import KMLFormat from 'ol/format/kml';
+import ClusterSource from 'ol/source/cluster';
+import StamenSource from 'ol/source/stamen';
+import VectorSource from 'ol/source/vector';
 
 import {
-  interaction, layer, custom, control, //name spaces
-  Interactions, Overlays, Controls,     //group
-  Map, Layers, Overlay, Util    //objects
+  custom, interaction, Interactions, layer, Layers, Map
 } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
-var vectorSource= new ClusterSource({
+const vectorSource= new ClusterSource({
   distance: 40,
   source: new VectorSource({
     url: 'http://openlayers.org/en/latest/examples/data/kml/2012_Earthquakes_Mag5.kml',
@@ -25,19 +23,19 @@ var vectorSource= new ClusterSource({
   })
 });
 
-var tileSource = new StamenSource({
+const tileSource = new StamenSource({
   layer: 'toner'
 });
 
-var selectCondition = function(evt) {
-  return evt.originalEvent.type == 'mousemove' ||
-    evt.type == 'singleclick';
+const selectCondition = (evt: ol.MapBrowserEvent) => {
+  return evt.originalEvent.type === 'mousemove' ||
+    evt.type === 'singleclick';
 };
 
-var cluster = new custom.style.ClusterStyle(vectorSource);
+const cluster = new custom.style.ClusterStyle(vectorSource);
 
-export class EarthquakeClusters extends React.Component<any,any> {
-  render(){
+export class EarthquakeClusters extends React.Component {
+  public render(){
     return (
       <div>
         <Typography variant="h4" paragraph>Earthquake clusters</Typography>

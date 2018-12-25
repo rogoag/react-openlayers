@@ -5,22 +5,20 @@ import { Divider, Typography } from "@material-ui/core";
 import olProj from 'ol/proj';
 import StamenSource from 'ol/source/stamen';
 
-import {
-  interaction, layer, custom, control,  //name spaces
-  Interactions, Overlays, Controls,     //group
-  Map, Layers, Overlay, Util            //objects
-} from "react-openlayers";
+import { Popup } from "custom/popup";
+import { control, Controls, custom, layer, Layers, Map, Overlay, Overlays } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
 //AppOverlay to avoid conflict to Overlay
-export class AppOverlay extends React.Component<any,any> {
-  overlayComp: any;
-  popupComp: any;
+export class AppOverlay extends React.Component {
+  public overlayComp: Overlay;
+  public popupComp: Popup;
 
-  showPopup = (evt) => {
+  public showPopup = (evt: ol.MapBrowserEvent) => {
+    console.log("SP", evt)
     this.overlayComp.overlay.setPosition(evt.coordinate);
-    var lonlat = olProj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
+    const lonlat = olProj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
 
     this.popupComp.setContents(
       `<p>You clicked here:</p><code> ${lonlat[0]}, ${lonlat[1]}</code>`
@@ -28,7 +26,10 @@ export class AppOverlay extends React.Component<any,any> {
     this.popupComp.show();
   }
 
-  render(){
+  public bindOverlayComp = (comp: Overlay) => this.overlayComp = comp;
+  public bindPopupComp = (comp: Popup) => this.popupComp = comp;
+
+  public render(){
     return (
       <div>
         <Typography variant="h4" paragraph>Overlay</Typography>
@@ -40,8 +41,8 @@ export class AppOverlay extends React.Component<any,any> {
             <control.FullScreen></control.FullScreen>
           </Controls>
           <Overlays>
-            <Overlay ref={comp => this.overlayComp = comp}>
-              <custom.Popup ref={comp => this.popupComp = comp}>
+            <Overlay ref={this.bindOverlayComp}>
+              <custom.Popup ref={this.bindPopupComp}>
               </custom.Popup>
             </Overlay>
           </Overlays>

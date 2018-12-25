@@ -1,19 +1,16 @@
 import * as React from "react";
 
-import { Typography, Divider, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Grid, InputLabel, Select, MenuItem } from "@material-ui/core";
+import { Divider, FormControl, FormControlLabel, FormLabel, Grid, InputLabel, MenuItem, Radio, RadioGroup, Select, Typography } from "@material-ui/core";
 
-import VectorSource from 'ol/source/vector';
-import Style from 'ol/style/style';
-import StrokeStyle from 'ol/style/stroke';
-import FillStyle from 'ol/style/fill';
-import CircleStyle from 'ol/style/circle';
+import olDraw from 'ol/interaction/draw';
 import olSelect from 'ol/interaction/select';
+import VectorSource from 'ol/source/vector';
+import CircleStyle from 'ol/style/circle';
+import FillStyle from 'ol/style/fill';
+import StrokeStyle from 'ol/style/stroke';
+import Style from 'ol/style/style';
 
-import {
-  interaction, layer, custom, control, //name spaces
-  Interactions, Overlays, Controls,     //group
-  Map, Layers, Overlay, Util    //objects
-} from "react-openlayers";
+import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -34,45 +31,55 @@ const vectorStyle = new Style({
   })
 });
 
-export class Snap extends React.Component<any, any> {
-  source: VectorSource = null;
+interface SnapState {
+  drawType: ol.geom.GeometryType,
+  activeInteraction: 'draw' | 'modify'
+}
 
-  draws = {
-    Point: null,
-    LineString: null,
-    Polygon: null,
-    Circle: null,
+interface Draws {
+  Point: olDraw | void
+  LineString: olDraw | void
+  Polygon: olDraw | void
+  Circle: olDraw | void
+}
+
+export class Snap extends React.Component<{}, SnapState> {
+  public source: VectorSource;
+
+  public draws: Draws = {
+    Point: undefined,
+    LineString: undefined,
+    Polygon: undefined,
+    Circle: undefined,
   };
 
-  select = null;
+  public select: olSelect;
 
-  state = {
+  public state: SnapState = {
     drawType: 'Point',
     activeInteraction: 'draw'
   }
 
-  constructor(props) {
+  constructor(props: {}) {
     super(props);
     this.source = new VectorSource();
     this.select = new olSelect()
   }
 
-  handleDrawTypeChange = e => {
-    const type = e.target.value;
-    this.setState({ ...this.state, drawType: type })
+  public handleDrawTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    this.setState({ ...this.state, drawType: e.target.value as ol.geom.GeometryType })
   }
 
-  handleInteractionChange = e => {
-    const interactionType = e.target.value;
-    this.setState({ ...this.state, activeInteraction: interactionType })
+  public handleInteractionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    this.setState({ ...this.state, activeInteraction: e.target.value as 'draw' | 'modify'})
   }
 
-  handleSelectChangeActive = () => {
+  public handleSelectChangeActive = () => {
     const selectedFeatures = this.select.getFeatures();
     selectedFeatures.forEach(selectedFeatures.remove, selectedFeatures);
   }
 
-  render() {
+  public render() {
     const { drawType, activeInteraction } = this.state;
 
     return (

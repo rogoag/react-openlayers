@@ -1,40 +1,36 @@
 import * as React from "react";
 
-import { Typography, Divider } from "@material-ui/core";
+import { Divider, Typography } from "@material-ui/core";
 
 import olExtent from 'ol/extent';
 import Projection from 'ol/proj/projection'
 import ImageStaticSource from 'ol/source/imagestatic'
 
-import {
-  interaction, layer, custom, control, //name spaces
-  Interactions, Overlays, Controls,     //group
-  Map, Layers, Overlay, Util    //objects
-} from "react-openlayers";
+import { layer, Layers, Map } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
-var extent: any = [0, 0, 1024, 968];
-var projection = new Projection({
+const extent: [number, number, number, number] = [0, 0, 1024, 968];
+const projection = new Projection({
   code: 'xkcd-image',
   units: 'pixels',
   extent: extent
 });
-var view = {
+const view = {
   projection: projection,
   center: olExtent.getCenter(extent),
   zoom: 2,
   maxZoom: 9
 };
-var imageSource = new ImageStaticSource({
+const imageSource = new ImageStaticSource({
   attributions: '© <a href="http://xkcd.com/license.html">xkcd</a>',
   url: 'https://imgs.xkcd.com/comics/online_communities.png',
   projection: projection,
   imageExtent: extent
 });
 
-export class Image extends React.Component<any,any> {
-  render(){
+export class Image extends React.Component {
+  public render(){
     return (
       <div>
         <Typography variant="h4" paragraph>Image layer</Typography>

@@ -2,20 +2,33 @@ import * as React from 'react';
 
 import olSelect from 'ol/interaction/select';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { InteractionType } from 'interactions';
+import { InteractionType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface SelectProps extends ol.olx.interaction.SelectOptions, InteractionType<olSelect> {
+export type SelectOptions = ol.olx.interaction.SelectOptions;
+
+export interface SelectProps extends SelectOptions, InteractionType<olSelect> {
   instance?: olSelect;
+  onChange?: ReactOpenlayersEvent
+  onChangeActive?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent
+  onSelect?: ReactOpenlayersEvent<ol.interaction.Select.Event>
 }
 
-export class Select extends React.Component<SelectProps, any> {
-  public static contextType = MapContext;
+export interface SelectEvents extends ReactOpenlayersEvents {
+  'change': ReactOpenlayersEvent
+  'change:active': ReactOpenlayersEvent
+  'propertychange': ReactOpenlayersEvent
+  'select': ReactOpenlayersEvent
+}
 
-  interaction: olSelect;
+export class Select extends React.Component<SelectProps> {
+  public static contextType: React.Context<MapContextType> = MapContext;
 
-  options: SelectProps = {
+  public interaction: olSelect;
+
+  public options: SelectOptions = {
     addCondition: undefined,
     condition: undefined,
     layers: undefined,
@@ -29,60 +42,59 @@ export class Select extends React.Component<SelectProps, any> {
     hitTolerance: undefined
   };
 
-  events: any = {
+  public events: SelectEvents = {
     'change': undefined,
     'change:active': undefined,
     'propertychange': undefined,
     'select': undefined
   };
 
-  render() { return null; }
+  public render() { return null; }
 
-  initInteraction(props) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
-  }
-
-  componentDidMount () {
+  public componentDidMount() {
     if (this.props.instance) {
       this.interaction = this.props.instance;
     } else {
-      let options = Util.getOptions(Object.assign(this.options, this.props));
+      const options = Util.getOptions<SelectOptions, SelectProps>(this.options, this.props);
       this.interaction = new olSelect(options);
     }
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
-    
-    let olEvents = Util.getEvents(this.events, this.props);
-    for(let eventName in olEvents) {
+
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
       this.interaction.on(eventName, olEvents[eventName]);
-    }
+    });
   }
 
-  componentWillReceiveProps (nextProps) {
-    if(nextProps !== this.props){
+  public componentWillReceiveProps(nextProps: SelectProps) {
+    if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
 
       if (this.props.instance) {
         this.interaction = this.props.instance;
       } else {
-        let options = Util.getOptions(Object.assign(this.options, nextProps));
+        const options = Util.getOptions<SelectOptions, SelectProps>(this.options, nextProps);
         this.interaction = new olSelect(options);
       }
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
 
-      let olEvents = Util.getEvents(this.events, this.props);
-      for(let eventName in olEvents) {
+      const olEvents = Util.getEvents(this.events, this.props);
+      Object.keys(olEvents).forEach((eventName: string) => {
         this.interaction.on(eventName, olEvents[eventName]);
-      }
+      });
     }
   }
-  
-  componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
   }
 
+  private initInteraction(props: SelectProps) {
+    if (props.interactionRef) props.interactionRef(this.interaction);
+    if (props.active !== undefined) this.interaction.setActive(props.active);
+  }
 }

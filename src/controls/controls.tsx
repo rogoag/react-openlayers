@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Util } from '../util';
+import Util from '../util';
 import { AttributionProps } from './attribution';
 import { RotateProps } from './rotate';
 import { ZoomProps } from './zoom';
@@ -15,9 +15,8 @@ export interface ControlsProps {
 }
 
 // I wish I can name it as 'layers', not 'Layers'
-export class Controls extends React.Component<ControlsProps, any> {
-
-  options: ControlsProps = {
+export class Controls extends React.Component<ControlsProps> {
+  public options: ControlsProps = {
     attribution: undefined,
     attributionOptions: undefined,
     rotate: undefined,
@@ -26,16 +25,12 @@ export class Controls extends React.Component<ControlsProps, any> {
     zoomOptions: undefined
   };
 
-  constructor(props) {
+  constructor(props: ControlsProps) {
     super(props);
-    this.options = Util.getOptions(Object.assign(this.options, this.props));
+    this.options = Util.getOptions<ControlsProps, ControlsProps>(this.options, this.props);
   }
 
-  render() {
+  public render() {
     return (<div>{this.props.children}</div>);
   }
-
-  componentDidMount() { }
-
-  componentWillUnmount() { }
 }

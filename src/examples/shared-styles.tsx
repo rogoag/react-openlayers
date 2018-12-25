@@ -1,8 +1,8 @@
-import { Theme, createStyles } from "@material-ui/core";
+import { createStyles, Theme } from "@material-ui/core";
 
 const drawerWidth = 240;
 
-export default (theme:Theme) => createStyles({
+export default (theme: Theme) => createStyles({
   categoryRoot: {
     position: 'relative',
     width: '100%'

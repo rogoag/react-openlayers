@@ -1,5 +1,9 @@
 // import ol from 'ol';
 
+declare module 'ol-mapbox-style';
+declare module 'react-syntax-highlighter';
+declare module 'react-syntax-highlighter/dist/styles/prism';
+
 declare namespace olFix {
   namespace olx {
     namespace interaction {
@@ -12,4 +16,14 @@ declare namespace olFix {
       }
     }
   }
+}
+
+declare module 'ol/interaction/extent' {
+  export default class Extent extends ol.interaction.Pointer {
+    constructor(opt_options: olFix.olx.interaction.ExtentOptions)
+    setMap?(map: ol.Map): void
+    getExtent?(): ol.Extent
+    setExtent?(ext: ol.Extent): void
+  }
+
 }

@@ -2,35 +2,52 @@ import * as React from 'react';
 
 import './popup.css';
 
-export class Popup extends React.Component<any, any> {
-  containerEl: HTMLElement;
-  contentEl: HTMLElement;
-  contentClose: HTMLElement;
+export class Popup extends React.Component {
+  private containerEl: React.RefObject<HTMLDivElement>;
+  private contentEl: React.RefObject<HTMLDivElement>;
+  private contentClose: React.RefObject<HTMLAnchorElement>;
 
-  componentDidMount() {
-    this.contentClose.addEventListener("click", () => {
-      this.containerEl.style.display = 'none';
-    });
+  constructor(props: {}) {
+    super(props);
+    this.containerEl = React.createRef<HTMLDivElement>();
+    this.contentEl = React.createRef<HTMLDivElement>();
+    this.contentClose = React.createRef<HTMLAnchorElement>();
   }
 
-  render() {
+  public componentDidMount() {
+    if (this.contentClose.current) {
+      this.contentClose.current.addEventListener("click", () => {
+        if (this.containerEl.current) {
+          this.containerEl.current.style.display = 'none';
+        }
+      });
+    }
+  }
+
+  public render() {
     return (
-      <div className="olPopup" ref={el => this.containerEl = el}>
-        <a className="olPopupCloser"
+      <div className="olPopup" ref={this.containerEl}>
+        <a
+          className="olPopupCloser" role="button"
           href="javascript:void(0)"
-          ref={el => this.contentClose = el}
+          ref={this.contentClose}
         ></a>
-        <div className="olPopupContents" ref={el => this.contentEl = el}></div>
+        <div className="olPopupContents" ref={this.contentEl}></div>
       </div>
     );
   }
 
-  setContents(html) {
-    this.contentEl.innerHTML = html;
+  public setContents(html: string) {
+    if (this.contentEl.current) {
+      // tslint:disable-next-line
+      this.contentEl.current.innerHTML = html;
+    }
   }
 
-  show(bottomDistance: string = '12px') {
-    this.containerEl.style.bottom = bottomDistance;
-    this.containerEl.style.display = 'block';
+  public show(bottomDistance: string = '12px') {
+    if (this.containerEl.current) {
+      this.containerEl.current.style.bottom = bottomDistance;
+      this.containerEl.current.style.display = 'block';
+    }
   }
 }

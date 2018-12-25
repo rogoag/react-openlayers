@@ -2,18 +2,26 @@ import * as React from 'react';
 
 import olAttribution from 'ol/control/attribution';
 
-import { MapContext } from '../map';
-import { Util } from '../util';
-import { ControlType } from 'controls';
+import { ControlType } from '.';
+import { MapContext, MapContextType } from '../map';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export interface AttributionProps extends ol.olx.control.AttributionOptions, ControlType<olAttribution> {};
+export type AttributionOptions = ol.olx.control.AttributionOptions;
+export interface AttributionProps extends AttributionOptions, ControlType<olAttribution> {
+  onChange: ReactOpenlayersEvent
+  onPropertychange: ReactOpenlayersEvent
+};
+export interface AttributionEvents extends ReactOpenlayersEvents {
+  change?: ReactOpenlayersEvent
+  propertychange?: ReactOpenlayersEvent
+};
 
 export class Attribution extends React.Component<AttributionProps> {
-  public static contextType = MapContext;
+  public static contextType: React.Context<MapContextType> = MapContext;
 
   public control: olAttribution;
 
-  public options: AttributionProps = {
+  public options: AttributionOptions = {
     className: undefined,
     target: undefined,
     collapsible: undefined,
@@ -24,7 +32,7 @@ export class Attribution extends React.Component<AttributionProps> {
     render: undefined
   };
 
-  public events: any = {
+  public events: AttributionEvents = {
     change: undefined,
     propertychange: undefined
   };
@@ -32,7 +40,7 @@ export class Attribution extends React.Component<AttributionProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions({ ...this.options, ...this.props });
+    const options = Util.getOptions<AttributionOptions, AttributionProps>(this.options, this.props);
     this.control = new olAttribution(options);
     this.context.controls.push(this.control);
 
