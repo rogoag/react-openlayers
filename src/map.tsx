@@ -19,7 +19,7 @@ import { ControlsProps } from './controls/controls';
 import { InteractionsProps } from './interactions/interactions';
 
 import './map.css';
-import './ol.css';
+import 'ol/ol.css';
 
 export type MapContextType = MapReact | void;
 export const MapContext = React.createContext<MapContextType>(undefined);
@@ -186,7 +186,7 @@ export class MapReact extends React.Component<MapProps> {
   public componentWillUnmount() {
     // this.map.setTarget(undefined)
   }
-  
+
   private updateFromProps(props: MapProps, isMounting: boolean) {
     if (isMounting || props.view) {
       // Update the center and the resolution of the view only when it is

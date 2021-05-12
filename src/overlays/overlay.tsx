@@ -38,7 +38,7 @@ export class Overlay extends React.Component<OverlayProps> {
     element: undefined,
     offset: undefined,
     position: undefined,
-    stopEvent: undefined,
+    stopEvent: false,
     insertFirst: undefined,
     autoPan: undefined,
     autoPanAnimation: undefined,

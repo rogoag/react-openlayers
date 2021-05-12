@@ -93,6 +93,8 @@ export class TileReact extends React.Component<TileProps> {
     Object.keys(olEvents).forEach((eventName: string) => {
       this.layer.on(eventName, olEvents[eventName]);
     });
+
+    console.log(this.context.layers)
   }
 
   public componentWillReceiveProps(nextProps: TileProps) {
