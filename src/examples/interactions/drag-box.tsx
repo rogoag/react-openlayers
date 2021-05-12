@@ -2,18 +2,20 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import olEventConditions from 'ol/events/condition';
-import olFeature from 'ol/feature';
+import EventConditions from 'ol/events/condition';
+import Collection from 'ol/Collection';
+import Feature from 'ol/Feature';
 import GeoJSONFormat from 'ol/format/geojson';
-import olSelect from 'ol/interaction/select';
-import VectorSource from 'ol/source/vector';
-
-import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
+import Select from 'ol/interaction/Select';
+import VectorSource from 'ol/source/Vector';
+import { DragBoxEvent } from 'ol/interaction/DragBox';
+import { SelectEvent } from 'ol/interaction/Select';
+import { interaction, Interactions, layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
 interface DragBoxState {
-  selectedFeatures: ol.Collection<ol.Feature> | void
+  selectedFeatures: Collection<Feature> | void
 }
 
 export class DragBox extends React.Component<{}, DragBoxState> {
@@ -21,7 +23,7 @@ export class DragBox extends React.Component<{}, DragBoxState> {
     selectedFeatures: undefined
   }
 
-  public select: olSelect;
+  public select: Select;
   
   public source: VectorSource = new VectorSource({
     url: 'https://openlayers.org/en/v4.6.5/examples/data/geojson/countries.geojson',
@@ -30,7 +32,7 @@ export class DragBox extends React.Component<{}, DragBoxState> {
 
   constructor(props: {}) {
     super(props);
-    this.select = new olSelect();
+    this.select = new Select();
     this.state.selectedFeatures = this.select.getFeatures();
   }
 
@@ -40,10 +42,10 @@ export class DragBox extends React.Component<{}, DragBoxState> {
     }
   }
 
-  public handleBoxEnd = (event: ol.interaction.DragBox.Event) => {
+  public handleBoxEnd = (event: DragBoxEvent) => {
     const extent = event.target.getGeometry().getExtent();
     const selectedFeatures = this.state.selectedFeatures;
-    this.source.forEachFeatureIntersectingExtent(extent, (feature: olFeature) => {
+    this.source.forEachFeatureIntersectingExtent(extent, (feature: Feature) => {
       if (selectedFeatures) {
         selectedFeatures.push(feature);
       }
@@ -51,7 +53,7 @@ export class DragBox extends React.Component<{}, DragBoxState> {
     this.setState({ selectedFeatures })
   }
 
-  public handleDeselect = (event: ol.interaction.Select.Event) => {
+  public handleDeselect = (event: SelectEvent) => {
     if (event.deselected.length > 0) {
       this.clearSelectedFeatures();
       this.setState({ ...this.state, selectedFeatures: this.state.selectedFeatures})
@@ -66,21 +68,21 @@ export class DragBox extends React.Component<{}, DragBoxState> {
         <Typography variant="subtitle2">
           Use <code>CTRL + Drag</code> to select an area
         </Typography>
-        <Map view={{ center: [0, 0], zoom: 2 }}>
+        <MapReact view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
-            <layer.Tile />
+            <layer.TileReact />
             <layer.Vector source={this.source} />
           </Layers>
           <Interactions>
-            <interaction.Select instance={this.select} onSelect={this.handleDeselect}/>
-            <interaction.DragBox
-              condition={olEventConditions.platformModifierKeyOnly}
+            <interaction.SelectReact instance={this.select} onSelect={this.handleDeselect}/>
+            <interaction.DragBoxReact
+              condition={EventConditions.platformModifierKeyOnly}
               onBoxstart={this.clearSelectedFeatures}
               onBoxend={this.handleBoxEnd}
               />
           </Interactions>
-        </Map>
-        <p><b>Selected countries: </b>{this.state.selectedFeatures && (this.state.selectedFeatures.getArray().length === 0 ? "No selection" : this.state.selectedFeatures.getArray().map((f: olFeature) => f.get('name')).join(', '))}</p>
+        </MapReact>
+        <p><b>Selected countries: </b>{this.state.selectedFeatures && (this.state.selectedFeatures.getArray().length === 0 ? "No selection" : this.state.selectedFeatures.getArray().map((f: Feature) => f.get('name')).join(', '))}</p>
         <br/>
         <Divider />
         <br/>

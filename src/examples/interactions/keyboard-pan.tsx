@@ -4,7 +4,7 @@ import { Divider, Typography } from "@material-ui/core";
 
 import olEventConditions from 'ol/events/condition';
 
-import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
+import { interaction, Interactions, layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -14,17 +14,17 @@ export class KeyboardPan extends React.Component {
       <div>
         <Typography variant="h4" paragraph>KeyboardPan interaction</Typography>
         <Typography variant="subtitle1">This example have disabled default <code>KeyboardPan</code> interaction which use arrow keys, but it implements one that force you to use <code>CTRL + [Arrow key]</code> to pan the map.</Typography>
-        <Map view={{ center: [0, 0], zoom: 2 }}>
+        <MapReact view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
-            <layer.Tile />
+            <layer.TileReact />
           </Layers>
           <Interactions keyboard={false}>
-            <interaction.KeyboardZoom />
-            <interaction.KeyboardPan
+            <interaction.KeyboardZoomReact />
+            <interaction.KeyboardPanReact
               condition={olEventConditions.platformModifierKeyOnly}
             />
           </Interactions>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

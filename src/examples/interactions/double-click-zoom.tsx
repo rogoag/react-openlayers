@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
+import { interaction, Interactions, layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -11,14 +11,14 @@ export class DoubleClickZoom extends React.Component {
     return (
       <div>
         <Typography variant="h4" paragraph>DoubleClickZoom interaction</Typography>
-        <Map>
+        <MapReact>
           <Layers>
-            <layer.Tile />
+            <layer.TileReact />
           </Layers>
           <Interactions doubleClickZoom={false}>
-            <interaction.DoubleClickZoom />
+            <interaction.DoubleClickZoomReact />
           </Interactions>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

@@ -1,36 +1,35 @@
 import * as React from 'react';
 
-import olDragBox from 'ol/interaction/dragbox';
+import DragBox, { DragBoxEvent, Options } from 'ol/interaction/DragBox';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type DragBoxOptions = ol.olx.interaction.DragBoxOptions;
-export interface DragBoxProps extends ol.olx.interaction.DragBoxOptions, InteractionType<olDragBox> {
-  onBoxdrag?: ReactOpenlayersEvent<ol.interaction.DragBox.Event>
-  onBoxend?: ReactOpenlayersEvent<ol.interaction.DragBox.Event>
-  onBoxstart?: ReactOpenlayersEvent<ol.interaction.DragBox.Event>
+export interface DragBoxProps extends Options, InteractionType<DragBox> {
+  onBoxdrag?: ReactOpenlayersEvent<DragBoxEvent>
+  onBoxend?: ReactOpenlayersEvent<DragBoxEvent>
+  onBoxstart?: ReactOpenlayersEvent<DragBoxEvent>
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
 };
 
 export interface DragBoxEvents extends ReactOpenlayersEvents {
-  'boxdrag': ReactOpenlayersEvent<ol.interaction.DragBox.Event>
-  'boxend': ReactOpenlayersEvent<ol.interaction.DragBox.Event>
-  'boxstart': ReactOpenlayersEvent<ol.interaction.DragBox.Event>
+  'boxdrag': ReactOpenlayersEvent<DragBoxEvent>
+  'boxend': ReactOpenlayersEvent<DragBoxEvent>
+  'boxstart': ReactOpenlayersEvent<DragBoxEvent>
   'change': ReactOpenlayersEvent
   'change:active': ReactOpenlayersEvent
   'propertychange': ReactOpenlayersEvent
 }
 
-export class DragBox extends React.Component<DragBoxProps> {
+export class DragBoxReact extends React.Component<DragBoxProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olDragBox;
+  public interaction: DragBox;
 
-  public options: DragBoxOptions = {
+  public options: Options = {
     className: undefined,
     condition: undefined,
     boxEndCondition: undefined
@@ -48,8 +47,8 @@ export class DragBox extends React.Component<DragBoxProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<DragBoxOptions, DragBoxProps>(this.options, this.props);
-    this.interaction = new olDragBox(options);
+    const options = Util.getOptions<Options, DragBoxProps>(this.options, this.props);
+    this.interaction = new DragBox(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -63,8 +62,8 @@ export class DragBox extends React.Component<DragBoxProps> {
   public componentWillReceiveProps(nextProps: DragBoxProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<DragBoxOptions, DragBoxProps>(this.options, nextProps);
-      this.interaction = new olDragBox(options);
+      const options = Util.getOptions<Options, DragBoxProps>(this.options, nextProps);
+      this.interaction = new DragBox(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

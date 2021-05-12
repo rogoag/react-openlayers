@@ -2,11 +2,11 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import Feature from 'ol/feature';
-import Point from 'ol/geom/point';
-import VectorSource from 'ol/source/vector';
+import Feature from 'ol/Feature';
+import Point from 'ol/geom/Point';
+import VectorSource from 'ol/source/Vector';
 
-import { custom, layer, Layers, Map } from "react-openlayers";
+import { custom, layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -21,22 +21,22 @@ export class Vector extends React.Component {
     return (
       <div>
         <Typography variant="h4" paragraph>Vector layer</Typography>
-        <Map>
+        <MapReact>
           <Layers>
-            <layer.Tile/>
+            <layer.TileReact />
             <layer.Vector source={source} style={marker.style} zIndex={1}/>
           </Layers>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>
         <Highlighter lang="jsx" code={
-`<Map>
+`<MapReact>
   <Layers>
-    <layer.Tile/>
+    <layer.TileReact />
     <layer.Vector source={source} style={marker.style} zIndex="1"/>
   </Layers>
-</Map>`
+</MapReact>`
         } />
         <a href="https://github.com/allenhwkim/react-openlayers/blob/master/app/layers/vector.tsx">Source Code</a>
       </div>

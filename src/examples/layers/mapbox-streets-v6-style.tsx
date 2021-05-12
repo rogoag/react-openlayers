@@ -1,14 +1,14 @@
 // Styles for the mapbox-streets-v6 vector tile data set. Loosely based on
 // http://a.tiles.mapbox.com/v4/mapbox.mapbox-streets-v6.json
 
-import olFeature from 'ol/feature';
-import FillStyle from 'ol/style/fill';
+import Feature from 'ol/Feature';
+import FillStyle from 'ol/style/Fill';
 import IconStyle from 'ol/style/icon';
-import StrokeStyle from 'ol/style/stroke';
-import Style from 'ol/style/style';
-import TextStyle from 'ol/style/text';
+import StrokeStyle from 'ol/style/Stroke';
+import Style from 'ol/style/Style';
+import TextStyle from 'ol/style/Text';
 
-export type MapboxStyleFunc = (feature: olFeature, resolution: number) => Style[];
+export type MapboxStyleFunc = (feature: Feature, resolution: number) => Style[];
 
 export const createMapboxStreetsV6Style = () => {
   const fill = new FillStyle({ color: '' });
@@ -40,7 +40,7 @@ export const createMapboxStreetsV6Style = () => {
 
   const styles: Style[] = [];
 
-  return (feature: olFeature, resolution: number) => {
+  return (feature: Feature, resolution: number) => {
     let length = 0;
     const layer = feature.get('layer');
     const cls = feature.get('class');
@@ -51,7 +51,8 @@ export const createMapboxStreetsV6Style = () => {
     const maritime = feature.get('maritime');
     const disputed = feature.get('disputed');
     const maki = feature.get('maki');
-    const geom = feature.getGeometry().getType();
+    const featGeom = feature.getGeometry();
+    const geom = featGeom && featGeom.getType();
     if (layer === 'landuse' && cls === 'park') {
       fill.setColor('#d8e8c8');
       styles[length++] = polygon;

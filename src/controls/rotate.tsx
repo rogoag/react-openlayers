@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olRotate from 'ol/control/rotate'
+import Rotate, { Options } from 'ol/control/Rotate'
 
 import { ControlType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type RotateOptions = ol.olx.control.RotateOptions;
-export interface RotateProps extends RotateOptions, ControlType<olRotate> {
+export interface RotateProps extends Options, ControlType<Rotate> {
   onChange?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
 };
@@ -17,12 +16,12 @@ export interface RotateEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 };
 
-export class Rotate extends React.Component<RotateProps> {
+export class RotateReact extends React.Component<RotateProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public control: olRotate;
+  public control: Rotate;
 
-  public options: RotateOptions = {
+  public options: Options = {
     className: undefined,
     label: undefined,
     tipLabel: undefined,
@@ -41,8 +40,8 @@ export class Rotate extends React.Component<RotateProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<RotateOptions, RotateProps>(this.options, this.props);
-    this.control = new olRotate(options);
+    const options = Util.getOptions<Options, RotateProps>(this.options, this.props);
+    this.control = new Rotate(options);
     this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);

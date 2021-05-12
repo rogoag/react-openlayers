@@ -1,15 +1,16 @@
 import * as React from 'react';
 
-import olImage from 'ol/layer/image';
-import olProjection from 'ol/proj/projection'
+import Image from 'ol/layer/Image';
+import Projection from 'ol/proj/Projection'
 import olImageStaticSource from 'ol/source/imagestatic'
 
 import { LayerType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
+import { Options } from 'ol/layer/BaseImage';
 
-export type ImageOptions = ol.olx.layer.ImageOptions;
-export interface ImageProps extends ImageOptions, LayerType<olImage> {
+export interface ImageProps extends Options, LayerType<Image> {
+  zIndex?: number,
   onChange?: ReactOpenlayersEvent
   onChangeExtent?: ReactOpenlayersEvent
   onChangeGradient?: ReactOpenlayersEvent
@@ -41,18 +42,18 @@ export interface ImageEvents extends ReactOpenlayersEvents {
   'render': ReactOpenlayersEvent
 };
 
-export class Image extends React.Component<ImageProps> {
+export class ImageReact extends React.Component<ImageProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public layer: olImage;
+  public layer: Image;
 
-  public options: ImageOptions = {
+  public options: Options = {
     opacity: undefined,
     // Source from official OpenLayers example
     source: new olImageStaticSource({
       attributions: '© <a href="http://xkcd.com/license.html">xkcd</a>',
       url: 'https://imgs.xkcd.com/comics/online_communities.png',
-      projection: new olProjection({
+      projection: new Projection({
         code: 'xkcd-image',
         units: 'pixels',
         extent: [0, 0, 1024, 968]
@@ -84,8 +85,8 @@ export class Image extends React.Component<ImageProps> {
   public render() { return null; }
 
   public componentDidMount () {
-    const options = Util.getOptions<ImageOptions, ImageProps>(this.options, this.props);
-    this.layer = new olImage(options);
+    const options = Util.getOptions<Options, ImageProps>(this.options, this.props);
+    this.layer = new Image(options);
     if(this.props.zIndex){
       this.layer.setZIndex(this.props.zIndex);
     }
@@ -100,7 +101,7 @@ export class Image extends React.Component<ImageProps> {
   }
 
   public componentWillReceiveProps (nextProps: ImageProps) {
-    const options = Util.getOptions<ImageOptions, ImageProps>(this.options, this.props);
+    const options = Util.getOptions<Options, ImageProps>(this.options, this.props);
 
     // Updating options first
     Object.keys(options).forEach((option: string) => {

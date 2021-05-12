@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olZoom from 'ol/control/zoom'
+import Zoom, { Options } from 'ol/control/Zoom'
 
 import { ControlType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type ZoomOptions = ol.olx.control.ZoomOptions;
-export interface ZoomProps extends ZoomOptions, ControlType<olZoom> {
+export interface ZoomProps extends Options, ControlType<Zoom> {
   onChange?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
 };
@@ -18,12 +17,12 @@ export interface ZoomPropsEvents extends ReactOpenlayersEvents {
 };
 
 
-export class Zoom extends React.Component<ZoomProps> {
+export class ZoomReact extends React.Component<ZoomProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public control: olZoom;
+  public control: Zoom;
 
-  public options: ZoomOptions = {
+  public options: Options = {
     duration: undefined,
     className: undefined,
     zoomInLabel: undefined,
@@ -41,8 +40,8 @@ export class Zoom extends React.Component<ZoomProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<ZoomOptions, ZoomProps>(this.options, this.props);
-    this.control = new olZoom(options);
+    const options = Util.getOptions<Options, ZoomProps>(this.options, this.props);
+    this.control = new Zoom(options);
     this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);

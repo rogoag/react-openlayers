@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olKeyboardZoom from 'ol/interaction/keyboardzoom';
+import KeyboardZoom, { Options } from 'ol/interaction/KeyboardZoom';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type KeyboardZoomOptions = ol.olx.interaction.KeyboardZoomOptions;
-export interface KeyboardZoomProps extends KeyboardZoomOptions, InteractionType<olKeyboardZoom> {
+export interface KeyboardZoomProps extends Options, InteractionType<KeyboardZoom> {
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
@@ -19,12 +18,12 @@ export interface KeyboardZoomEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 };
 
-export class KeyboardZoom extends React.Component<KeyboardZoomProps> {
+export class KeyboardZoomReact extends React.Component<KeyboardZoomProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olKeyboardZoom;
+  public interaction: KeyboardZoom;
 
-  public options: KeyboardZoomOptions = {
+  public options: Options = {
     condition: undefined,
     duration: undefined,
     delta: undefined
@@ -39,8 +38,8 @@ export class KeyboardZoom extends React.Component<KeyboardZoomProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<KeyboardZoomOptions, KeyboardZoomProps>(this.options, this.props);
-    this.interaction = new olKeyboardZoom(options);
+    const options = Util.getOptions<Options, KeyboardZoomProps>(this.options, this.props);
+    this.interaction = new KeyboardZoom(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -54,8 +53,8 @@ export class KeyboardZoom extends React.Component<KeyboardZoomProps> {
   public componentWillReceiveProps(nextProps: KeyboardZoomProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<KeyboardZoomOptions, KeyboardZoomProps>(this.options, nextProps);
-      this.interaction = new olKeyboardZoom(options);
+      const options = Util.getOptions<Options, KeyboardZoomProps>(this.options, nextProps);
+      this.interaction = new KeyboardZoom(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

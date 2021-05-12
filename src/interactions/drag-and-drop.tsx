@@ -1,32 +1,31 @@
 import * as React from 'react';
 
-import olDragAndDrop from 'ol/interaction/draganddrop';
+import DragAndDrop, { Options, DragAndDropEvent } from 'ol/interaction/DragAndDrop';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type DragAndDropOptions = ol.olx.interaction.DragAndDropOptions;
-export interface DragAndDropProps extends DragAndDropOptions, InteractionType<olDragAndDrop> {
-  onAddfeatures?: ReactOpenlayersEvent<ol.interaction.DragAndDrop.Event>
+export interface DragAndDropProps extends Options, InteractionType<DragAndDrop> {
+  onAddfeatures?: ReactOpenlayersEvent<DragAndDropEvent>
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
 }
 
 export interface DragAndDropEvents extends ReactOpenlayersEvents {
-  'addfeatures': ReactOpenlayersEvent<ol.interaction.DragAndDrop.Event>
+  'addfeatures': ReactOpenlayersEvent<DragAndDropEvent>
   'change': ReactOpenlayersEvent
   'change:active': ReactOpenlayersEvent
   'propertychange': ReactOpenlayersEvent
 }
 
-export class DragAndDrop extends React.Component<DragAndDropProps> {
+export class DragAndDropReact extends React.Component<DragAndDropProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olDragAndDrop;
+  public interaction: DragAndDrop;
 
-  public options: DragAndDropOptions = {
+  public options: Options = {
     formatConstructors: undefined,
     projection: undefined,
     target: undefined
@@ -42,8 +41,8 @@ export class DragAndDrop extends React.Component<DragAndDropProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<DragAndDropOptions, DragAndDropProps>(this.options, this.props);
-    this.interaction = new olDragAndDrop(options);
+    const options = Util.getOptions<Options, DragAndDropProps>(this.options, this.props);
+    this.interaction = new DragAndDrop(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -57,8 +56,8 @@ export class DragAndDrop extends React.Component<DragAndDropProps> {
   public componentWillReceiveProps(nextProps: DragAndDropProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<DragAndDropOptions, DragAndDropProps>(this.options, nextProps);
-      this.interaction = new olDragAndDrop(options);
+      const options = Util.getOptions<Options, DragAndDropProps>(this.options, nextProps);
+      this.interaction = new DragAndDrop(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

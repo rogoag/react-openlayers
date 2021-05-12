@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Link, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 
 import { Drawer, List, ListItem, ListItemText, withStyles, WithStyles } from '@material-ui/core';
 import sharedStyles from '../shared-styles';
@@ -29,13 +29,13 @@ class Custom extends React.Component<WithStyles> {
       >
         <div className={classes.toolbar} />
         <List>
-          <ListItem button { ...{ to: "/custom/earthquake-clusters" }} component={Link}>
+          <ListItem button { ...{ to: "/custom/earthquake-clusters" }}>
             <ListItemText primary="Earthquake clusters" />
           </ListItem>
-          <ListItem button { ...{ to: "/custom/marker-style" }} component={Link}>
+          <ListItem button { ...{ to: "/custom/marker-style" }}>
             <ListItemText primary="Marker style" />
           </ListItem>
-          <ListItem button { ...{ to: "/custom/google-street-view-panorama" }} component={Link}>
+          <ListItem button { ...{ to: "/custom/google-street-view-panorama" }}>
             <ListItemText primary="Google Street View panorama" />
           </ListItem>
         </List>

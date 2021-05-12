@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
+import { interaction, Interactions, layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -12,14 +12,14 @@ export class DragRotateAndZoom extends React.Component {
       <div>
         <Typography variant="h4" paragraph>DragRotateAndZoom interaction</Typography>
         <Typography variant="subtitle1">Use <code>SHIFT + Drag</code> to rotate the map. Combines <code>DragRotate</code> and <code>DragZoom</code>.</Typography>
-        <Map view={{ center: [0, 0], zoom: 2 }}>
+        <MapReact view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
-            <layer.Tile />
+            <layer.TileReact />
           </Layers>
           <Interactions >
-            <interaction.DragRotateAndZoom />
+            <interaction.DragRotateAndZoomReact />
           </Interactions>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

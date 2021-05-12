@@ -1,15 +1,18 @@
 import * as React from 'react';
 
-import olTile from 'ol/layer/tile';
-import olOSMSource from 'ol/source/osm';
+import Tile from 'ol/layer/Tile';
 
 import { LayerType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { Omit, ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
+import { Options } from 'ol/layer/BaseTile';
+import VectorSource from 'ol/source/Vector';
 
-export type TileOptions = ol.olx.layer.TileOptions;
-export interface TileProps extends Omit<TileOptions, 'source'>, LayerType<olTile> {
-  source?: TileOptions['source']
+import XYZ from 'ol/source/XYZ';
+
+
+export interface TileProps extends Omit<Options, 'source'>, LayerType<Tile> {
+  source?: Options['source']
   onChange?:ReactOpenlayersEvent
   onChangeExtent?:ReactOpenlayersEvent
   onChangeMinResolution?:ReactOpenlayersEvent
@@ -43,13 +46,16 @@ export interface TileEvents extends ReactOpenlayersEvents {
   'render': ReactOpenlayersEvent
 }
 
-export class Tile extends React.Component<TileProps> {
+export class TileReact extends React.Component<TileProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public layer: olTile;
+  public layer: Tile;
 
-  public options: TileOptions = {
-    source: new olOSMSource(),
+  public options: Options = {
+    source: new XYZ({
+      attributions: '© Google',
+      url: 'https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga'
+    })
   };
 
   public events: TileEvents = {
@@ -74,8 +80,8 @@ export class Tile extends React.Component<TileProps> {
   }
 
   public componentDidMount () {
-    const options = Util.getOptions<TileOptions, TileProps>(this.options, this.props);
-    this.layer = new olTile(options);
+    const options = Util.getOptions<Options, TileProps>(this.options, this.props);
+    this.layer = new Tile(options);
     if (this.props.zIndex){
       this.layer.setZIndex(this.props.zIndex);
     }
@@ -90,7 +96,7 @@ export class Tile extends React.Component<TileProps> {
   }
 
   public componentWillReceiveProps(nextProps: TileProps) {
-    const options = Util.getOptions<TileOptions, TileProps>(this.options, this.props);
+    const options = Util.getOptions<Options, TileProps>(this.options, this.props);
 
     // Updating options first
     Object.keys(options).forEach((option: string) => {
@@ -100,7 +106,7 @@ export class Tile extends React.Component<TileProps> {
         case 'zIndex': this.layer.setZIndex(newVal); break;
         case 'opacity': this.layer.setOpacity(newVal); break;
         case 'preload': this.layer.setPreload(newVal); break;
-        case 'source': this.layer.setSource(newVal || new olOSMSource()); break;
+        case 'source': this.layer.setSource(newVal || new VectorSource()); break;
         case 'visible': this.layer.setVisible(newVal); break;
         case 'extent': this.layer.setExtent(newVal); break;
         case 'minResolution': this.layer.setMinResolution(newVal); break;

@@ -3,13 +3,13 @@ import * as React from "react";
 import { Divider, Typography } from "@material-ui/core";
 
 import GeoJSONFormat from 'ol/format/geojson';
-import VectorSource from 'ol/source/vector';
+import VectorSource from 'ol/source/Vector';
 import CircleStyle from 'ol/style/circle';
-import FillStyle from 'ol/style/fill';
-import StrokeStyle from 'ol/style/stroke';
-import Style from 'ol/style/style';
+import FillStyle from 'ol/style/Fill';
+import StrokeStyle from 'ol/style/Stroke';
+import Style from 'ol/style/Style';
 
-import {interaction, Interactions, layer, Layers, Map } from "react-openlayers";
+import {interaction, Interactions, layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -32,15 +32,15 @@ export class Translate extends React.Component {
       <div>
         <Typography variant="h4" paragraph>Translate interaction</Typography>
         <Typography variant="subtitle1">Try to drag a <code>Point</code>!</Typography>
-        <Map>
+        <MapReact>
           <Layers>
-            <layer.Tile />
+            <layer.TileReact />
             <layer.Vector source={source} style={style} />
           </Layers>
           <Interactions>
-            <interaction.Translate  /> 
+            <interaction.TranslateReact  /> 
           </Interactions>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

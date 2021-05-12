@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olModify from 'ol/interaction/modify';
+import Modify, { Options } from 'ol/interaction/Modify';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type ModifyOptions = ol.olx.interaction.ModifyOptions;
-export interface ModifyProps extends ModifyOptions, InteractionType<olModify> {
+export interface ModifyProps extends Options, InteractionType<Modify> {
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onModifyend?: ReactOpenlayersEvent
@@ -23,12 +22,12 @@ export interface ModifyEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 };
 
-export class Modify extends React.Component<ModifyProps> {
+export class ModifyReact extends React.Component<ModifyProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olModify;
+  public interaction: Modify;
 
-  public options: ModifyOptions = {
+  public options: Options = {
     condition: undefined,
     deleteCondition: undefined,
     pixelTolerance: undefined,
@@ -48,8 +47,8 @@ export class Modify extends React.Component<ModifyProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<ModifyOptions, ModifyProps>(this.options, this.props);
-    this.interaction = new olModify(options);
+    const options = Util.getOptions<Options, ModifyProps>(this.options, this.props);
+    this.interaction = new Modify(options);
     this.context.interactions.push(this.interaction);
 
     this.initInteraction(this.props);
@@ -63,8 +62,8 @@ export class Modify extends React.Component<ModifyProps> {
   public componentWillReceiveProps(nextProps: ModifyProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<ModifyOptions, ModifyProps>(this.options, nextProps);
-      this.interaction = new olModify(options);
+      const options = Util.getOptions<Options, ModifyProps>(this.options, nextProps);
+      this.interaction = new Modify(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
+import { interaction, Interactions, layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -12,14 +12,14 @@ export class PinchZoom extends React.Component {
       <div>
         <Typography variant="h4" paragraph>PinchZoom interaction</Typography>
         <Typography variant="subtitle1" >This example have disabled default <code>PinchZoom</code> interaction to provide one that zoom to the closest integer zoom level after gesture ends.</Typography>
-        <Map view={{ center: [0, 0], zoom: 2 }}>
+        <MapReact view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
-            <layer.Tile />
+            <layer.TileReact />
           </Layers>
           <Interactions pinchRotate={false} pinchZoom={false}>
-            <interaction.PinchZoom constrainResolution={true}/>
+            <interaction.PinchZoomReact />
           </Interactions>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>
@@ -29,7 +29,7 @@ export class PinchZoom extends React.Component {
     <layer.Tile />
   </Layers>
   <Interactions pinchRotate={false} pinchZoom={false}>
-    <interaction.PinchZoom constrainResolution={true}/>
+    <interaction.PinchZoom />
   </Interactions>
 </Map>`
         } />

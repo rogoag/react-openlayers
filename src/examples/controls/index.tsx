@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
-import { Drawer, List, ListItem, ListItemText, withStyles, WithStyles } from '@material-ui/core';
+import { Drawer, List, ListItem, ListItemText, withStyles, WithStyles, Button } from '@material-ui/core';
 import sharedStyles from '../shared-styles';
 
 import { Attribution } from './attribution';
@@ -39,33 +39,31 @@ class Controls extends React.Component<WithStyles> {
         >
            <div className={classes.toolbar} />
           <List>
-            <ListItem button component={Link} { ...{ to: "/controls/attribution" }}>
+            <ListItem button { ...{ to: "#/controls/attribution" }}>
               <ListItemText primary="Attribution" />
             </ListItem>
-            <ListItem button component={Link} { ...{ to: "/controls/full-screen" }}>
+            <ListItem button { ...{ to: "#/controls/full-screen" }}>
               <ListItemText primary="FullScreen" />
             </ListItem>
-            <ListItem button component={Link} { ...{ to: "/controls/mouse-position" }}>
+            <ListItem button { ...{ to: "#/controls/mouse-position" }}>
               <ListItemText primary="MousePosition" />
             </ListItem>
-            <ListItem button component={Link} { ...{ to: "/controls/overview-map" }}>
+            <ListItem button { ...{ to: "#/controls/overview-map" }}>
               <ListItemText primary="OverviewMap" />
             </ListItem>
-            <ListItem button component={Link} { ...{ to: "/controls/rotate" }}>
+            <ListItem button { ...{ to: "/controls/rotate" }}>
               <ListItemText primary="Rotate" />
             </ListItem>
-            <ListItem button component={Link} { ...{ to: "/controls/scale-line" }}>
+            <ListItem button { ...{ to: "/controls/scale-line" }}>
               <ListItemText primary="ScaleLine" />
             </ListItem>
-            <ListItem button component={Link} { ...{ to: "/controls/zoom-slider" }}>
+            <ListItem button { ...{ to: "/controls/zoom-slider" }}>
               <ListItemText primary="ZoomSlider" />
             </ListItem>
-            <ListItem button component={Link} { ...{ to: "/controls/zoom-to-extent" }}>
+            <ListItem button { ...{ to: "/controls/zoom-to-extent" }}>
               <ListItemText primary="ZoomToExtent" />
             </ListItem>
-            <ListItem button component={Link} { ...{ to: "/controls/zoom" }}>
-              <ListItemText primary="Zoom" />
-            </ListItem>
+            <Button color="inherit" href="#/controls/zoom">Poop</Button>
           </List>
         </Drawer>
         <main className={classes.content}>

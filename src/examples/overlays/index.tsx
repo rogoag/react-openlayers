@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { Drawer, List, ListItem, ListItemText, withStyles, WithStyles } from '@material-ui/core';
 import sharedStyles from '../shared-styles';
@@ -21,7 +21,7 @@ class Overlays extends React.Component<WithStyles> {
         >
           <div className={classes.toolbar} />
           <List>
-            <ListItem button { ...{ to: "/overlays/overlay" }} component={Link}>
+            <ListItem button { ...{ to: "/overlays/overlay" }}>
               <ListItemText primary="Overlay" />
             </ListItem>
           </List>

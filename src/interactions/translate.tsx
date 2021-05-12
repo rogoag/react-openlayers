@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olTranslate from 'ol/interaction/translate';
+import Translate, { Options } from 'ol/interaction/Translate';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type TranslateOptions = ol.olx.interaction.TranslateOptions;
-export interface TranslateProps extends TranslateOptions, InteractionType<olTranslate> {
+export interface TranslateProps extends Options, InteractionType<Translate> {
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
@@ -24,12 +23,12 @@ export interface TranslateEvents extends ReactOpenlayersEvents {
   'translating': ReactOpenlayersEvent
 };
 
-export class Translate extends React.Component<TranslateProps> {
+export class TranslateReact extends React.Component<TranslateProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olTranslate;
+  public interaction: Translate;
 
-  public options: TranslateOptions = {
+  public options: Options = {
     features: undefined,
     layers: undefined
   };
@@ -46,8 +45,8 @@ export class Translate extends React.Component<TranslateProps> {
   public render() { return null; }
 
   public componentDidMount () {
-    const options = Util.getOptions<TranslateOptions, TranslateProps>(this.options, this.props);
-    this.interaction = new olTranslate(options);
+    const options = Util.getOptions<Options, TranslateProps>(this.options, this.props);
+    this.interaction = new Translate(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -61,8 +60,8 @@ export class Translate extends React.Component<TranslateProps> {
   public componentWillReceiveProps(nextProps: TranslateProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<TranslateOptions, TranslateProps>(this.options, nextProps);
-      this.interaction = new olTranslate(options);
+      const options = Util.getOptions<Options, TranslateProps>(this.options, nextProps);
+      this.interaction = new Translate(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

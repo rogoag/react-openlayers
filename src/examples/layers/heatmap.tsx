@@ -4,9 +4,9 @@ import { Divider, Typography } from "@material-ui/core";
 
 import KMLFormat from 'ol/format/kml';
 import StamenSource from 'ol/source/stamen';
-import VectorSource from 'ol/source/vector';
+import VectorSource from 'ol/source/Vector';
 
-import { layer, Layers, Map } from "react-openlayers";
+import { layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -26,12 +26,12 @@ export class Heatmap extends React.Component {
     return (
       <div>
         <Typography variant="h4" paragraph>Heatmap layer</Typography>
-        <Map view={{center:[0,0], zoom:1}}>
+        <MapReact view={{center:[0,0], zoom:1}}>
           <Layers>
-            <layer.Tile source={tileSource} />
+            <layer.TileReact source={tileSource} />
             <layer.Heatmap weight="weight" source={heatmapSource} blur={15} radius={5} />
           </Layers>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

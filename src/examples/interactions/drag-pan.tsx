@@ -2,9 +2,7 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import olEventConditions from 'ol/events/condition';
-
-import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
+import { Interactions, layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -14,16 +12,13 @@ export class DragPan extends React.Component {
       <div>
         <Typography variant="h4" paragraph>DragPan interaction</Typography>
         <Typography variant="subtitle1">This example have disabled default DragPan interaction, but it implements one that force you to use <code>CTRL + Drag</code> to move around.</Typography>
-        <Map view={{ center: [0, 0], zoom: 2 }}>
+        <MapReact view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
-            <layer.Tile />
+            <layer.TileReact />
           </Layers>
-          <Interactions dragPan={false}>
-            <interaction.DragPan
-              condition={olEventConditions.platformModifierKeyOnly}
-            />
+          <Interactions dragPan={true}>
           </Interactions>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>
@@ -34,7 +29,7 @@ export class DragPan extends React.Component {
   </Layers>
   <Interactions dragPan={false}>
     <interaction.DragPan
-      condition={olEventConditions.platformModifierKeyOnly}
+      condition={platformModifierKeyOnly}
     />
   </Interactions>
 </Map>`

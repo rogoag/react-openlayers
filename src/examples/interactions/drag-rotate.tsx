@@ -2,9 +2,9 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import olEventConditions from 'ol/events/condition';
+import { platformModifierKeyOnly } from 'ol/events/condition';
 
-import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
+import { interaction, Interactions, layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -14,16 +14,16 @@ export class DragRotate extends React.Component {
       <div>
         <Typography variant="h4" paragraph>DragRotate interaction</Typography>
         <Typography variant="subtitle1">This example have disabled default <code>DragRotate</code> interaction, but it implements one that force you to use <code>CTRL + Drag</code> to rotate the map.</Typography>
-        <Map view={{ center: [0, 0], zoom: 2 }}>
+        <MapReact view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
-            <layer.Tile />
+            <layer.TileReact />
           </Layers>
           <Interactions altShiftDragRotate={false}>
-            <interaction.DragRotate
-              condition={olEventConditions.platformModifierKeyOnly}
+            <interaction.DragRotateReact
+              condition={platformModifierKeyOnly}
             />
           </Interactions>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>
@@ -34,7 +34,7 @@ export class DragRotate extends React.Component {
   </Layers>
   <Interactions dragRotate={false}>
     <interaction.DragRotate
-      condition={olEventConditions.platformModifierKeyOnly}
+      condition={platformModifierKeyOnly}
     />
   </Interactions>
 </Map>`

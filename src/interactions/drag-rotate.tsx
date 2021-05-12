@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olDragRotate from 'ol/interaction/dragrotate';
+import DragRotate, { Options } from 'ol/interaction/DragRotate';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type DragRotateOptions = ol.olx.interaction.DragRotateOptions;
-export interface DragRotateProps extends DragRotateOptions, InteractionType<olDragRotate> {
+export interface DragRotateProps extends Options, InteractionType<DragRotate> {
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onpropertychange?: ReactOpenlayersEvent
@@ -19,10 +18,10 @@ export interface DragRotateEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 };
 
-export class DragRotate extends React.Component<DragRotateProps> {
+export class DragRotateReact extends React.Component<DragRotateProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olDragRotate;
+  public interaction: DragRotate;
 
   public options: DragRotateProps = {
     condition: undefined,
@@ -38,8 +37,8 @@ export class DragRotate extends React.Component<DragRotateProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<DragRotateOptions, DragRotateProps>(this.options, this.props);
-    this.interaction = new olDragRotate(options);
+    const options = Util.getOptions<Options, DragRotateProps>(this.options, this.props);
+    this.interaction = new DragRotate(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -53,8 +52,8 @@ export class DragRotate extends React.Component<DragRotateProps> {
   public componentWillReceiveProps(nextProps: DragRotateProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<DragRotateOptions, DragRotateProps>(this.options, nextProps);
-      this.interaction = new olDragRotate(options);
+      const options = Util.getOptions<Options, DragRotateProps>(this.options, nextProps);
+      this.interaction = new DragRotate(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

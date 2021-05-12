@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
+import { interaction, Interactions, layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -12,16 +12,16 @@ export class MouseWheelZoom extends React.Component {
       <div>
         <Typography variant="h4" paragraph>MouseWheelZoom interaction</Typography>
         <Typography variant="subtitle1">This example have disabled default <code>MouseWheel</code> interaction, and replace it with a customized one having a logner duration for a slower zoom.</Typography>
-        <Map view={{ center: [0, 0], zoom: 2 }}>
+        <MapReact view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
-            <layer.Tile />
+            <layer.TileReact />
           </Layers>
           <Interactions mouseWheelZoom={false}>
-            <interaction.MouseWheelZoom
+            <interaction.MouseWheelZoomReact
               duration={2000}
             />
           </Interactions>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

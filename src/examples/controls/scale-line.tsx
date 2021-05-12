@@ -3,7 +3,7 @@ import * as React from "react";
 import { Divider, Typography } from "@material-ui/core";
 
 import {
-  control, Controls, layer, Layers, Map
+  control, Controls, layer, Layers, MapReact
 } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
@@ -13,12 +13,12 @@ export class ScaleLine extends React.Component {
     return (
       <div>
         <Typography variant="h4" paragraph>ScaleLine control</Typography>
-        <Map>
-          <Layers><layer.Tile/></Layers>
+        <MapReact>
+          <Layers><layer.TileReact/></Layers>
           <Controls>
-            <control.ScaleLine />
+            <control.ScaleLineReact />
           </Controls>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

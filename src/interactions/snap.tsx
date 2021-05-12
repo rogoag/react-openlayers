@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olSnap from 'ol/interaction/snap';
+import Snap, { Options } from 'ol/interaction/Snap';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type SnapOptions = ol.olx.interaction.SnapOptions;
-export interface SnapProps extends SnapOptions, InteractionType<olSnap> {
+export interface SnapProps extends Options, InteractionType<Snap> {
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
@@ -19,12 +18,12 @@ export interface SnapEvent extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 };
 
-export class Snap extends React.Component<SnapProps> {
+export class SnapReact extends React.Component<SnapProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olSnap;
+  public interaction: Snap;
 
-  public options: SnapOptions = {
+  public options: Options = {
     features: undefined,
     edge: undefined,
     vertex: undefined,
@@ -41,8 +40,8 @@ export class Snap extends React.Component<SnapProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<SnapOptions, SnapProps>(this.options, this.props);
-    this.interaction = new olSnap(options);
+    const options = Util.getOptions<Options, SnapProps>(this.options, this.props);
+    this.interaction = new Snap(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -56,8 +55,8 @@ export class Snap extends React.Component<SnapProps> {
   public componentWillReceiveProps(nextProps: SnapProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<SnapOptions, SnapProps>(this.options, nextProps);
-      this.interaction = new olSnap(options);
+      const options = Util.getOptions<Options, SnapProps>(this.options, nextProps);
+      this.interaction = new Snap(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

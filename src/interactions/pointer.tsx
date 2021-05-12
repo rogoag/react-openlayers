@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olPointer from 'ol/interaction/pointer';
+import Pointer, { Options } from 'ol/interaction/Pointer';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type PointerOptions = ol.olx.interaction.PointerOptions;
-export interface PointerProps extends PointerOptions, InteractionType<olPointer> {
+export interface PointerProps extends Options, InteractionType<Pointer> {
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
@@ -19,12 +18,12 @@ export interface PointerEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 };
 
-export class Pointer extends React.Component<PointerProps> {
+export class PointerReact extends React.Component<PointerProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olPointer;
+  public interaction: Pointer;
 
-  public options: PointerOptions = {
+  public options: Options = {
     handleDownEvent: undefined,
     handleDragEvent: undefined,
     handleEvent: undefined,
@@ -41,8 +40,8 @@ export class Pointer extends React.Component<PointerProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<PointerOptions, PointerProps>(this.options, this.props);
-    this.interaction = new olPointer(options);
+    const options = Util.getOptions<Options, PointerProps>(this.options, this.props);
+    this.interaction = new Pointer(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -56,8 +55,8 @@ export class Pointer extends React.Component<PointerProps> {
   public componentWillReceiveProps(nextProps: PointerProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<PointerOptions, PointerProps>(this.options, nextProps);
-      this.interaction = new olPointer(options);
+      const options = Util.getOptions<Options, PointerProps>(this.options, nextProps);
+      this.interaction = new Pointer(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

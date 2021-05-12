@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import olDraw from 'ol/interaction/draw';
+import Draw, { Options } from 'ol/interaction/Draw';
+import GeometryType from 'ol/geom/GeometryType';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type DrawOptions = ol.olx.interaction.DrawOptions;
-export interface DrawProps extends DrawOptions, InteractionType<olDraw> {
+export interface DrawProps extends Options, InteractionType<Draw> {
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onDrawend?: ReactOpenlayersEvent
@@ -23,17 +23,17 @@ export interface DrawEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 }
 
-export class Draw extends React.Component<DrawProps> {
+export class DrawReact extends React.Component<DrawProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olDraw;
+  public interaction: Draw;
 
-  public options: DrawOptions = {
+  public options: Options = {
     clickTolerance: undefined,
     features: undefined,
     source: undefined,
     snapTolerance: undefined,
-    type: "Point",
+    type: GeometryType.POINT,
     maxPoints: undefined,
     minPoints: undefined,
     finishCondition: undefined,
@@ -57,8 +57,8 @@ export class Draw extends React.Component<DrawProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<DrawOptions, DrawProps>(this.options, this.props);
-    this.interaction = new olDraw(options);
+    const options = Util.getOptions<Options, DrawProps>(this.options, this.props);
+    this.interaction = new Draw(options);
     this.context.interactions.push(this.interaction);
 
     this.initInteraction(this.props);
@@ -72,8 +72,8 @@ export class Draw extends React.Component<DrawProps> {
   public componentWillReceiveProps(nextProps: DrawProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<DrawOptions, DrawProps>(this.options, nextProps);
-      this.interaction = new olDraw(options);
+      const options = Util.getOptions<Options, DrawProps>(this.options, nextProps);
+      this.interaction = new Draw(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import {Link, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 
-import { Drawer, List, ListItem, ListItemText, withStyles, WithStyles } from '@material-ui/core';
+import { Drawer, List, ListItem, ListItemText, withStyles, WithStyles, Button } from '@material-ui/core';
 import sharedStyles from '../shared-styles';
 
 import {DoubleClickZoom} from './double-click-zoom';
@@ -57,58 +57,58 @@ class Interactions extends React.Component<WithStyles> {
       >
         <div className={classes.toolbar} />
         <List>
-            <ListItem button { ...{ to: "/interactions/select" }} component={Link}>
+            <Button href={"#/interactions/select"}>
               <ListItemText primary="Select"/>
-            </ListItem>
-            <ListItem button { ...{ to: "/interactions/draw" }} component={Link}>
+            </Button>
+            <Button href={"#/interactions/draw"}>
               <ListItemText primary="Draw"/>
-            </ListItem>
-            <ListItem button { ...{ to: "/interactions/modify" }} component={Link}>
+            </Button>
+            <ListItem button { ...{ to: "/interactions/modify" }}>
               <ListItemText primary="Modify"/>
             </ListItem>
-            <ListItem button { ...{ to: "/interactions/double-click-zoom" }} component={Link}>
+            <ListItem button { ...{ to: "/interactions/double-click-zoom" }}>
               <ListItemText primary="DoubleClickZoom"/>
             </ListItem>
-            <ListItem button { ...{ to: "/interactions/drag-and-drop" }} component={Link}>
+            <ListItem button { ...{ to: "/interactions/drag-and-drop" }}>
               <ListItemText primary="DragAndDrop"/>
             </ListItem>
-            <ListItem button { ...{ to: "/interactions/drag-box" }} component={Link}>
+            <ListItem button { ...{ to: "/interactions/drag-box" }}>
               <ListItemText primary="DragBox"/>
             </ListItem>
-            <ListItem button { ...{ to: "/interactions/drag-pan" }} component={Link}>
+            <ListItem button { ...{ to: "/interactions/drag-pan" }}>
               <ListItemText primary="DragPan"/>
             </ListItem>
-            <ListItem button { ...{ to: "/interactions/drag-rotate-and-zoom" }} component={Link}>
+            <ListItem button { ...{ to: "/interactions/drag-rotate-and-zoom" }}>
               <ListItemText primary="DragRotateAndZoom"/>
             </ListItem>
-            <ListItem button { ...{ to: "/interactions/drag-rotate" }} component={Link}>
+            <Button href={"#/interactions/drag-pan"}>
               <ListItemText primary="DragRotate"/>
-            </ListItem>
-            <ListItem button { ...{ to: "/interactions/drag-zoom" }} component={Link}>
+            </Button>
+            <ListItem button { ...{ to: "/interactions/drag-zoom" }}>
               <ListItemText primary="DragZoom"/>
             </ListItem>
-            <ListItem button { ...{ to: "/interactions/keyboard-pan" }} component={Link}>
+            <ListItem button { ...{ to: "/interactions/keyboard-pan" }}>
               <ListItemText primary="KeyboardPan"/>
             </ListItem>
-            <ListItem button { ...{ to: "/interactions/keyboard-zoom" }} component={Link}>
+            <ListItem button { ...{ to: "/interactions/keyboard-zoom" }}>
               <ListItemText primary="KeyboardZoom"/>
             </ListItem>
-            <ListItem button { ...{ to: "/interactions/mouse-wheel-zoom" }} component={Link}>
+            <ListItem button { ...{ to: "/interactions/mouse-wheel-zoom" }}>
               <ListItemText primary="MouseWheelZoom"/>
             </ListItem>
-            <ListItem button { ...{ to: "/interactions/pinch-rotate" }} component={Link}>
+            <ListItem button { ...{ to: "/interactions/pinch-rotate" }}>
               <ListItemText primary="PinchRotate"/>
             </ListItem>
-            <ListItem button { ...{ to: "/interactions/pinch-zoom" }} component={Link}>
+            <ListItem button { ...{ to: "/interactions/pinch-zoom" }}>
               <ListItemText primary="PinchZoom"/>
             </ListItem>
-            <ListItem button { ...{ to: "/interactions/pointer" }} component={Link}>
+            <ListItem button { ...{ to: "/interactions/pointer" }}>
               <ListItemText primary="Pointer"/>
             </ListItem>
-            <ListItem button { ...{ to: "/interactions/snap" }} component={Link}>
+            <ListItem button { ...{ to: "/interactions/snap" }}>
               <ListItemText primary="Snap"/>
             </ListItem>
-            <ListItem button { ...{ to: "/interactions/translate" }} component={Link}>
+            <ListItem button { ...{ to: "/interactions/translate" }}>
               <ListItemText primary="Translate"/>
             </ListItem>
           </List>

@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import olMousePosition from 'ol/control/mouseposition'
+import MousePosition from 'ol/control/MousePosition'
 
 import { ControlType } from '.';
 import { MapContext, MapContextType } from '../map';
+import { Options } from 'ol/control/MousePosition';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type MousePositionOptions = ol.olx.control.MousePositionOptions;
-export interface MousePositionProps extends MousePositionOptions, ControlType<olMousePosition> {
+export interface MousePositionProps extends Options, ControlType<MousePosition> {
   onChange?: ReactOpenlayersEvent
   onChangeCoordinateFormat?: ReactOpenlayersEvent
   onChangeProjection?: ReactOpenlayersEvent
@@ -21,12 +21,12 @@ export interface MousePositionEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 };
 
-export class MousePosition extends React.Component<MousePositionProps> {
+export class MousePositionReact extends React.Component<MousePositionProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public control: olMousePosition;
+  public control: MousePosition;
 
-  public options: MousePositionOptions = {
+  public options: Options = {
     className: undefined,
     coordinateFormat: undefined,
     projection: undefined,
@@ -45,8 +45,8 @@ export class MousePosition extends React.Component<MousePositionProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<MousePositionOptions, MousePositionProps>(this.options, this.props);
-    this.control = new olMousePosition(options);
+    const options = Util.getOptions<Options, MousePositionProps>(this.options, this.props);
+    this.control = new MousePosition(options);
     this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);

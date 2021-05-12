@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olScaleLine from 'ol/control/scaleline'
+import ScaleLine, { Options } from 'ol/control/ScaleLine'
 
 import { ControlType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type ScaleLineOptions = ol.olx.control.ScaleLineOptions;
-export interface ScaleLineProps extends ol.olx.control.ScaleLineOptions, ControlType<olScaleLine> {
+export interface ScaleLineProps extends Options, ControlType<ScaleLine> {
   onChange?: ReactOpenlayersEvent
   onChangeUnits?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
@@ -19,12 +18,12 @@ export interface ScaleLineEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 };
 
-export class ScaleLine extends React.Component<ScaleLineProps> {
+export class ScaleLineReact extends React.Component<ScaleLineProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public control: olScaleLine;
+  public control: ScaleLine;
 
-  public options: ScaleLineOptions = {
+  public options: Options = {
     className: undefined,
     minWidth: undefined,
     render: undefined,
@@ -41,8 +40,8 @@ export class ScaleLine extends React.Component<ScaleLineProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<ScaleLineOptions, ScaleLineProps>(this.options, this.props);
-    this.control = new olScaleLine(options);
+    const options = Util.getOptions<Options, ScaleLineProps>(this.options, this.props);
+    this.control = new ScaleLine(options);
     this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);

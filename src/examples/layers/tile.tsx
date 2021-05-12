@@ -4,7 +4,7 @@ import { Divider, Typography } from "@material-ui/core";
 
 import StamenSource from 'ol/source/stamen';
 
-import { layer, Layers, Map } from "react-openlayers";
+import { layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -13,11 +13,11 @@ export class Tile extends React.Component {
     return (
       <div>
         <Typography variant="h4" paragraph>Tile layer</Typography>
-        <Map>
+        <MapReact>
           <Layers>
-            <layer.Tile source={new StamenSource({ layer: 'watercolor' })}/>
+            <layer.TileReact source={new StamenSource({ layer: 'watercolor' })}/>
           </Layers>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

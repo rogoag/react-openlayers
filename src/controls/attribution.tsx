@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olAttribution from 'ol/control/attribution';
+import Attribution, { Options } from 'ol/control/Attribution';
 
 import { ControlType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type AttributionOptions = ol.olx.control.AttributionOptions;
-export interface AttributionProps extends AttributionOptions, ControlType<olAttribution> {
+export interface AttributionProps extends Options, ControlType<Attribution> {
   onChange: ReactOpenlayersEvent
   onPropertychange: ReactOpenlayersEvent
 };
@@ -16,12 +15,12 @@ export interface AttributionEvents extends ReactOpenlayersEvents {
   propertychange?: ReactOpenlayersEvent
 };
 
-export class Attribution extends React.Component<AttributionProps> {
+export class AttributionReact extends React.Component<AttributionProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public control: olAttribution;
+  public control: Attribution;
 
-  public options: AttributionOptions = {
+  public options: Options = {
     className: undefined,
     target: undefined,
     collapsible: undefined,
@@ -40,8 +39,8 @@ export class Attribution extends React.Component<AttributionProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<AttributionOptions, AttributionProps>(this.options, this.props);
-    this.control = new olAttribution(options);
+    const options = Util.getOptions<Options, AttributionProps>(this.options, this.props);
+    this.control = new Attribution(options);
     this.context.controls.push(this.control);
 
     if (this.props.controlRef) this.props.controlRef(this.control);

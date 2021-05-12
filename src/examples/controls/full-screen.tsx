@@ -5,7 +5,7 @@ import { Divider, Typography } from "@material-ui/core";
 import {
   control, Controls, //name spaces
   layer, Layers, //group
-  Map //objects
+  MapReact //objects
 } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
@@ -15,12 +15,12 @@ export class FullScreen extends React.Component {
     return (
       <div>
         <Typography variant="h4" paragraph>FullScreen control</Typography>
-        <Map>
-          <Layers><layer.Tile /></Layers>
+        <MapReact>
+          <Layers><layer.TileReact /></Layers>
           <Controls>
-            <control.FullScreen />
+            <control.FullScreenReact />
           </Controls>
-        </Map>
+        </MapReact>
         <br />
         <Divider />
         <br />

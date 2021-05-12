@@ -1,19 +1,18 @@
 import * as React from 'react';
 
-import olSelect from 'ol/interaction/select';
+import Select, { Options, SelectEvent } from 'ol/interaction/Select';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type SelectOptions = ol.olx.interaction.SelectOptions;
 
-export interface SelectProps extends SelectOptions, InteractionType<olSelect> {
-  instance?: olSelect;
+export interface SelectProps extends Options, InteractionType<Select> {
+  instance?: Select;
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
-  onSelect?: ReactOpenlayersEvent<ol.interaction.Select.Event>
+  onSelect?: ReactOpenlayersEvent<SelectEvent>
 }
 
 export interface SelectEvents extends ReactOpenlayersEvents {
@@ -23,12 +22,12 @@ export interface SelectEvents extends ReactOpenlayersEvents {
   'select': ReactOpenlayersEvent
 }
 
-export class Select extends React.Component<SelectProps> {
+export class SelectReact extends React.Component<SelectProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olSelect;
+  public interaction: Select;
 
-  public options: SelectOptions = {
+  public options: Options = {
     addCondition: undefined,
     condition: undefined,
     layers: undefined,
@@ -38,7 +37,6 @@ export class Select extends React.Component<SelectProps> {
     multi: undefined,
     features: undefined,
     filter: undefined,
-    wrapX: undefined,
     hitTolerance: undefined
   };
 
@@ -55,8 +53,8 @@ export class Select extends React.Component<SelectProps> {
     if (this.props.instance) {
       this.interaction = this.props.instance;
     } else {
-      const options = Util.getOptions<SelectOptions, SelectProps>(this.options, this.props);
-      this.interaction = new olSelect(options);
+      const options = Util.getOptions<Options, SelectProps>(this.options, this.props);
+      this.interaction = new Select(options);
     }
     this.context.interactions.push(this.interaction)
 
@@ -75,8 +73,8 @@ export class Select extends React.Component<SelectProps> {
       if (this.props.instance) {
         this.interaction = this.props.instance;
       } else {
-        const options = Util.getOptions<SelectOptions, SelectProps>(this.options, nextProps);
-        this.interaction = new olSelect(options);
+        const options = Util.getOptions<Options, SelectProps>(this.options, nextProps);
+        this.interaction = new Select(options);
       }
       this.context.map.addInteraction(this.interaction);
 

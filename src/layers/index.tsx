@@ -1,26 +1,24 @@
-import {Heatmap} from './heatmap';
-import {Image} from './image';
+import {HeatmapReact} from './heatmap';
+import {ImageReact} from './image';
 import {Layers} from './layers';
-import {Tile} from './tile';
+import {TileReact} from './tile';
 import {Vector} from './vector';
-import {VectorTile} from './vector-tile';
+import Layer from 'ol/layer/Layer';
 
-export interface LayerType<T extends ol.layer.Layer> {
+export interface LayerType<T extends Layer> {
   layerRef?(layer:T):void
 }
 
 const layer = {
-  Tile: Tile,
+  TileReact: TileReact,
   Vector: Vector,
-  Heatmap: Heatmap,
-  Image: Image,
-  VectorTile: VectorTile,
+  Heatmap: HeatmapReact,
+  Image: ImageReact,
 };
 
 export { 
   Layers,
   layer,
-  Heatmap,
-  Image,
-  VectorTile
+  HeatmapReact,
+  ImageReact,
 };

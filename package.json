@@ -34,7 +34,7 @@
     "@types/google-maps": "^3.2.0",
     "@types/googlemaps": "^3.26.4",
     "@types/node": "^10.12.18",
-    "@types/ol": "4.6.2",
+    "@types/ol": "6.4.2",
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
     "@types/react-router": "^4.4.3",
@@ -76,13 +76,12 @@
     "zone.js": "^0.8.26"
   },
   "dependencies": {
-    "google-maps": "^3.2.1",
-    "ol": "4.6.5",
-    "ol-mapbox-style": "2.11.2",
-    "openlayers": "4.6.5",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1"
+    "google-maps": "3.2.1",
+    "ol": "6.2.1",
+    "ol-mapbox-style": "6.3.2",
+    "react": "16.7.0",
+    "react-dom": "16.7.0",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1"
   }
 }

@@ -6,7 +6,9 @@ import olProj from 'ol/proj';
 import StamenSource from 'ol/source/stamen';
 
 import { Popup } from "custom/popup";
-import { control, Controls, custom, layer, Layers, Map, Overlay, Overlays } from "react-openlayers";
+import { control, Controls, custom, layer, Layers, MapReact, Overlay, Overlays } from "react-openlayers";
+
+import MapBrowserEvent from 'ol/MapBrowserEvent';
 
 import Highlighter from "../Highlighter";
 
@@ -15,7 +17,7 @@ export class AppOverlay extends React.Component {
   public overlayComp: Overlay;
   public popupComp: Popup;
 
-  public showPopup = (evt: ol.MapBrowserEvent) => {
+  public showPopup = (evt: MapBrowserEvent) => {
     console.log("SP", evt)
     this.overlayComp.overlay.setPosition(evt.coordinate);
     const lonlat = olProj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
@@ -33,12 +35,12 @@ export class AppOverlay extends React.Component {
     return (
       <div>
         <Typography variant="h4" paragraph>Overlay</Typography>
-        <Map onClick={this.showPopup}>
+        <MapReact onClick={this.showPopup}>
           <Layers>
-            <layer.Tile source={new StamenSource({ layer: 'watercolor' })}/>
+            <layer.TileReact source={new StamenSource({ layer: 'watercolor' })}/>
           </Layers>
           <Controls>
-            <control.FullScreen></control.FullScreen>
+            <control.FullScreenReact></control.FullScreenReact>
           </Controls>
           <Overlays>
             <Overlay ref={this.bindOverlayComp}>
@@ -46,7 +48,7 @@ export class AppOverlay extends React.Component {
               </custom.Popup>
             </Overlay>
           </Overlays>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

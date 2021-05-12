@@ -1,13 +1,14 @@
 import * as React from 'react';
 
-import olStyle from 'ol/style/style';
+import Style from 'ol/style/Style';
+import Event from 'ol/events/Event';
 
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
-export type ReactOpenlayersEvent<T extends ol.events.Event = ol.events.Event> = ((event: T | ol.events.Event) => void) | void;
+export type ReactOpenlayersEvent<T extends Event = Event> = ((event: T | Event) => void) | void;
 
 export interface ReactOpenlayersEvents {
-  [key: string]: ((event: ol.events.Event | void) => void ) | void
+  [key: string]: ((event: Event | void) => void ) | void
 } 
 
 /**
@@ -77,7 +78,7 @@ const typeOf = (obj: {}) => ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].to
  * 
  * @param obj Style object
  */
-export const cloneStyle = (obj: olStyle): olStyle => {
+export const cloneStyle = (obj: Style): Style => {
   const type = typeOf(obj);
   if (type === 'object' || type === 'array') {
     if (obj.clone) {
@@ -90,7 +91,7 @@ export const cloneStyle = (obj: olStyle): olStyle => {
       clone[key] = cloneStyle(obj[key]);
     })
 
-    return clone as olStyle;
+    return clone as Style;
   }
 
   return obj;

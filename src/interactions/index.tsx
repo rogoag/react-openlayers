@@ -1,51 +1,50 @@
-import { DoubleClickZoom } from './double-click-zoom';
-import { DragAndDrop } from './drag-and-drop';
-import { DragBox } from './drag-box';
-import { DragPan } from './drag-pan';
-import { DragRotate } from './drag-rotate';
-import { DragRotateAndZoom } from './drag-rotate-and-zoom';
-import { DragZoom } from './drag-zoom';
-import { Draw } from './draw';
-import { Extent } from './extent';
+import { DoubleClickZoomReact } from './double-click-zoom';
+import { DragAndDropReact } from './drag-and-drop';
+import { DragBoxReact } from './drag-box';
+import { DragPanReact } from './drag-pan';
+import { DragRotateReact } from './drag-rotate';
+import { DragRotateAndZoomReact } from './drag-rotate-and-zoom';
+import { DragZoomReact } from './drag-zoom';
+import { DrawReact } from './draw';
+import { ExtentReact } from './extent';
 import { Interactions } from './interactions';
-import { KeyboardPan } from './keyboard-pan';
-import { KeyboardZoom } from './keyboard-zoom';
-import { Modify } from './modify';
-import { MouseWheelZoom } from './mouse-wheel-zoom';
-import { PinchRotate } from './pinch-rotate';
-import { PinchZoom } from './pinch-zoom';
-import { Pointer } from './pointer';
-import { Select } from './select';
-import { Snap } from './snap';
-import { Translate } from './translate';
+import { KeyboardPanReact } from './keyboard-pan';
+import { KeyboardZoomReact } from './keyboard-zoom';
+import { ModifyReact } from './modify';
+import { MouseWheelZoomReact } from './mouse-wheel-zoom';
+import { PinchRotateReact } from './pinch-rotate';
+import { PinchZoomReact } from './pinch-zoom';
+import { PointerReact } from './pointer';
+import { SelectReact } from './select';
+import { SnapReact } from './snap';
+import { TranslateReact } from './translate';
+import Interaction from 'ol/interaction/Interaction';
 
-import ol from 'ol';
-
-export interface InteractionType<T extends ol.interaction.Interaction> {
+export interface InteractionType<T extends Interaction> {
   active?:boolean
   interactionRef?(ref:T):void,
 }
 
 const interaction = {
-  DoubleClickZoom,
-  DragAndDrop,
-  DragBox,
-  DragPan,
-  DragRotate,
-  DragRotateAndZoom,
-  DragZoom,
-  Draw,
-  Extent,
-  KeyboardPan,
-  KeyboardZoom,
-  Modify,
-  MouseWheelZoom,
-  PinchRotate,
-  PinchZoom,
-  Pointer,
-  Select,
-  Snap,
-  Translate
+  DoubleClickZoomReact,
+  DragAndDropReact,
+  DragBoxReact,
+  DragPanReact,
+  DragRotateReact,
+  DragRotateAndZoomReact,
+  DragZoomReact,
+  DrawReact,
+  ExtentReact,
+  KeyboardPanReact,
+  KeyboardZoomReact,
+  ModifyReact,
+  MouseWheelZoomReact,
+  PinchRotateReact,
+  PinchZoomReact,
+  PointerReact,
+  SelectReact,
+  SnapReact,
+  TranslateReact
 };
 
 export {

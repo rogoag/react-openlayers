@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
+import { interaction, Interactions, layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -14,14 +14,14 @@ export class PinchRotate extends React.Component {
       <div>
         <Typography variant="h4" paragraph>PinchRotate interaction</Typography>
         <Typography variant="subtitle1">This example have disabled default <code>PinchRotate</code> interaction to provide one that require a minimum of 30deg rotation before rotating the view.</Typography>
-        <Map view={{ center: [0, 0], zoom: 2 }}>
+        <MapReact view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
-            <layer.Tile />
+            <layer.TileReact />
           </Layers>
           <Interactions pinchRotate={false} pinchZoom={false}>
-            <interaction.PinchRotate threshold={angleThreshold}/>
+            <interaction.PinchRotateReact threshold={angleThreshold}/>
           </Interactions>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

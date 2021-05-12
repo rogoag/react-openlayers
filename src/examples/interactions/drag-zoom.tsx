@@ -4,7 +4,7 @@ import { Divider, Typography } from "@material-ui/core";
 
 import olEventConditions from 'ol/events/condition';
 
-import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
+import { interaction, Interactions, layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -14,16 +14,16 @@ export class DragZoom extends React.Component {
       <div>
         <Typography variant="h4" paragraph>DragZoom interaction</Typography>
         <Typography variant="subtitle1">This example have disabled default <code>DragZoom</code> interaction using <code>SHIFT + Drag</code>, but it implements one that force you to use <code>CTRL + Drag</code> to select an area to zoom.</Typography>
-        <Map view={{ center: [0, 0], zoom: 2 }}>
+        <MapReact view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
-            <layer.Tile />
+            <layer.TileReact />
           </Layers>
           <Interactions shiftDragZoom={false}>
-            <interaction.DragZoom
+            <interaction.DragZoomReact
               condition={olEventConditions.platformModifierKeyOnly}
             />
           </Interactions>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

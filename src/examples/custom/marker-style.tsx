@@ -2,11 +2,11 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import Feature from 'ol/feature';
-import Point from 'ol/geom/point';
-import VectorSource from 'ol/source/vector';
+import Feature from 'ol/Feature';
+import Point from 'ol/geom/Point';
+import VectorSource from 'ol/source/Vector';
 
-import { custom, layer, Layers, Map } from "react-openlayers";
+import { custom, layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -21,14 +21,14 @@ export class MarkerStyle extends React.Component {
     return (
       <div>
         <Typography variant="h4" paragraph>Marker style</Typography>
-        <Map>
+        <MapReact>
           <Layers>
-            <layer.Tile />
-            <layer.Vector 
+            <layer.TileReact />
+            <layer.Vector
               style={marker.style}
               source={source}/>
           </Layers>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

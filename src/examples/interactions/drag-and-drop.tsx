@@ -2,22 +2,18 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import olFeature from 'ol/feature';
-import GeoJSONFormat from 'ol/format/geojson';
-import GPXFormat from 'ol/format/gpx';
-import IGCFormat from 'ol/format/igc';
-import KMLFormat from 'ol/format/kml';
-import TopoJSONFormat from 'ol/format/topojson';
-import VectorLayer from 'ol/layer/vector';
-import olMap from 'ol/map';
-import olProjection from 'ol/proj/projection';
-import VectorSource from 'ol/source/vector';
+import Feature from 'ol/Feature';
+import VectorLayer from 'ol/layer/Vector';
+import Map from 'ol/Map';
+import Projection from 'ol/proj/Projection';
+import VectorSource from 'ol/source/Vector';
 import CircleStyle from 'ol/style/circle';
-import FillStyle from 'ol/style/fill';
-import StrokeStyle from 'ol/style/stroke';
-import Style from 'ol/style/style';
+import FillStyle from 'ol/style/Fill';
+import StrokeStyle from 'ol/style/Stroke';
+import Style from 'ol/style/Style';
 
-import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
+import { interaction, Interactions, layer, Layers, MapReact } from "react-openlayers";
+
 
 import Highlighter from "../Highlighter";
 
@@ -78,21 +74,23 @@ const defaultStyle = {
   })
 };
 
-const styleFunction = (feature: olFeature, resolution: number) => {
+const styleFunction = (feature: Feature, resolution: number) => {
   const featureStyleFunction = feature.getStyleFunction();
   if (featureStyleFunction) {
     return featureStyleFunction.call(feature, resolution);
   } else {
-    return defaultStyle[feature.getGeometry().getType()];
+    const featGeom = feature.getGeometry();
+    const featType = featGeom && featGeom.getType();
+    return featType && defaultStyle[featType];
   }
 };
 
 export class DragAndDrop extends React.Component {
-  public map: olMap;
+  public map: Map;
 
-  public handleAddFeatures = (event: ol.interaction.DragAndDrop.Event) => {
+  public handleAddFeatures = () => {
     const vectorSource = new VectorSource({
-      features: event.features
+      features: []
     });
     if (this.map) {
       this.map.addLayer(new VectorLayer({
@@ -133,24 +131,17 @@ export class DragAndDrop extends React.Component {
 }`
           } />
         </div>
-        <Map view={{ center: [0, 0], zoom: 2 }} mapRef={this.handleMapRef}>
+        <MapReact view={{ center: [0, 0], zoom: 2 }} mapRef={this.handleMapRef}>
           <Layers>
-            <layer.Tile />
+            <layer.TileReact />
           </Layers>
           <Interactions>
-            <interaction.DragAndDrop
-              projection={new olProjection({ code: "EPSG:3857" })}
-              formatConstructors={[
-                GPXFormat,
-                GeoJSONFormat,
-                IGCFormat,
-                KMLFormat,
-                TopoJSONFormat
-              ]}
+            <interaction.DragAndDropReact
+              projection={new Projection({ code: "EPSG:3857" })}
               onAddfeatures={this.handleAddFeatures}
             />
           </Interactions>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>
@@ -178,5 +169,5 @@ export class DragAndDrop extends React.Component {
     );
   }
 
-  private handleMapRef = (map: olMap) => this.map = map;
+  private handleMapRef = (map: Map) => this.map = map;
 }

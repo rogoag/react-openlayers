@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olDragPan from 'ol/interaction/dragpan';
+import DragPan, { Options } from 'ol/interaction/DragPan';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type DragPanOptions = ol.olx.interaction.DragPanOptions;
-export interface DragPanProps extends DragPanOptions, InteractionType<olDragPan> {
+export interface DragPanProps extends Options, InteractionType<DragPan> {
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
@@ -20,10 +19,10 @@ export interface DragPanEvents extends ReactOpenlayersEvents {
 }
 
 
-export class DragPan extends React.Component<DragPanProps> {
+export class DragPanReact extends React.Component<DragPanProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olDragPan;
+  public interaction: DragPan;
 
   public options: DragPanProps = {
     condition: undefined,
@@ -39,8 +38,8 @@ export class DragPan extends React.Component<DragPanProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<DragPanOptions, DragPanProps>(this.options, this.props);
-    this.interaction = new olDragPan(options);
+    const options = Util.getOptions<Options, DragPanProps>(this.options, this.props);
+    this.interaction = new DragPan(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -52,10 +51,12 @@ export class DragPan extends React.Component<DragPanProps> {
   }
 
   public componentWillReceiveProps(nextProps: DragPanProps) {
+    console.log(this.context.map)
+    
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<DragPanOptions, DragPanProps>(this.options, nextProps);
-      this.interaction = new olDragPan(options);
+      const options = Util.getOptions<Options, DragPanProps>(this.options, nextProps);
+      this.interaction = new DragPan(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olDragRotateAndZoom from 'ol/interaction/dragrotateandzoom';
+import DragRotateAndZoom, { Options } from 'ol/interaction/DragRotateAndZoom';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type DragRotateAndZoomOptions = ol.olx.interaction.DragRotateAndZoomOptions;
-export interface DragRotateAndZoomProps extends DragRotateAndZoomOptions, InteractionType<olDragRotateAndZoom> {
+export interface DragRotateAndZoomProps extends Options, InteractionType<DragRotateAndZoom> {
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
@@ -18,10 +17,10 @@ export interface DragRotateAndZoomEvents extends ReactOpenlayersEvents {
   'change:active': ReactOpenlayersEvent
   'propertychange': ReactOpenlayersEvent
 }
-export class DragRotateAndZoom extends React.Component<DragRotateAndZoomProps> {
+export class DragRotateAndZoomReact extends React.Component<DragRotateAndZoomProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olDragRotateAndZoom;
+  public interaction: DragRotateAndZoom;
 
   public options: DragRotateAndZoomProps = {
     condition: undefined,
@@ -37,8 +36,8 @@ export class DragRotateAndZoom extends React.Component<DragRotateAndZoomProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<DragRotateAndZoomOptions, DragRotateAndZoomProps>(this.options, this.props);
-    this.interaction = new olDragRotateAndZoom(options);
+    const options = Util.getOptions<Options, DragRotateAndZoomProps>(this.options, this.props);
+    this.interaction = new DragRotateAndZoom(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -52,8 +51,8 @@ export class DragRotateAndZoom extends React.Component<DragRotateAndZoomProps> {
   public componentWillReceiveProps(nextProps: DragRotateAndZoomProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<DragRotateAndZoomOptions, DragRotateAndZoomProps>(this.options, nextProps);
-      this.interaction = new olDragRotateAndZoom(options);
+      const options = Util.getOptions<Options, DragRotateAndZoomProps>(this.options, nextProps);
+      this.interaction = new DragRotateAndZoom(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

@@ -4,7 +4,7 @@ import { interaction, Interactions } from './interactions/index';
 import { layer, Layers } from './layers/index';
 import { Overlay, Overlays } from './overlays';
 
-import { Map, MapContext } from './map';
+import { MapReact, MapContext } from './map';
 import Util from './util';
 
 export {
@@ -21,7 +21,7 @@ export {
   interaction,
 
   //Objects
-  Map,
+  MapReact,
   MapContext,
   Overlay,
 

@@ -3,7 +3,7 @@ import * as React from "react";
 import { Divider, Typography } from "@material-ui/core";
 
 import {
-  control, Controls, layer, Layers, Map
+  control, Controls, layer, Layers, MapReact
 } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
@@ -14,12 +14,12 @@ export class Rotate extends React.Component {
       <div>
         <Typography variant="h4" paragraph>Rotate control</Typography>
         <p>Use Alt+Shift+Drag to rotate the map.</p>
-        <Map>
-          <Layers><layer.Tile/></Layers>
+        <MapReact>
+          <Layers><layer.TileReact/></Layers>
           <Controls>
-            <control.Rotate />
+            <control.RotateReact />
           </Controls>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

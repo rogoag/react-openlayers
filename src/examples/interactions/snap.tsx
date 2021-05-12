@@ -2,15 +2,16 @@ import * as React from "react";
 
 import { Divider, FormControl, FormControlLabel, FormLabel, Grid, InputLabel, MenuItem, Radio, RadioGroup, Select, Typography } from "@material-ui/core";
 
-import olDraw from 'ol/interaction/draw';
-import olSelect from 'ol/interaction/select';
-import VectorSource from 'ol/source/vector';
+import Draw from 'ol/interaction/Draw';
+import olSelect from 'ol/interaction/Select';
+import VectorSource from 'ol/source/Vector';
 import CircleStyle from 'ol/style/circle';
-import FillStyle from 'ol/style/fill';
-import StrokeStyle from 'ol/style/stroke';
-import Style from 'ol/style/style';
+import FillStyle from 'ol/style/Fill';
+import StrokeStyle from 'ol/style/Stroke';
+import Style from 'ol/style/Style';
 
-import { interaction, Interactions, layer, Layers, Map } from "react-openlayers";
+import { interaction, Interactions, layer, Layers, MapReact } from "react-openlayers";
+import GeometryType from 'ol/geom/GeometryType';
 
 import Highlighter from "../Highlighter";
 
@@ -32,15 +33,15 @@ const vectorStyle = new Style({
 });
 
 interface SnapState {
-  drawType: ol.geom.GeometryType,
+  drawType: GeometryType,
   activeInteraction: 'draw' | 'modify'
 }
 
 interface Draws {
-  Point: olDraw | void
-  LineString: olDraw | void
-  Polygon: olDraw | void
-  Circle: olDraw | void
+  Point: Draw | void
+  LineString: Draw | void
+  Polygon: Draw | void
+  Circle: Draw | void
 }
 
 export class Snap extends React.Component<{}, SnapState> {
@@ -56,7 +57,7 @@ export class Snap extends React.Component<{}, SnapState> {
   public select: olSelect;
 
   public state: SnapState = {
-    drawType: 'Point',
+    drawType: GeometryType.POINT,
     activeInteraction: 'draw'
   }
 
@@ -67,7 +68,7 @@ export class Snap extends React.Component<{}, SnapState> {
   }
 
   public handleDrawTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    this.setState({ ...this.state, drawType: e.target.value as ol.geom.GeometryType })
+    this.setState({ ...this.state, drawType: e.target.value as GeometryType })
   }
 
   public handleInteractionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -75,8 +76,8 @@ export class Snap extends React.Component<{}, SnapState> {
   }
 
   public handleSelectChangeActive = () => {
-    const selectedFeatures = this.select.getFeatures();
-    selectedFeatures.forEach(selectedFeatures.remove, selectedFeatures);
+    // const selectedFeatures = this.select.getFeatures();
+    // selectedFeatures.forEach(selectedFeatures.remove, selectedFeatures);
   }
 
   public render() {
@@ -86,44 +87,44 @@ export class Snap extends React.Component<{}, SnapState> {
       <div>
         <Typography variant="h4" paragraph>Snap interaction</Typography>
         <Typography variant="subtitle1">The <code>Snap</code> interaction offer snapping capabilities. Try drawing a <code>LineString</code> and some <code>Point</code>s, then select the <code>Modify</code> option and try to move a <code>Point</code> near the <code>LineString</code>.</Typography>
-        <Map view={{ center: [0, 0], zoom: 2 }}>
+        <MapReact view={{ center: [0, 0], zoom: 2 }}>
           <Layers>
-            <layer.Tile />
+            <layer.TileReact />
             <layer.Vector source={this.source} style={vectorStyle} />
           </Layers>
           <Interactions>
-            <interaction.Select instance={this.select}
+            <interaction.SelectReact instance={this.select}
               active={activeInteraction === 'modify'}
               onChangeActive={this.handleSelectChangeActive}
             />
-            <interaction.Modify
+            <interaction.ModifyReact
               features={this.select.getFeatures()}
               active={activeInteraction === 'modify'}
             />
 
-            <interaction.Draw
+            <interaction.DrawReact
               source={this.source}
-              type="Point"
+              type={GeometryType.POINT}
               active={activeInteraction === 'draw' && drawType === 'Point'}
             />
-            <interaction.Draw
+            <interaction.DrawReact
               source={this.source}
-              type="LineString"
-              active={activeInteraction === 'draw' && drawType === 'LineString'}
+              type={GeometryType.LINEAR_RING}
+              active={activeInteraction === 'draw' && drawType === GeometryType.LINE_STRING}
             />
-            <interaction.Draw
+            <interaction.DrawReact
               source={this.source}
-              type="Polygon"
-              active={activeInteraction === 'draw' && drawType === 'Polygon'}
+              type={GeometryType.POLYGON}
+              active={activeInteraction === 'draw' && drawType === GeometryType.POLYGON}
             />
-            <interaction.Draw
+            <interaction.DrawReact
               source={this.source}
-              type="Circle"
-              active={activeInteraction === 'draw' && drawType === 'Circle'}
+              type={GeometryType.CIRCLE}
+              active={activeInteraction === 'draw' && drawType === GeometryType.CIRCLE}
             />
-            <interaction.Snap source={this.source} />
+            <interaction.SnapReact source={this.source} />
           </Interactions>
-        </Map>
+        </MapReact>
         <br/>
         <Grid container spacing={16}>
           <Grid item sm={6}>
@@ -164,7 +165,7 @@ export class Snap extends React.Component<{}, SnapState> {
     <layer.Vector source={this.source} style={vectorStyle} />
   </Layers>
   <Interactions>
-    <interaction.Select instance={this.select} active={activeInteraction === 'modify'} onChangeActive={this.handleSelectChangeActive} />
+    <interaction.olSelect instance={this.select} active={activeInteraction === 'modify'} onChangeActive={this.handleSelectChangeActive} />
     <interaction.Modify features={this.select.getFeatures()} active={activeInteraction === 'modify'} />
 
     <interaction.Draw type="Point" source={this.source} active={activeInteraction === 'draw' && drawType === 'Point'} />

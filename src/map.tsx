@@ -1,13 +1,17 @@
 import * as React from 'react';
 
-import olControls from 'ol/control';
-import olControl from 'ol/control/control';
-import olInteractions from 'ol/interaction';
-import olInteraction from 'ol/interaction/interaction';
-import olLayer from 'ol/layer/layer';
-import olMap from 'ol/map';
-import olOverlay from 'ol/overlay';
-import olView from 'ol/view';
+import * as Controls from 'ol/control';
+import Control from 'ol/control/Control';
+import * as Interactions from 'ol/interaction';
+import Interaction from 'ol/interaction/Interaction';
+import Layer from 'ol/layer/Layer';
+import Map from 'ol/Map';
+import Overlay from 'ol/Overlay';
+import View, { ViewOptions } from 'ol/View';
+import MapBrowserEvent from 'ol/MapBrowserEvent';
+import MapEvent from 'ol/MapEvent';
+import Event from 'ol/render/Event';
+import { MapOptions } from 'ol/PluggableMap';
 
 import Util, { Omit, ReactOpenlayersEvent, ReactOpenlayersEvents } from './util';
 
@@ -17,33 +21,31 @@ import { InteractionsProps } from './interactions/interactions';
 import './map.css';
 import './ol.css';
 
-export type MapContextType = Map | void;
+export type MapContextType = MapReact | void;
 export const MapContext = React.createContext<MapContextType>(undefined);
 
-export type MapOptions = ol.olx.MapOptions;
 
 export interface MapProps extends Omit<MapOptions, 'view'> {
-  view?: ol.olx.ViewOptions | olView
+  view?: ViewOptions | View
   className?: string
   style?: React.CSSProperties
-  target?: Element | string
   onChange?: ReactOpenlayersEvent
   onChangeLayerGroup?: ReactOpenlayersEvent
   onChangeSize?: ReactOpenlayersEvent
   onChangeTarget?: ReactOpenlayersEvent
   onChangeView?: ReactOpenlayersEvent
-  onClick?: ReactOpenlayersEvent<ol.MapBrowserEvent>
-  onDblclick?: ReactOpenlayersEvent<ol.MapBrowserEvent>
-  onMovestart?: ReactOpenlayersEvent<ol.MapEvent>
-  onMoveend?: ReactOpenlayersEvent<ol.MapEvent>
-  onPointerdrag?: ReactOpenlayersEvent<ol.MapBrowserEvent>
-  onPointermove?: ReactOpenlayersEvent<ol.MapBrowserEvent>
-  onPostcompose?: ReactOpenlayersEvent<ol.render.Event>
-  onPostrender?: ReactOpenlayersEvent<ol.MapEvent>
-  onPrecompose?: ReactOpenlayersEvent<ol.render.Event>
+  onClick?: ReactOpenlayersEvent<MapBrowserEvent>
+  onDblclick?: ReactOpenlayersEvent<MapBrowserEvent>
+  onMovestart?: ReactOpenlayersEvent<MapEvent>
+  onMoveend?: ReactOpenlayersEvent<MapEvent>
+  onPointerdrag?: ReactOpenlayersEvent<MapBrowserEvent>
+  onPointermove?: ReactOpenlayersEvent<MapBrowserEvent>
+  onPostcompose?: ReactOpenlayersEvent<Event>
+  onPostrender?: ReactOpenlayersEvent<MapEvent>
+  onPrecompose?: ReactOpenlayersEvent<Event>
   onPropertychange?: ReactOpenlayersEvent
-  onSingleclick?: ReactOpenlayersEvent<ol.MapBrowserEvent>
-  mapRef?(map: olMap): void
+  onSingleclick?: ReactOpenlayersEvent<MapBrowserEvent>
+  mapRef?(map: Map): void
 }
 
 export interface MapEvents extends ReactOpenlayersEvents {
@@ -52,17 +54,17 @@ export interface MapEvents extends ReactOpenlayersEvents {
   'change:size': ReactOpenlayersEvent
   'change:target': ReactOpenlayersEvent
   'change:view': ReactOpenlayersEvent
-  'click': ReactOpenlayersEvent<ol.MapBrowserEvent>
-  'dblclick': ReactOpenlayersEvent<ol.MapBrowserEvent>
-  'movestart': ReactOpenlayersEvent<ol.MapEvent>
-  'moveend': ReactOpenlayersEvent<ol.MapEvent>
-  'pointerdrag': ReactOpenlayersEvent<ol.MapBrowserEvent>
-  'pointermove': ReactOpenlayersEvent<ol.MapBrowserEvent>
-  'postcompose': ReactOpenlayersEvent<ol.render.Event>
-  'postrender': ReactOpenlayersEvent<ol.MapEvent>
-  'precompose': ReactOpenlayersEvent<ol.render.Event>
+  'click': ReactOpenlayersEvent<MapBrowserEvent>
+  'dblclick': ReactOpenlayersEvent<MapBrowserEvent>
+  'movestart': ReactOpenlayersEvent<MapEvent>
+  'moveend': ReactOpenlayersEvent<MapEvent>
+  'pointerdrag': ReactOpenlayersEvent<MapBrowserEvent>
+  'pointermove': ReactOpenlayersEvent<MapBrowserEvent>
+  'postcompose': ReactOpenlayersEvent<Event>
+  'postrender': ReactOpenlayersEvent<MapEvent>
+  'precompose': ReactOpenlayersEvent<Event>
   'propertychange': ReactOpenlayersEvent
-  'singleclick': ReactOpenlayersEvent<ol.MapBrowserEvent>
+  'singleclick': ReactOpenlayersEvent<MapBrowserEvent>
 }
 
 /**
@@ -79,24 +81,20 @@ export interface MapEvents extends ReactOpenlayersEvents {
  *   <overlays></overlays>
  * </Map>
  */
-export class Map extends React.Component<MapProps> {
+export class MapReact extends React.Component<MapProps> {
 
-  public map: olMap;
+  public map: Map;
   public mapDiv: React.RefObject<HTMLDivElement>;
 
-  public layers: olLayer[] = [];
-  public interactions: olInteraction[] = [];
-  public controls: olControl[] = [];
-  public overlays: olOverlay[] = [];
+  public layers: Layer[] = [];
+  public interactions: Interaction[] = [];
+  public controls: Control[] = [];
+  public overlays: Overlay[] = [];
 
   public options: MapOptions = {
     pixelRatio: undefined,
     keyboardEventTarget: undefined,
-    loadTilesWhileAnimating: undefined,
-    loadTilesWhileInteracting: undefined,
-    logo: undefined,
-    renderer: undefined,
-    view: new olView({ center: [0, 0], zoom: 3 }),
+    view: new View({ center: [0, 0], zoom: 3 }),
     controls: undefined,
     interactions: undefined,
     layers: undefined,
@@ -129,19 +127,19 @@ export class Map extends React.Component<MapProps> {
 
   public componentDidMount() {
     const options = Util.getOptions<MapOptions, MapProps>(this.options, this.props);
-    if (options.view && !(options.view instanceof olView)) {
-      options.view = new olView(options.view);
+    if (options.view && !(options.view instanceof View)) {
+      options.view = new View(options.view);
     }
 
     const controlsCmp = Util.findChild<React.ReactElement<ControlsProps>>(this.props.children, 'Controls');
     const interactionsCmp = Util.findChild<React.ReactElement<InteractionsProps>>(this.props.children, 'Interactions');
 
-    options.controls = olControls.defaults(controlsCmp ? controlsCmp.props : {}).extend(this.controls);
-    options.interactions = olInteractions.defaults(interactionsCmp ? interactionsCmp.props : {}).extend(this.interactions);
+    options.controls = Controls.defaults(controlsCmp ? controlsCmp.props : {}).extend(this.controls);
+    options.interactions = Interactions.defaults(interactionsCmp ? interactionsCmp.props : {}).extend(this.interactions);
 
     options.layers = this.layers;
     options.overlays = this.overlays;
-    this.map = new olMap(options);
+    this.map = new Map(options);
     if (this.props.target) {
       this.map.setTarget(this.props.target);
     } else if (this.mapDiv.current) {
@@ -156,6 +154,8 @@ export class Map extends React.Component<MapProps> {
     Object.keys(olEvents).forEach((eventName: string) => {
       this.map.on(eventName, olEvents[eventName]);
     })
+
+    console.log(this.map)
   }
 
   public componentWillReceiveProps(nextProps: MapProps) {
@@ -175,7 +175,6 @@ export class Map extends React.Component<MapProps> {
           className={(this.props.className || "openlayers-map")}
           ref={this.mapDiv}
           tabIndex={0}
-          style={this.props.style}
         >
           {this.props.children}
         </div>
@@ -201,7 +200,7 @@ export class Map extends React.Component<MapProps> {
   private updateCenterAndResolutionFromProps(props: MapProps) {
     const view = this.map.getView();
 
-    if (props.view && !(props.view instanceof olView)) {
+    if (props.view && !(props.view instanceof View)) {
       if (props.view.center !== undefined) view.setCenter(props.view.center);
       if (props.view.zoom !== undefined) view.setZoom(props.view.zoom);
       if (props.view.resolution !== undefined) view.setResolution(props.view.resolution)

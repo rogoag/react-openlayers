@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olFullScreen from 'ol/control/fullscreen';
+import FullScreen, { Options } from 'ol/control/FullScreen';
 
 import { ControlType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type FullScreenOptions = ol.olx.control.FullScreenOptions;
-export interface FullScreenProps extends FullScreenOptions, ControlType<olFullScreen> {
+export interface FullScreenProps extends Options, ControlType<FullScreen> {
   onchange?: ReactOpenlayersEvent
   onpropertychange?: ReactOpenlayersEvent
 };
@@ -17,12 +16,12 @@ export interface FullScreenEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 };
 
-export class FullScreen extends React.Component<FullScreenProps> {
+export class FullScreenReact extends React.Component<FullScreenProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public control: olFullScreen;
+  public control: FullScreen;
 
-  public options: FullScreenOptions = {
+  public options: Options = {
     className: undefined,
     label: undefined,
     labelActive: undefined,
@@ -40,8 +39,8 @@ export class FullScreen extends React.Component<FullScreenProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<FullScreenOptions, FullScreenProps>(this.options, this.props);
-    this.control = new olFullScreen(options);
+    const options = Util.getOptions<Options, FullScreenProps>(this.options, this.props);
+    this.control = new FullScreen(options);
     this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);

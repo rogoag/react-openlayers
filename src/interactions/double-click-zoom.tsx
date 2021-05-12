@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olDoubleClickZoom from 'ol/interaction/doubleclickzoom';
+import DoubleClickZoom, { Options } from 'ol/interaction/DoubleClickZoom';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type DoubleClickZoomOptions = ol.olx.interaction.DoubleClickZoomOptions;
-export interface DoubleClickZoomProps extends DoubleClickZoomOptions, InteractionType<olDoubleClickZoom> {
+export interface DoubleClickZoomProps extends Options, InteractionType<DoubleClickZoom> {
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
@@ -19,12 +18,12 @@ export interface DoubleClickZoomEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 }
 
-export class DoubleClickZoom extends React.Component<DoubleClickZoomProps> {
+export class DoubleClickZoomReact extends React.Component<DoubleClickZoomProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olDoubleClickZoom;
+  public interaction: DoubleClickZoom;
 
-  public options: DoubleClickZoomOptions = {
+  public options: Options = {
     duration: undefined,
     delta: undefined
   };
@@ -38,8 +37,8 @@ export class DoubleClickZoom extends React.Component<DoubleClickZoomProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<DoubleClickZoomOptions, DoubleClickZoomProps>(this.options, this.props);
-    this.interaction = new olDoubleClickZoom(options);
+    const options = Util.getOptions<Options, DoubleClickZoomProps>(this.options, this.props);
+    this.interaction = new DoubleClickZoom(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -53,8 +52,8 @@ export class DoubleClickZoom extends React.Component<DoubleClickZoomProps> {
   public componentWillReceiveProps(nextProps: DoubleClickZoomProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<DoubleClickZoomOptions, DoubleClickZoomProps>(this.options, nextProps);
-      this.interaction = new olDoubleClickZoom(options);
+      const options = Util.getOptions<Options, DoubleClickZoomProps>(this.options, nextProps);
+      this.interaction = new DoubleClickZoom(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

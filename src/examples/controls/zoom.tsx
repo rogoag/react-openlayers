@@ -3,22 +3,27 @@ import * as React from "react";
 import { Divider, Typography } from "@material-ui/core";
 
 import {
-  control, Controls, layer, Layers, Map
+  control, Controls, layer, Layers, MapReact
 } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
+import XYZ from "ol/source/XYZ";
 
 export class Zoom extends React.Component {
   public render() {
+    const vectorSource = new XYZ({
+      attributions: '© Google',
+      url: 'https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga'
+    });
     return (
       <div>
         <Typography variant="h4" paragraph>Zoom control</Typography>
-        <Map>
-          <Layers><layer.Tile/></Layers>
+        <MapReact>
+          <Layers><layer.TileReact source={vectorSource} /></Layers>
           <Controls>
-            <control.Zoom />
+            <control.ZoomReact />
           </Controls>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

@@ -1,14 +1,15 @@
 import * as React from 'react';
 
-import olHeatmap from 'ol/layer/heatmap';
-import olVectorSource from 'ol/source/vector';
+import Heatmap from 'ol/layer/Heatmap';
+import { Options } from 'ol/layer/Heatmap';
+import VectorSource from 'ol/source/Vector';
 
 import { LayerType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type HeatmapOptions = ol.olx.layer.HeatmapOptions
-export interface HeatmapProps extends HeatmapOptions, LayerType<olHeatmap> {
+export interface HeatmapProps extends Options, LayerType<Heatmap> {
+  zIndex?: number,
   onChange?: ReactOpenlayersEvent
   onChangeBlur?: ReactOpenlayersEvent
   onChangeExtent?: ReactOpenlayersEvent
@@ -44,14 +45,14 @@ export interface HeatmapEvents extends ReactOpenlayersEvents {
   'render': ReactOpenlayersEvent
 };
 
-export class Heatmap extends React.Component<HeatmapProps> {
+export class HeatmapReact extends React.Component<HeatmapProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public layer: olHeatmap;
+  public layer: Heatmap;
 
-  public options: HeatmapOptions = {
+  public options: Options = {
     weight: "weight",
-    source: new olVectorSource,
+    source: new VectorSource,
   };
 
   public events: HeatmapEvents = {
@@ -75,9 +76,9 @@ export class Heatmap extends React.Component<HeatmapProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<HeatmapOptions, HeatmapProps>(this.options, this.props);
+    const options = Util.getOptions<Options, HeatmapProps>(this.options, this.props);
     if (!options.weight) options.weight = 'weight';
-    this.layer = new olHeatmap(options);
+    this.layer = new Heatmap(options);
     if(this.props.zIndex){
       this.layer.setZIndex(this.props.zIndex);
     }
@@ -92,7 +93,7 @@ export class Heatmap extends React.Component<HeatmapProps> {
   }
 
   public componentWillReceiveProps(nextProps: HeatmapProps) {
-    const options = Util.getOptions<HeatmapOptions, HeatmapProps>(this.options, this.props);
+    const options = Util.getOptions<Options, HeatmapProps>(this.options, this.props);
 
     // Updating options first
     Object.keys(options).forEach((option: string) => {

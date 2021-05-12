@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import olExtent from 'ol/interaction/extent';
+import Extent from 'ol/interaction/Extent';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
 export type ExtentOptions = olFix.olx.interaction.ExtentOptions;
-export interface ExtentProps extends ExtentOptions, InteractionType<olExtent> {
+export interface ExtentProps extends ExtentOptions, InteractionType<Extent> {
   onEvent?: ReactOpenlayersEvent
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
@@ -21,10 +21,10 @@ export interface ExtentEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 };
 
-export class Extent extends React.Component<ExtentProps> {
+export class ExtentReact extends React.Component<ExtentProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olExtent;
+  public interaction: Extent;
 
   public options: ExtentOptions = {
     extent: undefined,
@@ -45,7 +45,7 @@ export class Extent extends React.Component<ExtentProps> {
 
   public componentDidMount() {
     const options = Util.getOptions<ExtentOptions, ExtentProps>(this.options, this.props);
-    this.interaction = new olExtent(options);
+    this.interaction = new Extent(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -60,7 +60,7 @@ export class Extent extends React.Component<ExtentProps> {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
       const options = Util.getOptions<ExtentOptions, ExtentProps>(this.options, nextProps);
-      this.interaction = new olExtent(options);
+      this.interaction = new Extent(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

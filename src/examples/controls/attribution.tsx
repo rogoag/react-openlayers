@@ -5,7 +5,7 @@ import { Divider, Typography } from "@material-ui/core";
 import {
   Controls, //name spaces
   layer, Layers, //group
-  Map //objects
+  MapReact //objects
 } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
@@ -15,10 +15,10 @@ export class Attribution extends React.Component {
     return (
       <div>
         <Typography variant="h4" paragraph>Attribution control</Typography>
-        <Map>
-          <Layers><layer.Tile /></Layers>
+        <MapReact>
+          <Layers><layer.Vector /></Layers>
           <Controls attribution={false} zoom={false}></Controls>
-        </Map>
+        </MapReact>
         <br />
         <Divider />
         <br />

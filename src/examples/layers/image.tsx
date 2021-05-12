@@ -2,11 +2,11 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import olExtent from 'ol/extent';
-import Projection from 'ol/proj/projection'
+import { getCenter } from 'ol/extent';
+import Projection from 'ol/proj/Projection';
 import ImageStaticSource from 'ol/source/imagestatic'
 
-import { layer, Layers, Map } from "react-openlayers";
+import { layer, Layers, MapReact } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -18,7 +18,7 @@ const projection = new Projection({
 });
 const view = {
   projection: projection,
-  center: olExtent.getCenter(extent),
+  center: getCenter(extent),
   zoom: 2,
   maxZoom: 9
 };
@@ -34,11 +34,11 @@ export class Image extends React.Component {
     return (
       <div>
         <Typography variant="h4" paragraph>Image layer</Typography>
-        <Map view={view}>
+        <MapReact view={view}>
           <Layers>
             <layer.Image source={imageSource} />
           </Layers>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

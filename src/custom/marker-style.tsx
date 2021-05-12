@@ -1,5 +1,5 @@
-import IconStyle from 'ol/style/icon'
-import Style from 'ol/style/style'
+import Icon from 'ol/style/icon'
+import Style from 'ol/style/Style'
 
 // Why the hell do we have src/custom/marker-style and src/custom/style/marker-style ??
 export class MarkerStyle {
@@ -13,7 +13,7 @@ export class MarkerStyle {
 
   public selectStyleFunction = ()  => {
     return new Style({
-      image: new IconStyle({
+      image: new Icon({
           anchor: [0.5, 0.96],
           color: '#4271AE',
           src: 'https://openlayers.org/en/v4.6.5/examples/data/dot.png'

@@ -5,7 +5,7 @@ import { Divider, Typography } from "@material-ui/core";
 import {
   control, Controls, //name spaces
   layer, Layers, //group
-  Map //objects
+  MapReact //objects
 } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
@@ -15,12 +15,12 @@ export class MousePosition extends React.Component {
     return (
       <div>
         <Typography variant="h4" paragraph>MousePosition control</Typography>
-        <Map>
-          <Layers><layer.Tile/></Layers>
+        <MapReact>
+          <Layers><layer.TileReact/></Layers>
           <Controls>
-            <control.MousePosition projection="EPSG:3857"/>
+            <control.MousePositionReact projection="EPSG:3857"/>
           </Controls>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

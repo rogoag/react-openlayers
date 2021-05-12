@@ -2,11 +2,11 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import Feature from 'ol/feature';
-import Point from 'ol/geom/point';
-import VectorSource from 'ol/source/vector';
+import Feature from 'ol/Feature';
+import Point from 'ol/geom/Point';
+import VectorSource from 'ol/source/Vector';
 
-import { custom, interaction, Interactions, layer, Layers, Map, Util } from "react-openlayers";
+import { custom, interaction, Interactions, layer, Layers, MapReact, Util } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -18,22 +18,22 @@ const marker = new custom.style.MarkerStyle(
 marker.style.getImage().setOpacity(0.5);
 
 const selectedMarkerStyle = Util.cloneStyle(marker.style);
-selectedMarkerStyle.getImage().setOpacity(1);
+selectedMarkerStyle.getImage().setScale(4);
 
 export class Select extends React.Component {
   public render() {
     return (
       <div>
         <Typography variant="h4" paragraph>Select interaction</Typography>
-        <Map>
+        <MapReact>
           <Layers>
-            <layer.Tile />
+            <layer.TileReact />
             <layer.Vector source={source} style={marker.style} />
           </Layers>
           <Interactions>
-            <interaction.Select style={selectedMarkerStyle} />
+            <interaction.SelectReact style={selectedMarkerStyle} />
           </Interactions>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

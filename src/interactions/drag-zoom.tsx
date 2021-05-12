@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olDragZoom from 'ol/interaction/dragzoom';
+import DragZoom, { Options } from 'ol/interaction/DragZoom';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type DragZoomOptions = ol.olx.interaction.DragZoomOptions;
-export interface DragZoomProps extends DragZoomOptions, InteractionType<olDragZoom> {
+export interface DragZoomProps extends Options, InteractionType<DragZoom> {
   onBoxdrag?: ReactOpenlayersEvent
   onBoxend?: ReactOpenlayersEvent
   onBoxstart?: ReactOpenlayersEvent
@@ -25,10 +24,10 @@ export interface DragZoomEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 };
 
-export class DragZoom extends React.Component<DragZoomProps> {
+export class DragZoomReact extends React.Component<DragZoomProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olDragZoom;
+  public interaction: DragZoom;
 
   public options: DragZoomProps = {
     className: undefined,
@@ -49,8 +48,8 @@ export class DragZoom extends React.Component<DragZoomProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<DragZoomOptions, DragZoomProps>(this.options, this.props);
-    this.interaction = new olDragZoom(options);
+    const options = Util.getOptions<Options, DragZoomProps>(this.options, this.props);
+    this.interaction = new DragZoom(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -64,8 +63,8 @@ export class DragZoom extends React.Component<DragZoomProps> {
   public componentWillReceiveProps(nextProps: DragZoomProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<DragZoomOptions, DragZoomProps>(this.options, nextProps);
-      this.interaction = new olDragZoom(options);
+      const options = Util.getOptions<Options, DragZoomProps>(this.options, nextProps);
+      this.interaction = new DragZoom(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

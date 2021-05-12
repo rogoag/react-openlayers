@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olPinchZoom from 'ol/interaction/pinchzoom';
+import PinchZoom, { Options } from 'ol/interaction/PinchZoom';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type PinchZoomOptions = ol.olx.interaction.PinchZoomOptions;
-export interface PinchZoomProps extends PinchZoomOptions, InteractionType<olPinchZoom> {
+export interface PinchZoomProps extends Options, InteractionType<PinchZoom> {
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
@@ -19,14 +18,13 @@ export interface PinchZoomEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 };
 
-export class PinchZoom extends React.Component<PinchZoomProps> {
+export class PinchZoomReact extends React.Component<PinchZoomProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olPinchZoom;
+  public interaction: PinchZoom;
 
-  public options: PinchZoomOptions = {
+  public options: Options = {
     duration: undefined,
-    constrainResolution: undefined
   };
 
   public events: PinchZoomEvents = {
@@ -38,8 +36,8 @@ export class PinchZoom extends React.Component<PinchZoomProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<PinchZoomOptions, PinchZoomProps>(this.options, this.props);
-    this.interaction = new olPinchZoom(options);
+    const options = Util.getOptions<Options, PinchZoomProps>(this.options, this.props);
+    this.interaction = new PinchZoom(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -53,8 +51,8 @@ export class PinchZoom extends React.Component<PinchZoomProps> {
   public componentWillReceiveProps(nextProps: PinchZoomProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<PinchZoomOptions, PinchZoomProps>(this.options, nextProps);
-      this.interaction = new olPinchZoom(options);
+      const options = Util.getOptions<Options, PinchZoomProps>(this.options, nextProps);
+      this.interaction = new PinchZoom(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olOverviewMap from 'ol/control/overviewmap'
+import OverviewMap, { Options } from 'ol/control/OverviewMap';
 
 import { ControlType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type OverviewMapOptions = ol.olx.control.OverviewMapOptions;
-export interface OverviewMapProps extends OverviewMapOptions, ControlType<olOverviewMap> {
+export interface OverviewMapProps extends Options, ControlType<OverviewMap> {
   onChange?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
 };
@@ -17,12 +16,12 @@ export interface OverviewMapEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 };
 
-export class OverviewMap extends React.Component<OverviewMapProps> {
+export class OverviewMapReact extends React.Component<OverviewMapProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public control: olOverviewMap;
+  public control: OverviewMap;
 
-  public options: OverviewMapOptions = {
+  public options: Options = {
     collapsed: undefined,
     collapseLabel: undefined,
     collapsible: undefined,
@@ -42,8 +41,8 @@ export class OverviewMap extends React.Component<OverviewMapProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<OverviewMapOptions, OverviewMapProps>(this.options, this.props);
-    this.control = new olOverviewMap(options);
+    const options = Util.getOptions<Options, OverviewMapProps>(this.options, this.props);
+    this.control = new OverviewMap(options);
     this.context.controls.push(this.control)
 
     if (this.props.controlRef) this.props.controlRef(this.control);

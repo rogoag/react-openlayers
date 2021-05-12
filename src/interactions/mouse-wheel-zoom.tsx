@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olMouseWheelZoom from 'ol/interaction/mousewheelzoom';
+import MouseWheelZoom, { Options } from 'ol/interaction/MouseWheelZoom';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type MouseWheelZoomOptions = ol.olx.interaction.MouseWheelZoomOptions;
-export interface MouseWheelZoomProps extends MouseWheelZoomOptions, InteractionType<olMouseWheelZoom> {
+export interface MouseWheelZoomProps extends Options, InteractionType<MouseWheelZoom> {
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
@@ -19,12 +18,12 @@ export interface MouseWheelZoomEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 };
 
-export class MouseWheelZoom extends React.Component<MouseWheelZoomProps> {
+export class MouseWheelZoomReact extends React.Component<MouseWheelZoomProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olMouseWheelZoom;
+  public interaction: MouseWheelZoom;
 
-  public options: MouseWheelZoomOptions = {
+  public options: Options = {
     duration: undefined,
     timeout: undefined,
     useAnchor: undefined
@@ -39,8 +38,8 @@ export class MouseWheelZoom extends React.Component<MouseWheelZoomProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<MouseWheelZoomOptions, MouseWheelZoomProps>(this.options, this.props);
-    this.interaction = new olMouseWheelZoom(options);
+    const options = Util.getOptions<Options, MouseWheelZoomProps>(this.options, this.props);
+    this.interaction = new MouseWheelZoom(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -54,8 +53,8 @@ export class MouseWheelZoom extends React.Component<MouseWheelZoomProps> {
   public componentWillReceiveProps(nextProps: MouseWheelZoomProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<MouseWheelZoomOptions, MouseWheelZoomProps>(this.options, nextProps);
-      this.interaction = new olMouseWheelZoom(options);
+      const options = Util.getOptions<Options, MouseWheelZoomProps>(this.options, nextProps);
+      this.interaction = new MouseWheelZoom(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);

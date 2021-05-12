@@ -1,12 +1,12 @@
-import olExtent from 'ol/extent'
-import olFeature from 'ol/feature'
-import VectorSource from 'ol/source/vector'
+import Extent from 'ol/extent'
+import Feature from 'ol/Feature'
+import VectorSource from 'ol/source/Vector'
 import CircleStyle from 'ol/style/circle'
-import FillStyle from 'ol/style/fill'
-import RegularShapeStyle from 'ol/style/regularshape'
-import StrokeStyle from 'ol/style/stroke'
-import Style from 'ol/style/style'
-import TextStyle from 'ol/style/text'
+import FillStyle from 'ol/style/Fill'
+import RegularShapeStyle from 'ol/style/RegularShape'
+import StrokeStyle from 'ol/style/Stroke'
+import Style from 'ol/style/Style'
+import TextStyle from 'ol/style/Text'
 
 export class ClusterStyle {
 
@@ -18,7 +18,7 @@ export class ClusterStyle {
     this.source = vectorSource;
   }
 
-  public vectorStyleFunction = (feature: olFeature, resolution: number) => {
+  public vectorStyleFunction = (feature: Feature, resolution: number) => {
     if (resolution !== this.currentResolution) {
       this.calculateClusterInfo(resolution);
       this.currentResolution = resolution;
@@ -47,7 +47,7 @@ export class ClusterStyle {
     return style;
   };
 
-  public selectStyleFunction = (feature: olFeature) => {
+  public selectStyleFunction = (feature: Feature) => {
     const invisibleFill = new FillStyle({ color: 'rgba(255, 255, 255, 0.01)' });
     const styles = [new Style({
       image: new CircleStyle({
@@ -74,21 +74,21 @@ export class ClusterStyle {
     for (let i = features.length - 1; i >= 0; i = i - 1) {
       feature = features[i];
       const originalFeatures = feature.get('features');
-      const extent = olExtent.createEmpty();
+      const extent = Extent.createEmpty();
       let j;
       let jj;
       // tslint:disable-next-line
       for (j = 0, jj = originalFeatures.length; j < jj; j = j + 1) {
-        olExtent.extend(extent, originalFeatures[j].getGeometry().getExtent());
+        Extent.extend(extent, originalFeatures[j].getGeometry().getExtent());
       }
       this.maxFeatureCount = Math.max(this.maxFeatureCount, jj);
-      radius = (olExtent.getWidth(extent) + olExtent.getHeight(extent)) * 0.25 /
+      radius = (Extent.getWidth(extent) + Extent.getHeight(extent)) * 0.25 /
           resolution;
       feature.set('radius', radius);
     }
   }
 
-  private createClusterStyle(feature: olFeature) {
+  private createClusterStyle(feature: Feature) {
     const clusterFill = new FillStyle({ color: 'rgba(255, 153, 0, 0.8)' });
     const clusterStroke = new StrokeStyle({ color: 'rgba(255, 204, 0, 0.2)', width: 1 });
     // 2012_Earthquakes_Mag5.kml stores the magnitude of each earthquake in a

@@ -2,16 +2,17 @@
 import * as React from 'react';
 
 // OpenLayers
-import olVector from 'ol/layer/vector';
-import olVectorSource from 'ol/source/vector';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
 
 // react-openlayers
 import { LayerType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
+import { Options } from 'ol/layer/BaseVector';
 
-export type VectorOptions = ol.olx.layer.VectorOptions;
-export interface VectorProps extends VectorOptions, LayerType<olVector> {
+
+export interface VectorProps extends Options, LayerType<VectorLayer> {
   onChange?: ReactOpenlayersEvent
   onChangeExtent?: ReactOpenlayersEvent
   onChangeMinResolution?: ReactOpenlayersEvent
@@ -46,11 +47,11 @@ export interface VectorEvents extends ReactOpenlayersEvents {
 export class Vector extends React.Component<VectorProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public layer: olVector;
+  public layer: VectorLayer;
 
   // Default options
-  public options: VectorOptions = {
-    source: new olVectorSource()
+  public options: Options = {
+    source: new VectorSource()
   }
 
   public events: VectorEvents = {
@@ -74,8 +75,8 @@ export class Vector extends React.Component<VectorProps> {
   }
 
   public componentDidMount() {
-    const options = Util.getOptions<VectorOptions, VectorProps>(this.options, this.props);
-    this.layer = new olVector(options);
+    const options = Util.getOptions(this.options, this.props);
+    this.layer = new VectorLayer(options);
     if (this.props.zIndex) {
       this.layer.setZIndex(this.props.zIndex);
     }
@@ -90,7 +91,7 @@ export class Vector extends React.Component<VectorProps> {
   }
 
   public componentWillReceiveProps(nextProps: VectorProps) {
-    const options = Util.getOptions<VectorOptions, VectorProps>(this.options, this.props);
+    const options = Util.getOptions<Options, VectorProps>(this.options, this.props);
 
     // Updating options first
     Object.keys(options).forEach((option: string) => {

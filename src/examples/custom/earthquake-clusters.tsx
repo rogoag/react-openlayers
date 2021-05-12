@@ -5,10 +5,11 @@ import { Divider, Typography } from "@material-ui/core";
 import KMLFormat from 'ol/format/kml';
 import ClusterSource from 'ol/source/cluster';
 import StamenSource from 'ol/source/stamen';
-import VectorSource from 'ol/source/vector';
+import VectorSource from 'ol/source/Vector';
+import MapBrowserEvent from 'ol/MapBrowserEvent';
 
 import {
-  custom, interaction, Interactions, layer, Layers, Map
+  custom, interaction, Interactions, layer, Layers, MapReact
 } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
@@ -27,7 +28,7 @@ const tileSource = new StamenSource({
   layer: 'toner'
 });
 
-const selectCondition = (evt: ol.MapBrowserEvent) => {
+const selectCondition = (evt: MapBrowserEvent) => {
   return evt.originalEvent.type === 'mousemove' ||
     evt.type === 'singleclick';
 };
@@ -41,19 +42,19 @@ export class EarthquakeClusters extends React.Component {
         <Typography variant="h4" paragraph>Earthquake clusters</Typography>
         <Typography variant="subtitle1">This example parses a KML file and renders the features as clusters on a vector layer. The styling in this example is quite involved. Single earthquake locations (rendered as stars) have a size relative to their magnitude. Clusters have an opacity relative to the number of features in the cluster, and a size that represents the extent of the features that make up the cluster. When clicking or hovering on a cluster, the individual features that make up the cluster will be shown.
         To achieve this, we make heavy use of style functions and <code>ol.style.Style#geometry.</code></Typography>
-        <Map view={{center: [0,0], zoom:2}}>
+        <MapReact view={{center: [0,0], zoom:2}}>
           <Interactions>
-            <interaction.Select
+            <interaction.SelectReact
              condition={selectCondition} 
              style={cluster.selectStyleFunction} />
           </Interactions>
           <Layers>
-            <layer.Tile source={tileSource}/>
+            <layer.TileReact source={tileSource}/>
             <layer.Vector 
               source={vectorSource} 
               style={cluster.vectorStyleFunction}/>
           </Layers>
-        </Map>
+        </MapReact>
         <br/>
         <Divider />
         <br/>

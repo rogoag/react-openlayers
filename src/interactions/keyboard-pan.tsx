@@ -1,13 +1,12 @@
 import * as React from 'react';
 
-import olKeyboardPan from 'ol/interaction/keyboardpan';
+import KeyboardPan, { Options } from 'ol/interaction/KeyboardPan';
 
 import { InteractionType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
-export type KeyboardPanOptions = ol.olx.interaction.KeyboardPanOptions;
-export interface KeyboardPanProps extends KeyboardPanOptions, InteractionType<olKeyboardPan> {
+export interface KeyboardPanProps extends Options, InteractionType<KeyboardPan> {
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
@@ -19,12 +18,12 @@ export interface KeyboardPanEvents extends ReactOpenlayersEvents {
   'propertychange': ReactOpenlayersEvent
 }
 
-export class KeyboardPan extends React.Component<KeyboardPanProps> {
+export class KeyboardPanReact extends React.Component<KeyboardPanProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: olKeyboardPan;
+  public interaction: KeyboardPan;
 
-  public options: KeyboardPanOptions = {
+  public options: Options = {
     condition: undefined,
     duration: undefined,
     pixelDelta: undefined
@@ -39,8 +38,8 @@ export class KeyboardPan extends React.Component<KeyboardPanProps> {
   public render() { return null; }
 
   public componentDidMount() {
-    const options = Util.getOptions<KeyboardPanOptions, KeyboardPanProps>(this.options, this.props);
-    this.interaction = new olKeyboardPan(options);
+    const options = Util.getOptions<Options, KeyboardPanProps>(this.options, this.props);
+    this.interaction = new KeyboardPan(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -54,8 +53,8 @@ export class KeyboardPan extends React.Component<KeyboardPanProps> {
   public componentWillReceiveProps(nextProps: KeyboardPanProps) {
     if (nextProps !== this.props) {
       this.context.map.removeInteraction(this.interaction);
-      const options = Util.getOptions<KeyboardPanOptions, KeyboardPanProps>(this.options, nextProps);
-      this.interaction = new olKeyboardPan(options);
+      const options = Util.getOptions<Options, KeyboardPanProps>(this.options, nextProps);
+      this.interaction = new KeyboardPan(options);
       this.context.map.addInteraction(this.interaction);
 
       this.initInteraction(nextProps);
