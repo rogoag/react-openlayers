@@ -1,4 +1,4 @@
 .openlayers-map {
-  height: 100vh;
+  height: 100vh - 48px;
   width: 100%;
 }
