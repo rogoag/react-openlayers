@@ -12,8 +12,8 @@ var config = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: "lib/[name].umd.js",
-    sourceMapFilename: "lib/[name].js.map",
+    filename: "[name].umd.js",
+    sourceMapFilename: "[name].js.map",
     libraryTarget: "umd"
   },
   optimization: {
@@ -29,7 +29,7 @@ var config = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json', '.css', '.html'],
     alias: {
-      'react-openlayers': path.join(__dirname, 'src', 'index.ts')
+      'react-openlayers': path.join(__dirname, 'src', 'index.tsx')
     },
   },
   module: {
