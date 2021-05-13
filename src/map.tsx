@@ -175,6 +175,7 @@ export class MapReact extends React.Component<MapProps> {
           className={(this.props.className || "openlayers-map")}
           ref={this.mapDiv}
           tabIndex={0}
+          style={this.props.style}
         >
           {this.props.children}
         </div>
