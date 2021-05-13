@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "OpenLayer React Components",
   "license": "MIT",
-  "main": "dist/lib/main.umd.js",
+  "main": "dist/main.umd.js",
   "module": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
