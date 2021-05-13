@@ -2,6 +2,7 @@ import { control, Controls } from './controls/index';
 import { custom } from './custom/index';
 import { interaction, Interactions } from './interactions/index';
 import { layer, Layers } from './layers/index';
+import { source } from './source/index';
 import { Overlay, Overlays } from './overlays';
 
 import { MapReact, MapContext } from './map';
@@ -19,6 +20,7 @@ export {
   custom,
   control,
   interaction,
+  source,
 
   //Objects
   MapReact,

@@ -3,7 +3,6 @@ import * as React from 'react';
 
 // OpenLayers
 import VectorLayer from 'ol/layer/Vector';
-import VectorSource from 'ol/source/Vector';
 
 // react-openlayers
 import { LayerType } from '.';
@@ -11,6 +10,9 @@ import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 import { Options } from 'ol/layer/BaseVector';
 
+
+export type VectorLayerContextType = VectorLayer | void;
+export const VectorLayerContext = React.createContext<VectorLayerContextType>(undefined);
 
 export interface VectorProps extends Options, LayerType<VectorLayer> {
   onChange?: ReactOpenlayersEvent
@@ -51,7 +53,7 @@ export class Vector extends React.Component<VectorProps> {
 
   // Default options
   public options: Options = {
-    source: new VectorSource()
+
   }
 
   public events: VectorEvents = {
@@ -71,7 +73,11 @@ export class Vector extends React.Component<VectorProps> {
   };
 
   public render() {
-    return null;
+    return (
+      <VectorLayerContext.Provider value={this.layer}>
+        {this.props.children}
+      </VectorLayerContext.Provider>
+    );
   }
 
   public componentDidMount() {
@@ -89,6 +95,7 @@ export class Vector extends React.Component<VectorProps> {
       this.layer.on(eventName, olEvents[eventName]);
     });
   }
+  
 
   public componentWillReceiveProps(nextProps: VectorProps) {
     const options = Util.getOptions<Options, VectorProps>(this.options, this.props);

@@ -2,16 +2,16 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
+
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
-import VectorSource from 'ol/source/Vector';
 
-import { custom, interaction, Interactions, layer, Layers, MapReact, Util } from "react-openlayers";
+
+import { custom, interaction, Interactions, layer, Layers, MapReact, Util, source } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
 const iconFeature = new Feature(new Point([0, 0]));
-const source = new VectorSource({features: [iconFeature]});
 const marker = new custom.style.MarkerStyle(
   'https://openlayers.org/en/v4.6.5/examples/data/icon.png'
 );
@@ -28,7 +28,9 @@ export class Select extends React.Component {
         <MapReact>
           <Layers>
             <layer.TileReact />
-            <layer.Vector source={source} style={marker.style} />
+            <layer.Vector style={marker.style}>
+              <source.VectorSourceReact features={[iconFeature]} />
+            </layer.Vector>
           </Layers>
           <Interactions>
             <interaction.SelectReact style={selectedMarkerStyle} />
