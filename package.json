@@ -4,7 +4,7 @@
   "description": "OpenLayer React Components",
   "license": "MIT",
   "main": "dist/lib/main.umd.js",
-  "module": "dist/lib/main.umd.js",
+  "module": "dist/index.d.ts",
   "typings": "dist/index.d.ts",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --port 9001 --content-base src/examples --config src/examples/webpack.config --open",
