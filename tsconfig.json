@@ -42,7 +42,7 @@
         "strict": false,
         "paths": {
             "react-openlayers": [
-                "./index"
+                "./dist/index"
             ]
         }
     },
