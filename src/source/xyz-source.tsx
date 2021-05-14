@@ -12,7 +12,7 @@ import Util, { ReactOpenlayersEvents } from '../util';
 
 
 export interface XYZProps extends Options, SourceType<XYZ> {
-  
+    
 };
 
 export interface XYZEvents extends ReactOpenlayersEvents {
@@ -22,11 +22,9 @@ export interface XYZEvents extends ReactOpenlayersEvents {
 export class XYZReact extends React.Component<XYZProps> {
   public static contextType: React.Context<TileLayerContextType> = TileLayerContext;
 
-  public source: XYZ;
-
   // Default options
   public options: Options = {
-    
+
   }
 
   public events: XYZEvents = {
@@ -66,6 +64,8 @@ export class XYZReact extends React.Component<XYZProps> {
         case 'renderBuffer': this.context.source.set('renderBuffer', newVal); break;
         case 'updateWhileAnimating': this.context.source.set('updateWhileAnimating', newVal); break;
         case 'updateWhileInteracting': this.context.source.set('updateWhileInteracting', newVal); break;
+        case 'url': this.context.source.setUrl(newVal); break;
+        case 'urls': this.context.source.setUrls(newVal); break;
         default:
       }
     });
