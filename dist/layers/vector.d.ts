@@ -4,6 +4,9 @@ import { LayerType } from '.';
 import { MapContextType } from '../map';
 import { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 import { Options } from 'ol/layer/BaseVector';
+import VectorSource from 'ol/source/Vector';
+export declare type VectorLayerContextType = Vector | void;
+export declare const VectorLayerContext: React.Context<VectorLayerContextType>;
 export interface VectorProps extends Options, LayerType<VectorLayer> {
     onChange?: ReactOpenlayersEvent;
     onChangeExtent?: ReactOpenlayersEvent;
@@ -37,9 +40,10 @@ export interface VectorEvents extends ReactOpenlayersEvents {
 export declare class Vector extends React.Component<VectorProps> {
     static contextType: React.Context<MapContextType>;
     layer: VectorLayer;
+    source: VectorSource;
     options: Options;
     events: VectorEvents;
-    render(): null;
+    render(): JSX.Element;
     componentDidMount(): void;
     componentWillReceiveProps(nextProps: VectorProps): void;
     componentWillUnmount(): void;

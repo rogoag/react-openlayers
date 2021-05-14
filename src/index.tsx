@@ -1,5 +1,6 @@
 import { control, Controls } from './controls/index';
 import { custom } from './custom/index';
+import { feature } from './features/index';
 import { interaction, Interactions } from './interactions/index';
 import { layer, Layers } from './layers/index';
 import { source } from './source/index';
@@ -21,6 +22,7 @@ export {
   control,
   interaction,
   source,
+  feature,
 
   //Objects
   MapReact,

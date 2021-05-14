@@ -9,7 +9,10 @@ import { Options } from 'ol/layer/BaseTile';
 import VectorSource from 'ol/source/Vector';
 
 import XYZ from 'ol/source/XYZ';
+import OSM from 'ol/source/osm';
 
+export type TileLayerContextType = TileReact | void;
+export const TileLayerContext = React.createContext<TileLayerContextType>(undefined);
 
 export interface TileProps extends Omit<Options, 'source'>, LayerType<Tile> {
   source?: Options['source']
@@ -50,12 +53,10 @@ export class TileReact extends React.Component<TileProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
   public layer: Tile;
+  public source: XYZ | OSM;
 
   public options: Options = {
-    source: new XYZ({
-      attributions: '© Google',
-      url: 'https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga'
-    })
+
   };
 
   public events: TileEvents = {
@@ -76,12 +77,16 @@ export class TileReact extends React.Component<TileProps> {
   };
 
   public render() {
-    return null;
+    return (
+      <TileLayerContext.Provider value={this}>
+        {this.props.children}
+      </TileLayerContext.Provider>
+    )
   }
 
   public componentDidMount () {
     const options = Util.getOptions<Options, TileProps>(this.options, this.props);
-    this.layer = new Tile(options);
+    this.layer = new Tile({...options, source: this.source});
     if (this.props.zIndex){
       this.layer.setZIndex(this.props.zIndex);
     }
@@ -99,6 +104,7 @@ export class TileReact extends React.Component<TileProps> {
 
   public componentWillReceiveProps(nextProps: TileProps) {
     const options = Util.getOptions<Options, TileProps>(this.options, this.props);
+    console.log('OPTIONS', options)
 
     // Updating options first
     Object.keys(options).forEach((option: string) => {

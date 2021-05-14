@@ -2,38 +2,44 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-
-import Feature from 'ol/Feature';
-import Point from 'ol/geom/Point';
-
-
-import { custom, interaction, Interactions, layer, Layers, MapReact, Util, source } from "react-openlayers";
+import { interaction, Interactions, layer, Layers, MapReact, source, custom } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
-const iconFeature = new Feature(new Point([0, 0]));
-const marker = new custom.style.MarkerStyle(
-  'https://openlayers.org/en/v4.6.5/examples/data/icon.png'
-);
-marker.style.getImage().setOpacity(0.5);
-
-const selectedMarkerStyle = Util.cloneStyle(marker.style);
-selectedMarkerStyle.getImage().setScale(4);
+export type SelectState = {
+  active: boolean
+}
 
 export class Select extends React.Component {
+  public state: SelectState;
+  constructor(props: {}) {
+    super(props)
+
+    this.state = {
+      active: true
+    }
+  }
+
+  componentDidMount() {
+    setTimeout(() => this.setState({ active: false}), 2500);
+  }
+
   public render() {
     return (
       <div>
         <Typography variant="h4" paragraph>Select interaction</Typography>
-        <MapReact>
+        <MapReact view={{zoom: 5, projection: 'EPSG:4326'}}>
           <Layers>
-            <layer.TileReact />
-            <layer.Vector style={marker.style}>
-              <source.VectorSourceReact features={[iconFeature]} />
-            </layer.Vector>
+            <layer.TileReact>
+              <source.XYZReact 
+                url={'https://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}&s=Ga'} 
+                attributions={'@ Google'}
+              />
+            </layer.TileReact>
+            <custom.GeolocationReact tracking={true} />
           </Layers>
           <Interactions>
-            <interaction.SelectReact style={selectedMarkerStyle} />
+            <interaction.SelectReact />
           </Interactions>
         </MapReact>
         <br/>

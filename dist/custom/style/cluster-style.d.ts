@@ -6,8 +6,8 @@ export declare class ClusterStyle {
     currentResolution: number;
     source: VectorSource;
     constructor(vectorSource: VectorSource);
-    vectorStyleFunction: (feature: Feature<import("ol/geom/Geometry").default>, resolution: number) => Style;
-    selectStyleFunction: (feature: Feature<import("ol/geom/Geometry").default>) => Style[];
+    vectorStyleFunction: (feature: Feature<import("ol/geom").Geometry>, resolution: number) => Style;
+    selectStyleFunction: (feature: Feature<import("ol/geom").Geometry>) => Style[];
     private calculateClusterInfo;
     private createClusterStyle;
 }

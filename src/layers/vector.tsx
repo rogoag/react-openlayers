@@ -9,9 +9,10 @@ import { LayerType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 import { Options } from 'ol/layer/BaseVector';
+import VectorSource from 'ol/source/Vector';
 
 
-export type VectorLayerContextType = VectorLayer | void;
+export type VectorLayerContextType = Vector | void;
 export const VectorLayerContext = React.createContext<VectorLayerContextType>(undefined);
 
 export interface VectorProps extends Options, LayerType<VectorLayer> {
@@ -50,6 +51,7 @@ export class Vector extends React.Component<VectorProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
   public layer: VectorLayer;
+  public source: VectorSource;
 
   // Default options
   public options: Options = {
@@ -74,7 +76,7 @@ export class Vector extends React.Component<VectorProps> {
 
   public render() {
     return (
-      <VectorLayerContext.Provider value={this.layer}>
+      <VectorLayerContext.Provider value={this}>
         {this.props.children}
       </VectorLayerContext.Provider>
     );
@@ -82,7 +84,7 @@ export class Vector extends React.Component<VectorProps> {
 
   public componentDidMount() {
     const options = Util.getOptions(this.options, this.props);
-    this.layer = new VectorLayer(options);
+    this.layer = new VectorLayer({...options, source: this.source});
     if (this.props.zIndex) {
       this.layer.setZIndex(this.props.zIndex);
     }

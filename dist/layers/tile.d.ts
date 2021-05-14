@@ -4,6 +4,10 @@ import { LayerType } from '.';
 import { MapContextType } from '../map';
 import { Omit, ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 import { Options } from 'ol/layer/BaseTile';
+import XYZ from 'ol/source/XYZ';
+import OSM from 'ol/source/osm';
+export declare type TileLayerContextType = TileReact | void;
+export declare const TileLayerContext: React.Context<TileLayerContextType>;
 export interface TileProps extends Omit<Options, 'source'>, LayerType<Tile> {
     source?: Options['source'];
     onChange?: ReactOpenlayersEvent;
@@ -40,9 +44,10 @@ export interface TileEvents extends ReactOpenlayersEvents {
 export declare class TileReact extends React.Component<TileProps> {
     static contextType: React.Context<MapContextType>;
     layer: Tile;
+    source: XYZ | OSM;
     options: Options;
     events: TileEvents;
-    render(): null;
+    render(): JSX.Element;
     componentDidMount(): void;
     componentWillReceiveProps(nextProps: TileProps): void;
     componentWillUnmount(): void;

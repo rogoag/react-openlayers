@@ -155,7 +155,7 @@ export class MapReact extends React.Component<MapProps> {
       this.map.on(eventName, olEvents[eventName]);
     })
 
-    console.log(this.map)
+    console.log(this.map.getLayers())
   }
 
   public componentWillReceiveProps(nextProps: MapProps) {

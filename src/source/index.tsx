@@ -1,13 +1,14 @@
 import { VectorSourceReact } from './vector-source';
-import VectorSource from 'ol/source/Vector';
+import { XYZReact } from './xyz-source';
+import Source from 'ol/source/Source';
 
-export interface SourceType<T extends VectorSource> {
+export interface SourceType<T extends Source> {
   sourceRef?(source:T):void
 }
 
 const source = {
     VectorSourceReact,
-    VectorSource,
+    XYZReact
 }
 
 export { 
