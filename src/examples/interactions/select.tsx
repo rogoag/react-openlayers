@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import { interaction, Interactions, layer, Layers, MapReact, source, custom } from "react-openlayers";
+import { interaction, Interactions, layer, Layers, MapReact, source, custom, feature } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 
@@ -28,7 +28,7 @@ export class Select extends React.Component {
     return (
       <div>
         <Typography variant="h4" paragraph>Select interaction</Typography>
-        <MapReact view={{zoom: 5, projection: 'EPSG:4326'}}>
+        <MapReact view={{projection: 'EPSG:4326', center: [-87.06136985536766, 40.74069077828139], zoom: 18}}>
           <Layers>
             <layer.TileReact>
               <source.XYZReact 
@@ -36,7 +36,15 @@ export class Select extends React.Component {
                 attributions={'@ Google'}
               />
             </layer.TileReact>
-            <custom.GeolocationReact tracking={true} />
+            <layer.Vector>
+              <source.VectorSourceReact>
+                <feature.LineStringReact 
+                  coordinates={this.state.active ? [[-87.06136985536766, 40.74069077828139],[-87.06194122652191, 40.740451986556394]] : [[-87.06136985536766, 40.74069077828139],[-87.06194122652191, 40.740451986556394]]} 
+                  strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
+                />
+              </source.VectorSourceReact>
+            </layer.Vector>
+            <custom.GeolocationReact tracking={false} />
           </Layers>
           <Interactions>
             <interaction.SelectReact />

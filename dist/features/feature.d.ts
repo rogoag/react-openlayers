@@ -3,11 +3,11 @@ import { Polygon, LineString, LinearRing, Point, MultiPolygon, MultiPoint, Circl
 import { VectorSourceContextType } from '../source/vector-source';
 import Feature from 'ol/Feature';
 import Style from 'ol/style/Style';
-import Fill, { Options as FillOptions } from 'ol/style/Fill';
-import Stroke, { Options as StrokeOptions } from 'ol/style/Stroke';
-import Icon, { Options as IconOptions } from 'ol/style/icon';
-import CircleStyle, { Options as CircleOptions } from 'ol/style/circle';
-import Text, { Options as TextOptions } from 'ol/style/Text';
+import { Options as FillOptions } from 'ol/style/Fill';
+import { Options as StrokeOptions } from 'ol/style/Stroke';
+import { Options as IconOptions } from 'ol/style/icon';
+import { Options as CircleOptions } from 'ol/style/circle';
+import { Options as TextOptions } from 'ol/style/Text';
 export interface FeatureProps {
     fillOptions?: FillOptions;
     strokeOptions?: StrokeOptions;
@@ -20,14 +20,14 @@ export declare class FeatureReact<T extends FeatureProps> extends React.Componen
     feature: Feature;
     geometry: Polygon | LineString | LinearRing | Point | MultiPolygon | MultiPoint | Circle | MultiLineString;
     style: Style;
-    fill: Fill | undefined;
-    stroke: Stroke | undefined;
-    icon: Icon | undefined;
-    text: Text | undefined;
-    circle: CircleStyle | undefined;
-    createStyle(props: FeatureProps): void;
+    updateFill(fillOptions: FillOptions): void;
+    updateStroke(strokeOptions: StrokeOptions): void;
+    updateIcon(iconOptions: IconOptions): void;
+    updateText(textOptions: TextOptions): void;
+    updateCircle(circleOptions: CircleOptions): void;
+    updateStyle(props: FeatureProps): void;
     componentDidMount(): void;
-    componentWillReceiveProps(nextProps: FeatureProps): void;
+    handleStyleUpdates(prop: string, nextProps: FeatureProps): void;
     componentWillUnmount(): void;
     render(): null;
 }
