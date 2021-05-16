@@ -4,7 +4,7 @@ import Interaction from 'ol/interaction/Interaction';
 import Layer from 'ol/layer/Layer';
 import Map from 'ol/Map';
 import Overlay from 'ol/Overlay';
-import View, { ViewOptions } from 'ol/View';
+import { ViewOptions } from 'ol/View';
 import MapBrowserEvent from 'ol/MapBrowserEvent';
 import MapEvent from 'ol/MapEvent';
 import Event from 'ol/render/Event';
@@ -15,7 +15,7 @@ import 'ol/ol.css';
 export declare type MapContextType = MapReact | void;
 export declare const MapContext: React.Context<MapContextType>;
 export interface MapProps extends Omit<MapOptions, 'view'> {
-    view?: ViewOptions | View;
+    view?: ViewOptions;
     className?: string;
     style?: React.CSSProperties;
     onChange?: ReactOpenlayersEvent;

@@ -26,7 +26,7 @@ export const MapContext = React.createContext<MapContextType>(undefined);
 
 
 export interface MapProps extends Omit<MapOptions, 'view'> {
-  view?: ViewOptions | View
+  view?: ViewOptions
   className?: string
   style?: React.CSSProperties
   onChange?: ReactOpenlayersEvent
@@ -154,8 +154,6 @@ export class MapReact extends React.Component<MapProps> {
     Object.keys(olEvents).forEach((eventName: string) => {
       this.map.on(eventName, olEvents[eventName]);
     })
-
-    console.log(this.map.getLayers())
   }
 
   public componentWillReceiveProps(nextProps: MapProps) {
@@ -202,9 +200,15 @@ export class MapReact extends React.Component<MapProps> {
     const view = this.map.getView();
 
     if (props.view && !(props.view instanceof View)) {
-      if (props.view.center !== undefined) view.setCenter(props.view.center);
-      if (props.view.zoom !== undefined) view.setZoom(props.view.zoom);
-      if (props.view.resolution !== undefined) view.setResolution(props.view.resolution)
+      if ((props.view.center !== undefined) && ((this.props && this.props.view && this.props.view.center && JSON.stringify(this.props.view.center) !== JSON.stringify(props.view.center) || (!this.props.view) || (!this.props.view.center)))) {
+        view.setCenter(props.view.center);
+      }
+      if ((props.view.zoom !== undefined) && ((this.props.view && props.view.zoom !== this.props.view.zoom) || !this.props.view)) {
+        view.setZoom(props.view.zoom);
+      }
+      if ((props.view.resolution !== undefined) && ((this.props.view && props.view.resolution !== this.props.view.resolution) || !this.props.view)) {
+        view.setResolution(props.view.resolution);
+      }
     }
   }
 }
