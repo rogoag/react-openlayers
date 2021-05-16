@@ -16,6 +16,7 @@ export interface FeatureProps {
   iconOptions?: IconOptions,
   textOptions?: TextOptions,
   circleOptions?: CircleOptions,
+  zIndex?: number,
 }
 
 export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}> {
@@ -44,6 +45,10 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
   updateCircle(circleOptions: CircleOptions) {
     this.style.setImage(new CircleStyle(circleOptions));
   }
+
+  updateZindex(zIndex: number) {
+    this.style.setZIndex(zIndex);
+  }
   
   updateStyle(props: FeatureProps): void {
     if(props.fillOptions && !props.circleOptions) {
@@ -63,17 +68,17 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
     if(props.iconOptions) {
       this.updateIcon(props.iconOptions);
     }
+    if(props.zIndex) {
+      this.updateZindex(props.zIndex);
+    }
   }
 
   public componentDidMount() {
-    console.log(this.context)
     this.feature = new Feature({geometry: this.geometry});
     this.style = new Style();
     this.updateStyle(this.props);
     this.feature.setStyle(this.style);
     this.context.features.push(this.feature);
-    console.log(this.feature)
-    console.log(this.context.features)
   }
 
   handleStyleUpdates(prop: string, nextProps: FeatureProps) {
@@ -85,6 +90,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
       case 'iconOptions': this.updateIcon(newVal); break;
       case 'textOptions': this.updateText(newVal); break;
       case 'circleOptions': this.updateText(newVal); break;
+      case 'zIndex': this.updateZindex(newVal); break;
     }
     this.feature.changed();
   }

@@ -14,6 +14,7 @@ export interface FeatureProps {
     iconOptions?: IconOptions;
     textOptions?: TextOptions;
     circleOptions?: CircleOptions;
+    zIndex?: number;
 }
 export declare class FeatureReact<T extends FeatureProps> extends React.Component<T, {}> {
     static contextType: React.Context<VectorSourceContextType>;
@@ -25,6 +26,7 @@ export declare class FeatureReact<T extends FeatureProps> extends React.Componen
     updateIcon(iconOptions: IconOptions): void;
     updateText(textOptions: TextOptions): void;
     updateCircle(circleOptions: CircleOptions): void;
+    updateZindex(zIndex: number): void;
     updateStyle(props: FeatureProps): void;
     componentDidMount(): void;
     handleStyleUpdates(prop: string, nextProps: FeatureProps): void;
