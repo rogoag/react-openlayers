@@ -51,6 +51,14 @@ export class GeolocationReact extends React.Component<GeolocationProps> {
     });
   }
 
+  componentWillReceiveProps(nextProps: GeolocationProps) {
+    if(nextProps.tracking && nextProps.tracking !== this.props.tracking && this.state.location) {
+      const view = this.context.map.getView();
+      view.setCenter(this.state.location);
+      view.setZoom(20);
+    }
+  }
+
   public componentWillUnmount() {
     this.geolocation.setTracking(false);
   }

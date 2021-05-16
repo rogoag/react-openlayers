@@ -13,6 +13,7 @@ export declare class GeolocationReact extends React.Component<GeolocationProps> 
     private geolocation;
     constructor(props: GeolocationProps);
     componentDidMount(): void;
+    componentWillReceiveProps(nextProps: GeolocationProps): void;
     componentWillUnmount(): void;
     render(): JSX.Element;
 }

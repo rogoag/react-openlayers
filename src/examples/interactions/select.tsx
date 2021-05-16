@@ -44,7 +44,7 @@ export class Select extends React.Component {
                 />
               </source.VectorSourceReact>
             </layer.Vector>
-            <custom.GeolocationReact tracking={false} />
+            <custom.GeolocationReact tracking={true} />
           </Layers>
           <Interactions>
             <interaction.SelectReact />
