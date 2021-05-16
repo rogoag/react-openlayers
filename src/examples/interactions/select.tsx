@@ -21,7 +21,7 @@ export class Select extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => this.setState({ active: false}), 2500);
+    setTimeout(() => this.setState({ active: false}), 5000);
   }
 
   public render() {
@@ -36,15 +36,17 @@ export class Select extends React.Component {
                 attributions={'@ Google'}
               />
             </layer.TileReact>
-            <layer.Vector>
-              <source.VectorSourceReact>
-                <feature.LineStringReact 
-                  coordinates={this.state.active ? [[-87.06136985536766, 40.74069077828139],[-87.06194122652191, 40.740451986556394]] : [[-87.06136985536766, 40.74069077828139],[-87.06194122652191, 40.740451986556394]]} 
-                  strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
-                />
-              </source.VectorSourceReact>
-            </layer.Vector>
-            <custom.GeolocationReact tracking={true} />
+            {!this.state.active && (
+              <layer.Vector>
+                <source.VectorSourceReact>
+                  <feature.LineStringReact 
+                    coordinates={[[-87.06136985536766, 40.74069077828139],[-87.06194122652191, 40.740451986556394]]} 
+                    strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
+                  />
+                </source.VectorSourceReact>
+              </layer.Vector>
+            )}
+            <custom.GeolocationReact tracking={false} />
           </Layers>
           <Interactions>
             <interaction.SelectReact />

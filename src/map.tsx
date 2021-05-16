@@ -12,6 +12,7 @@ import MapBrowserEvent from 'ol/MapBrowserEvent';
 import MapEvent from 'ol/MapEvent';
 import Event from 'ol/render/Event';
 import { MapOptions } from 'ol/PluggableMap';
+import Collection from 'ol/Collection';
 
 import Util, { Omit, ReactOpenlayersEvent, ReactOpenlayersEvents } from './util';
 
@@ -86,7 +87,7 @@ export class MapReact extends React.Component<MapProps> {
   public map: Map;
   public mapDiv: React.RefObject<HTMLDivElement>;
 
-  public layers: Layer[] = [];
+  public layers: Collection<Layer> = new Collection([]);
   public interactions: Interaction[] = [];
   public controls: Control[] = [];
   public overlays: Overlay[] = [];
@@ -140,6 +141,7 @@ export class MapReact extends React.Component<MapProps> {
     options.layers = this.layers;
     options.overlays = this.overlays;
     this.map = new Map(options);
+    console.log(this.map.getLayers())
     if (this.props.target) {
       this.map.setTarget(this.props.target);
     } else if (this.mapDiv.current) {

@@ -9,6 +9,7 @@ import MapBrowserEvent from 'ol/MapBrowserEvent';
 import MapEvent from 'ol/MapEvent';
 import Event from 'ol/render/Event';
 import { MapOptions } from 'ol/PluggableMap';
+import Collection from 'ol/Collection';
 import { Omit, ReactOpenlayersEvent, ReactOpenlayersEvents } from './util';
 import './map.css';
 import 'ol/ol.css';
@@ -71,7 +72,7 @@ export interface MapEvents extends ReactOpenlayersEvents {
 export declare class MapReact extends React.Component<MapProps> {
     map: Map;
     mapDiv: React.RefObject<HTMLDivElement>;
-    layers: Layer[];
+    layers: Collection<Layer>;
     interactions: Interaction[];
     controls: Control[];
     overlays: Overlay[];
