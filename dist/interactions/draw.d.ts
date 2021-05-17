@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Draw, { Options } from 'ol/interaction/Draw';
 import { InteractionType } from '.';
-import { MapContextType } from '../map';
+import { VectorSourceContextType } from '../source/vector-source';
 import { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 export interface DrawProps extends Options, InteractionType<Draw> {
     onChange?: ReactOpenlayersEvent;
@@ -18,7 +18,7 @@ export interface DrawEvents extends ReactOpenlayersEvents {
     'propertychange': ReactOpenlayersEvent;
 }
 export declare class DrawReact extends React.Component<DrawProps> {
-    static contextType: React.Context<MapContextType>;
+    static contextType: React.Context<VectorSourceContextType>;
     interaction: Draw;
     options: Options;
     events: DrawEvents;

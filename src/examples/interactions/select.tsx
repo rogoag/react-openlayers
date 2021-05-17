@@ -7,6 +7,7 @@ import { interaction, layer, Layers, MapReact, source, custom, feature } from "r
 import Highlighter from "../Highlighter";
 import { Feature } from "ol";
 import { Geometry } from "ol/geom";
+import GeometryType from 'ol/geom/GeometryType';
 import Collection from 'ol/Collection';
 
 export type SelectState = {
@@ -59,6 +60,7 @@ export class Select extends React.Component {
                       features={this.state.selectedFeatures}
                     />
                   )}
+                  <interaction.DrawReact type={GeometryType.POINT} onDrawend={(event) => { console.log(event) }} />
                 </source.VectorSourceReact>
               </layer.Vector>
             <custom.GeolocationReact tracking={false} />

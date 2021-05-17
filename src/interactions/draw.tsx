@@ -4,7 +4,7 @@ import Draw, { Options } from 'ol/interaction/Draw';
 import GeometryType from 'ol/geom/GeometryType';
 
 import { InteractionType } from '.';
-import { MapContext, MapContextType } from '../map';
+import { VectorSourceContext, VectorSourceContextType } from '../source/vector-source';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
 export interface DrawProps extends Options, InteractionType<Draw> {
@@ -24,14 +24,13 @@ export interface DrawEvents extends ReactOpenlayersEvents {
 }
 
 export class DrawReact extends React.Component<DrawProps> {
-  public static contextType: React.Context<MapContextType> = MapContext;
+  public static contextType: React.Context<VectorSourceContextType> = VectorSourceContext;
 
   public interaction: Draw;
 
   public options: Options = {
     clickTolerance: undefined,
     features: undefined,
-    source: undefined,
     snapTolerance: undefined,
     type: GeometryType.POINT,
     maxPoints: undefined,
@@ -58,8 +57,9 @@ export class DrawReact extends React.Component<DrawProps> {
 
   public componentDidMount() {
     const options = Util.getOptions<Options, DrawProps>(this.options, this.props);
+    options.source = this.context.source;
     this.interaction = new Draw(options);
-    this.context.interactions.push(this.interaction);
+    this.context.context.context.interactions.push(this.interaction);
 
     this.initInteraction(this.props);
 
@@ -71,10 +71,11 @@ export class DrawReact extends React.Component<DrawProps> {
 
   public componentWillReceiveProps(nextProps: DrawProps) {
     if (nextProps !== this.props) {
-      this.context.map.removeInteraction(this.interaction);
+      this.context.context.context.interactions.remove(this.interaction);
       const options = Util.getOptions<Options, DrawProps>(this.options, nextProps);
+      options.source = this.context.source;
       this.interaction = new Draw(options);
-      this.context.map.addInteraction(this.interaction);
+      this.context.context.context.interactions.push(this.interaction);
 
       this.initInteraction(nextProps);
 
@@ -86,7 +87,7 @@ export class DrawReact extends React.Component<DrawProps> {
   }
 
   public componentWillUnmount() {
-    this.context.map.removeInteraction(this.interaction);
+    this.context.context.context.interactions.remove(this.interaction);
   }
 
   private initInteraction(props: DrawProps) {
