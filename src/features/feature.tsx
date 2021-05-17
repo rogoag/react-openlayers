@@ -8,6 +8,7 @@ import Stroke, { Options as StrokeOptions } from 'ol/style/Stroke';
 import Icon, { Options as IconOptions } from 'ol/style/icon';
 import CircleStyle from 'ol/style/circle';
 import Text, { Options as TextOptions } from 'ol/style/Text';
+import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
 
 /* This is a bit hacky */
@@ -18,7 +19,16 @@ interface CircleOptions {
   displacement?: number[];
 }
 
+export interface FeatureEvents extends ReactOpenlayersEvents {
+  'change:geometry': ReactOpenlayersEvent,
+  'change': ReactOpenlayersEvent,
+  'propertychange': ReactOpenlayersEvent
+};
+
 export interface FeatureProps {
+  onChange?: ReactOpenlayersEvent
+  onChangeGeometry?: ReactOpenlayersEvent,
+  onPropertyChange?: ReactOpenlayersEvent,
   fillOptions?: FillOptions,
   strokeOptions?: StrokeOptions,
   iconOptions?: IconOptions,
@@ -34,6 +44,12 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
   public feature: Feature;
   public geometry: Polygon | LineString | LinearRing | Point | MultiPolygon | MultiPoint | Circle | MultiLineString;
   public style: Style;
+
+  public events: FeatureEvents = {
+    'change:geometry': undefined,
+    'change': undefined,
+    'propertychange': undefined
+  };
 
   updateFill(fillOptions: FillOptions) {
     this.style.setFill(new Fill(fillOptions));
@@ -102,6 +118,11 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
     this.updateStyle(this.props);
     this.feature.setStyle(this.style);
     this.context.features.push(this.feature);
+
+    const olEvents = Util.getEvents(this.events, this.props);
+    Object.keys(olEvents).forEach((eventName: string) => {
+      this.feature.on(eventName, olEvents[eventName]);
+    });
   }
 
   handleStyleUpdates(prop: string, nextProps: FeatureProps) {
