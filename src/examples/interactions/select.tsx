@@ -50,13 +50,8 @@ export class Select extends React.Component {
                     coordinates={[[-87.05136985536766, 40.74079077828139],[-87.06194122652191, 40.740451986556394]]} 
                     strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
                   />
-                  <interaction.SelectReact 
-                    style={undefined}
-                    onSelect={(event) => {
-                      if(event.target) {
-                        console.log('poop', event)
-                      }
-                    }} 
+                  <interaction.ModifyReact 
+                    onModifyend={(event) => {console.log(event)}}
                   />
                 </source.VectorSourceReact>
               </layer.Vector>

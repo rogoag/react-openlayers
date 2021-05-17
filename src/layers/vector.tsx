@@ -138,7 +138,6 @@ export class Vector extends React.Component<VectorProps> {
 
   public componentWillUnmount() {
     this.context.map.removeLayer(this.layer);
-    console.log(this.context.map)
   }
 
 }

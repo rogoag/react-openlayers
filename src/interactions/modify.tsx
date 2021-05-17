@@ -3,7 +3,7 @@ import * as React from 'react';
 import Modify, { Options } from 'ol/interaction/Modify';
 
 import { InteractionType } from '.';
-import { MapContext, MapContextType } from '../map';
+import { VectorSourceContext, VectorSourceContextType } from '../source/vector-source';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
 export interface ModifyProps extends Options, InteractionType<Modify> {
@@ -23,7 +23,7 @@ export interface ModifyEvents extends ReactOpenlayersEvents {
 };
 
 export class ModifyReact extends React.Component<ModifyProps> {
-  public static contextType: React.Context<MapContextType> = MapContext;
+  public static contextType: React.Context<VectorSourceContextType> = VectorSourceContext;
 
   public interaction: Modify;
 
@@ -32,7 +32,6 @@ export class ModifyReact extends React.Component<ModifyProps> {
     deleteCondition: undefined,
     pixelTolerance: undefined,
     style: undefined,
-    features: undefined,
     wrapX: undefined
   };
 
@@ -48,8 +47,10 @@ export class ModifyReact extends React.Component<ModifyProps> {
 
   public componentDidMount() {
     const options = Util.getOptions<Options, ModifyProps>(this.options, this.props);
+    options.features = this.context.features;
+    console.log('FEATURES', this.context.features);
     this.interaction = new Modify(options);
-    this.context.interactions.push(this.interaction);
+    this.context.context.context.interactions.push(this.interaction);
 
     this.initInteraction(this.props);
 
@@ -61,10 +62,12 @@ export class ModifyReact extends React.Component<ModifyProps> {
 
   public componentWillReceiveProps(nextProps: ModifyProps) {
     if (nextProps !== this.props) {
-      this.context.map.removeInteraction(this.interaction);
+      console.log(this.context.context)
+      this.context.context.context.interactions.remove(this.interaction);
       const options = Util.getOptions<Options, ModifyProps>(this.options, nextProps);
+      options.features = this.context.features;
       this.interaction = new Modify(options);
-      this.context.map.addInteraction(this.interaction);
+      this.context.context.context.interactions.push(this.interaction);
 
       this.initInteraction(nextProps);
 
@@ -76,7 +79,7 @@ export class ModifyReact extends React.Component<ModifyProps> {
   }
 
   public componentWillUnmount() {
-    this.context.map.removeInteraction(this.interaction);
+    this.context.context.context.interactions.remove(this.interaction);
   }
 
   private initInteraction(props: ModifyProps) {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Modify, { Options } from 'ol/interaction/Modify';
 import { InteractionType } from '.';
-import { MapContextType } from '../map';
+import { VectorSourceContextType } from '../source/vector-source';
 import { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 export interface ModifyProps extends Options, InteractionType<Modify> {
     onChange?: ReactOpenlayersEvent;
@@ -18,7 +18,7 @@ export interface ModifyEvents extends ReactOpenlayersEvents {
     'propertychange': ReactOpenlayersEvent;
 }
 export declare class ModifyReact extends React.Component<ModifyProps> {
-    static contextType: React.Context<MapContextType>;
+    static contextType: React.Context<VectorSourceContextType>;
     interaction: Modify;
     options: Options;
     events: ModifyEvents;
