@@ -75,7 +75,6 @@ export class ModifyReact extends React.Component<ModifyProps> {
   }
 
   public componentWillUnmount() {
-    console.log('UNMOUNT', this.context.context.context.interactions);
     this.context.context.context.interactions.remove(this.interaction);
   }
 

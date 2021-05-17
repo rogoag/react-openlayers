@@ -54,8 +54,6 @@ export class SelectReact extends React.Component<SelectProps> {
       const options = Util.getOptions<Options, SelectProps>(this.options, this.props);
       this.interaction = new Select(options);
     }
-    console.log('INTERACTION', this.interaction)
-    console.log('CONTEXT', this.context.context.context)
     this.context.context.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
@@ -88,7 +86,7 @@ export class SelectReact extends React.Component<SelectProps> {
   }
 
   public componentWillUnmount() {
-    this.context.context.context.interactions.push(this.interaction);
+    this.context.context.context.interactions.remove(this.interaction);
   }
 
   private initInteraction(props: SelectProps) {
