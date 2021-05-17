@@ -3,11 +3,16 @@ import { Polygon, LineString, LinearRing, Point, MultiPolygon, MultiPoint, Circl
 import { VectorSourceContextType } from '../source/vector-source';
 import Feature from 'ol/Feature';
 import Style from 'ol/style/Style';
-import { Options as FillOptions } from 'ol/style/Fill';
-import { Options as StrokeOptions } from 'ol/style/Stroke';
+import Fill, { Options as FillOptions } from 'ol/style/Fill';
+import Stroke, { Options as StrokeOptions } from 'ol/style/Stroke';
 import { Options as IconOptions } from 'ol/style/icon';
-import { Options as CircleOptions } from 'ol/style/circle';
 import { Options as TextOptions } from 'ol/style/Text';
+interface CircleOptions {
+    fillOptions?: FillOptions | Fill;
+    radius: number;
+    strokeOptions?: StrokeOptions | Stroke;
+    displacement?: number[];
+}
 export interface FeatureProps {
     fillOptions?: FillOptions;
     strokeOptions?: StrokeOptions;
@@ -34,3 +39,4 @@ export declare class FeatureReact<T extends FeatureProps> extends React.Componen
     componentWillUnmount(): void;
     render(): null;
 }
+export {};

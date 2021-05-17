@@ -6,9 +6,17 @@ import Style from 'ol/style/Style';
 import Fill, { Options as FillOptions } from 'ol/style/Fill';
 import Stroke, { Options as StrokeOptions } from 'ol/style/Stroke';
 import Icon, { Options as IconOptions } from 'ol/style/icon';
-import CircleStyle, { Options as CircleOptions } from 'ol/style/circle';
+import CircleStyle from 'ol/style/circle';
 import Text, { Options as TextOptions } from 'ol/style/Text';
 
+
+/* This is a bit hacky */
+interface CircleOptions {
+  fillOptions?: FillOptions | Fill;
+  radius: number;
+  strokeOptions?: StrokeOptions | Stroke;
+  displacement?: number[];
+}
 
 export interface FeatureProps {
   fillOptions?: FillOptions,
@@ -44,7 +52,20 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
   }
 
   updateCircle(circleOptions: CircleOptions) {
-    this.style.setImage(new CircleStyle(circleOptions));
+    if(circleOptions.fillOptions) {
+      circleOptions.fillOptions = new Fill((circleOptions.fillOptions as FillOptions));
+    }
+    if(circleOptions.strokeOptions) {
+      circleOptions.strokeOptions = new Stroke((circleOptions.strokeOptions as StrokeOptions));
+    }
+    this.style.setImage(
+      new CircleStyle({
+        radius: circleOptions.radius, 
+        fill: circleOptions.fillOptions, 
+        stroke: circleOptions.strokeOptions, 
+        displacement: circleOptions.displacement
+      })
+    );
   }
 
   updateZindex(zIndex: number) {
@@ -58,9 +79,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
     if(props.strokeOptions && !props.circleOptions) {
       this.updateStroke(props.strokeOptions);
     }
-    if(props.circleOptions && props.fillOptions) {
-      props.circleOptions.fill = new Fill(props.fillOptions)
-      props.circleOptions.stroke = new Stroke(props.strokeOptions);
+    if(props.circleOptions) {
       this.updateCircle(props.circleOptions);
     }
     if(props.textOptions) {
@@ -93,7 +112,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
       case 'strokeOptions': this.updateStroke(newVal); break;
       case 'iconOptions': this.updateIcon(newVal); break;
       case 'textOptions': this.updateText(newVal); break;
-      case 'circleOptions': this.updateCircle({radius: newVal, fill: new Fill(nextProps.fillOptions), stroke: new Stroke(nextProps.strokeOptions)}); break;
+      case 'circleOptions': this.updateCircle(newVal); break;
       case 'zIndex': this.updateZindex(newVal); break;
     }
     this.feature.changed();

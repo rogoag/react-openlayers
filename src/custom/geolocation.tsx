@@ -70,9 +70,7 @@ export class GeolocationReact extends React.Component<GeolocationProps> {
           {this.state.location && (
             <feature.PointReact 
               coordinate={this.state.location}
-              fillOptions={{color: '#3399CC'}}
-              circleOptions={{radius: 6}} 
-              strokeOptions={{color: '#fff', width: 2}}
+              circleOptions={{radius: 6, strokeOptions: {color: '#fff', width: 2}, fillOptions: {color: '#3399CC'}}} 
             />
           )}
         </source.VectorSourceReact>
