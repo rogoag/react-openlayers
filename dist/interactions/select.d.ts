@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Select, { Options, SelectEvent } from 'ol/interaction/Select';
 import { InteractionType } from '.';
-import { MapContextType } from '../map';
+import { VectorSourceContextType } from '../source/vector-source';
 import { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 export interface SelectProps extends Options, InteractionType<Select> {
     instance?: Select;
@@ -17,7 +17,7 @@ export interface SelectEvents extends ReactOpenlayersEvents {
     'select': ReactOpenlayersEvent;
 }
 export declare class SelectReact extends React.Component<SelectProps> {
-    static contextType: React.Context<MapContextType>;
+    static contextType: React.Context<VectorSourceContextType>;
     interaction: Select;
     options: Options;
     events: SelectEvents;

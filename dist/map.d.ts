@@ -73,8 +73,8 @@ export declare class MapReact extends React.Component<MapProps> {
     map: Map;
     mapDiv: React.RefObject<HTMLDivElement>;
     layers: Collection<Layer>;
-    interactions: Interaction[];
-    controls: Control[];
+    interactions: Collection<Interaction>;
+    controls: Collection<Control>;
     overlays: Overlay[];
     options: MapOptions;
     events: MapEvents;
