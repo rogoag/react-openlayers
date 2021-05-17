@@ -19,7 +19,7 @@ export class MultiPolygonReact extends FeatureReact<MultiPolygonProps> {
 
   componentWillReceiveProps(nextProps: MultiPolygonProps) {
     Object.keys(nextProps).forEach((prop: string) => {
-        if(nextProps[prop] === this.props[prop]) return;
+        if(JSON.stringify(nextProps[prop]) === JSON.stringify(this.props[prop])) return;
         const newVal = nextProps[prop];
         switch(prop) {
             case 'coordinates': this.geometry.setCoordinates(newVal); break;
