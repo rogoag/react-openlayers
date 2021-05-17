@@ -93,7 +93,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
       case 'strokeOptions': this.updateStroke(newVal); break;
       case 'iconOptions': this.updateIcon(newVal); break;
       case 'textOptions': this.updateText(newVal); break;
-      case 'circleOptions': this.updateCircle(newVal); break;
+      case 'circleOptions': this.updateCircle({radius: newVal, fill: new Fill(nextProps.fillOptions), stroke: new Stroke(nextProps.strokeOptions)}); break;
       case 'zIndex': this.updateZindex(newVal); break;
     }
     this.feature.changed();

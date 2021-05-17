@@ -51,6 +51,7 @@ export class Select extends React.Component {
                     strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
                   />
                   <interaction.SelectReact 
+                    style={undefined}
                     onSelect={(event) => {
                       if(event.target) {
                         console.log('poop', event)
