@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Feature } from "ol";
 import { Geometry } from "ol/geom";
+import Collection from 'ol/Collection';
 export declare type SelectState = {
     active: boolean;
-    selectedFeature: Feature<Geometry> | null;
+    selectedFeatures: Collection<Feature<Geometry>>;
 };
 export declare class Select extends React.Component {
     state: SelectState;

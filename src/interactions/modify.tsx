@@ -49,7 +49,6 @@ export class ModifyReact extends React.Component<ModifyProps> {
     const options = Util.getOptions<Options, ModifyProps>(this.options, this.props);
     this.interaction = new Modify(options);
     this.context.context.context.interactions.push(this.interaction);
-    console.log('MOUNTING', this.context.context.context.interactions);
     this.initInteraction(this.props);
 
     const olEvents = Util.getEvents(this.events, this.props);
