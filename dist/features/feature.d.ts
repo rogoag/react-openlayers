@@ -30,6 +30,9 @@ export interface FeatureProps {
     circleOptions?: CircleOptions;
     zIndex?: number;
     id?: string;
+    properties?: {
+        [key: string]: any;
+    };
 }
 export declare class FeatureReact<T extends FeatureProps> extends React.Component<T, {}> {
     static contextType: React.Context<VectorSourceContextType>;

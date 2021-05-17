@@ -36,6 +36,7 @@ export interface FeatureProps {
   circleOptions?: CircleOptions,
   zIndex?: number,
   id?: string,
+  properties?: { [key: string]: any }
 }
 
 export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}> {
@@ -117,6 +118,9 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
     this.style = new Style();
     this.updateStyle(this.props);
     this.feature.setStyle(this.style);
+    if(this.props.properties) {
+      this.feature.setProperties(this.props.properties as { [key: string]: any });
+    }
     this.context.features.push(this.feature);
 
     const olEvents = Util.getEvents(this.events, this.props);
@@ -135,6 +139,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
       case 'textOptions': this.updateText(newVal); break;
       case 'circleOptions': this.updateCircle(newVal); break;
       case 'zIndex': this.updateZindex(newVal); break;
+      case 'properties': this.feature.setProperties(nextProps.properties as { [key: string]: any }); break;
     }
     this.feature.changed();
   }

@@ -45,12 +45,12 @@ export class Select extends React.Component {
                   <feature.LineStringReact 
                     coordinates={[[-87.06136985536766, 40.74069077828139],[-87.06194122652191, 40.740451986556394]]} 
                     strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
-                    onChange={(event) => console.log('CHANGE GEOM', event)}
+                    properties={{name: 'stupid'}}
                   />
                   <feature.LineStringReact 
                     coordinates={[[-87.05136985536766, 40.74079077828139],[-87.06194122652191, 40.740451986556394]]} 
                     strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
-                    onPropertyChange={(event) => console.log('CHANGE GEOM', event)}
+                    properties={{name: 'stupid'}}
                   />
                   <interaction.ModifyReact 
                     onModifyend={(event) => {console.log(event)}}
