@@ -196,7 +196,7 @@ export class MapReact extends React.Component<MapProps> {
     const view = this.map.getView();
 
     if (props.view && !(props.view instanceof View)) {
-      if ((props.view.center !== undefined) && ((this.props && this.props.view && this.props.view.center && JSON.stringify(this.props.view.center) !== JSON.stringify(props.view.center) || (!this.props.view) || (!this.props.view.center)))) {
+      if ((props.view.center !== undefined) && ((this.props && this.props.view && this.props.view.center && this.props.view.center !== props.view.center || (!this.props.view) || (!this.props.view.center)))) {
         view.setCenter(props.view.center);
       }
       if ((props.view.zoom !== undefined) && ((this.props.view && props.view.zoom !== this.props.view.zoom) || !this.props.view)) {
