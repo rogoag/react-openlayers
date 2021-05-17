@@ -17,6 +17,7 @@ export interface FeatureProps {
   textOptions?: TextOptions,
   circleOptions?: CircleOptions,
   zIndex?: number,
+  id?: string,
 }
 
 export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}> {
@@ -75,6 +76,9 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
 
   public componentDidMount() {
     this.feature = new Feature({geometry: this.geometry});
+    if(this.props.id) {
+      this.feature.setId(this.props.id);
+    }
     this.style = new Style();
     this.updateStyle(this.props);
     this.feature.setStyle(this.style);

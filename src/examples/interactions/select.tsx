@@ -2,12 +2,15 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import { interaction, Interactions, layer, Layers, MapReact, source, custom, feature } from "react-openlayers";
+import { interaction, layer, Layers, MapReact, source, custom, feature } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
+import { Feature } from "ol";
+import { Geometry } from "ol/geom";
 
 export type SelectState = {
-  active: boolean
+  active: boolean,
+  selectedFeature: Feature<Geometry> | null
 }
 
 export class Select extends React.Component {
@@ -16,7 +19,8 @@ export class Select extends React.Component {
     super(props)
 
     this.state = {
-      active: true
+      active: true,
+      selectedFeature: null
     }
   }
 
@@ -36,21 +40,27 @@ export class Select extends React.Component {
                 attributions={'@ Google'}
               />
             </layer.TileReact>
-            {!this.state.active && (
               <layer.Vector>
                 <source.VectorSourceReact>
                   <feature.LineStringReact 
                     coordinates={[[-87.06136985536766, 40.74069077828139],[-87.06194122652191, 40.740451986556394]]} 
                     strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
                   />
+                  <feature.LineStringReact 
+                    coordinates={[[-87.05136985536766, 40.74079077828139],[-87.06194122652191, 40.740451986556394]]} 
+                    strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
+                  />
+                  <interaction.SelectReact 
+                    onSelect={(event) => {
+                      if(event.target) {
+                        console.log('poop', event)
+                      }
+                    }} 
+                  />
                 </source.VectorSourceReact>
               </layer.Vector>
-            )}
             <custom.GeolocationReact tracking={false} />
           </Layers>
-          <Interactions>
-            <interaction.SelectReact />
-          </Interactions>
         </MapReact>
         <br/>
         <Divider />

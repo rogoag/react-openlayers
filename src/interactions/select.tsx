@@ -3,9 +3,8 @@ import * as React from 'react';
 import Select, { Options, SelectEvent } from 'ol/interaction/Select';
 
 import { InteractionType } from '.';
-import { MapContext, MapContextType } from '../map';
+import { VectorSourceContext, VectorSourceContextType } from '../source/vector-source';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
-
 
 export interface SelectProps extends Options, InteractionType<Select> {
   instance?: Select;
@@ -23,7 +22,7 @@ export interface SelectEvents extends ReactOpenlayersEvents {
 }
 
 export class SelectReact extends React.Component<SelectProps> {
-  public static contextType: React.Context<MapContextType> = MapContext;
+  public static contextType: React.Context<VectorSourceContextType> = VectorSourceContext;
 
   public interaction: Select;
 
@@ -31,7 +30,6 @@ export class SelectReact extends React.Component<SelectProps> {
     addCondition: undefined,
     condition: undefined,
     layers: undefined,
-    style: undefined,
     removeCondition: undefined,
     toggleCondition: undefined,
     multi: undefined,
@@ -56,7 +54,9 @@ export class SelectReact extends React.Component<SelectProps> {
       const options = Util.getOptions<Options, SelectProps>(this.options, this.props);
       this.interaction = new Select(options);
     }
-    this.context.interactions.push(this.interaction)
+    console.log('INTERACTION', this.interaction)
+    console.log('CONTEXT', this.context.context.context)
+    this.context.context.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
 
@@ -68,7 +68,7 @@ export class SelectReact extends React.Component<SelectProps> {
 
   public componentWillReceiveProps(nextProps: SelectProps) {
     if (nextProps !== this.props) {
-      this.context.map.removeInteraction(this.interaction);
+      this.context.context.context.interactions.remove(this.interaction);
 
       if (this.props.instance) {
         this.interaction = this.props.instance;
@@ -76,7 +76,7 @@ export class SelectReact extends React.Component<SelectProps> {
         const options = Util.getOptions<Options, SelectProps>(this.options, nextProps);
         this.interaction = new Select(options);
       }
-      this.context.map.addInteraction(this.interaction);
+      this.context.context.context.interactions.push(this.interaction);
 
       this.initInteraction(nextProps);
 
@@ -88,7 +88,7 @@ export class SelectReact extends React.Component<SelectProps> {
   }
 
   public componentWillUnmount() {
-    this.context.map.removeInteraction(this.interaction);
+    this.context.context.context.interactions.push(this.interaction);
   }
 
   private initInteraction(props: SelectProps) {

@@ -16,9 +16,6 @@ import Collection from 'ol/Collection';
 
 import Util, { Omit, ReactOpenlayersEvent, ReactOpenlayersEvents } from './util';
 
-import { ControlsProps } from './controls/controls';
-import { InteractionsProps } from './interactions/interactions';
-
 import './map.css';
 import 'ol/ol.css';
 
@@ -88,8 +85,8 @@ export class MapReact extends React.Component<MapProps> {
   public mapDiv: React.RefObject<HTMLDivElement>;
 
   public layers: Collection<Layer> = new Collection([]);
-  public interactions: Interaction[] = [];
-  public controls: Control[] = [];
+  public interactions: Collection<Interaction> = Interactions.defaults();
+  public controls: Collection<Control> = Controls.defaults();
   public overlays: Overlay[] = [];
 
   public options: MapOptions = {
@@ -132,11 +129,8 @@ export class MapReact extends React.Component<MapProps> {
       options.view = new View(options.view);
     }
 
-    const controlsCmp = Util.findChild<React.ReactElement<ControlsProps>>(this.props.children, 'Controls');
-    const interactionsCmp = Util.findChild<React.ReactElement<InteractionsProps>>(this.props.children, 'Interactions');
-
-    options.controls = Controls.defaults(controlsCmp ? controlsCmp.props : {}).extend(this.controls);
-    options.interactions = Interactions.defaults(interactionsCmp ? interactionsCmp.props : {}).extend(this.interactions);
+    options.controls = this.controls;
+    options.interactions = this.interactions;
 
     options.layers = this.layers;
     options.overlays = this.overlays;
