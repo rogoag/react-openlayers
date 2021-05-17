@@ -7,10 +7,11 @@ import { interaction, layer, Layers, MapReact, source, custom, feature } from "r
 import Highlighter from "../Highlighter";
 import { Feature } from "ol";
 import { Geometry } from "ol/geom";
+import Collection from 'ol/Collection';
 
 export type SelectState = {
   active: boolean,
-  selectedFeature: Feature<Geometry> | null
+  selectedFeatures: Collection<Feature<Geometry>>;
 }
 
 export class Select extends React.Component {
@@ -20,7 +21,7 @@ export class Select extends React.Component {
 
     this.state = {
       active: true,
-      selectedFeature: null
+      selectedFeatures: new Collection([])
     }
   }
 
@@ -52,12 +53,15 @@ export class Select extends React.Component {
                     strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
                     properties={{name: 'stupid'}}
                   />
-                  <interaction.ModifyReact 
-                    onModifyend={(event) => {console.log(event)}}
-                  />
+                  {this.state.active && (
+                    <interaction.ModifyReact 
+                      onModifyend={(event) => {console.log(event)}}
+                      features={this.state.selectedFeatures}
+                    />
+                  )}
                 </source.VectorSourceReact>
               </layer.Vector>
-            <custom.GeolocationReact tracking={true} />
+            <custom.GeolocationReact tracking={false} />
           </Layers>
         </MapReact>
         <br/>

@@ -47,11 +47,9 @@ export class ModifyReact extends React.Component<ModifyProps> {
 
   public componentDidMount() {
     const options = Util.getOptions<Options, ModifyProps>(this.options, this.props);
-    options.features = this.context.features;
-    console.log('FEATURES', this.context.features);
     this.interaction = new Modify(options);
     this.context.context.context.interactions.push(this.interaction);
-
+    console.log('MOUNTING', this.context.context.context.interactions);
     this.initInteraction(this.props);
 
     const olEvents = Util.getEvents(this.events, this.props);
@@ -65,7 +63,6 @@ export class ModifyReact extends React.Component<ModifyProps> {
       console.log(this.context.context)
       this.context.context.context.interactions.remove(this.interaction);
       const options = Util.getOptions<Options, ModifyProps>(this.options, nextProps);
-      options.features = this.context.features;
       this.interaction = new Modify(options);
       this.context.context.context.interactions.push(this.interaction);
 
@@ -79,6 +76,7 @@ export class ModifyReact extends React.Component<ModifyProps> {
   }
 
   public componentWillUnmount() {
+    console.log('UNMOUNT', this.context.context.context.interactions);
     this.context.context.context.interactions.remove(this.interaction);
   }
 
