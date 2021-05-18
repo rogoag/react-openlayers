@@ -8,6 +8,9 @@ import Stroke, { Options as StrokeOptions } from 'ol/style/Stroke';
 import { Options as IconOptions } from 'ol/style/icon';
 import { Options as TextOptions } from 'ol/style/Text';
 import { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
+interface TextOptionsReact extends TextOptions {
+    fillOptions?: FillOptions;
+}
 interface CircleOptions {
     fillOptions?: FillOptions | Fill;
     radius: number;
@@ -26,7 +29,7 @@ export interface FeatureProps {
     fillOptions?: FillOptions;
     strokeOptions?: StrokeOptions;
     iconOptions?: IconOptions;
-    textOptions?: TextOptions;
+    textOptions?: TextOptionsReact;
     circleOptions?: CircleOptions;
     zIndex?: number;
     id?: string;
@@ -43,7 +46,7 @@ export declare class FeatureReact<T extends FeatureProps> extends React.Componen
     updateFill(fillOptions: FillOptions): void;
     updateStroke(strokeOptions: StrokeOptions): void;
     updateIcon(iconOptions: IconOptions): void;
-    updateText(textOptions: TextOptions): void;
+    updateText(textOptions: TextOptionsReact): void;
     updateCircle(circleOptions: CircleOptions): void;
     updateZindex(zIndex: number): void;
     updateStyle(props: FeatureProps): void;

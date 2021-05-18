@@ -120,7 +120,7 @@ export class DrawReact extends React.Component<DrawProps> {
       this.POINT_STYLE.setImage(new CircleStyle({fill: new Fill({color: this.props.styleOptions.pointColor}), radius: 6, stroke: new Stroke({width: 2, color: 'white'})}));
       return this.POINT_STYLE;
     } else if(feature.getGeometry().getType() === GeometryType.LINE_STRING && this.props.styleOptions && this.props.styleOptions.polygonColor) {
-      this.LINESTRING_STYLE.setStroke(new Stroke({ color: this.props.styleOptions.linestringColor, width: 2 }))
+      this.LINESTRING_STYLE.setStroke(new Stroke({ color: this.props.styleOptions.linestringColor, width: 2 }));
       return this.LINESTRING_STYLE;
     } else {
       return undefined;

@@ -10,6 +10,9 @@ import CircleStyle from 'ol/style/circle';
 import Text, { Options as TextOptions } from 'ol/style/Text';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 
+interface TextOptionsReact extends TextOptions {
+  fillOptions?: FillOptions
+}
 
 /* This is a bit hacky */
 interface CircleOptions {
@@ -32,7 +35,7 @@ export interface FeatureProps {
   fillOptions?: FillOptions,
   strokeOptions?: StrokeOptions,
   iconOptions?: IconOptions,
-  textOptions?: TextOptions,
+  textOptions?: TextOptionsReact,
   circleOptions?: CircleOptions,
   zIndex?: number,
   id?: string,
@@ -64,8 +67,8 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
     this.style.setImage(new Icon(iconOptions));
   }
 
-  updateText(textOptions: TextOptions) {
-    this.style.setText(new Text(textOptions));
+  updateText(textOptions: TextOptionsReact) {
+    this.style.setText(new Text({...textOptions, fill: new Fill(textOptions.fillOptions)}));
   }
 
   updateCircle(circleOptions: CircleOptions) {

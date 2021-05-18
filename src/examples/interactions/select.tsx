@@ -51,6 +51,7 @@ export class Select extends React.Component {
                   <feature.LineStringReact 
                     coordinates={[[-87.05136985536766, 40.74079077828139],[-87.06194122652191, 40.740451986556394]]} 
                     strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
+                    textOptions={{text: 'LineString', font: '18px Calibri,sans-serif', fillOptions: {color: 'white'}}}
                   />
                   {this.state.active && (
                     <interaction.ModifyReact 
