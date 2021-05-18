@@ -47,12 +47,10 @@ export class Select extends React.Component {
                   <feature.LineStringReact 
                     coordinates={[[-87.06136985536766, 40.74069077828139],[-87.06194122652191, 40.740451986556394]]} 
                     strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
-                    properties={{name: 'stupid'}}
                   />
                   <feature.LineStringReact 
                     coordinates={[[-87.05136985536766, 40.74079077828139],[-87.06194122652191, 40.740451986556394]]} 
                     strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
-                    properties={{name: 'stupid'}}
                   />
                   {this.state.active && (
                     <interaction.ModifyReact 
@@ -60,7 +58,7 @@ export class Select extends React.Component {
                       features={this.state.selectedFeatures}
                     />
                   )}
-                  <interaction.DrawReact type={GeometryType.POINT} onDrawend={(event) => { console.log(event) }} />
+                  <interaction.DrawReact type={GeometryType.POINT} onDrawend={(event) => { console.log(event) }} styleOptions={{pointColor: 'green'}} />
                 </source.VectorSourceReact>
               </layer.Vector>
             <custom.GeolocationReact tracking={false} />

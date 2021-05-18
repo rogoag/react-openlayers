@@ -6,13 +6,24 @@ import GeometryType from 'ol/geom/GeometryType';
 import { InteractionType } from '.';
 import { VectorSourceContext, VectorSourceContextType } from '../source/vector-source';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
+import Style from 'ol/style/Style';
+import Fill from 'ol/style/Fill';
+import CircleStyle from 'ol/style/circle';
+import Stroke from 'ol/style/Stroke';
+
+export interface StyleOptions {
+  pointColor?: string | Array<number>,
+  linestringColor?: string | Array<number>,
+  polygonColor?: string | Array<number>
+}
 
 export interface DrawProps extends Options, InteractionType<Draw> {
   onChange?: ReactOpenlayersEvent
   onChangeActive?: ReactOpenlayersEvent
   onDrawend?: ReactOpenlayersEvent
   onDrawstart?: ReactOpenlayersEvent
-  onPropertychange?: ReactOpenlayersEvent
+  onPropertychange?: ReactOpenlayersEvent,
+  styleOptions?: StyleOptions
 }
 
 export interface DrawEvents extends ReactOpenlayersEvents {
@@ -27,6 +38,12 @@ export class DrawReact extends React.Component<DrawProps> {
   public static contextType: React.Context<VectorSourceContextType> = VectorSourceContext;
 
   public interaction: Draw;
+
+  public POLYGON_STYLE: Style = new Style();
+
+  public POINT_STYLE: Style = new Style();
+
+  public LINESTRING_STYLE = new Style();
 
   public options: Options = {
     clickTolerance: undefined,
@@ -58,7 +75,7 @@ export class DrawReact extends React.Component<DrawProps> {
   public componentDidMount() {
     const options = Util.getOptions<Options, DrawProps>(this.options, this.props);
     options.source = this.context.source;
-    this.interaction = new Draw(options);
+    this.interaction = new Draw({...options, style: this.genStyle.bind(this)});
     this.context.context.context.interactions.push(this.interaction);
 
     this.initInteraction(this.props);
@@ -74,7 +91,7 @@ export class DrawReact extends React.Component<DrawProps> {
       this.context.context.context.interactions.remove(this.interaction);
       const options = Util.getOptions<Options, DrawProps>(this.options, nextProps);
       options.source = this.context.source;
-      this.interaction = new Draw(options);
+      this.interaction = new Draw({...options, style: this.genStyle.bind(this)});
       this.context.context.context.interactions.push(this.interaction);
 
       this.initInteraction(nextProps);
@@ -93,6 +110,21 @@ export class DrawReact extends React.Component<DrawProps> {
   private initInteraction(props: DrawProps) {
     if (props.interactionRef) props.interactionRef(this.interaction);
     if (props.active !== undefined) this.interaction.setActive(props.active);
+  }
+
+  private genStyle(feature: any): Style | undefined {
+    if(feature.getGeometry().getType() === GeometryType.POLYGON && this.props.styleOptions && this.props.styleOptions.polygonColor) {
+      this.POLYGON_STYLE.setFill(new Fill({color: this.props.styleOptions.polygonColor}));
+      return this.POLYGON_STYLE;
+    } else if(feature.getGeometry().getType() === GeometryType.POINT && this.props.styleOptions && this.props.styleOptions.pointColor) {
+      this.POINT_STYLE.setImage(new CircleStyle({fill: new Fill({color: this.props.styleOptions.pointColor}), radius: 6, stroke: new Stroke({width: 2, color: 'white'})}));
+      return this.POINT_STYLE;
+    } else if(feature.getGeometry().getType() === GeometryType.LINE_STRING && this.props.styleOptions && this.props.styleOptions.polygonColor) {
+      this.LINESTRING_STYLE.setStroke(new Stroke({ color: this.props.styleOptions.linestringColor, width: 2 }))
+      return this.LINESTRING_STYLE;
+    } else {
+      return undefined;
+    }
   }
 
 }
