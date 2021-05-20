@@ -7,34 +7,43 @@ import { interaction, layer, Layers, MapReact, source, custom, feature } from "r
 import Highlighter from "../Highlighter";
 import { Feature } from "ol";
 import { Geometry } from "ol/geom";
-import GeometryType from 'ol/geom/GeometryType';
 import Collection from 'ol/Collection';
+import { Coordinate } from "ol/coordinate";
 
 export type SelectState = {
   active: boolean,
   selectedFeatures: Collection<Feature<Geometry>>;
+  zoom: { value: number };
+  center: {value: Coordinate};
 }
 
 export class Select extends React.Component {
   public state: SelectState;
+
+  public zoom: {value: number}
+
   constructor(props: {}) {
     super(props)
 
+    this.zoom = {value: 10};
+
     this.state = {
       active: true,
-      selectedFeatures: new Collection([])
+      selectedFeatures: new Collection([]),
+      zoom: this.zoom,
+      center: {value: [-87, 48]}
     }
   }
 
   componentDidMount() {
-    setTimeout(() => this.setState({ active: false}), 5000);
+    setTimeout(() => {this.zoom.value = 1; this.setState({ active: false, zoom: this.zoom})}, 5000);
   }
 
   public render() {
     return (
       <div>
         <Typography variant="h4" paragraph>Select interaction</Typography>
-        <MapReact view={{projection: 'EPSG:4326', center: [-87.06136985536766, 40.74069077828139], zoom: 18}}>
+        <MapReact view={{projection: 'EPSG:4326'}} zoom={this.state.zoom} center={this.state.center}>
           <Layers>
             <layer.TileReact>
               <source.XYZReact 
@@ -51,7 +60,8 @@ export class Select extends React.Component {
                   <feature.LineStringReact 
                     coordinates={[[-87.05136985536766, 40.74079077828139],[-87.06194122652191, 40.740451986556394]]} 
                     strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
-                    textOptions={{text: 'LineString', font: '18px Calibri,sans-serif', fillOptions: {color: 'white'}}}
+                    textOptions={{text: 'LineString', font: '18px Calibri,sans-serif', fillOptions: {color: 'white'}, strokeOptions: {color: 'black', width: 2}}}
+                    hideTextZoom={12}
                   />
                   {this.state.active && (
                     <interaction.ModifyReact 
@@ -59,7 +69,6 @@ export class Select extends React.Component {
                       features={this.state.selectedFeatures}
                     />
                   )}
-                  <interaction.DrawReact type={GeometryType.POINT} onDrawend={(event) => { console.log(event) }} styleOptions={{pointColor: 'green'}} />
                 </source.VectorSourceReact>
               </layer.Vector>
             <custom.GeolocationReact tracking={false} />

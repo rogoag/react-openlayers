@@ -13,11 +13,19 @@ import Collection from 'ol/Collection';
 import { Omit, ReactOpenlayersEvent, ReactOpenlayersEvents } from './util';
 import './map.css';
 import 'ol/ol.css';
+import { Coordinate } from 'ol/coordinate';
 export declare type MapContextType = MapReact | void;
 export declare const MapContext: React.Context<MapContextType>;
 export interface MapProps extends Omit<MapOptions, 'view'> {
-    view?: ViewOptions;
+    projection?: string;
+    center?: {
+        value: Coordinate;
+    };
+    zoom?: {
+        value: number;
+    };
     className?: string;
+    view?: ViewOptions;
     style?: React.CSSProperties;
     onChange?: ReactOpenlayersEvent;
     onChangeLayerGroup?: ReactOpenlayersEvent;

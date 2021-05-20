@@ -41,6 +41,7 @@ export interface FeatureProps {
   zIndex?: number,
   id?: string,
   properties?: { [key: string]: any },
+  hideTextZoom?: number
 }
 
 export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}> {
@@ -114,6 +115,21 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
     }
   }
 
+  styleFunction() {
+    if(this.props.hideTextZoom) {
+      const view = this.context.context.context.map.getView();
+      const zoom = view.getZoom();
+      const text = this.style.getText();
+      console.log(zoom);
+      if(zoom > this.props.hideTextZoom && text.getScale() === 0) {
+        this.style.getText().setScale(1);
+      } else if(zoom < this.props.hideTextZoom) {
+        this.style.getText().setScale(0);
+      }
+    }
+    return this.style;
+  }
+
   public componentDidMount() {
     this.feature = new Feature({geometry: this.geometry});
     if(this.props.id) {
@@ -121,7 +137,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
     }
     this.style = new Style();
     this.updateStyle(this.props);
-    this.feature.setStyle(this.style);
+    this.feature.setStyle(this.styleFunction.bind(this));
     if(this.props.properties) {
       this.feature.setProperties(this.props.properties as { [key: string]: any });
     }

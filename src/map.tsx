@@ -18,14 +18,18 @@ import Util, { Omit, ReactOpenlayersEvent, ReactOpenlayersEvents } from './util'
 
 import './map.css';
 import 'ol/ol.css';
+import { Coordinate } from 'ol/coordinate';
 
 export type MapContextType = MapReact | void;
 export const MapContext = React.createContext<MapContextType>(undefined);
 
 
 export interface MapProps extends Omit<MapOptions, 'view'> {
-  view?: ViewOptions
+  projection?: string
+  center?: { value: Coordinate }
+  zoom?: { value: number }
   className?: string
+  view?: ViewOptions
   style?: React.CSSProperties
   onChange?: ReactOpenlayersEvent
   onChangeLayerGroup?: ReactOpenlayersEvent
@@ -125,10 +129,15 @@ export class MapReact extends React.Component<MapProps> {
 
   public componentDidMount() {
     const options = Util.getOptions<MapOptions, MapProps>(this.options, this.props);
-    if (options.view && !(options.view instanceof View)) {
-      options.view = new View(options.view);
+    if (options.view) {
+      options.view = new View({
+        ...options.view as ViewOptions, 
+        center: this.props.center ? this.props.center.value: [0, 0],
+        zoom: this.props.zoom ? this.props.zoom.value: 10,
+      });
     }
 
+    console.log(options.view)
     options.controls = this.controls;
     options.interactions = this.interactions;
 
@@ -183,7 +192,7 @@ export class MapReact extends React.Component<MapProps> {
   }
 
   private updateFromProps(props: MapProps, isMounting: boolean) {
-    if (isMounting || props.view) {
+    if (isMounting || props.center || props.zoom) {
       // Update the center and the resolution of the view only when it is
       // mounted the first time but not when the properties are updated.
       // *Unless* we're passed a position object that explicitly declares
@@ -195,16 +204,13 @@ export class MapReact extends React.Component<MapProps> {
   private updateCenterAndResolutionFromProps(props: MapProps) {
     const view = this.map.getView();
 
-    if (props.view && !(props.view instanceof View)) {
-      if ((props.view.center !== undefined) && ((this.props && this.props.view && this.props.view.center && this.props.view.center !== props.view.center || (!this.props.view) || (!this.props.view.center)))) {
-        view.setCenter(props.view.center);
-      }
-      if ((props.view.zoom !== undefined) && ((this.props.view && props.view.zoom !== this.props.view.zoom) || !this.props.view)) {
-        view.setZoom(props.view.zoom);
-      }
-      if ((props.view.resolution !== undefined) && ((this.props.view && props.view.resolution !== this.props.view.resolution) || !this.props.view)) {
-        view.setResolution(props.view.resolution);
-      }
+    if (props.center && props.center !== this.props.center) {
+      console.log(props.center)
+      view.setCenter(props.center.value)
+    }
+
+    if(props.zoom && props.zoom !== this.props.zoom) {
+      view.setZoom(props.zoom.value)
     }
   }
 }

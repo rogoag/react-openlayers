@@ -10,6 +10,7 @@ import { Options as TextOptions } from 'ol/style/Text';
 import { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 interface TextOptionsReact extends TextOptions {
     fillOptions?: FillOptions;
+    strokeOptions?: StrokeOptions;
 }
 interface CircleOptions {
     fillOptions?: FillOptions | Fill;
@@ -36,6 +37,7 @@ export interface FeatureProps {
     properties?: {
         [key: string]: any;
     };
+    hideTextZoom?: number;
 }
 export declare class FeatureReact<T extends FeatureProps> extends React.Component<T, {}> {
     static contextType: React.Context<VectorSourceContextType>;
@@ -50,6 +52,7 @@ export declare class FeatureReact<T extends FeatureProps> extends React.Componen
     updateCircle(circleOptions: CircleOptions): void;
     updateZindex(zIndex: number): void;
     updateStyle(props: FeatureProps): void;
+    styleFunction(): Style;
     componentDidMount(): void;
     handleStyleUpdates(prop: string, nextProps: FeatureProps): void;
     componentWillUnmount(): void;
