@@ -210,6 +210,7 @@ export class MapReact extends React.Component<MapProps> {
     }
 
     if(props.zoom && props.zoom !== this.props.zoom) {
+      console.log('setting zoom', props.zoom)
       view.setZoom(props.zoom.value)
     }
   }

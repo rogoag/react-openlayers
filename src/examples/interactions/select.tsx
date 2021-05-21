@@ -36,7 +36,8 @@ export class Select extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {this.zoom.value = 1; this.setState({ active: false, zoom: this.zoom})}, 5000);
+    setTimeout(() => {this.setState({ active: false, zoom: {value: 5}})}, 5000);
+    setTimeout(() => {this.setState({ active: false, zoom: {value: 10}})}, 5000);
   }
 
   public render() {

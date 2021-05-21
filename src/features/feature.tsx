@@ -120,7 +120,6 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
       const view = this.context.context.context.map.getView();
       const zoom = view.getZoom();
       const text = this.style.getText();
-      console.log(zoom);
       if(zoom > this.props.hideTextZoom && text.getScale() === 0) {
         this.style.getText().setScale(1);
       } else if(zoom < this.props.hideTextZoom) {
