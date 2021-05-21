@@ -137,14 +137,12 @@ export class MapReact extends React.Component<MapProps> {
       });
     }
 
-    console.log(options.view)
     options.controls = this.controls;
     options.interactions = this.interactions;
 
     options.layers = this.layers;
     options.overlays = this.overlays;
     this.map = new Map(options);
-    console.log(this.map.getLayers())
     if (this.props.target) {
       this.map.setTarget(this.props.target);
     } else if (this.mapDiv.current) {
@@ -172,6 +170,7 @@ export class MapReact extends React.Component<MapProps> {
   }
 
   public render() {
+    console.log('render map');
     return (
       <MapContext.Provider value={this}>
         <div
@@ -205,12 +204,10 @@ export class MapReact extends React.Component<MapProps> {
     const view = this.map.getView();
 
     if (props.center && props.center !== this.props.center) {
-      console.log(props.center)
       view.setCenter(props.center.value)
     }
 
     if(props.zoom && props.zoom !== this.props.zoom) {
-      console.log('setting zoom', props.zoom)
       view.setZoom(props.zoom.value)
     }
   }

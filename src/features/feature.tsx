@@ -168,6 +168,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
   }
 
   public render() {
+    console.log('render feature');
     return (
         null
     );

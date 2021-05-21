@@ -75,6 +75,7 @@ export class Vector extends React.Component<VectorProps> {
   };
 
   public render() {
+    console.log('render layer')
     return (
       <VectorLayerContext.Provider value={this}>
         {this.props.children}
