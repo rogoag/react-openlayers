@@ -39,7 +39,6 @@ export class GeolocationReact extends React.Component<GeolocationProps> {
 
   public componentDidMount() {
     this.geolocation.setTracking(true);
-    console.log(this.context);
     this.geolocation.on('change:position', (event) => {
       const newPos = event.target.get(event.key);
       this.setState({ location: newPos });

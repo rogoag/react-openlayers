@@ -59,7 +59,6 @@ export class ModifyReact extends React.Component<ModifyProps> {
 
   public componentWillReceiveProps(nextProps: ModifyProps) {
     if (nextProps !== this.props) {
-      console.log(this.context.context)
       this.context.context.context.interactions.remove(this.interaction);
       const options = Util.getOptions<Options, ModifyProps>(this.options, nextProps);
       this.interaction = new Modify(options);

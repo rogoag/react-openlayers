@@ -19,6 +19,7 @@ import Util, { Omit, ReactOpenlayersEvent, ReactOpenlayersEvents } from './util'
 import './map.css';
 import 'ol/ol.css';
 import { Coordinate } from 'ol/coordinate';
+import { Extent } from 'ol/extent';
 
 export type MapContextType = MapReact | void;
 export const MapContext = React.createContext<MapContextType>(undefined);
@@ -28,6 +29,7 @@ export interface MapProps extends Omit<MapOptions, 'view'> {
   projection?: string
   center?: { value: Coordinate }
   zoom?: { value: number }
+  fit?: { value: Extent }
   className?: string
   view?: ViewOptions
   style?: React.CSSProperties
@@ -170,7 +172,6 @@ export class MapReact extends React.Component<MapProps> {
   }
 
   public render() {
-    console.log('render map');
     return (
       <MapContext.Provider value={this}>
         <div
@@ -209,6 +210,10 @@ export class MapReact extends React.Component<MapProps> {
 
     if(props.zoom && props.zoom !== this.props.zoom) {
       view.setZoom(props.zoom.value)
+    }
+
+    if(props.fit && props.fit !== this.props.fit) {
+      view.fit(props.fit.value);
     }
   }
 }

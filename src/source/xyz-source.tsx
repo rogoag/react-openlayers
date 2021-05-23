@@ -44,7 +44,6 @@ export class XYZReact extends React.Component<XYZProps> {
 
   public componentDidMount() {
     const options = Util.getOptions(this.options, this.props);
-    console.log(options)
     this.context.source = new XYZ(options);
     const olEvents = Util.getEvents<XYZEvents, XYZProps>(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {

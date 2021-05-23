@@ -14,6 +14,7 @@ import { Omit, ReactOpenlayersEvent, ReactOpenlayersEvents } from './util';
 import './map.css';
 import 'ol/ol.css';
 import { Coordinate } from 'ol/coordinate';
+import { Extent } from 'ol/extent';
 export declare type MapContextType = MapReact | void;
 export declare const MapContext: React.Context<MapContextType>;
 export interface MapProps extends Omit<MapOptions, 'view'> {
@@ -23,6 +24,9 @@ export interface MapProps extends Omit<MapOptions, 'view'> {
     };
     zoom?: {
         value: number;
+    };
+    fit?: {
+        value: Extent;
     };
     className?: string;
     view?: ViewOptions;

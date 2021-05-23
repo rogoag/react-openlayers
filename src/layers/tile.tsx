@@ -99,12 +99,10 @@ export class TileReact extends React.Component<TileProps> {
       this.layer.on(eventName, olEvents[eventName]);
     });
 
-    console.log(this.context.layers)
   }
 
   public componentWillReceiveProps(nextProps: TileProps) {
     const options = Util.getOptions<Options, TileProps>(this.options, this.props);
-    console.log('OPTIONS', options)
 
     // Updating options first
     Object.keys(options).forEach((option: string) => {
