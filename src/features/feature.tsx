@@ -164,6 +164,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
   }
 
   public componentWillUnmount() {
+      console.log('unmounting feature', this.context.features);
       this.context.features.remove(this.feature);
   }
 

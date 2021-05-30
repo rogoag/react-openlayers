@@ -136,6 +136,7 @@ export class TileReact extends React.Component<TileProps> {
   }
   
   public componentWillUnmount () {
+    console.log('removing layer from map', this.context.map);
     this.context.map.removeLayer(this.layer);
   }
 
