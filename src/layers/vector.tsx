@@ -75,7 +75,6 @@ export class Vector extends React.Component<VectorProps> {
   };
 
   public render() {
-    console.log('render layer')
     return (
       <VectorLayerContext.Provider value={this}>
         {this.props.children}
@@ -138,7 +137,7 @@ export class Vector extends React.Component<VectorProps> {
   }
 
   public componentWillUnmount() {
+    console.log('removing vector layer from map', this.context.map);
     this.context.map.removeLayer(this.layer);
   }
-
 }

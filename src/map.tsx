@@ -188,8 +188,9 @@ export class MapReact extends React.Component<MapProps> {
   }
 
   public componentWillUnmount() {
+    console.log('releasing map')
     this.map.setTarget(undefined);
-    this.map.dispose();
+    console.log('map released', this.map);
   }
 
   private updateFromProps(props: MapProps, isMounting: boolean) {
