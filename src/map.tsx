@@ -87,7 +87,7 @@ export interface MapEvents extends ReactOpenlayersEvents {
  */
 export class MapReact extends React.Component<MapProps> {
 
-  public map: Map;
+  public map?: Map;
   public mapDiv: React.RefObject<HTMLDivElement>;
 
   public layers: Collection<Layer> = new Collection([]);
@@ -157,7 +157,9 @@ export class MapReact extends React.Component<MapProps> {
     //regitster events
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
-      this.map.on(eventName, olEvents[eventName]);
+      if(this.map) {
+        this.map.on(eventName, olEvents[eventName]);
+      }
     })
   }
 
@@ -189,7 +191,10 @@ export class MapReact extends React.Component<MapProps> {
 
   public componentWillUnmount() {
     console.log('releasing map')
-    this.map.setTarget(undefined);
+    if(this.map) {
+      this.map.setTarget(undefined);
+    }
+    this.map = undefined;
     console.log('map released', this.map);
   }
 
@@ -204,18 +209,20 @@ export class MapReact extends React.Component<MapProps> {
   }
 
   private updateCenterAndResolutionFromProps(props: MapProps) {
-    const view = this.map.getView();
+    if(this.map) {
+      const view = this.map.getView();
 
-    if (props.center && props.center !== this.props.center) {
-      view.setCenter(props.center.value)
-    }
-
-    if(props.zoom && props.zoom !== this.props.zoom) {
-      view.setZoom(props.zoom.value)
-    }
-
-    if(props.fit && props.fit !== this.props.fit) {
-      view.fit(props.fit.value);
+      if (props.center && props.center !== this.props.center) {
+        view.setCenter(props.center.value)
+      }
+  
+      if(props.zoom && props.zoom !== this.props.zoom) {
+        view.setZoom(props.zoom.value)
+      }
+  
+      if(props.fit && props.fit !== this.props.fit) {
+        view.fit(props.fit.value);
+      }
     }
   }
 }

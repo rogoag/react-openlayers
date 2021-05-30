@@ -80,6 +80,7 @@ export class XYZReact extends React.Component<XYZProps> {
 
   public componentWillUnmount() {
     this.context.source.dispose();
+    this.context.source = null;
   }
 
 }

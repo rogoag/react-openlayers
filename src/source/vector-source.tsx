@@ -63,6 +63,7 @@ export class VectorSourceReact extends React.Component<VectorSourceProps> {
 
   public componentWillUnmount() {
     this.context.source.dispose();
+    this.context.source = null;
   }
 
 }
