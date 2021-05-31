@@ -50,7 +50,7 @@ export interface VectorEvents extends ReactOpenlayersEvents {
 export class Vector extends React.Component<VectorProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public layer: VectorLayer;
+  public layer?: VectorLayer;
   public source: VectorSource;
 
   // Default options
@@ -94,7 +94,7 @@ export class Vector extends React.Component<VectorProps> {
 
     const olEvents = Util.getEvents<VectorEvents, VectorProps>(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
-      this.layer.on(eventName, olEvents[eventName]);
+      if(this.layer) this.layer.on(eventName, olEvents[eventName]);
     });
   }
   
@@ -106,33 +106,37 @@ export class Vector extends React.Component<VectorProps> {
     Object.keys(options).forEach((option: string) => {
       if (options[option] === nextProps[option]) return;
       const newVal = nextProps[option];
-      switch (option) {
-        case 'renderOrder': this.layer.set('renderOrder', newVal); break;
-        case 'renderBuffer': this.layer.set('renderBuffer', newVal); break;
-        case 'extent': this.layer.setExtent(newVal); break;
-        case 'minResolution': this.layer.setMinResolution(newVal); break;
-        case 'maxResolution': this.layer.setMaxResolution(newVal); break;
-        case 'opacity': this.layer.setOpacity(newVal); break;
-        case 'source': this.layer.setSource(newVal); break;
-        case 'style': this.layer.setStyle(newVal); break;
-        case 'updateWhileAnimating': this.layer.set('updateWhileAnimating', newVal); break;
-        case 'updateWhileInteracting': this.layer.set('updateWhileInteracting', newVal); break;
-        case 'visible': this.layer.setVisible(newVal); break;
-        case 'zIndex': this.layer.setZIndex(newVal); break;
-        default:
+      if(this.layer) {
+        switch (option) {
+          case 'renderOrder': this.layer.set('renderOrder', newVal); break;
+          case 'renderBuffer': this.layer.set('renderBuffer', newVal); break;
+          case 'extent': this.layer.setExtent(newVal); break;
+          case 'minResolution': this.layer.setMinResolution(newVal); break;
+          case 'maxResolution': this.layer.setMaxResolution(newVal); break;
+          case 'opacity': this.layer.setOpacity(newVal); break;
+          case 'source': this.layer.setSource(newVal); break;
+          case 'style': this.layer.setStyle(newVal); break;
+          case 'updateWhileAnimating': this.layer.set('updateWhileAnimating', newVal); break;
+          case 'updateWhileInteracting': this.layer.set('updateWhileInteracting', newVal); break;
+          case 'visible': this.layer.setVisible(newVal); break;
+          case 'zIndex': this.layer.setZIndex(newVal); break;
+          default:
+        }
       }
     });
 
     if (nextProps.layerRef && nextProps.layerRef !== this.props.layerRef) {
-      nextProps.layerRef(this.layer);
+      if(this.layer) nextProps.layerRef(this.layer);
     }
 
     // Then update events
     const oldEvents = Util.getEvents(this.events, this.props);
     const newEvents = Util.getEvents(this.events, nextProps);
     Object.keys(this.events).forEach((eventName: string) => {
-      if (oldEvents[eventName]) this.layer.un(eventName, oldEvents[eventName]);
-      if (newEvents[eventName]) this.layer.on(eventName, newEvents[eventName]);
+      if(this.layer) {
+        if (oldEvents[eventName]) this.layer.un(eventName, oldEvents[eventName]);
+        if (newEvents[eventName]) this.layer.on(eventName, newEvents[eventName]);
+      }
     })
   }
 
@@ -141,5 +145,6 @@ export class Vector extends React.Component<VectorProps> {
     if(this.context.map) {
       this.context.map.removeLayer(this.layer);
     }
+    this.layer = undefined;
   }
 }

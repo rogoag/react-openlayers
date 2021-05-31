@@ -43,8 +43,8 @@ export interface TileEvents extends ReactOpenlayersEvents {
 }
 export declare class TileReact extends React.Component<TileProps> {
     static contextType: React.Context<MapContextType>;
-    layer: Tile;
-    source: XYZ | OSM;
+    layer?: Tile;
+    source?: XYZ | OSM;
     options: Options;
     events: TileEvents;
     render(): JSX.Element;
