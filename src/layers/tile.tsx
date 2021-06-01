@@ -52,8 +52,8 @@ export interface TileEvents extends ReactOpenlayersEvents {
 export class TileReact extends React.Component<TileProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public layer?: Tile;
-  public source?: XYZ | OSM;
+  public layer: Tile;
+  public source: XYZ | OSM;
 
   public options: Options = {
 
@@ -110,23 +110,21 @@ export class TileReact extends React.Component<TileProps> {
     Object.keys(options).forEach((option: string) => {
       if (options[option] === nextProps[option]) return;
       const newVal = nextProps[option];
-      if(this.layer) {
-        switch (option) {
-          case 'zIndex': this.layer.setZIndex(newVal); break;
-          case 'opacity': this.layer.setOpacity(newVal); break;
-          case 'preload': this.layer.setPreload(newVal); break;
-          case 'source': this.layer.setSource(newVal || new VectorSource()); break;
-          case 'visible': this.layer.setVisible(newVal); break;
-          case 'extent': this.layer.setExtent(newVal); break;
-          case 'minResolution': this.layer.setMinResolution(newVal); break;
-          case 'maxResolution': this.layer.setMaxResolution(newVal); break;
-          case 'useInterimTilesOnError': this.layer.setUseInterimTilesOnError(newVal);
-          default:
-        }
+      switch (option) {
+        case 'zIndex': this.layer.setZIndex(newVal); break;
+        case 'opacity': this.layer.setOpacity(newVal); break;
+        case 'preload': this.layer.setPreload(newVal); break;
+        case 'source': this.layer.setSource(newVal || new VectorSource()); break;
+        case 'visible': this.layer.setVisible(newVal); break;
+        case 'extent': this.layer.setExtent(newVal); break;
+        case 'minResolution': this.layer.setMinResolution(newVal); break;
+        case 'maxResolution': this.layer.setMaxResolution(newVal); break;
+        case 'useInterimTilesOnError': this.layer.setUseInterimTilesOnError(newVal);
+        default:
       }
     });
 
-    if (nextProps.layerRef && nextProps.layerRef !== this.props.layerRef && this.layer) {
+    if (nextProps.layerRef && nextProps.layerRef !== this.props.layerRef) {
       nextProps.layerRef(this.layer);
     }
 
@@ -134,17 +132,13 @@ export class TileReact extends React.Component<TileProps> {
     const oldEvents = Util.getEvents(this.events, this.props);
     const newEvents = Util.getEvents(this.events, nextProps);
     Object.keys(this.events).forEach((eventName: string) => {
-      if (oldEvents[eventName] && this.layer) this.layer.un(eventName, oldEvents[eventName]);
-      if (newEvents[eventName] && this.layer) this.layer.on(eventName, newEvents[eventName]);
+      if (oldEvents[eventName]) this.layer.un(eventName, oldEvents[eventName]);
+      if (newEvents[eventName]) this.layer.on(eventName, newEvents[eventName]);
     })
   }
   
   public componentWillUnmount () {
-    console.log('removing layer from map', this.context.map);
-    if(this.context.map && this.layer) {
-      this.context.map.removeLayer(this.layer);
-    }
-    this.layer = undefined;
+    this.context.layers.remove(this.layer);
+    this.layer.dispose();
   }
-
 }

@@ -40,7 +40,7 @@ export interface VectorEvents extends ReactOpenlayersEvents {
 export declare class Vector extends React.Component<VectorProps> {
     static contextType: React.Context<MapContextType>;
     layer?: VectorLayer;
-    source: VectorSource;
+    source?: VectorSource;
     options: Options;
     events: VectorEvents;
     render(): JSX.Element;

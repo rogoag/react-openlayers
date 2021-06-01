@@ -18,7 +18,6 @@ export class AppOverlay extends React.Component {
   public popupComp: Popup;
 
   public showPopup = (evt: MapBrowserEvent) => {
-    console.log("SP", evt)
     this.overlayComp.overlay.setPosition(evt.coordinate);
     const lonlat = olProj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
 

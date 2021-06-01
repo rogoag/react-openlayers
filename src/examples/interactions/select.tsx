@@ -34,17 +34,21 @@ export class Select extends React.Component {
       center: {value: [-87, 48]}
     }
   }
-
-  componentDidMount() {
-    setTimeout(() => {this.setState({ active: false, zoom: {value: 5}})}, 5000);
-    setTimeout(() => {this.setState({ active: false, zoom: {value: 10}})}, 5000);
+  
+  componentDidUpdate(_prevProps: any, prevState: SelectState) {
+    if(this.state.active && !prevState.active) {
+      this.state.selectedFeatures.dispose();
+      this.setState({ selectedFeatures: new Collection([]) });
+    }
   }
 
   public render() {
     return (
       <div>
         <Typography variant="h4" paragraph>Select interaction</Typography>
-        <MapReact view={{projection: 'EPSG:4326'}} zoom={this.state.zoom} center={this.state.center}>
+        <button onClick={() => this.setState({ active: !this.state.active })}>dumb button</button>
+        {this.state.active && (
+          <MapReact view={{projection: 'EPSG:4326'}} zoom={this.state.zoom} center={this.state.center}>
           <Layers>
             <layer.TileReact>
               <source.XYZReact 
@@ -64,17 +68,18 @@ export class Select extends React.Component {
                     textOptions={{text: 'LineString', font: '18px Calibri,sans-serif', fillOptions: {color: 'white'}, strokeOptions: {color: 'black', width: 2}}}
                     hideTextZoom={12}
                   />
-                  {this.state.active && (
-                    <interaction.ModifyReact 
-                      onModifyend={(event) => {console.log(event)}}
-                      features={this.state.selectedFeatures}
-                    />
-                  )}
+                  <interaction.ModifyReact 
+                    onModifyend={() => {}}
+                    features={this.state.selectedFeatures}
+                  />
+                  <interaction.SelectReact />
                 </source.VectorSourceReact>
               </layer.Vector>
             <custom.GeolocationReact tracking={false} />
           </Layers>
-        </MapReact>
+          </MapReact>
+        )}
+      
         <br/>
         <Divider />
         <br/>

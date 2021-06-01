@@ -19,12 +19,12 @@ export interface ModifyEvents extends ReactOpenlayersEvents {
 }
 export declare class ModifyReact extends React.Component<ModifyProps> {
     static contextType: React.Context<VectorSourceContextType>;
-    interaction: Modify;
+    interaction?: Modify;
     options: Options;
     events: ModifyEvents;
     render(): null;
     componentDidMount(): void;
-    componentWillReceiveProps(nextProps: ModifyProps): void;
+    cleanup(): void;
     componentWillUnmount(): void;
     private initInteraction;
 }

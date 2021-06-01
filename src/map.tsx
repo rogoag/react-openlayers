@@ -87,7 +87,7 @@ export interface MapEvents extends ReactOpenlayersEvents {
  */
 export class MapReact extends React.Component<MapProps> {
 
-  public map?: Map;
+  public map: Map;
   public mapDiv: React.RefObject<HTMLDivElement>;
 
   public layers: Collection<Layer> = new Collection([]);
@@ -167,12 +167,6 @@ export class MapReact extends React.Component<MapProps> {
     this.updateFromProps(nextProps, false);
   }
 
-  public componentDidUpdate() {
-    if (this.map && this.mapDiv.current) {
-      this.map.setTarget(this.mapDiv.current);
-    }
-  }
-
   public render() {
     return (
       <MapContext.Provider value={this}>
@@ -190,12 +184,7 @@ export class MapReact extends React.Component<MapProps> {
   }
 
   public componentWillUnmount() {
-    console.log('releasing map')
-    if(this.map) {
-      this.map.setTarget(undefined);
-    }
-    this.map = undefined;
-    console.log('map released', this.map);
+    this.map.setTarget(undefined);
   }
 
   private updateFromProps(props: MapProps, isMounting: boolean) {

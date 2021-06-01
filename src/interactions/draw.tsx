@@ -74,8 +74,7 @@ export class DrawReact extends React.Component<DrawProps> {
 
   public componentDidMount() {
     const options = Util.getOptions<Options, DrawProps>(this.options, this.props);
-    options.source = this.context.source;
-    this.interaction = new Draw({...options, style: this.genStyle.bind(this)});
+    this.interaction = new Draw({...options, style: this.genStyle.bind(this), source: this.context.source});
     this.context.context.context.interactions.push(this.interaction);
 
     this.initInteraction(this.props);
@@ -90,8 +89,7 @@ export class DrawReact extends React.Component<DrawProps> {
     if (nextProps !== this.props) {
       this.context.context.context.interactions.remove(this.interaction);
       const options = Util.getOptions<Options, DrawProps>(this.options, nextProps);
-      options.source = this.context.source;
-      this.interaction = new Draw({...options, style: this.genStyle.bind(this)});
+      this.interaction = new Draw({...options, style: this.genStyle.bind(this), source: this.context.source});
       this.context.context.context.interactions.push(this.interaction);
 
       this.initInteraction(nextProps);

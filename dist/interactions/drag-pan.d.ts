@@ -15,7 +15,7 @@ export interface DragPanEvents extends ReactOpenlayersEvents {
 }
 export declare class DragPanReact extends React.Component<DragPanProps> {
     static contextType: React.Context<MapContextType>;
-    interaction: DragPan;
+    interaction?: DragPan;
     options: DragPanProps;
     events: DragPanEvents;
     render(): null;

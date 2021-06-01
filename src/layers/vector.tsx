@@ -51,7 +51,7 @@ export class Vector extends React.Component<VectorProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
   public layer?: VectorLayer;
-  public source: VectorSource;
+  public source?: VectorSource;
 
   // Default options
   public options: Options = {
@@ -94,7 +94,7 @@ export class Vector extends React.Component<VectorProps> {
 
     const olEvents = Util.getEvents<VectorEvents, VectorProps>(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
-      if(this.layer) this.layer.on(eventName, olEvents[eventName]);
+      this.layer && this.layer.on(eventName, olEvents[eventName]);
     });
   }
   
@@ -133,18 +133,24 @@ export class Vector extends React.Component<VectorProps> {
     const oldEvents = Util.getEvents(this.events, this.props);
     const newEvents = Util.getEvents(this.events, nextProps);
     Object.keys(this.events).forEach((eventName: string) => {
-      if(this.layer) {
-        if (oldEvents[eventName]) this.layer.un(eventName, oldEvents[eventName]);
-        if (newEvents[eventName]) this.layer.on(eventName, newEvents[eventName]);
-      }
+      if (oldEvents[eventName] && this.layer) this.layer.un(eventName, oldEvents[eventName]);
+      if (newEvents[eventName] && this.layer) this.layer.on(eventName, newEvents[eventName]);
     })
   }
 
   public componentWillUnmount() {
-    console.log('removing vector layer from map', this.context.map);
-    if(this.context.map) {
-      this.context.map.removeLayer(this.layer);
+    if(this.layer) {
+      this.context.layers.remove(this.layer);
+      this.layer.setStyle(null);
+      this.layer.dispose();
+      this.layer.getRenderer().dispose();
     }
+
+    if(this.source) {
+      this.source.dispose();
+    }
+
     this.layer = undefined;
+    this.source = undefined;
   }
 }

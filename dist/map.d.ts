@@ -82,7 +82,7 @@ export interface MapEvents extends ReactOpenlayersEvents {
  * </Map>
  */
 export declare class MapReact extends React.Component<MapProps> {
-    map?: Map;
+    map: Map;
     mapDiv: React.RefObject<HTMLDivElement>;
     layers: Collection<Layer>;
     interactions: Collection<Interaction>;
@@ -93,7 +93,6 @@ export declare class MapReact extends React.Component<MapProps> {
     constructor(props: MapProps);
     componentDidMount(): void;
     componentWillReceiveProps(nextProps: MapProps): void;
-    componentDidUpdate(): void;
     render(): JSX.Element;
     componentWillUnmount(): void;
     private updateFromProps;

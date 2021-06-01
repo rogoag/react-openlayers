@@ -25,7 +25,6 @@ export interface VectorSourceProps extends SourceType<VectorSource> {
 export class VectorSourceReact extends React.Component<VectorSourceProps> {
   public static contextType: React.Context<VectorLayerContextType> = VectorLayerContext;
 
-  public source: VectorSource;
   public features: Feature<Geometry>[] | Collection<Feature<Geometry>>;
 
   constructor(props: VectorSourceProps) {
@@ -62,8 +61,6 @@ export class VectorSourceReact extends React.Component<VectorSourceProps> {
   }
 
   public componentWillUnmount() {
-    this.context.source.dispose();
-    this.context.source = null;
+    this.context.source = undefined;
   }
-
 }

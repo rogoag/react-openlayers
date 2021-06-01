@@ -22,7 +22,7 @@ export interface DragPanEvents extends ReactOpenlayersEvents {
 export class DragPanReact extends React.Component<DragPanProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public interaction: DragPan;
+  public interaction?: DragPan;
 
   public options: DragPanProps = {
     condition: undefined,
@@ -46,35 +46,35 @@ export class DragPanReact extends React.Component<DragPanProps> {
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
-      this.interaction.on(eventName, olEvents[eventName]);
+      this.interaction && this.interaction.on(eventName, olEvents[eventName]);
     })
   }
 
   public componentWillReceiveProps(nextProps: DragPanProps) {
-    console.log(this.context.map)
-    
     if (nextProps !== this.props) {
-      this.context.map.removeInteraction(this.interaction);
+      this.context.interactions.remove(this.interaction);
       const options = Util.getOptions<Options, DragPanProps>(this.options, nextProps);
       this.interaction = new DragPan(options);
-      this.context.map.addInteraction(this.interaction);
+      this.context.interactions.push(this.interaction);
 
       this.initInteraction(nextProps);
 
       const olEvents = Util.getEvents(this.events, this.props);
       Object.keys(olEvents).forEach((eventName: string) => {
-        this.interaction.on(eventName, olEvents[eventName]);
+        this.interaction && this.interaction.on(eventName, olEvents[eventName]);
       });
     }
   }
 
   public componentWillUnmount() {
-    this.context.map.removeInteraction(this.interaction);
+    this.context.interactions.remove(this.interaction);
   }
 
   private initInteraction(props: DragPanProps) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
+    if(this.interaction) {
+      if (props.interactionRef) props.interactionRef(this.interaction);
+      if (props.active !== undefined) this.interaction.setActive(props.active);
+    }
   }
 
 }

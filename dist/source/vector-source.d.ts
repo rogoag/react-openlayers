@@ -16,7 +16,6 @@ export interface VectorSourceProps extends SourceType<VectorSource> {
 }
 export declare class VectorSourceReact extends React.Component<VectorSourceProps> {
     static contextType: React.Context<VectorLayerContextType>;
-    source: VectorSource;
     features: Feature<Geometry>[] | Collection<Feature<Geometry>>;
     constructor(props: VectorSourceProps);
     render(): JSX.Element;

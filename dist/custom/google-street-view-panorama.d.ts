@@ -1,3 +1,4 @@
+/// <reference types="google.maps" />
 import * as React from 'react';
 export interface GoogleStreetViewPanoramaOptions {
     position: {

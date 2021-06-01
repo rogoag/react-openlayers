@@ -41,9 +41,9 @@ export interface FeatureProps {
 }
 export declare class FeatureReact<T extends FeatureProps> extends React.Component<T, {}> {
     static contextType: React.Context<VectorSourceContextType>;
-    feature: Feature;
-    geometry: Polygon | LineString | LinearRing | Point | MultiPolygon | MultiPoint | Circle | MultiLineString;
-    style: Style;
+    feature?: Feature;
+    geometry?: Polygon | LineString | LinearRing | Point | MultiPolygon | MultiPoint | Circle | MultiLineString;
+    style?: Style;
     events: FeatureEvents;
     updateFill(fillOptions: FillOptions): void;
     updateStroke(strokeOptions: StrokeOptions): void;
@@ -52,7 +52,7 @@ export declare class FeatureReact<T extends FeatureProps> extends React.Componen
     updateCircle(circleOptions: CircleOptions): void;
     updateZindex(zIndex: number): void;
     updateStyle(props: FeatureProps): void;
-    styleFunction(): Style;
+    styleFunction(): Style | undefined;
     componentDidMount(): void;
     handleStyleUpdates(prop: string, nextProps: FeatureProps): void;
     componentWillUnmount(): void;

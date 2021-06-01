@@ -47,9 +47,9 @@ export interface FeatureProps {
 export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}> {
   public static contextType: React.Context<VectorSourceContextType> = VectorSourceContext;
 
-  public feature: Feature;
-  public geometry: Polygon | LineString | LinearRing | Point | MultiPolygon | MultiPoint | Circle | MultiLineString;
-  public style: Style;
+  public feature?: Feature;
+  public geometry?: Polygon | LineString | LinearRing | Point | MultiPolygon | MultiPoint | Circle | MultiLineString;
+  public style?: Style;
 
   public events: FeatureEvents = {
     'change:geometry': undefined,
@@ -58,19 +58,19 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
   };
 
   updateFill(fillOptions: FillOptions) {
-    this.style.setFill(new Fill(fillOptions));
+    this.style && this.style.setFill(new Fill(fillOptions));
   }
 
   updateStroke(strokeOptions: StrokeOptions) {
-    this.style.setStroke(new Stroke(strokeOptions));
+    this.style && this.style.setStroke(new Stroke(strokeOptions));
   }
 
   updateIcon(iconOptions: IconOptions) {
-    this.style.setImage(new Icon(iconOptions));
+    this.style && this.style.setImage(new Icon(iconOptions));
   }
 
   updateText(textOptions: TextOptionsReact) {
-    this.style.setText(new Text({...textOptions, fill: new Fill(textOptions.fillOptions), stroke: new Stroke(textOptions.strokeOptions)}));
+    this.style && this.style.setText(new Text({...textOptions, fill: new Fill(textOptions.fillOptions), stroke: new Stroke(textOptions.strokeOptions)}));
   }
 
   updateCircle(circleOptions: CircleOptions) {
@@ -80,7 +80,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
     if(circleOptions.strokeOptions) {
       circleOptions.strokeOptions = new Stroke((circleOptions.strokeOptions as StrokeOptions));
     }
-    this.style.setImage(
+    this.style && this.style.setImage(
       new CircleStyle({
         radius: circleOptions.radius, 
         fill: circleOptions.fillOptions, 
@@ -91,7 +91,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
   }
 
   updateZindex(zIndex: number) {
-    this.style.setZIndex(zIndex);
+    this.style && this.style.setZIndex(zIndex);
   }
   
   updateStyle(props: FeatureProps): void {
@@ -116,7 +116,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
   }
 
   styleFunction() {
-    if(this.props.hideTextZoom) {
+    if(this.props.hideTextZoom && this.style) {
       const view = this.context.context.context.map.getView();
       const zoom = view.getZoom();
       const text = this.style.getText();
@@ -144,27 +144,32 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
-      this.feature.on(eventName, olEvents[eventName]);
+      this.feature && this.feature.on(eventName, olEvents[eventName]);
     });
   }
 
   handleStyleUpdates(prop: string, nextProps: FeatureProps) {
     if(JSON.stringify(nextProps[prop]) === JSON.stringify(this.props[prop])) return;
     const newVal = nextProps[prop];
-    switch(prop) {
-      case 'fillOptions': this.updateFill(newVal); break;
-      case 'strokeOptions': this.updateStroke(newVal); break;
-      case 'iconOptions': this.updateIcon(newVal); break;
-      case 'textOptions': this.updateText(newVal); break;
-      case 'circleOptions': this.updateCircle(newVal); break;
-      case 'zIndex': this.updateZindex(newVal); break;
-      case 'properties': this.feature.setProperties(nextProps.properties as { [key: string]: any }); break;
+    if(this.feature) {
+      switch(prop) {
+        case 'fillOptions': this.updateFill(newVal); break;
+        case 'strokeOptions': this.updateStroke(newVal); break;
+        case 'iconOptions': this.updateIcon(newVal); break;
+        case 'textOptions': this.updateText(newVal); break;
+        case 'circleOptions': this.updateCircle(newVal); break;
+        case 'zIndex': this.updateZindex(newVal); break;
+        case 'properties': this.feature.setProperties(nextProps.properties as { [key: string]: any }); break;
+      }
+      this.feature.changed();
     }
-    this.feature.changed();
   }
 
   public componentWillUnmount() {
       this.context.features.remove(this.feature);
+      this.feature = undefined;
+      this.style = undefined;
+      this.geometry = undefined;
   }
 
   public render() {

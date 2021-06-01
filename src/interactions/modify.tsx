@@ -25,14 +25,14 @@ export interface ModifyEvents extends ReactOpenlayersEvents {
 export class ModifyReact extends React.Component<ModifyProps> {
   public static contextType: React.Context<VectorSourceContextType> = VectorSourceContext;
 
-  public interaction: Modify;
+  public interaction?: Modify;
 
   public options: Options = {
     condition: undefined,
     deleteCondition: undefined,
     pixelTolerance: undefined,
     style: undefined,
-    wrapX: undefined
+    wrapX: undefined,
   };
 
   public events: ModifyEvents = {
@@ -53,32 +53,27 @@ export class ModifyReact extends React.Component<ModifyProps> {
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
-      this.interaction.on(eventName, olEvents[eventName]);
+      this.interaction && this.interaction.on(eventName, olEvents[eventName]);
     });
   }
-
-  public componentWillReceiveProps(nextProps: ModifyProps) {
-    if (nextProps !== this.props) {
-      this.context.context.context.interactions.remove(this.interaction);
-      const options = Util.getOptions<Options, ModifyProps>(this.options, nextProps);
-      this.interaction = new Modify(options);
-      this.context.context.context.interactions.push(this.interaction);
-
-      this.initInteraction(nextProps);
-
-      const olEvents = Util.getEvents(this.events, this.props);
-      Object.keys(olEvents).forEach((eventName: string) => {
-        this.interaction.on(eventName, olEvents[eventName]);
-      })
-    }
+  
+  cleanup(): void {
+    this.context.context.context.interactions.remove(this.interaction);
+    if(this.interaction) {
+      this.interaction['features_'].dispose();
+      this.interaction['overlay_'].dispose();
+      this.interaction['lastPointerEvent_'] = undefined;
+      this.interaction.dispose();
+    } 
+    this.interaction = undefined;
   }
 
   public componentWillUnmount() {
-    this.context.context.context.interactions.remove(this.interaction);
+    this.cleanup();
   }
 
   private initInteraction(props: ModifyProps) {
-    if (props.interactionRef) props.interactionRef(this.interaction);
-    if (props.active !== undefined) this.interaction.setActive(props.active);
+    if (props.interactionRef && this.interaction) props.interactionRef(this.interaction);
+    if (props.active !== undefined && this.interaction) this.interaction.setActive(props.active);
   }
 }
