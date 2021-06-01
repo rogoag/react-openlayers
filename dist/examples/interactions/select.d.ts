@@ -19,6 +19,7 @@ export declare class Select extends React.Component {
         value: number;
     };
     constructor(props: {});
+    handleSelectFeature(event: any): void;
     componentDidUpdate(_prevProps: any, prevState: SelectState): void;
     render(): JSX.Element;
 }

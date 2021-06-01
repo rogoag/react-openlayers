@@ -60,8 +60,11 @@ export class ModifyReact extends React.Component<ModifyProps> {
   cleanup(): void {
     this.context.context.context.interactions.remove(this.interaction);
     if(this.interaction) {
+      this.interaction['features_'] = undefined;
+      this.interaction['overlay_'] = undefined;
+      this.interaction['lastPointerEvent_'] = undefined;
       this.interaction.dispose();
-    } 
+    }
     this.interaction = undefined;
   }
 

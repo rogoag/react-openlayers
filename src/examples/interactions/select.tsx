@@ -33,10 +33,19 @@ export class Select extends React.Component {
       zoom: this.zoom,
       center: {value: [-87, 48]}
     }
+
+    this.handleSelectFeature = this.handleSelectFeature.bind(this);
   }
-  
-  componentDidUpdate(_prevProps: any, prevState: SelectState) {
-    if(this.state.active && !prevState.active) {
+
+  handleSelectFeature(event: any) {
+    if(event.selected[0]) {
+      this.state.selectedFeatures.dispose();
+      this.setState({ selectedFeatures: new Collection([event.selected[0]]) });
+    }
+  }
+
+  public componentDidUpdate(_prevProps: any, prevState: SelectState) {
+    if(prevState.active !== this.state.active && prevState.active) {
       this.state.selectedFeatures.dispose();
       this.setState({ selectedFeatures: new Collection([]) });
     }
@@ -69,10 +78,9 @@ export class Select extends React.Component {
                     hideTextZoom={12}
                   />
                   <interaction.ModifyReact 
-                    onModifyend={() => {}}
                     features={this.state.selectedFeatures}
                   />
-                  <interaction.SelectReact />
+                  <interaction.SelectReact style={undefined} onSelect={this.handleSelectFeature} />
                 </source.VectorSourceReact>
               </layer.Vector>
             <custom.GeolocationReact tracking={false} />
