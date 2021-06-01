@@ -24,6 +24,7 @@ export declare class ModifyReact extends React.Component<ModifyProps> {
     events: ModifyEvents;
     render(): null;
     componentDidMount(): void;
+    componentWillReceiveProps(nextProps: ModifyProps): void;
     cleanup(): void;
     componentWillUnmount(): void;
     private initInteraction;

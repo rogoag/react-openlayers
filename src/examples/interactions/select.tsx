@@ -46,6 +46,7 @@ export class Select extends React.Component {
 
   public componentDidUpdate(_prevProps: any, prevState: SelectState) {
     if(prevState.active !== this.state.active && prevState.active) {
+      console.log('cool')
       this.state.selectedFeatures.dispose();
       this.setState({ selectedFeatures: new Collection([]) });
     }
