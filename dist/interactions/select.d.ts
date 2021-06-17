@@ -26,4 +26,5 @@ export declare class SelectReact extends React.Component<SelectProps> {
     componentWillReceiveProps(nextProps: SelectProps): void;
     componentWillUnmount(): void;
     private initInteraction;
+    private filterLayer;
 }

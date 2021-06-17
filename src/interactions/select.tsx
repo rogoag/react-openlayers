@@ -5,6 +5,7 @@ import Select, { Options, SelectEvent } from 'ol/interaction/Select';
 import { InteractionType } from '.';
 import { VectorSourceContext, VectorSourceContextType } from '../source/vector-source';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
+import Layer from 'ol/layer/Layer';
 
 export interface SelectProps extends Options, InteractionType<Select> {
   instance?: Select;
@@ -52,7 +53,7 @@ export class SelectReact extends React.Component<SelectProps> {
       this.interaction = this.props.instance;
     } else {
       const options = Util.getOptions<Options, SelectProps>(this.options, this.props);
-      this.interaction = new Select(options);
+      this.interaction = new Select({...options, layers: this.filterLayer.bind(this)});
     }
     this.context.context.context.interactions.push(this.interaction)
 
@@ -72,7 +73,7 @@ export class SelectReact extends React.Component<SelectProps> {
         this.interaction = this.props.instance;
       } else {
         const options = Util.getOptions<Options, SelectProps>(this.options, nextProps);
-        this.interaction = new Select(options);
+        this.interaction = new Select({...options, layers: this.filterLayer.bind(this)});
       }
       this.context.context.context.interactions.push(this.interaction);
 
@@ -92,5 +93,9 @@ export class SelectReact extends React.Component<SelectProps> {
   private initInteraction(props: SelectProps) {
     if (props.interactionRef) props.interactionRef(this.interaction);
     if (props.active !== undefined) this.interaction.setActive(props.active);
+  }
+
+  private filterLayer(layer: Layer) {
+    return this.context.context.layer === layer;
   }
 }

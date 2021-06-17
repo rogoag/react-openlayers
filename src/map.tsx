@@ -92,7 +92,7 @@ export class MapReact extends React.Component<MapProps> {
 
   public layers: Collection<Layer> = new Collection([]);
   public interactions: Collection<Interaction> = Interactions.defaults();
-  public controls: Collection<Control> = Controls.defaults();
+  public controls: Collection<Control> = Controls.defaults({zoom: false});
   public overlays: Overlay[] = [];
 
   public options: MapOptions = {
