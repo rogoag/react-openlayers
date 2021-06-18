@@ -41,12 +41,11 @@ export class GeolocationReact extends React.Component<GeolocationProps> {
     this.geolocation.setTracking(true);
     this.geolocation.on('change', () => {
       const view = this.context.map.getView()
-      const newPos = this.geolocation.getPosition();
       this.geolocation.setProjection(view.getProjection());
+      const newPos = this.geolocation.getPosition();
       this.setState({ location: newPos });
       if(this.props.tracking) {
        view.setCenter(newPos);
-       view.setZoom(20);
       }
     });
   }
