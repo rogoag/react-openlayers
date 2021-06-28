@@ -30,6 +30,7 @@ export interface MapProps extends Omit<MapOptions, 'view'> {
   center?: { value: Coordinate }
   zoom?: { value: number }
   fit?: { value: Extent }
+  rotation?: { value: number }
   className?: string
   view?: ViewOptions
   style?: React.CSSProperties
@@ -199,7 +200,7 @@ export class MapReact extends React.Component<MapProps> {
   }
 
   private updateFromProps(props: MapProps, isMounting: boolean) {
-    if (isMounting || props.center || props.zoom) {
+    if (isMounting || props.center || props.zoom || props.fit || props.rotation) {
       // Update the center and the resolution of the view only when it is
       // mounted the first time but not when the properties are updated.
       // *Unless* we're passed a position object that explicitly declares
@@ -222,6 +223,10 @@ export class MapReact extends React.Component<MapProps> {
   
       if(props.fit && props.fit !== this.props.fit) {
         view.fit(props.fit.value);
+      }
+
+      if(props.rotation && props.rotation !== this.props.rotation) {
+        view.setRotation(props.rotation.value);
       }
     }
   }

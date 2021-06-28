@@ -28,6 +28,9 @@ export interface MapProps extends Omit<MapOptions, 'view'> {
     fit?: {
         value: Extent;
     };
+    rotation?: {
+        value: number;
+    };
     className?: string;
     view?: ViewOptions;
     style?: React.CSSProperties;
