@@ -94,7 +94,7 @@ export class MapReact extends React.Component<MapProps> {
   public interactions: Collection<Interaction> = Interactions.defaults({doubleClickZoom: false});
   public controls: Collection<Control> = Controls.defaults({zoom: false});
   public overlays: Overlay[] = [];
-  public clickCallbacks: Function[] = [];
+  public clickCallback?: Function;
 
   public options: MapOptions = {
     pixelRatio: undefined,
@@ -169,9 +169,9 @@ export class MapReact extends React.Component<MapProps> {
   }
 
   public eventListenerCall() {
-    this.clickCallbacks.forEach((callback) => {
-      callback();
-    })
+      if(this.clickCallback) {
+        this.clickCallback();
+      }
   }
 
   public componentWillReceiveProps(nextProps: MapProps) {

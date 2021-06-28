@@ -58,6 +58,10 @@ export class SelectReact extends React.Component<SelectProps> {
     }
     this.context.context.context.interactions.push(this.interaction)
 
+    if(this.props.onAnyClick) {
+      this.context.context.context.clickCallback = this.props.onAnyClick;
+    }
+
     this.initInteraction(this.props);
 
     const olEvents = Util.getEvents(this.events, this.props);
@@ -89,6 +93,8 @@ export class SelectReact extends React.Component<SelectProps> {
 
   public componentWillUnmount() {
     this.context.context.context.interactions.remove(this.interaction);
+
+    this.context.context.context.clickCallback = undefined;
   }
 
   private initInteraction(props: SelectProps) {

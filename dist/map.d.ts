@@ -88,7 +88,7 @@ export declare class MapReact extends React.Component<MapProps> {
     interactions: Collection<Interaction>;
     controls: Collection<Control>;
     overlays: Overlay[];
-    clickCallbacks: Function[];
+    clickCallback?: Function;
     options: MapOptions;
     events: MapEvents;
     constructor(props: MapProps);
