@@ -13,6 +13,7 @@ export interface SelectProps extends Options, InteractionType<Select> {
   onChangeActive?: ReactOpenlayersEvent
   onPropertychange?: ReactOpenlayersEvent
   onSelect?: ReactOpenlayersEvent<SelectEvent>
+  onAnyClick?: Function;
 }
 
 export interface SelectEvents extends ReactOpenlayersEvents {
@@ -36,7 +37,7 @@ export class SelectReact extends React.Component<SelectProps> {
     multi: undefined,
     features: undefined,
     filter: undefined,
-    hitTolerance: undefined
+    hitTolerance: undefined,
   };
 
   public events: SelectEvents = {

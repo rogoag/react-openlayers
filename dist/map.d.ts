@@ -88,10 +88,12 @@ export declare class MapReact extends React.Component<MapProps> {
     interactions: Collection<Interaction>;
     controls: Collection<Control>;
     overlays: Overlay[];
+    clickCallbacks: Function[];
     options: MapOptions;
     events: MapEvents;
     constructor(props: MapProps);
     componentDidMount(): void;
+    eventListenerCall(): void;
     componentWillReceiveProps(nextProps: MapProps): void;
     render(): JSX.Element;
     componentWillUnmount(): void;

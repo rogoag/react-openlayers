@@ -91,9 +91,10 @@ export class MapReact extends React.Component<MapProps> {
   public mapDiv: React.RefObject<HTMLDivElement>;
 
   public layers: Collection<Layer> = new Collection([]);
-  public interactions: Collection<Interaction> = Interactions.defaults();
+  public interactions: Collection<Interaction> = Interactions.defaults({doubleClickZoom: false});
   public controls: Collection<Control> = Controls.defaults({zoom: false});
   public overlays: Overlay[] = [];
+  public clickCallbacks: Function[] = [];
 
   public options: MapOptions = {
     pixelRatio: undefined,
@@ -127,6 +128,8 @@ export class MapReact extends React.Component<MapProps> {
   constructor(props: MapProps) {
     super(props);
     this.mapDiv = React.createRef<HTMLDivElement>();
+
+    this.eventListenerCall = this.eventListenerCall.bind(this);
   }
 
   public componentDidMount() {
@@ -160,6 +163,14 @@ export class MapReact extends React.Component<MapProps> {
       if(this.map) {
         this.map.on(eventName, olEvents[eventName]);
       }
+    })
+
+    this.map.on('click', this.eventListenerCall);
+  }
+
+  public eventListenerCall() {
+    this.clickCallbacks.forEach((callback) => {
+      callback();
     })
   }
 

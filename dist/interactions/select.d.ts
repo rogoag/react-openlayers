@@ -9,6 +9,7 @@ export interface SelectProps extends Options, InteractionType<Select> {
     onChangeActive?: ReactOpenlayersEvent;
     onPropertychange?: ReactOpenlayersEvent;
     onSelect?: ReactOpenlayersEvent<SelectEvent>;
+    onAnyClick?: Function;
 }
 export interface SelectEvents extends ReactOpenlayersEvents {
     'change': ReactOpenlayersEvent;
