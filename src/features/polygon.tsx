@@ -5,6 +5,7 @@ import { Coordinate } from 'ol/coordinate';
 
 export interface PolygonProps extends FeatureProps {
   coordinates: Coordinate[][] | number[],
+  forceRefresh?: Boolean,
 };
 
 export class PolygonReact extends FeatureReact<PolygonProps> {
@@ -19,7 +20,7 @@ export class PolygonReact extends FeatureReact<PolygonProps> {
 
   componentWillReceiveProps(nextProps: PolygonProps) {
     Object.keys(nextProps).forEach((prop: string) => {
-        if(JSON.stringify(nextProps[prop]) === JSON.stringify(this.props[prop])) return;
+      if(JSON.stringify(nextProps[prop]) === JSON.stringify(this.props[prop] && !this.props.forceRefresh)) return;
         const newVal = nextProps[prop];
         switch(prop) {
             case 'coordinates': this.geometry.setCoordinates(newVal); break;

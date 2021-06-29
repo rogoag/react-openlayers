@@ -4,6 +4,7 @@ import Feature from 'ol/Feature';
 import { Coordinate } from 'ol/coordinate';
 export interface MultiPolygonProps extends FeatureProps {
     coordinates: (Coordinate[][] | Polygon)[];
+    forceRefresh?: Boolean;
 }
 export declare class MultiPolygonReact extends FeatureReact<MultiPolygonProps> {
     feature: Feature;

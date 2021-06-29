@@ -6,6 +6,7 @@ import { Coordinate } from 'ol/coordinate';
 
 export interface LineStringProps extends FeatureProps {
     coordinates: Coordinate[] | number[],
+    forceRefresh?: Boolean,
 }
 
 export class LineStringReact extends FeatureReact<LineStringProps> {
@@ -21,7 +22,7 @@ export class LineStringReact extends FeatureReact<LineStringProps> {
 
   componentWillReceiveProps(nextProps: LineStringProps) {
     Object.keys(nextProps).forEach((prop: string) => {
-        if(JSON.stringify(nextProps[prop]) === JSON.stringify(this.props[prop])) return;
+        if(JSON.stringify(nextProps[prop]) === JSON.stringify(this.props[prop] && !this.props.forceRefresh)) return;
         const newVal = nextProps[prop];
         switch(prop) {
             case 'coordinates': this.geometry.setCoordinates(newVal); break;

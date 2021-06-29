@@ -4,6 +4,7 @@ import Feature from 'ol/Feature';
 import { Coordinate } from 'ol/coordinate';
 export interface LineStringProps extends FeatureProps {
     coordinates: Coordinate[] | number[];
+    forceRefresh?: Boolean;
 }
 export declare class LineStringReact extends FeatureReact<LineStringProps> {
     feature: Feature;

@@ -5,6 +5,7 @@ import { Coordinate } from 'ol/coordinate';
 
 export interface MultiPolygonProps extends FeatureProps {
   coordinates: (Coordinate[][] | Polygon)[],
+  forceRefresh?: Boolean,
 };
 
 export class MultiPolygonReact extends FeatureReact<MultiPolygonProps> {
@@ -19,8 +20,8 @@ export class MultiPolygonReact extends FeatureReact<MultiPolygonProps> {
 
   componentWillReceiveProps(nextProps: MultiPolygonProps) {
     Object.keys(nextProps).forEach((prop: string) => {
-        if(JSON.stringify(nextProps[prop]) === JSON.stringify(this.props[prop])) return;
-        const newVal = nextProps[prop];
+      if(JSON.stringify(nextProps[prop]) === JSON.stringify(this.props[prop] && !this.props.forceRefresh)) return;
+      const newVal = nextProps[prop];
         switch(prop) {
             case 'coordinates': this.geometry.setCoordinates(newVal); break;
             default:

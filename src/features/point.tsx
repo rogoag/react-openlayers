@@ -5,6 +5,7 @@ import { Coordinate } from 'ol/coordinate';
 
 export interface PointProps extends FeatureProps {
   coordinate: Coordinate,
+  forceRefresh?: Boolean,
 };
 
 export class PointReact extends FeatureReact<PointProps> {
@@ -19,8 +20,8 @@ export class PointReact extends FeatureReact<PointProps> {
 
   componentWillReceiveProps(nextProps: PointProps) {
     Object.keys(nextProps).forEach((prop: string) => {
-        if(JSON.stringify(nextProps[prop]) === JSON.stringify(this.props[prop])) return;
-        const newVal = nextProps[prop];
+      if(JSON.stringify(nextProps[prop]) === JSON.stringify(this.props[prop] && !this.props.forceRefresh)) return;
+      const newVal = nextProps[prop];
         switch(prop) {
             case 'coordinate': this.geometry.setCoordinates(newVal); break;
             default:

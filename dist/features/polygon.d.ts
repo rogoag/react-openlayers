@@ -4,6 +4,7 @@ import Feature from 'ol/Feature';
 import { Coordinate } from 'ol/coordinate';
 export interface PolygonProps extends FeatureProps {
     coordinates: Coordinate[][] | number[];
+    forceRefresh?: Boolean;
 }
 export declare class PolygonReact extends FeatureReact<PolygonProps> {
     feature: Feature;

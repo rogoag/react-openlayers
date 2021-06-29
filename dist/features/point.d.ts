@@ -4,6 +4,7 @@ import Feature from 'ol/Feature';
 import { Coordinate } from 'ol/coordinate';
 export interface PointProps extends FeatureProps {
     coordinate: Coordinate;
+    forceRefresh?: Boolean;
 }
 export declare class PointReact extends FeatureReact<PointProps> {
     feature: Feature;
