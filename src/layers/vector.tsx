@@ -85,11 +85,10 @@ export class Vector extends React.Component<VectorProps> {
   public componentDidMount() {
     const options = Util.getOptions(this.options, this.props);
     this.layer = new VectorLayer({...options, source: this.source});
+    this.context.layers.push(this.layer);
     if (this.props.zIndex) {
       this.layer.setZIndex(this.props.zIndex);
     }
-    this.context.layers.push(this.layer);
-
     if (this.props.layerRef) this.props.layerRef(this.layer);
 
     const olEvents = Util.getEvents<VectorEvents, VectorProps>(this.events, this.props);
