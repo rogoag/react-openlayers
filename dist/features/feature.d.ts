@@ -16,7 +16,8 @@ interface CircleOptions {
     fillOptions?: FillOptions;
     fill?: Fill;
     radius: number;
-    strokeOptions?: StrokeOptions | Stroke;
+    strokeOptions?: StrokeOptions;
+    stroke?: Stroke;
     displacement?: number[];
 }
 export interface FeatureEvents extends ReactOpenlayersEvents {

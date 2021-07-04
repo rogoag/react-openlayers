@@ -20,7 +20,8 @@ interface CircleOptions {
   fillOptions?: FillOptions;
   fill?: Fill;
   radius: number;
-  strokeOptions?: StrokeOptions | Stroke;
+  strokeOptions?: StrokeOptions;
+  stroke?: Stroke;
   displacement?: number[];
 }
 
@@ -78,16 +79,16 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
 
   updateCircle(circleOptions: CircleOptions) {
     if(circleOptions.fillOptions) {
-      circleOptions.fill = new Fill((circleOptions.fillOptions as FillOptions));
+      circleOptions.fill = new Fill(circleOptions.fillOptions);
     }
     if(circleOptions.strokeOptions) {
-      circleOptions.strokeOptions = new Stroke((circleOptions.strokeOptions as StrokeOptions));
+      circleOptions.stroke = new Stroke(circleOptions.strokeOptions);
     }
     this.style && this.style.setImage(
       new CircleStyle({
         radius: circleOptions.radius, 
         fill: circleOptions.fill, 
-        stroke: circleOptions.strokeOptions, 
+        stroke: circleOptions.stroke, 
         displacement: circleOptions.displacement
       })
     );
