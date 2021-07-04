@@ -31,7 +31,7 @@ export class Select extends React.Component {
       active: true,
       selectedFeatures: new Collection([]),
       zoom: this.zoom,
-      center: {value: [-87, 48]}
+      center: {value: [-87.06194122652191, 40.740451986556394]}
     }
 
     this.handleSelectFeature = this.handleSelectFeature.bind(this);
@@ -79,6 +79,15 @@ export class Select extends React.Component {
                     textOptions={{text: 'LineString', font: '18px Calibri,sans-serif', fillOptions: {color: 'white'}, strokeOptions: {color: 'black', width: 2}}}
                     hideTextZoom={12}
                     hideAtZoom={8}
+                  />
+                  <feature.PointReact
+                    coordinate={[-87.06194122652191, 40.740451986556394]} 
+                    circleOptions={{
+                      fillOptions: {color: 'purple'},
+                      radius: 50,
+                      strokeOptions: {width: 1, color: 'black'}
+                    }}
+                    hideAtZoom={10}
                   />
                   <interaction.ModifyReact 
                     features={this.state.selectedFeatures}

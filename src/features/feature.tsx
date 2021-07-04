@@ -17,7 +17,8 @@ interface TextOptionsReact extends TextOptions {
 
 /* This is a bit hacky */
 interface CircleOptions {
-  fillOptions?: FillOptions | Fill;
+  fillOptions?: FillOptions;
+  fill?: Fill;
   radius: number;
   strokeOptions?: StrokeOptions | Stroke;
   displacement?: number[];
@@ -77,7 +78,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
 
   updateCircle(circleOptions: CircleOptions) {
     if(circleOptions.fillOptions) {
-      circleOptions.fillOptions = new Fill((circleOptions.fillOptions as FillOptions));
+      circleOptions.fill = new Fill((circleOptions.fillOptions as FillOptions));
     }
     if(circleOptions.strokeOptions) {
       circleOptions.strokeOptions = new Stroke((circleOptions.strokeOptions as StrokeOptions));
@@ -85,7 +86,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
     this.style && this.style.setImage(
       new CircleStyle({
         radius: circleOptions.radius, 
-        fill: circleOptions.fillOptions, 
+        fill: circleOptions.fill, 
         stroke: circleOptions.strokeOptions, 
         displacement: circleOptions.displacement
       })
@@ -123,7 +124,9 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
     if(this.props.hideAtZoom && zoom < this.props.hideAtZoom) {
       this.style = new Style();
       this.active = false;
-    } else if(!this.active) {
+    }
+    
+    if(!this.active && this.props.hideAtZoom && zoom > this.props.hideAtZoom) {
       this.updateStyle(this.props);
       this.active = true;
     }

@@ -13,7 +13,8 @@ interface TextOptionsReact extends TextOptions {
     strokeOptions?: StrokeOptions;
 }
 interface CircleOptions {
-    fillOptions?: FillOptions | Fill;
+    fillOptions?: FillOptions;
+    fill?: Fill;
     radius: number;
     strokeOptions?: StrokeOptions | Stroke;
     displacement?: number[];
