@@ -10,9 +10,10 @@ import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 import { Options } from 'ol/layer/BaseVector';
 import VectorSource from 'ol/source/Vector';
+import { VectorImage } from './vector-image';
 
 
-export type VectorLayerContextType = Vector | void;
+export type VectorLayerContextType = Vector | VectorImage | void;
 export const VectorLayerContext = React.createContext<VectorLayerContextType>(undefined);
 
 export interface VectorProps extends Options, LayerType<VectorLayer> {

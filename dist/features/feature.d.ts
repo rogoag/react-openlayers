@@ -29,6 +29,7 @@ export interface FeatureProps {
     onPropertyChange?: ReactOpenlayersEvent;
     fillOptions?: FillOptions;
     strokeOptions?: StrokeOptions;
+    hideAtZoom?: number;
     iconOptions?: IconOptions;
     textOptions?: TextOptionsReact;
     circleOptions?: CircleOptions;
@@ -44,6 +45,7 @@ export declare class FeatureReact<T extends FeatureProps> extends React.Componen
     feature?: Feature;
     geometry?: Polygon | LineString | LinearRing | Point | MultiPolygon | MultiPoint | Circle | MultiLineString;
     style?: Style;
+    active: Boolean;
     events: FeatureEvents;
     updateFill(fillOptions: FillOptions): void;
     updateStroke(strokeOptions: StrokeOptions): void;

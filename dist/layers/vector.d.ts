@@ -5,7 +5,8 @@ import { MapContextType } from '../map';
 import { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 import { Options } from 'ol/layer/BaseVector';
 import VectorSource from 'ol/source/Vector';
-export declare type VectorLayerContextType = Vector | void;
+import { VectorImage } from './vector-image';
+export declare type VectorLayerContextType = Vector | VectorImage | void;
 export declare const VectorLayerContext: React.Context<VectorLayerContextType>;
 export interface VectorProps extends Options, LayerType<VectorLayer> {
     onChange?: ReactOpenlayersEvent;

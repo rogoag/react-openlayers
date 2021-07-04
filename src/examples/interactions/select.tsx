@@ -66,24 +66,26 @@ export class Select extends React.Component {
                 attributions={'@ Google'}
               />
             </layer.TileReact>
-              <layer.Vector>
+              <layer.VectorImage>
                 <source.VectorSourceReact>
                   <feature.LineStringReact 
                     coordinates={[[-87.06136985536766, 40.74069077828139],[-87.06194122652191, 40.740451986556394]]} 
                     strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
+                    hideAtZoom={8}
                   />
                   <feature.LineStringReact 
                     coordinates={[[-87.05136985536766, 40.74079077828139],[-87.06194122652191, 40.740451986556394]]} 
                     strokeOptions={{width: this.state.active ? 20: 10, color: this.state.active ? 'blue': 'green'}}
                     textOptions={{text: 'LineString', font: '18px Calibri,sans-serif', fillOptions: {color: 'white'}, strokeOptions: {color: 'black', width: 2}}}
                     hideTextZoom={12}
+                    hideAtZoom={8}
                   />
                   <interaction.ModifyReact 
                     features={this.state.selectedFeatures}
                   />
                   <interaction.SelectReact style={undefined} onSelect={this.handleSelectFeature} />
                 </source.VectorSourceReact>
-              </layer.Vector>
+              </layer.VectorImage>
             <custom.GeolocationReact tracking={false} />
           </Layers>
           </MapReact>

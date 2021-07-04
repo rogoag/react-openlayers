@@ -35,6 +35,7 @@ export interface FeatureProps {
   onPropertyChange?: ReactOpenlayersEvent,
   fillOptions?: FillOptions,
   strokeOptions?: StrokeOptions,
+  hideAtZoom?: number,
   iconOptions?: IconOptions,
   textOptions?: TextOptionsReact,
   circleOptions?: CircleOptions,
@@ -50,6 +51,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
   public feature?: Feature;
   public geometry?: Polygon | LineString | LinearRing | Point | MultiPolygon | MultiPoint | Circle | MultiLineString;
   public style?: Style;
+  public active: Boolean;
 
   public events: FeatureEvents = {
     'change:geometry': undefined,
@@ -116,9 +118,16 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
   }
 
   styleFunction() {
-    if(this.props.hideTextZoom && this.style) {
-      const view = this.context.context.context.map.getView();
-      const zoom = view.getZoom();
+    const view = this.context.context.context.map.getView();
+    const zoom = view.getZoom();
+    if(this.props.hideAtZoom && zoom < this.props.hideAtZoom) {
+      this.style = new Style();
+      this.active = false;
+    } else if(!this.active) {
+      this.updateStyle(this.props);
+      this.active = true;
+    }
+    if(this.props.hideTextZoom && this.style && this.active) {
       const text = this.style.getText();
       if(zoom > this.props.hideTextZoom && text.getScale() === 0) {
         this.style.getText().setScale(1);
@@ -135,6 +144,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
       this.feature.setId(this.props.id);
     }
     this.style = new Style();
+    this.active = true;
     this.updateStyle(this.props);
     this.feature.setStyle(this.styleFunction.bind(this));
     if(this.props.properties) {
