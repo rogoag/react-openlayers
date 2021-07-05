@@ -92,8 +92,8 @@ export class MapReact extends React.Component<MapProps> {
   public mapDiv: React.RefObject<HTMLDivElement>;
 
   public layers: Collection<Layer> = new Collection([]);
-  public interactions: Collection<Interaction> = Interactions.defaults({doubleClickZoom: false});
-  public controls: Collection<Control> = Controls.defaults({zoom: false});
+  public interactions: Collection<Interaction> = Interactions.defaults({doubleClickZoom: false, pinchRotate: false});
+  public controls: Collection<Control> = Controls.defaults({zoom: false, rotate: false});
   public overlays: Overlay[] = [];
   public clickCallback?: Function;
 
