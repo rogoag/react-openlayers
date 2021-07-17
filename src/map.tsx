@@ -30,7 +30,7 @@ export interface MapProps extends Omit<MapOptions, 'view'> {
   center?: { value: Coordinate }
   zoom?: { value: number }
   fit?: { value: Extent }
-  rotation?: { value: number, animate?: boolean }
+  rotation?: { value: number }
   className?: string
   view?: ViewOptions
   style?: React.CSSProperties
@@ -226,13 +226,7 @@ export class MapReact extends React.Component<MapProps> {
       }
 
       if(props.rotation && props.rotation !== this.props.rotation) {
-        if(props.rotation.animate) {
-          view.animate({
-            rotation: props.rotation.value
-          });
-        } else {
-          view.setRotation(props.rotation.value);
-        }
+        view.setRotation(props.rotation.value);
       }
     }
   }
