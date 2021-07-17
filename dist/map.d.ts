@@ -30,6 +30,7 @@ export interface MapProps extends Omit<MapOptions, 'view'> {
     };
     rotation?: {
         value: number;
+        animate?: boolean;
     };
     className?: string;
     view?: ViewOptions;
