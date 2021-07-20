@@ -18,6 +18,11 @@ export class PointReact extends FeatureReact<PointProps> {
     this.geometry = new Point(this.props.coordinate);
   }
 
+  shouldComponentUpdate(nextProps: PointProps) {
+    const shouldUpdate: boolean = JSON.stringify(nextProps) !== JSON.stringify(this.props) || Boolean(this.props.forceRefresh);
+    return shouldUpdate;
+  }
+
   componentWillReceiveProps(nextProps: PointProps) {
     Object.keys(nextProps).forEach((prop: string) => {
       if(JSON.stringify(nextProps[prop]) === JSON.stringify(this.props[prop] && !this.props.forceRefresh)) return;

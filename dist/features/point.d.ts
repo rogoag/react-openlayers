@@ -10,6 +10,7 @@ export declare class PointReact extends FeatureReact<PointProps> {
     feature: Feature;
     geometry: Point;
     constructor(props: PointProps);
+    shouldComponentUpdate(nextProps: PointProps): boolean;
     componentWillReceiveProps(nextProps: PointProps): void;
     render(): null;
 }

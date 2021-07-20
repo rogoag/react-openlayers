@@ -18,6 +18,11 @@ export class PolygonReact extends FeatureReact<PolygonProps> {
     this.geometry = new Polygon(this.props.coordinates);
   }
 
+  shouldComponentUpdate(nextProps: PolygonProps) {
+    const shouldUpdate: boolean = JSON.stringify(nextProps) !== JSON.stringify(this.props) || Boolean(this.props.forceRefresh);
+    return shouldUpdate;
+  }
+
   componentWillReceiveProps(nextProps: PolygonProps) {
     Object.keys(nextProps).forEach((prop: string) => {
       if(JSON.stringify(nextProps[prop]) === JSON.stringify(this.props[prop] && !this.props.forceRefresh)) return;

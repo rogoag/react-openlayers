@@ -10,6 +10,7 @@ export declare class LineStringReact extends FeatureReact<LineStringProps> {
     feature: Feature;
     geometry: LineString;
     constructor(props: LineStringProps);
+    shouldComponentUpdate(nextProps: LineStringProps): boolean;
     componentWillReceiveProps(nextProps: LineStringProps): void;
     render(): null;
 }

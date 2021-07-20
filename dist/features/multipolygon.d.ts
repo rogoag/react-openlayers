@@ -10,6 +10,7 @@ export declare class MultiPolygonReact extends FeatureReact<MultiPolygonProps> {
     feature: Feature;
     geometry: MultiPolygon;
     constructor(props: MultiPolygonProps);
+    shouldComponentUpdate(nextProps: MultiPolygonProps): boolean;
     componentWillReceiveProps(nextProps: MultiPolygonProps): void;
     render(): null;
 }

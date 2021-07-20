@@ -20,6 +20,11 @@ export class LineStringReact extends FeatureReact<LineStringProps> {
     this.geometry = new LineString(this.props.coordinates);
   }
 
+  shouldComponentUpdate(nextProps: LineStringProps) {
+    const shouldUpdate: boolean = JSON.stringify(nextProps) !== JSON.stringify(this.props) || Boolean(this.props.forceRefresh);
+    return shouldUpdate;
+  }
+
   componentWillReceiveProps(nextProps: LineStringProps) {
     Object.keys(nextProps).forEach((prop: string) => {
         if(JSON.stringify(nextProps[prop]) === JSON.stringify(this.props[prop] && !this.props.forceRefresh)) return;

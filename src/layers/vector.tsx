@@ -97,7 +97,6 @@ export class Vector extends React.Component<VectorProps> {
       this.layer && this.layer.on(eventName, olEvents[eventName]);
     });
   }
-  
 
   public componentWillReceiveProps(nextProps: VectorProps) {
     const options = Util.getOptions<Options, VectorProps>(this.options, this.props);

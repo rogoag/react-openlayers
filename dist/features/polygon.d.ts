@@ -10,6 +10,7 @@ export declare class PolygonReact extends FeatureReact<PolygonProps> {
     feature: Feature;
     geometry: Polygon;
     constructor(props: PolygonProps);
+    shouldComponentUpdate(nextProps: PolygonProps): boolean;
     componentWillReceiveProps(nextProps: PolygonProps): void;
     render(): null;
 }
