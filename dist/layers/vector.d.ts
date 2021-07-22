@@ -9,6 +9,12 @@ import { VectorImage } from './vector-image';
 export declare type VectorLayerContextType = Vector | VectorImage | void;
 export declare const VectorLayerContext: React.Context<VectorLayerContextType>;
 export interface VectorProps extends Options, LayerType<VectorLayer> {
+    fadeInOptions?: {
+        startOpacity: number;
+        step: number;
+        maxOpacity: number;
+        interval: number;
+    };
     onChange?: ReactOpenlayersEvent;
     onChangeExtent?: ReactOpenlayersEvent;
     onChangeMinResolution?: ReactOpenlayersEvent;
@@ -44,7 +50,14 @@ export declare class Vector extends React.Component<VectorProps> {
     source?: VectorSource;
     options: Options;
     events: VectorEvents;
+    constructor(props: VectorProps);
     render(): JSX.Element;
+    fadeInLayer(fadeInOptions: {
+        startOpacity: number;
+        step: number;
+        maxOpacity: number;
+        interval: number;
+    }): void;
     componentDidMount(): void;
     componentWillReceiveProps(nextProps: VectorProps): void;
     componentWillUnmount(): void;

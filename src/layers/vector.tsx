@@ -17,6 +17,7 @@ export type VectorLayerContextType = Vector | VectorImage | void;
 export const VectorLayerContext = React.createContext<VectorLayerContextType>(undefined);
 
 export interface VectorProps extends Options, LayerType<VectorLayer> {
+  fadeInOptions?: {startOpacity: number, step: number, maxOpacity: number, interval: number}
   onChange?: ReactOpenlayersEvent
   onChangeExtent?: ReactOpenlayersEvent
   onChangeMinResolution?: ReactOpenlayersEvent
@@ -75,6 +76,12 @@ export class Vector extends React.Component<VectorProps> {
     'render': undefined
   };
 
+  constructor(props: VectorProps) {
+    super(props);
+
+    this.fadeInLayer = this.fadeInLayer.bind(this);
+  }
+
   public render() {
     return (
       <VectorLayerContext.Provider value={this}>
@@ -83,9 +90,23 @@ export class Vector extends React.Component<VectorProps> {
     );
   }
 
+  public fadeInLayer(fadeInOptions: {startOpacity: number, step: number, maxOpacity: number, interval: number}) {
+    const newOpacity = fadeInOptions.startOpacity + fadeInOptions.step;
+    if(this.layer) {
+      this.layer.setOpacity(newOpacity);
+    }
+    fadeInOptions.startOpacity = newOpacity;
+    if(newOpacity !== fadeInOptions.maxOpacity) {
+      setTimeout(() => this.fadeInLayer(fadeInOptions), fadeInOptions.interval);
+    }
+  }
+
   public componentDidMount() {
     const options = Util.getOptions(this.options, this.props);
     this.layer = new VectorLayer({...options, source: this.source});
+    if(this.props.fadeInOptions) {
+      this.fadeInLayer(this.props.fadeInOptions);
+    }
     this.context.layers.push(this.layer);
     if (this.props.zIndex) {
       this.layer.setZIndex(this.props.zIndex);

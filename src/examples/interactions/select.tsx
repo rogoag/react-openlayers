@@ -66,7 +66,7 @@ export class Select extends React.Component {
                 attributions={'@ Google'}
               />
             </layer.TileReact>
-              <layer.VectorImage>
+              <layer.Vector fadeInOptions={{startOpacity: 0, maxOpacity: 1, step: .02, interval: 25}}>
                 <source.VectorSourceReact>
                   <feature.LineStringReact 
                     coordinates={[[-87.06136985536766, 40.74069077828139],[-87.06194122652191, 40.740451986556394]]} 
@@ -94,7 +94,7 @@ export class Select extends React.Component {
                   />
                   <interaction.SelectReact style={undefined} onSelect={this.handleSelectFeature} />
                 </source.VectorSourceReact>
-              </layer.VectorImage>
+              </layer.Vector>
             <custom.GeolocationReact tracking={false} />
           </Layers>
           </MapReact>
