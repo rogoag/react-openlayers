@@ -84,11 +84,11 @@ export class Select extends React.Component {
                     coordinate={[-87.06194122652191, 40.740451986556394]} 
                     circleOptions={{
                       fillOptions: {color: 'white'},
-                      radius: 50,
-                      strokeOptions: {width: 1, color: 'black'},
+                      radius: 5,
+                      strokeOptions: {width: 2, color: 'black'},
                       blinking: true
                     }}
-                    hideAtZoom={10}
+                    hideAtZoom={0}
                   />
                   <interaction.ModifyReact 
                     features={this.state.selectedFeatures}

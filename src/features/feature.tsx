@@ -81,13 +81,18 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
         const fill = circleStyle.getFill();
         const colorString = fill.getColor().toString();
         const colorArray = asArray(colorString).slice();
+        const strokeColor = circleStyle.getStroke();
+        const strokeColorString = strokeColor.getColor().toString();
+        const strokeArray = asArray(strokeColorString).slice();
         if(this.subtracting) {
           colorArray[3] -= .05;
+          strokeArray[3] -= .05;
         } else {
           colorArray[3] += .05;
+          strokeArray[3] += .05;
         }
         fill.setColor(asString(colorArray));
-        if(colorArray[3] <= .5) {
+        if(colorArray[3] <= .2) {
           this.subtracting = false;
         }
         if(colorArray[3] >= 1) {
