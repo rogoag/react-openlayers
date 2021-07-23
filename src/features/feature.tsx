@@ -9,6 +9,7 @@ import Icon, { Options as IconOptions } from 'ol/style/icon';
 import CircleStyle from 'ol/style/circle';
 import Text, { Options as TextOptions } from 'ol/style/Text';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
+import { asArray, asString } from 'ol/color';
 
 interface TextOptionsReact extends TextOptions {
   fillOptions?: FillOptions,
@@ -19,6 +20,7 @@ interface TextOptionsReact extends TextOptions {
 interface CircleOptions {
   fillOptions?: FillOptions;
   fill?: Fill;
+  blinking?: boolean;
   radius: number;
   strokeOptions?: StrokeOptions;
   stroke?: Stroke;
@@ -44,7 +46,8 @@ export interface FeatureProps {
   zIndex?: number,
   id?: string,
   properties?: { [key: string]: any },
-  hideTextZoom?: number
+  hideTextZoom?: number,
+  blinking?: boolean
 }
 
 export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}> {
@@ -54,12 +57,62 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
   public geometry?: Polygon | LineString | LinearRing | Point | MultiPolygon | MultiPoint | Circle | MultiLineString;
   public style?: Style;
   public active: Boolean;
+  public currentOpacity: number = 1;
+  public blinkingInterval: number | undefined = undefined;
+  public subtracting: boolean = true;
 
   public events: FeatureEvents = {
     'change:geometry': undefined,
     'change': undefined,
     'propertychange': undefined
   };
+
+  constructor(props: any) {
+    super(props);
+
+    this.updateBlinking = this.updateBlinking.bind(this);
+    this.blink = this.blink.bind(this);
+  }
+
+  blink() {
+    if(this.style && this.feature) {
+      if(this.props.circleOptions) {
+        const circleStyle = this.style.getImage() as CircleStyle;
+        const fill = circleStyle.getFill();
+        const colorString = fill.getColor().toString();
+        const colorArray = asArray(colorString).slice();
+        if(this.subtracting) {
+          colorArray[3] -= .05;
+        } else {
+          colorArray[3] += .05;
+        }
+        fill.setColor(asString(colorArray));
+        if(colorArray[3] <= .5) {
+          this.subtracting = false;
+        }
+        if(colorArray[3] >= 1) {
+          this.subtracting = true;
+        }
+        const newCircleStyle = new CircleStyle({...this.props.circleOptions, fill});
+        this.style.setImage(newCircleStyle);
+        this.feature.changed();
+      }
+    }
+  }
+
+  startBlinkInterval() {
+    window.clearInterval(this.blinkingInterval);
+    this.blinkingInterval = window.setInterval(this.blink, 100);
+  }
+
+  updateBlinking(blinking: boolean) {
+    if(this.blinkingInterval === undefined && blinking) {
+      this.startBlinkInterval();
+    } else if(this.blinkingInterval !== undefined && !blinking) {
+      window.clearInterval(this.blinkingInterval);
+      this.blinkingInterval = undefined;
+    }
+  }
 
   updateFill(fillOptions: FillOptions) {
     this.style && this.style.setFill(new Fill(fillOptions));
@@ -89,9 +142,11 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
         radius: circleOptions.radius, 
         fill: circleOptions.fill, 
         stroke: circleOptions.stroke, 
-        displacement: circleOptions.displacement
+        displacement: circleOptions.displacement,
       })
     );
+
+    this.updateBlinking(Boolean(circleOptions.blinking));
   }
 
   updateZindex(zIndex: number) {
@@ -181,6 +236,9 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
 
   public componentWillUnmount() {
       this.context.features.remove(this.feature);
+      window.clearInterval(this.blinkingInterval);
+      this.blinkingInterval = undefined;
+      this.currentOpacity = 1;
       this.feature = undefined;
       this.style = undefined;
       this.geometry = undefined;

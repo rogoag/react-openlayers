@@ -83,9 +83,10 @@ export class Select extends React.Component {
                   <feature.PointReact
                     coordinate={[-87.06194122652191, 40.740451986556394]} 
                     circleOptions={{
-                      fillOptions: {color: 'purple'},
+                      fillOptions: {color: 'white'},
                       radius: 50,
-                      strokeOptions: {width: 1, color: 'black'}
+                      strokeOptions: {width: 1, color: 'black'},
+                      blinking: true
                     }}
                     hideAtZoom={10}
                   />

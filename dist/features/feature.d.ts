@@ -15,6 +15,7 @@ interface TextOptionsReact extends TextOptions {
 interface CircleOptions {
     fillOptions?: FillOptions;
     fill?: Fill;
+    blinking?: boolean;
     radius: number;
     strokeOptions?: StrokeOptions;
     stroke?: Stroke;
@@ -41,6 +42,7 @@ export interface FeatureProps {
         [key: string]: any;
     };
     hideTextZoom?: number;
+    blinking?: boolean;
 }
 export declare class FeatureReact<T extends FeatureProps> extends React.Component<T, {}> {
     static contextType: React.Context<VectorSourceContextType>;
@@ -48,7 +50,14 @@ export declare class FeatureReact<T extends FeatureProps> extends React.Componen
     geometry?: Polygon | LineString | LinearRing | Point | MultiPolygon | MultiPoint | Circle | MultiLineString;
     style?: Style;
     active: Boolean;
+    currentOpacity: number;
+    blinkingInterval: number | undefined;
+    subtracting: boolean;
     events: FeatureEvents;
+    constructor(props: any);
+    blink(): void;
+    startBlinkInterval(): void;
+    updateBlinking(blinking: boolean): void;
     updateFill(fillOptions: FillOptions): void;
     updateStroke(strokeOptions: StrokeOptions): void;
     updateIcon(iconOptions: IconOptions): void;
