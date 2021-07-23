@@ -78,29 +78,31 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
     if(this.style && this.feature) {
       if(this.props.circleOptions) {
         const circleStyle = this.style.getImage() as CircleStyle;
-        const fill = circleStyle.getFill();
-        const colorString = fill.getColor().toString();
-        const colorArray = asArray(colorString).slice();
-        const strokeColor = circleStyle.getStroke();
-        const strokeColorString = strokeColor.getColor().toString();
-        const strokeArray = asArray(strokeColorString).slice();
-        if(this.subtracting) {
-          colorArray[3] -= .05;
-          strokeArray[3] -= .05;
-        } else {
-          colorArray[3] += .05;
-          strokeArray[3] += .05;
+        if(this.active) {
+          const fill = circleStyle.getFill();
+          const colorString = fill.getColor().toString();
+          const colorArray = asArray(colorString).slice();
+          const strokeColor = circleStyle.getStroke();
+          const strokeColorString = strokeColor.getColor().toString();
+          const strokeArray = asArray(strokeColorString).slice();
+          if(this.subtracting) {
+            colorArray[3] -= .05;
+            strokeArray[3] -= .05;
+          } else {
+            colorArray[3] += .05;
+            strokeArray[3] += .05;
+          }
+          fill.setColor(asString(colorArray));
+          if(colorArray[3] <= .2) {
+            this.subtracting = false;
+          }
+          if(colorArray[3] >= 1) {
+            this.subtracting = true;
+          }
+          const newCircleStyle = new CircleStyle({...this.props.circleOptions, fill});
+          this.style.setImage(newCircleStyle);
+          this.feature.changed();
         }
-        fill.setColor(asString(colorArray));
-        if(colorArray[3] <= .2) {
-          this.subtracting = false;
-        }
-        if(colorArray[3] >= 1) {
-          this.subtracting = true;
-        }
-        const newCircleStyle = new CircleStyle({...this.props.circleOptions, fill});
-        this.style.setImage(newCircleStyle);
-        this.feature.changed();
       }
     }
   }
