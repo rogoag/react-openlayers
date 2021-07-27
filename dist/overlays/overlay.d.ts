@@ -25,8 +25,10 @@ export declare class Overlay extends React.Component<OverlayProps> {
     static contextType: React.Context<MapContextType>;
     overlay: olOverlay;
     el: HTMLElement;
+    divRef: any;
     options: Options;
     events: OverlayEvents;
     render(): JSX.Element;
     componentDidMount(): void;
+    componentWillUnmount(): void;
 }

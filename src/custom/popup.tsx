@@ -22,6 +22,9 @@ export class Popup extends React.Component {
         }
       });
     }
+
+    this.setContents('<p>poop</p>');
+    this.show('200px');
   }
 
   public render() {

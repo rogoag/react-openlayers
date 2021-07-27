@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import { interaction, layer, Layers, MapReact, source, custom, feature } from "react-openlayers";
+import { interaction, layer, Layers, MapReact, source, custom, feature, Overlay } from "react-openlayers";
 
 import Highlighter from "../Highlighter";
 import { Feature } from "ol";
@@ -98,6 +98,12 @@ export class Select extends React.Component {
               </layer.Vector>
             <custom.GeolocationReact tracking={false} />
           </Layers>
+            <Overlay 
+              position={[-87.06194122652191, 40.740451986556394]}
+              offset={[-20, -40]}
+            >
+              <button>going poop</button>
+            </Overlay>
           </MapReact>
         )}
       

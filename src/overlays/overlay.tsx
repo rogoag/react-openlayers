@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 
 import olOverlay, { Options } from 'ol/Overlay'
 
@@ -32,6 +31,7 @@ export class Overlay extends React.Component<OverlayProps> {
 
   public overlay: olOverlay;
   public el: HTMLElement;
+  public divRef: any = null;
 
   public options: Options = {
     id: undefined,
@@ -57,7 +57,7 @@ export class Overlay extends React.Component<OverlayProps> {
 
   public render() {
     return (
-      <div>
+      <div ref={(ref) => this.divRef = ref}>
         {this.props.children}
       </div>
     );
@@ -65,9 +65,16 @@ export class Overlay extends React.Component<OverlayProps> {
 
   public componentDidMount() {
     const options = Util.getOptions<Options, OverlayProps>(this.options, this.props);
-    options.element = (ReactDOM.findDOMNode(this) as Element).querySelector('div') as HTMLElement;
+    options.element = this.divRef;
     this.overlay = new olOverlay(options);
     this.context.overlays.push(this.overlay);
     if (this.props.overlayRef) this.props.overlayRef(this.overlay);
+  }
+
+  componentWillUnmount() {
+    if(this.overlay) {
+      this.context.overlays.remove(this.overlay);
+      this.overlay.dispose();
+    }
   }
 }
