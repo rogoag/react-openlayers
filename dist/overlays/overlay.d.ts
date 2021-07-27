@@ -30,5 +30,6 @@ export declare class Overlay extends React.Component<OverlayProps> {
     events: OverlayEvents;
     render(): JSX.Element;
     componentDidMount(): void;
+    componentDidUpdate(prevProps: OverlayProps): void;
     componentWillUnmount(): void;
 }

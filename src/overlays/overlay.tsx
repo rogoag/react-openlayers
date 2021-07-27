@@ -73,6 +73,12 @@ export class Overlay extends React.Component<OverlayProps> {
     if (this.props.overlayRef) this.props.overlayRef(this.overlay);
   }
 
+  componentDidUpdate(prevProps: OverlayProps) {
+    if(JSON.stringify(prevProps.position) !== JSON.stringify(this.props.position)) {
+      this.overlay.setPosition(this.props.position);
+    }
+  }
+
   componentWillUnmount() {
     if(this.overlay) {
       this.context.overlays.remove(this.overlay);
