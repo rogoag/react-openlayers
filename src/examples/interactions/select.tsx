@@ -98,12 +98,14 @@ export class Select extends React.Component {
               </layer.Vector>
             <custom.GeolocationReact tracking={false} />
           </Layers>
+          {this.state.active && (
             <Overlay 
-              position={[-87.06194122652191, 40.740451986556394]}
-              offset={[-20, -40]}
+            position={[-87.06194122652191, 40.740451986556394]}
+            offset={[-20, -40]}
             >
               <button>going poop</button>
             </Overlay>
+          )}
           </MapReact>
         )}
       

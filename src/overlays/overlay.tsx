@@ -57,8 +57,10 @@ export class Overlay extends React.Component<OverlayProps> {
 
   public render() {
     return (
-      <div ref={(ref) => this.divRef = ref}>
-        {this.props.children}
+      <div>
+        <div ref={(ref) => this.divRef = ref}>
+          {this.props.children}
+        </div>
       </div>
     );
   }
