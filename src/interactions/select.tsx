@@ -66,7 +66,8 @@ export class SelectReact extends React.Component<SelectProps> {
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
-      this.interaction.on(eventName, olEvents[eventName]);
+      // @ts-ignore
+this.interaction.on(eventName, olEvents[eventName]);
     });
   }
 
@@ -86,7 +87,8 @@ export class SelectReact extends React.Component<SelectProps> {
 
       const olEvents = Util.getEvents(this.events, this.props);
       Object.keys(olEvents).forEach((eventName: string) => {
-        this.interaction.on(eventName, olEvents[eventName]);
+        // @ts-ignore
+this.interaction.on(eventName, olEvents[eventName]);
       });
     }
   }

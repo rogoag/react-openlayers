@@ -88,6 +88,7 @@ export class HeatmapReact extends React.Component<HeatmapProps> {
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
+      // @ts-ignore
       this.layer.on(eventName, olEvents[eventName]);
     });
   }
@@ -123,7 +124,9 @@ export class HeatmapReact extends React.Component<HeatmapProps> {
     const oldEvents = Util.getEvents(this.events, this.props);
     const newEvents = Util.getEvents(this.events, nextProps);
     Object.keys(this.events).forEach((eventName: string) => {
+      // @ts-ignore
       if (oldEvents[eventName]) this.layer.un(eventName, oldEvents[eventName]);
+      // @ts-ignore
       if (newEvents[eventName]) this.layer.on(eventName, newEvents[eventName]);
     })
   }

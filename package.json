@@ -49,7 +49,6 @@
     "fs-extra": "^7.0.1",
     "geo-coder": "^1.0.2",
     "html-loader": "^0.5.5",
-    "node-sass": "^4.5.0",
     "npm-run-all": "^4.1.5",
     "raw-loader": "^1.0.0",
     "react-async-loader": "^0.1.2",
@@ -82,6 +81,7 @@
     "react": "16.7.0",
     "react-dom": "16.7.0",
     "react-router": "4.3.1",
-    "react-router-dom": "4.3.1"
+    "react-router-dom": "4.3.1",
+    "sass": "^1.66.1"
   }
 }

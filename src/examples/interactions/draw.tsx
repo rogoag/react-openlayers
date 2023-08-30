@@ -2,13 +2,13 @@ import * as React from "react";
 
 import { Divider, FormControl, InputLabel, MenuItem, Select, Typography } from "@material-ui/core";
 
-import OSMSource from 'ol/source/osm';
+import OSMSource from 'ol/source/OSM';
 import VectorSource from 'ol/source/Vector';
 
 import { MapProps } from "map";
 import { interaction, Interactions, layer, Layers, MapReact } from "react-openlayers";
 
-import GeometryType from 'ol/geom/GeometryType';
+//import GeometryType from 'ol/geom/GeometryType';
 
 import Highlighter from "../Highlighter";
 
@@ -18,7 +18,7 @@ const vectorSource = new VectorSource({wrapX: false});
 
 interface DrawState {
   view: MapProps['view']
-  interactionType: GeometryType
+  interactionType: any
 }
 
 export class Draw extends React.Component<{}, DrawState> {
@@ -29,11 +29,11 @@ export class Draw extends React.Component<{}, DrawState> {
         zoom: 4,
         center: [-11000000, 4600000],
       },
-      interactionType: GeometryType.CIRCLE,
+      interactionType: 'Circle',
     };
   }
 
-  public handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => this.setState({interactionType: event.target.value as GeometryType});
+  public handleTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => this.setState({interactionType: event.target.value});
 
   public render() {
     return (
@@ -57,10 +57,10 @@ export class Draw extends React.Component<{}, DrawState> {
             onChange={this.handleTypeChange}
             value={this.state.interactionType}
           >
-            <MenuItem value={GeometryType.POINT}>Point</MenuItem>
-            <MenuItem value={GeometryType.POLYGON}>Polygon</MenuItem>
-            <MenuItem value={GeometryType.LINE_STRING}>Line</MenuItem>
-            <MenuItem value={GeometryType.CIRCLE}>Circle</MenuItem>
+            <MenuItem value={'Point'}>Point</MenuItem>
+            <MenuItem value={'Polygon'}>Polygon</MenuItem>
+            <MenuItem value={'LineString'}>Line</MenuItem>
+            <MenuItem value={'Circle'}>Circle</MenuItem>
           </Select>
         </FormControl>
         <br/>

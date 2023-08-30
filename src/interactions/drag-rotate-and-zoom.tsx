@@ -44,6 +44,7 @@ export class DragRotateAndZoomReact extends React.Component<DragRotateAndZoomPro
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
+      // @ts-ignore
       this.interaction.on(eventName, olEvents[eventName]);
     });
   }
@@ -59,6 +60,7 @@ export class DragRotateAndZoomReact extends React.Component<DragRotateAndZoomPro
 
       const olEvents = Util.getEvents(this.events, this.props);
       Object.keys(olEvents).forEach((eventName: string) => {
+        // @ts-ignore
         this.interaction.on(eventName, olEvents[eventName]);
       })
     }

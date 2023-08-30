@@ -44,15 +44,16 @@ export class TranslateReact extends React.Component<TranslateProps> {
 
   public render() { return null; }
 
-  public componentDidMount () {
+  public componentDidMount() {
     const options = Util.getOptions<Options, TranslateProps>(this.options, this.props);
     this.interaction = new Translate(options);
     this.context.interactions.push(this.interaction)
 
     this.initInteraction(this.props);
-    
+
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
+      // @ts-ignore
       this.interaction.on(eventName, olEvents[eventName]);
     });
   }
@@ -68,12 +69,13 @@ export class TranslateReact extends React.Component<TranslateProps> {
 
       const olEvents = Util.getEvents(this.events, this.props);
       Object.keys(olEvents).forEach((eventName: string) => {
+        // @ts-ignore
         this.interaction.on(eventName, olEvents[eventName]);
       });
     }
   }
-  
-  public componentWillUnmount () {
+
+  public componentWillUnmount() {
     this.context.map.removeInteraction(this.interaction);
   }
 

@@ -1,10 +1,9 @@
 import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
-
-import KMLFormat from 'ol/format/kml';
-import ClusterSource from 'ol/source/cluster';
-import StamenSource from 'ol/source/stamen';
+import KMLFormat from 'ol/format/KML';
+import ClusterSource from 'ol/source/Cluster';
+import StamenSource from 'ol/source/Stamen';
 import VectorSource from 'ol/source/Vector';
 import MapBrowserEvent from 'ol/MapBrowserEvent';
 
@@ -28,6 +27,7 @@ const tileSource = new StamenSource({
   layer: 'toner'
 });
 
+// @ts-ignore
 const selectCondition = (evt: MapBrowserEvent) => {
   return evt.originalEvent.type === 'mousemove' ||
     evt.type === 'singleclick';
@@ -51,6 +51,7 @@ export class EarthquakeClusters extends React.Component {
           <Layers>
             <layer.TileReact source={tileSource}/>
             <layer.Vector 
+              // @ts-ignore
               source={vectorSource} 
               style={cluster.vectorStyleFunction}/>
           </Layers>

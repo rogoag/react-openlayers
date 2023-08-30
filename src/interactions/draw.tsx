@@ -1,14 +1,13 @@
 import * as React from 'react';
 
 import Draw, { Options } from 'ol/interaction/Draw';
-import GeometryType from 'ol/geom/GeometryType';
 
 import { InteractionType } from '.';
 import { VectorSourceContext, VectorSourceContextType } from '../source/vector-source';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 import Style from 'ol/style/Style';
 import Fill from 'ol/style/Fill';
-import CircleStyle from 'ol/style/circle';
+import CircleStyle from 'ol/style/Circle';
 import Stroke from 'ol/style/Stroke';
 
 export interface StyleOptions {
@@ -49,7 +48,7 @@ export class DrawReact extends React.Component<DrawProps> {
     clickTolerance: undefined,
     features: undefined,
     snapTolerance: undefined,
-    type: GeometryType.POINT,
+    type: 'Point',
     maxPoints: undefined,
     minPoints: undefined,
     finishCondition: undefined,
@@ -74,13 +73,14 @@ export class DrawReact extends React.Component<DrawProps> {
 
   public componentDidMount() {
     const options = Util.getOptions<Options, DrawProps>(this.options, this.props);
-    this.interaction = new Draw({...options, style: this.genStyle.bind(this), source: this.context.source});
+    this.interaction = new Draw({ ...options, style: this.genStyle.bind(this), source: this.context.source });
     this.context.context.context.interactions.push(this.interaction);
 
     this.initInteraction(this.props);
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
+      // @ts-ignore
       this.interaction.on(eventName, olEvents[eventName]);
     });
   }
@@ -89,13 +89,14 @@ export class DrawReact extends React.Component<DrawProps> {
     if (nextProps !== this.props) {
       this.context.context.context.interactions.remove(this.interaction);
       const options = Util.getOptions<Options, DrawProps>(this.options, nextProps);
-      this.interaction = new Draw({...options, style: this.genStyle.bind(this), source: this.context.source});
+      this.interaction = new Draw({ ...options, style: this.genStyle.bind(this), source: this.context.source });
       this.context.context.context.interactions.push(this.interaction);
 
       this.initInteraction(nextProps);
 
       const olEvents = Util.getEvents(this.events, this.props);
       Object.keys(olEvents).forEach((eventName: string) => {
+        // @ts-ignore
         this.interaction.on(eventName, olEvents[eventName]);
       })
     }
@@ -111,13 +112,13 @@ export class DrawReact extends React.Component<DrawProps> {
   }
 
   private genStyle(feature: any): Style | undefined {
-    if(feature.getGeometry().getType() === GeometryType.POLYGON && this.props.styleOptions && this.props.styleOptions.polygonColor) {
-      this.POLYGON_STYLE.setFill(new Fill({color: this.props.styleOptions.polygonColor}));
+    if (feature.getGeometry().getType() === 'POLYGON' && this.props.styleOptions && this.props.styleOptions.polygonColor) {
+      this.POLYGON_STYLE.setFill(new Fill({ color: this.props.styleOptions.polygonColor }));
       return this.POLYGON_STYLE;
-    } else if(feature.getGeometry().getType() === GeometryType.POINT && this.props.styleOptions && this.props.styleOptions.pointColor) {
-      this.POINT_STYLE.setImage(new CircleStyle({fill: new Fill({color: this.props.styleOptions.pointColor}), radius: 6, stroke: new Stroke({width: 2, color: 'white'})}));
+    } else if (feature.getGeometry().getType() === 'POINT' && this.props.styleOptions && this.props.styleOptions.pointColor) {
+      this.POINT_STYLE.setImage(new CircleStyle({ fill: new Fill({ color: this.props.styleOptions.pointColor }), radius: 6, stroke: new Stroke({ width: 2, color: 'white' }) }));
       return this.POINT_STYLE;
-    } else if(feature.getGeometry().getType() === GeometryType.LINE_STRING && this.props.styleOptions && this.props.styleOptions.polygonColor) {
+    } else if (feature.getGeometry().getType() === 'LINESTRING' && this.props.styleOptions && this.props.styleOptions.polygonColor) {
       this.LINESTRING_STYLE.setStroke(new Stroke({ color: this.props.styleOptions.linestringColor, width: 2 }));
       return this.LINESTRING_STYLE;
     } else {

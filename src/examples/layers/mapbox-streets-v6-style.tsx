@@ -3,7 +3,7 @@
 
 import Feature from 'ol/Feature';
 import FillStyle from 'ol/style/Fill';
-import IconStyle from 'ol/style/icon';
+import IconStyle from 'ol/style/Icon';
 import StrokeStyle from 'ol/style/Stroke';
 import Style from 'ol/style/Style';
 import TextStyle from 'ol/style/Text';

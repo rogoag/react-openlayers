@@ -3,7 +3,7 @@ import * as React from "react";
 import { Divider, Typography } from "@material-ui/core";
 
 import olProj from 'ol/proj';
-import StamenSource from 'ol/source/stamen';
+import StamenSource from 'ol/source/Stamen';
 
 import { Popup } from "custom/popup";
 import { control, Controls, custom, layer, Layers, MapReact, Overlay, Overlays } from "react-openlayers";
@@ -17,7 +17,7 @@ export class AppOverlay extends React.Component {
   public overlayComp: Overlay;
   public popupComp: Popup;
 
-  public showPopup = (evt: MapBrowserEvent) => {
+  public showPopup = (evt: MapBrowserEvent<any>) => {
     this.overlayComp.overlay.setPosition(evt.coordinate);
     const lonlat = olProj.transform(evt.coordinate, 'EPSG:3857', 'EPSG:4326');
 

@@ -2,14 +2,14 @@ import * as React from 'react';
 
 import Image from 'ol/layer/Image';
 import Projection from 'ol/proj/Projection'
-import olImageStaticSource from 'ol/source/imagestatic'
+import olImageStaticSource from 'ol/source/ImageStatic'
 
 import { LayerType } from '.';
 import { MapContext, MapContextType } from '../map';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 import { Options } from 'ol/layer/BaseImage';
 
-export interface ImageProps extends Options, LayerType<Image> {
+export interface ImageProps extends Options<any>, LayerType<Image<any>> {
   zIndex?: number,
   onChange?: ReactOpenlayersEvent
   onChangeExtent?: ReactOpenlayersEvent
@@ -44,10 +44,8 @@ export interface ImageEvents extends ReactOpenlayersEvents {
 
 export class ImageReact extends React.Component<ImageProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
-
-  public layer: Image;
-
-  public options: Options = {
+  public layer: Image<any>;
+  public options: Options<any> = {
     opacity: undefined,
     // Source from official OpenLayers example
     source: new olImageStaticSource({
@@ -85,7 +83,7 @@ export class ImageReact extends React.Component<ImageProps> {
   public render() { return null; }
 
   public componentDidMount () {
-    const options = Util.getOptions<Options, ImageProps>(this.options, this.props);
+    const options = Util.getOptions<Options<any>, ImageProps>(this.options, this.props);
     this.layer = new Image(options);
     if(this.props.zIndex){
       this.layer.setZIndex(this.props.zIndex);
@@ -96,12 +94,13 @@ export class ImageReact extends React.Component<ImageProps> {
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
+      // @ts-ignore
       this.layer.on(eventName, olEvents[eventName]);
     })
   }
 
   public componentWillReceiveProps (nextProps: ImageProps) {
-    const options = Util.getOptions<Options, ImageProps>(this.options, this.props);
+    const options = Util.getOptions<Options<any>, ImageProps>(this.options, this.props);
 
     // Updating options first
     Object.keys(options).forEach((option: string) => {
@@ -127,7 +126,9 @@ export class ImageReact extends React.Component<ImageProps> {
     const oldEvents = Util.getEvents(this.events, this.props);
     const newEvents = Util.getEvents(this.events, nextProps);
     Object.keys(this.events).forEach((eventName: string) => {
+      // @ts-ignore
       if (oldEvents[eventName]) this.layer.un(eventName, oldEvents[eventName]);
+      // @ts-ignore
       if (newEvents[eventName]) this.layer.on(eventName, newEvents[eventName]);
     })
   }

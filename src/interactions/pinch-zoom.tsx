@@ -44,7 +44,8 @@ export class PinchZoomReact extends React.Component<PinchZoomProps> {
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
-      this.interaction.on(eventName, olEvents[eventName]);
+      // @ts-ignore
+this.interaction.on(eventName, olEvents[eventName]);
     });
   }
 
@@ -59,7 +60,8 @@ export class PinchZoomReact extends React.Component<PinchZoomProps> {
 
       const olEvents = Util.getEvents(this.events, this.props);
       Object.keys(olEvents).forEach((eventName: string) => {
-        this.interaction.on(eventName, olEvents[eventName]);
+        // @ts-ignore
+this.interaction.on(eventName, olEvents[eventName]);
       });
     }
   }

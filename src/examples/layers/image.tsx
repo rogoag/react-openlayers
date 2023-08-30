@@ -4,7 +4,7 @@ import { Divider, Typography } from "@material-ui/core";
 
 import { getCenter } from 'ol/extent';
 import Projection from 'ol/proj/Projection';
-import ImageStaticSource from 'ol/source/imagestatic'
+import ImageStaticSource from 'ol/source/ImageStatic'
 
 import { layer, Layers, MapReact } from "react-openlayers";
 

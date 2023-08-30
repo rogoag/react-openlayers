@@ -12,8 +12,7 @@ import { Options } from 'ol/layer/BaseVector';
 import VectorSource from 'ol/source/Vector';
 import { VectorLayerContext } from './vector';
 
-
-export interface VectorProps extends Options, LayerType<VectorImageLayer> {
+export interface VectorProps extends Options<any>, LayerType<VectorImageLayer<any>> {
   onChange?: ReactOpenlayersEvent
   onChangeExtent?: ReactOpenlayersEvent
   onChangeMinResolution?: ReactOpenlayersEvent
@@ -47,8 +46,7 @@ export interface VectorEvents extends ReactOpenlayersEvents {
 
 export class VectorImage extends React.Component<VectorProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
-
-  public layer?: VectorImageLayer;
+  public layer?: VectorImageLayer<any>;
   public source?: VectorSource;
   public pointStyleFunc?: Function;
   public polygonStyleFunc?: Function;
@@ -56,7 +54,7 @@ export class VectorImage extends React.Component<VectorProps> {
   public linestringStyleFunc?: Function;
 
   // Default options
-  public options: Options = {
+  public options: Options<any> = {
 
   }
 
@@ -89,19 +87,21 @@ export class VectorImage extends React.Component<VectorProps> {
     this.layer = new VectorImageLayer({...options, source: this.source});
     this.context.layers.push(this.layer);
     if (this.props.zIndex !== undefined || this.props.zIndex !== undefined) {
+      // @ts-ignore
       this.layer.setZIndex(this.props.zIndex);
     }
     if (this.props.layerRef) this.props.layerRef(this.layer);
 
     const olEvents = Util.getEvents<VectorEvents, VectorProps>(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
+      // @ts-ignore
       this.layer && this.layer.on(eventName, olEvents[eventName]);
     });
   }
   
 
   public componentWillReceiveProps(nextProps: VectorProps) {
-    const options = Util.getOptions<Options, VectorProps>(this.options, this.props);
+    const options = Util.getOptions<Options<any>, VectorProps>(this.options, this.props);
 
     // Updating options first
     Object.keys(options).forEach((option: string) => {
@@ -134,7 +134,9 @@ export class VectorImage extends React.Component<VectorProps> {
     const oldEvents = Util.getEvents(this.events, this.props);
     const newEvents = Util.getEvents(this.events, nextProps);
     Object.keys(this.events).forEach((eventName: string) => {
+      // @ts-ignore
       if (oldEvents[eventName] && this.layer) this.layer.un(eventName, oldEvents[eventName]);
+      // @ts-ignore
       if (newEvents[eventName] && this.layer) this.layer.on(eventName, newEvents[eventName]);
     })
   }
@@ -144,7 +146,8 @@ export class VectorImage extends React.Component<VectorProps> {
       this.context.layers.remove(this.layer);
       this.layer.setStyle(null);
       this.layer.dispose();
-      this.layer.getRenderer().dispose();
+      const renderer = this.layer.getRenderer();
+      if (renderer) renderer.dispose();
     }
 
     if(this.source) {

@@ -52,6 +52,7 @@ export class ExtentReact extends React.Component<ExtentProps> {
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
+      // @ts-ignore
       this.interaction.on(eventName, olEvents[eventName]);
     });
   }
@@ -67,6 +68,7 @@ export class ExtentReact extends React.Component<ExtentProps> {
 
       const olEvents = Util.getEvents(this.events, this.props);
       Object.keys(olEvents).forEach((eventName: string) => {
+        // @ts-ignore
         this.interaction.on(eventName, olEvents[eventName]);
       })
     }

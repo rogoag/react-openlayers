@@ -55,6 +55,7 @@ export class DragBoxReact extends React.Component<DragBoxProps> {
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
+      // @ts-ignore
       this.interaction.on(eventName, olEvents[eventName]);
     });
   }
@@ -70,6 +71,7 @@ export class DragBoxReact extends React.Component<DragBoxProps> {
 
       const olEvents = Util.getEvents(this.events, this.props);
       Object.keys(olEvents).forEach((eventName: string) => {
+        // @ts-ignore
         this.interaction.on(eventName, olEvents[eventName]);
       })
     }

@@ -25,6 +25,7 @@ export class MarkerStyle extends React.Component {
           <Layers>
             <layer.TileReact />
             <layer.Vector
+            // @ts-ignore
               style={marker.style}
               source={source}/>
           </Layers>

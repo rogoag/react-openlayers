@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import StamenSource from 'ol/source/stamen';
+import StamenSource from 'ol/source/Stamen';
 
 import { layer, Layers, MapReact } from "react-openlayers";
 

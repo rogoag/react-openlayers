@@ -1,8 +1,4 @@
-/**
- * This starter project recommended using Microsoft TSLint rules.
- * Please see https://github.com/Microsoft/tslint-microsoft-contrib for more details.
- */
- {
+{
   "extends": [
     "tslint:recommended",
     "tslint-microsoft-contrib",

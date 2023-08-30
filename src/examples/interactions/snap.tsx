@@ -5,13 +5,12 @@ import { Divider, FormControl, FormControlLabel, FormLabel, Grid, InputLabel, Me
 import Draw from 'ol/interaction/Draw';
 import olSelect from 'ol/interaction/Select';
 import VectorSource from 'ol/source/Vector';
-import CircleStyle from 'ol/style/circle';
+import CircleStyle from 'ol/style/Circle';
 import FillStyle from 'ol/style/Fill';
 import StrokeStyle from 'ol/style/Stroke';
 import Style from 'ol/style/Style';
 
 import { interaction, Interactions, layer, Layers, MapReact } from "react-openlayers";
-import GeometryType from 'ol/geom/GeometryType';
 
 import Highlighter from "../Highlighter";
 
@@ -33,7 +32,7 @@ const vectorStyle = new Style({
 });
 
 interface SnapState {
-  drawType: GeometryType,
+  drawType: any,
   activeInteraction: 'draw' | 'modify'
 }
 
@@ -57,7 +56,7 @@ export class Snap extends React.Component<{}, SnapState> {
   public select: olSelect;
 
   public state: SnapState = {
-    drawType: GeometryType.POINT,
+    drawType: 'Point',
     activeInteraction: 'draw'
   }
 
@@ -68,7 +67,7 @@ export class Snap extends React.Component<{}, SnapState> {
   }
 
   public handleDrawTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    this.setState({ ...this.state, drawType: e.target.value as GeometryType })
+    this.setState({ ...this.state, drawType: e.target.value })
   }
 
   public handleInteractionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -104,23 +103,23 @@ export class Snap extends React.Component<{}, SnapState> {
 
             <interaction.DrawReact
               source={this.source}
-              type={GeometryType.POINT}
+              type={'Point'}
               active={activeInteraction === 'draw' && drawType === 'Point'}
             />
             <interaction.DrawReact
               source={this.source}
-              type={GeometryType.LINEAR_RING}
-              active={activeInteraction === 'draw' && drawType === GeometryType.LINE_STRING}
+              type={'LinearRing'}
+              active={activeInteraction === 'draw' && drawType === 'LineString'}
             />
             <interaction.DrawReact
               source={this.source}
-              type={GeometryType.POLYGON}
-              active={activeInteraction === 'draw' && drawType === GeometryType.POLYGON}
+              type={'Polygon'}
+              active={activeInteraction === 'draw' && drawType === 'Polygon'}
             />
             <interaction.DrawReact
               source={this.source}
-              type={GeometryType.CIRCLE}
-              active={activeInteraction === 'draw' && drawType === GeometryType.CIRCLE}
+              type={'Circle'}
+              active={activeInteraction === 'draw' && drawType === 'Circle'}
             />
             <interaction.SnapReact source={this.source} />
           </Interactions>

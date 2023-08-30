@@ -18,7 +18,7 @@ export class Pointer extends React.Component<{}, PointerState> {
 
   public timeout: number;
 
-  public handleEvent = (e: MapBrowserEvent) => {
+  public handleEvent = (e: MapBrowserEvent<any>) => {
     window.clearTimeout(this.timeout);
     this.timeout = window.setTimeout(() => this.setState({action: "No action"}), 1000);
     if (this.state.action !== e.type) {

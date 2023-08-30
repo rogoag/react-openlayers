@@ -46,6 +46,7 @@ export class DragPanReact extends React.Component<DragPanProps> {
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
+      // @ts-ignore
       this.interaction && this.interaction.on(eventName, olEvents[eventName]);
     })
   }
@@ -61,6 +62,7 @@ export class DragPanReact extends React.Component<DragPanProps> {
 
       const olEvents = Util.getEvents(this.events, this.props);
       Object.keys(olEvents).forEach((eventName: string) => {
+         // @ts-ignore
         this.interaction && this.interaction.on(eventName, olEvents[eventName]);
       });
     }

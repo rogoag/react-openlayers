@@ -53,7 +53,8 @@ export class ModifyReact extends React.Component<ModifyProps> {
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
-      if(this.interaction) this.interaction.on(eventName, olEvents[eventName]);
+      // @ts-ignore
+      if (this.interaction) this.interaction.on(eventName, olEvents[eventName]);
     });
   }
 
@@ -68,14 +69,15 @@ export class ModifyReact extends React.Component<ModifyProps> {
 
       const olEvents = Util.getEvents(this.events, this.props);
       Object.keys(olEvents).forEach((eventName: string) => {
-        if(this.interaction) this.interaction.on(eventName, olEvents[eventName]);
+        // @ts-ignore
+        if (this.interaction) this.interaction.on(eventName, olEvents[eventName]);
       })
     }
   }
-  
+
   cleanup(): void {
     this.context.context.context.interactions.remove(this.interaction);
-    if(this.interaction) {
+    if (this.interaction) {
       this.interaction.dispose();
     }
     this.interaction = undefined;

@@ -5,8 +5,8 @@ import Feature from 'ol/Feature';
 import Style from 'ol/style/Style';
 import Fill, { Options as FillOptions } from 'ol/style/Fill';
 import Stroke, { Options as StrokeOptions } from 'ol/style/Stroke';
-import Icon, { Options as IconOptions } from 'ol/style/icon';
-import CircleStyle from 'ol/style/circle';
+import Icon, { Options as IconOptions } from 'ol/style/Icon';
+import CircleStyle from 'ol/style/Circle';
 import Text, { Options as TextOptions } from 'ol/style/Text';
 import Util, { ReactOpenlayersEvent, ReactOpenlayersEvents } from '../util';
 import { asArray, asString } from 'ol/color';
@@ -80,7 +80,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
         const circleStyle = this.style.getImage() as CircleStyle;
         if(this.active) {
           const fill = circleStyle.getFill();
-          const colorString = fill.getColor().toString();
+          const colorString = fill.getColor()!.toString();
           const colorArray = asArray(colorString).slice();
           const strokeColor = circleStyle.getStroke();
           const strokeColorString = strokeColor.getColor().toString();
@@ -220,6 +220,7 @@ export class FeatureReact<T extends FeatureProps> extends React.Component<T, {}>
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
+      // @ts-ignore
       this.feature && this.feature.on(eventName, olEvents[eventName]);
     });
   }

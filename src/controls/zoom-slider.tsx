@@ -43,6 +43,7 @@ export class ZoomSliderReact extends React.Component<ZoomSliderProps> {
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
+      // @ts-ignore
       this.control.on(eventName, olEvents[eventName]);
     });
   }

@@ -39,17 +39,17 @@ export interface MapProps extends Omit<MapOptions, 'view'> {
   onChangeSize?: ReactOpenlayersEvent
   onChangeTarget?: ReactOpenlayersEvent
   onChangeView?: ReactOpenlayersEvent
-  onClick?: ReactOpenlayersEvent<MapBrowserEvent>
-  onDblclick?: ReactOpenlayersEvent<MapBrowserEvent>
+  onClick?: ReactOpenlayersEvent<MapBrowserEvent<any>>
+  onDblclick?: ReactOpenlayersEvent<MapBrowserEvent<any>>
   onMovestart?: ReactOpenlayersEvent<MapEvent>
   onMoveend?: ReactOpenlayersEvent<MapEvent>
-  onPointerdrag?: ReactOpenlayersEvent<MapBrowserEvent>
-  onPointermove?: ReactOpenlayersEvent<MapBrowserEvent>
+  onPointerdrag?: ReactOpenlayersEvent<MapBrowserEvent<any>>
+  onPointermove?: ReactOpenlayersEvent<MapBrowserEvent<any>>
   onPostcompose?: ReactOpenlayersEvent<Event>
   onPostrender?: ReactOpenlayersEvent<MapEvent>
   onPrecompose?: ReactOpenlayersEvent<Event>
   onPropertychange?: ReactOpenlayersEvent
-  onSingleclick?: ReactOpenlayersEvent<MapBrowserEvent>
+  onSingleclick?: ReactOpenlayersEvent<MapBrowserEvent<any>>
   mapRef?(map: Map): void
 }
 
@@ -59,17 +59,17 @@ export interface MapEvents extends ReactOpenlayersEvents {
   'change:size': ReactOpenlayersEvent
   'change:target': ReactOpenlayersEvent
   'change:view': ReactOpenlayersEvent
-  'click': ReactOpenlayersEvent<MapBrowserEvent>
-  'dblclick': ReactOpenlayersEvent<MapBrowserEvent>
+  'click': ReactOpenlayersEvent<MapBrowserEvent<any>>
+  'dblclick': ReactOpenlayersEvent<MapBrowserEvent<any>>
   'movestart': ReactOpenlayersEvent<MapEvent>
   'moveend': ReactOpenlayersEvent<MapEvent>
-  'pointerdrag': ReactOpenlayersEvent<MapBrowserEvent>
-  'pointermove': ReactOpenlayersEvent<MapBrowserEvent>
+  'pointerdrag': ReactOpenlayersEvent<MapBrowserEvent<any>>
+  'pointermove': ReactOpenlayersEvent<MapBrowserEvent<any>>
   'postcompose': ReactOpenlayersEvent<Event>
   'postrender': ReactOpenlayersEvent<MapEvent>
   'precompose': ReactOpenlayersEvent<Event>
   'propertychange': ReactOpenlayersEvent
-  'singleclick': ReactOpenlayersEvent<MapBrowserEvent>
+  'singleclick': ReactOpenlayersEvent<MapBrowserEvent<any>>
 }
 
 /**
@@ -162,6 +162,7 @@ export class MapReact extends React.Component<MapProps> {
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
       if(this.map) {
+        // @ts-ignore
         this.map.on(eventName, olEvents[eventName]);
       }
     })

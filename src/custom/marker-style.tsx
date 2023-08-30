@@ -1,4 +1,4 @@
-import Icon from 'ol/style/icon'
+import Icon from 'ol/style/Icon'
 import Style from 'ol/style/Style'
 
 // Why the hell do we have src/custom/marker-style and src/custom/style/marker-style ??

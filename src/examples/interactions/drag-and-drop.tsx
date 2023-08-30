@@ -7,7 +7,7 @@ import VectorLayer from 'ol/layer/Vector';
 import Map from 'ol/Map';
 import Projection from 'ol/proj/Projection';
 import VectorSource from 'ol/source/Vector';
-import CircleStyle from 'ol/style/circle';
+import CircleStyle from 'ol/style/Circle';
 import FillStyle from 'ol/style/Fill';
 import StrokeStyle from 'ol/style/Stroke';
 import Style from 'ol/style/Style';

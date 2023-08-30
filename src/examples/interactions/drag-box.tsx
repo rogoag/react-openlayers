@@ -5,7 +5,7 @@ import { Divider, Typography } from "@material-ui/core";
 import EventConditions from 'ol/events/condition';
 import Collection from 'ol/Collection';
 import Feature from 'ol/Feature';
-import GeoJSONFormat from 'ol/format/geojson';
+import GeoJSONFormat from 'ol/format/GeoJSON';
 import Select from 'ol/interaction/Select';
 import VectorSource from 'ol/source/Vector';
 import { DragBoxEvent } from 'ol/interaction/DragBox';

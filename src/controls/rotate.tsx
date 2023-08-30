@@ -48,6 +48,7 @@ export class RotateReact extends React.Component<RotateProps> {
 
     const olEvents = Util.getEvents(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
+      // @ts-ignore
       this.control.on(eventName, olEvents[eventName]);
     })
   }

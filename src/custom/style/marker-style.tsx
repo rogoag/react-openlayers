@@ -1,4 +1,4 @@
-import IconStyle from 'ol/style/icon';
+import IconStyle from 'ol/style/Icon';
 import Style from 'ol/style/Style';
 
 export class MarkerStyle {

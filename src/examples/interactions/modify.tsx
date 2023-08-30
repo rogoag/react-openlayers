@@ -2,10 +2,10 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import GeoJSONFormat from 'ol/format/geojson';
+import GeoJSONFormat from 'ol/format/GeoJSON';
 import SelectInteraction from 'ol/interaction/Select';
 import VectorSource from 'ol/source/Vector';
-import CircleStyle from 'ol/style/circle';
+import CircleStyle from 'ol/style/Circle';
 import FillStyle from 'ol/style/Fill';
 import StrokeStyle from 'ol/style/Stroke';
 import Style from 'ol/style/Style';

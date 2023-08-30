@@ -9,13 +9,13 @@ import { Options } from 'ol/layer/BaseTile';
 import VectorSource from 'ol/source/Vector';
 
 import XYZ from 'ol/source/XYZ';
-import OSM from 'ol/source/osm';
+import OSM from 'ol/source/OSM';
 
 export type TileLayerContextType = TileReact | void;
 export const TileLayerContext = React.createContext<TileLayerContextType>(undefined);
 
-export interface TileProps extends Omit<Options, 'source'>, LayerType<Tile> {
-  source?: Options['source']
+export interface TileProps extends Omit<Options<any>, 'source'>, LayerType<Tile<any>> {
+  source?: Options<any>['source']
   onChange?:ReactOpenlayersEvent
   onChangeExtent?:ReactOpenlayersEvent
   onChangeMinResolution?:ReactOpenlayersEvent
@@ -52,10 +52,10 @@ export interface TileEvents extends ReactOpenlayersEvents {
 export class TileReact extends React.Component<TileProps> {
   public static contextType: React.Context<MapContextType> = MapContext;
 
-  public layer: Tile;
+  public layer: Tile<any>;
   public source: XYZ | OSM;
 
-  public options: Options = {
+  public options: Options<any> = {
 
   };
 
@@ -85,7 +85,7 @@ export class TileReact extends React.Component<TileProps> {
   }
 
   public componentDidMount () {
-    const options = Util.getOptions<Options, TileProps>(this.options, this.props);
+    const options = Util.getOptions<Options<any>, TileProps>(this.options, this.props);
     this.layer = new Tile({...options, source: this.source});
     if (this.props.zIndex){
       this.layer.setZIndex(this.props.zIndex);
@@ -97,6 +97,7 @@ export class TileReact extends React.Component<TileProps> {
     const olEvents = Util.getEvents<TileEvents, TileProps>(this.events, this.props);
     Object.keys(olEvents).forEach((eventName: string) => {
       if(this.layer) {
+        // @ts-ignore
         this.layer.on(eventName, olEvents[eventName]);
       }
     });
@@ -104,7 +105,7 @@ export class TileReact extends React.Component<TileProps> {
   }
 
   public componentWillReceiveProps(nextProps: TileProps) {
-    const options = Util.getOptions<Options, TileProps>(this.options, this.props);
+    const options = Util.getOptions<Options<any>, TileProps>(this.options, this.props);
 
     // Updating options first
     Object.keys(options).forEach((option: string) => {
@@ -132,7 +133,9 @@ export class TileReact extends React.Component<TileProps> {
     const oldEvents = Util.getEvents(this.events, this.props);
     const newEvents = Util.getEvents(this.events, nextProps);
     Object.keys(this.events).forEach((eventName: string) => {
+      // @ts-ignore
       if (oldEvents[eventName]) this.layer.un(eventName, oldEvents[eventName]);
+      // @ts-ignore
       if (newEvents[eventName]) this.layer.on(eventName, newEvents[eventName]);
     })
   }

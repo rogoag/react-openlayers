@@ -2,8 +2,8 @@ import * as React from "react";
 
 import { Divider, Typography } from "@material-ui/core";
 
-import KMLFormat from 'ol/format/kml';
-import StamenSource from 'ol/source/stamen';
+import KMLFormat from 'ol/format/KML';
+import StamenSource from 'ol/source/Stamen';
 import VectorSource from 'ol/source/Vector';
 
 import { layer, Layers, MapReact } from "react-openlayers";
@@ -29,6 +29,8 @@ export class Heatmap extends React.Component {
         <MapReact view={{center:[0,0], zoom:1}}>
           <Layers>
             <layer.TileReact source={tileSource} />
+            {/* 
+            // @ts-ignore */}
             <layer.Heatmap weight="weight" source={heatmapSource} blur={15} radius={5} />
           </Layers>
         </MapReact>
